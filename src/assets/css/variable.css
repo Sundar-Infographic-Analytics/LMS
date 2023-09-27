@@ -1,0 +1,170 @@
+@font-face {
+    font-family: 'Nunito Sans', sans-serif;
+    src: url(https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700&display=swap);
+}
+:root{
+    /*font*/
+    --main_font:'Nunito Sans', sans-serif;
+    /*color*/
+    --black:#3E3E3E;
+    --light_black:#6F6F6F;
+    --white:#fff;
+    --light_blue:#77B0E5;
+    --orange:#D36500;
+    --light_orange:#E7C177;
+    --purple:#C76DDD;
+    --light_red:#E97F78;
+    --gray_color:#F1F1F1;
+    --orange-bg:linear-gradient(123.49deg, #FAAA60 4.43%, #FA8560 91.54%);
+    /*height*/
+    --h100:100%;
+    --h100vh:100vh;
+    --h5:5px;
+    --h10:10px;
+    --h15:15px;
+    --h20:20px;
+    --h25:25px;
+    --h30:30px;
+    --h35:35px;
+    --h40:40px;
+    --h45:45px;
+    --h50:50px;
+    /*width*/
+    --w100:100%;
+    --w90:90%;
+    --w80:80%;
+    --w70:70%;
+    --w60:60%;
+    --w50:50%;
+    --w40:40%;
+    --w30:30%;
+    --w20:20%;
+    --w10:10%;
+    /*font weight*/
+    --fw700:700;
+    --fw600:600;
+    --fw400:400;
+    --fw300:300;
+    /*font size*/
+    --fz40:40px;
+    --fz36:36px;
+    --fz24:24px;
+    --fz22:22px;
+    --fz20:20px;
+    --fz18:18px;
+    --fz16:16px;
+    --fz13:13px;
+    /*border radious*/
+    --br5:5px;
+    --br10:10px;
+    --br15:15px;
+    --br20:20px;
+    --brn:none;
+    /*position*/
+    --posr:relative;
+    --posa:absolute;
+    --dif:inline-flex;
+    /*right*/
+    --r0:0px;
+    --r10:10px;
+    --r20:20px;
+    /*left*/
+    --l0:0px;
+    --l10:10px;
+    --l20:20px;
+    /*bottom*/
+    --b-5:5px;
+    --b-10:-10px;
+    --b-15:15px;
+    --b-20:20px;
+    --b45:45px;
+    /*top*/
+    --top5:5px;
+    --top10:-10px;
+    --top15:15px;
+    --top20:20px;
+    --top25:25px;
+    --top35:35px;
+    --top45:45px;
+    --top55:55px;
+    /*margin top*/
+    --mart5:5px;
+    --mart10:10px;
+    --mart15:15px;
+    --mart20:20px;
+    --mart25:25px;
+    --mart30:30px;
+    --mart35:35px;
+    --mart40:40px;
+    --mart45:45px;
+    --mart50:50px;
+    --mart60:60px;
+    --mart70:70px;
+    --mart80:80px;
+    --mart90:90px;
+    --mart100:100px;
+    /*margin bottom*/
+    --marb5:5px;
+    --marb10:10px;
+    --marb15:15px;
+    --marb20:20px;
+    --marb25:25px;
+    --marb30:30px;
+    /*margin left*/
+    --marl5:5px;
+    --marl10:10px;
+    --marl15:15px;
+    --marl20:20px;
+    --marl25:25px;
+    --marl30:30px;
+    /*margin right*/
+    --marr5:5px;
+    --marr10:10px;
+    --marr15:15px;
+    --marr20:20px;
+    --marr25:25px;
+    --marr30:30px;
+    /*padding top*/
+    --padt5:5px;
+    --padt10:10px;
+    --padt15:15px;
+    --padt20:20px;
+    --padt25:25px;
+    --padt30:30px;
+    --padt40:40px;
+    --padt50:50px;
+    /*padding bottom*/
+    --padb5:5px;
+    --padb10:10px;
+    --padb15:15px;
+    --padb20:20px;
+    --padb25:25px;
+    --padb30:30px;
+    --padb40:40px;
+    --padb50:50px;
+    /*padding left*/
+    --padl5:5px;
+    --padl10:10px;
+    --padl15:15px;
+    --padl20:20px;
+    --padl25:25px;
+    --padl30:30px;
+    /*padding right*/
+    --padr5:5px;
+    --padr10:10px;
+    --padr15:15px;
+    --padr20:20px;
+    --padr25:25px;
+    --padr30:30px;
+    /*padding*/
+    --pad5:5px;
+    --pad10:10px;
+    --pad15:15px;
+    --pad20:20px;
+    --pad25:25px;
+    --pad30:30px;
+    --pad35:35px;
+    --pad40:40px;
+    --pad45:45px;
+    --pad50:50px;
+}
