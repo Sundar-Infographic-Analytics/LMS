@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../assets/css/global.css';
-import '../../assets/css/custom.css';
+import '../assets/css/global.css';
+import '../assets/css/custom.css';
 import { Col, Container, Image, Row } from 'react-bootstrap';
-import data from '../../api/SubCategiries.js';
+import data from '../api/SubCategiries.js';
 import { Link } from 'react-router-dom';
 
 const SubCategiries = () => {   

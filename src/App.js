@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/home';
-import Login from './Components/login/login';
-import Categiries from './Components/contentarea/Categiries';
+import Login from './pages/login';
+import Categiries from './pages/Categiries';
 import SubCategiriesCourse from './Components/contentarea/SubCategiriesCourse';
-import PreviewCourse from './Components/contentarea/PreviewCourse';
+import PreviewCourse from './pages/PreviewCourse';
 
 
 const App = () => {

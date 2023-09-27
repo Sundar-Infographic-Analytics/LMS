@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Accordion, Image } from 'react-bootstrap';
-import data from '../../api/PreviewCourse.js';
+import data from '../api/PreviewCourse.js';
 
 const PreviewCourse = () => {
   return (

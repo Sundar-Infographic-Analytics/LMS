@@ -1,10 +1,10 @@
 import React from 'react'
-import '../../assets/css/global.css';
-import '../../assets/css/custom.css';
+import '../assets/css/global.css';
+import '../assets/css/custom.css';
 import { Card, Col, Container, Row, Form, Button, Image } from 'react-bootstrap';
-import logo from '../../assets/images/logo.png';
-import mailion from '../../assets/images/mail.png';
-import passion from '../../assets/images/password.png';
+import logo from '../assets/images/logo.png';
+import mailion from '../assets/images/mail.png';
+import passion from '../assets/images/password.png';
 
 const Login = () => {
   return (
