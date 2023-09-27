@@ -15,6 +15,7 @@
     --purple:#C76DDD;
     --light_red:#E97F78;
     --gray_color:#F1F1F1;
+    --dark_purple:#6F3FBA;
     --orange-bg:linear-gradient(123.49deg, #FAAA60 4.43%, #FA8560 91.54%);
     /*height*/
     --h100:100%;
@@ -117,6 +118,8 @@
     --marl20:20px;
     --marl25:25px;
     --marl30:30px;
+    --marl40:40px;
+    --marl50:50px;
     /*margin right*/
     --marr5:5px;
     --marr10:10px;

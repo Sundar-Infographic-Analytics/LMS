@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './Components/contentarea/home';
+import Home from './pages/home';
 import Login from './Components/login/login';
 import Categiries from './Components/contentarea/Categiries';
 import SubCategiriesCourse from './Components/contentarea/SubCategiriesCourse';

@@ -5,6 +5,9 @@ p{margin: 0;}.center_img{display: flex;text-align: center;align-items: center;ju
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 50px;left: -50px;position: relative;}
 button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -50px;position: relative;}
 .tdn{text-decoration: none !important;}
+.form-control:focus{
+    box-shadow:none !important;
+}
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}
