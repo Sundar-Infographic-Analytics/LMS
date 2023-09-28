@@ -5,6 +5,8 @@ const PreviewCourse={
             "id":1,
             "profile_img":profile_img,
             "updated":' Uploaded on December 04 2022',
+            "lesson":'lesson 1',
+            "file":'Introduction.mp4',
         }
     ]
 }

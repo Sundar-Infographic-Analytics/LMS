@@ -22,12 +22,12 @@ const Login = () => {
                     <Form action='/home'>
                       <Form.Group className="mb-3 posr" controlId="formBasicEmail">
                         <Form.Label className='fw600 fz18 black'>Email address</Form.Label>
-                        <Image src={mailion} className='posa r0 top45' style={{width:"23px"}} />
+                        <Image src={mailion} className='posa r0 top45' />
                         <Form.Control type="email" placeholder="Enter email" className='borltrn br0 bor1' style={{borderColor:"#6F3FBA"}} required/>
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword" className='posr mart20'>
                         <Form.Label className='fw600 fz18 black'>Password</Form.Label>
-                        <Image src={passion} className='posa r0 top35' style={{width:"23px"}}/>
+                        <Image src={passion} className='posa r0 top35' />
                         <Form.Control type="password" placeholder="Password" className='borltrn br0' style={{borderColor:"#6F3FBA"}} required/>
                       </Form.Group>
                       <Form.Text className='fr mb-3 light_black'>Forgot Password?</Form.Text>

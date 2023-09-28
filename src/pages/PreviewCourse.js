@@ -18,13 +18,13 @@ const PreviewCourse = () => {
                     </div>
                     <Accordion defaultActiveKey="0">
                       <Accordion.Item eventKey="0">
-                        <Accordion.Header>Accordion Item #1</Accordion.Header>
+                        <Accordion.Header>Lesson 1</Accordion.Header>
                         <Accordion.Body>
                         Introduction
                         </Accordion.Body>
                       </Accordion.Item>
                       <Accordion.Item eventKey="1">
-                        <Accordion.Header>Accordion Item #2</Accordion.Header>
+                        <Accordion.Header>Lesson 2</Accordion.Header>
                         <Accordion.Body>
                           React Intro
                         </Accordion.Body>
