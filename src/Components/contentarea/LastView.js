@@ -22,7 +22,7 @@ const LastView = () => {
           <div>
             <Image src={course.image} className='w100' />
             <p className='fz16 fw400 padt10'>{course.para}</p>
-            <Button className='fz16 padl20 padr20 orange_bg bor_orange br0' src="link">{course.buttontxt}</Button>
+            <Button className='fz16 padl30 padr30 dark_purple_bg bor_dark_purple br0 mart5' src="link">{course.buttontxt}</Button>
           </div>
         </Col>
           )

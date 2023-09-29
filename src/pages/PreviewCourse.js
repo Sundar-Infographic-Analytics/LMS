@@ -1,42 +1,37 @@
 import React from 'react';
+import '../assets/css/global.css';
 import Navbar from '../Components/header/navbar';
 import { Col, Container, Row, Accordion, Image } from 'react-bootstrap';
 import data from '../api/PreviewCourse.js';
 
+
 const PreviewCourse = () => {
-  const styles={
-      background:'red',
-  }
+  
   return (
     <div>
-      <Navbar style={styles}/>
+      <Navbar className='dark_purple_bg'/>
         <Container fluid>
           <Row>
             <Col lg={3} className='nowrap'>
-              {
-                data.content.map(course =>
                   <div className='gray_bg pad15'>
                     <div className='dif'>
-                      <Image src={course.profile_img} className='w10 marb10 marr10' />
-                      <p className='mart10'>{course.updated}</p>
+                      <Image src={data.profile_img} className='w10 marb10 marr10' />
+                      <p className='mart10'>{data.updated}</p>
                     </div>
-                    <Accordion defaultActiveKey="0">
-                      <Accordion.Item eventKey="0">
-                        <Accordion.Header>Lesson 1</Accordion.Header>
+                  </div>                  
+                    <Accordion defaultActiveKey="1" style={{overflowY:'scroll',height:'85vh',}}>
+                    {
+                    data.content.map(course=>
+                      <Accordion.Item eventKey={course.id} key={course.id}>
+                        <Accordion.Header><Image src={data.profile_img} className='w10 marr10'></Image>{course.lesson}</Accordion.Header>
                         <Accordion.Body>
-                        Introduction
+                      {course.file}
                         </Accordion.Body>
-                      </Accordion.Item>
-                      <Accordion.Item eventKey="1">
-                        <Accordion.Header>Lesson 2</Accordion.Header>
-                        <Accordion.Body>
-                          React Intro
-                        </Accordion.Body>
-                      </Accordion.Item>
+                      </Accordion.Item>                      
+                      )
+                    }
                     </Accordion>
-                </div>
-                )
-              }
+                      
             </Col>
           </Row>
         </Container>

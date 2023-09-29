@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import Rating from "./rating/Rating";
 import '../../assets/css/global.css';
 import '../../assets/css/custom.css';
-import { Container, Row, Image } from 'react-bootstrap';
+import { Container, Row, Image, Button, Col } from 'react-bootstrap';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from '../../api/RecentCourse.js';
@@ -39,15 +39,22 @@ export const RecentCourse = () => {
             {
                 data.content.map(course=> 
                     <div className="padr10">
-                        <Link to={course.link} className='tdn black'>
                         <Image src={course.image} className='w100'/>
-                        <div className='padl10 border padb50' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
+                        <div className='padl10 border padb20' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                             <p className='light_black mart10'>Updated {course.updated}</p>
-                            <h3 className='fz18 fw600'>{course.desc}</h3>
-                        </div>
-                        </Link>
-                        <div className='posr padl10' style={{top:'-50px'}}> 
-                            <Rating/>
+                            <h3 className='fz18 fw600 marb20'>{course.desc}</h3>
+                            <Row>
+                                <Col lg={6}>
+                                    <div>     
+                                        <Rating/>
+                                    </div>
+                                </Col>
+                                <Col lg={6}>
+                                <Link to={course.link} className='tdn black'>
+                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20 posr padl30 padr30' src="link">{course.buttontxt}</Button>
+                                </Link>
+                                </Col>
+                            </Row>
                         </div>
                     </div>
                 )

@@ -3,7 +3,7 @@ button.orange_bg:hover{background: linear-gradient(123.49deg, #FA8560 4.43%, #FA
 .navbar_color{background:rgba(0, 0, 0, 0.1);}
 p{margin: 0;}.center_img{display: flex;text-align: center;align-items: center;justify-content: center;}
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 50px;left: -50px;position: relative;}
-button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -50px;position: relative;}
+button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -10px;position: relative;}
 .btn:hover{background: rgb(152 115 209);}
 .form-control::placeholder{padding-left: 10px;}
 .tdn{text-decoration: none !important;}

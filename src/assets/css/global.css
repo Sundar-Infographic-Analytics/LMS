@@ -8,7 +8,7 @@
 .light_red{background: var(--light_red);}
 .light_black_bg{background: var(--light_black);}
 .gray_bg{background: var(--gray_color);}
-.dark_purple_bg{background: var(--dark_purple);}
+.dark_purple_bg{background: var(--dark_purple) !important;}
 /*height*/
 .h100{height: var(--h100);}
 .h100vh{height: var(--h100vh);}
@@ -59,6 +59,7 @@ body{font-family: var(--main_font)}
 /*border color*/
 .bor_gra{border-color: var(--orange-bg);}
 .bor_orange{border-color: var(--orange);}
+.bor_dark_purple{border-color: var(--dark_purple);}
 /*border size*/
 .bor1{border-width: 1px;}
 .bor2{border-width: 2px;}

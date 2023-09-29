@@ -11,6 +11,7 @@ const data = {
         "updated":"22/12/19",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
         "link":'/Categiries',
+        "buttontxt":"View",
     },
     {
         "id":2,
@@ -18,6 +19,7 @@ const data = {
         "updated":"22/12/20",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
         "link":'',
+        "buttontxt":"View",
     },
     {
         "id":3,
@@ -25,6 +27,7 @@ const data = {
         "updated":"22/12/23",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
         "link":'',
+        "buttontxt":"View",
     },
     {
         "id":4,
@@ -32,6 +35,7 @@ const data = {
         "updated":"22/12/19",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
         "link":'',
+        "buttontxt":"View",
     },
     {
         "id":5,
@@ -39,6 +43,7 @@ const data = {
         "updated":"22/12/20",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
         "link":'',
+        "buttontxt":"View",
     },
     {
         "id":6,
@@ -46,6 +51,7 @@ const data = {
         "updated":"22/12/23",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
         "link":'',
+        "buttontxt":"View",
     }
 ]
 }
