@@ -17,21 +17,21 @@ const Login = () => {
               <div className='w80 mw100 p-2'>
                 <Card className='br15 born'>
                   <Card.Body>
-                  <Card.Img variant="top" src={logo} className='w20 mt-4 mb-5'/>
-                    <Card.Title className='fw600 fz36  black' style={{marginBottom:'70px'}}>Login to your Account</Card.Title>
+                  <Card.Img variant="top" src={logo} className='w20 mt-4 mb-3'/>
+                    <Card.Title className='fw600 fz30  black' style={{marginBottom:'70px'}}>Login to your Account</Card.Title>
                     <Form action='/home'>
                       <Form.Group className="mb-3 posr" controlId="formBasicEmail">
-                        <Form.Label className='fw600 fz18 black'>Email address</Form.Label>
-                        <Image src={mailion} className='posa r0 top45' />
+                        <Form.Label className='fw400 fz20 black'>Email address</Form.Label>
+                        <Image src={mailion} className='posa r0 top45 marr10' />
                         <Form.Control type="email" placeholder="Enter email" className='borltrn br0 bor1' style={{borderColor:"#6F3FBA"}} required/>
                       </Form.Group>
                       <Form.Group controlId="formBasicPassword" className='posr mart20'>
-                        <Form.Label className='fw600 fz18 black'>Password</Form.Label>
-                        <Image src={passion} className='posa r0 top35' />
+                        <Form.Label className='fw400 fz20 black'>Password</Form.Label>
+                        <Image src={passion} className='posa r0 top45 marr10' />
                         <Form.Control type="password" placeholder="Password" className='borltrn br0' style={{borderColor:"#6F3FBA"}} required/>
                       </Form.Group>
                       <Form.Text className='fr mb-3 light_black'>Forgot Password?</Form.Text>
-                      <Button variant="primary" type="submit" className='w100 dark_purple_bg fz18 h50'>
+                      <Button variant="primary" type="submit" className='w100 dark_purple_bg fz18 h50' style={{borderColor:"#6F3FBA"}}>
                         Login
                       </Button>
                     </Form>

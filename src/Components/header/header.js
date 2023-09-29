@@ -2,7 +2,6 @@ import React from 'react'
 import '../../assets/css/global.css';
 import '../../assets/css/custom.css';
 import { Col, Container, Row, Card } from 'react-bootstrap';
-import Navbar from './navbar';
 const Header = ({style, text, title1, title2}) => {    
   const styles = {
       backgroundImage:`url(${style})`,
@@ -16,7 +15,6 @@ const Header = ({style, text, title1, title2}) => {
   }
   return (
     <>
-    <Navbar />
     <div style={styles}>
       <Container>
         <Row>

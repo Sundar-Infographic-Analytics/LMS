@@ -7,10 +7,12 @@ import Rating from './rating/Rating';
 import Footer from '../footer/footer';
 import LastView from './LastView';
 import { Link } from 'react-router-dom';
+import Navbar from '../header/navbar';
 
 const SubCategiriesCourse = () => {
   return (
     <div>
+      <Navbar />
         <Header style={SubCate} text='Technology is bringing a massive wave of evolution for learning things in different ways.'title1='Web Development' />
         <Container>
           <Row className='mart30'>
@@ -20,8 +22,8 @@ const SubCategiriesCourse = () => {
                   <Link to={course.link} style={{textDecoration:'none',}} className='black fz16 fw400'>
                   <Image src={course.image} className='w100' />
                     <div className='border padt10 padr10 padl10 padb50'>
-                      <p>{course.title}</p>
-                      <p>{course.desc}</p>
+                      <p className='fw600 fz18 light_black marb5'>{course.title}</p>
+                      <p className='fw400 fz15 light_black'>{course.desc}</p>
                     </div>
                   </Link>
                   <div className='posr b45 l10'>

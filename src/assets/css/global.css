@@ -49,6 +49,7 @@ body{font-family: var(--main_font)}
 /*font size*/
 .fz40{font-size: var(--fz40);}
 .fz36{font-size: var(--fz36);}
+.fz30{font-size: var(--fz30);}
 .fz24{font-size: var(--fz24);}
 .fz22{font-size: var(--fz22);}
 .fz20{font-size: var(--fz20);}
@@ -183,7 +184,7 @@ body{font-family: var(--main_font)}
 .padl15{padding-left: var(--padl15);}
 .padl20{padding-left: var(--padl20);}
 .padl25{padding-left: var(--padl25);}
-.padb30{padding-left: var(--padl30);}
+.padl30{padding-left: var(--padl30);}
 /*padding right*/
 .padr5{padding-right: var(--padr5);}
 .padr10{padding-right: var(--padr10);}

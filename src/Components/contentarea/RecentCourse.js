@@ -41,12 +41,14 @@ export const RecentCourse = () => {
                     <div className="padr10">
                         <Link to={course.link} className='tdn black'>
                         <Image src={course.image} className='w100'/>
-                        <div className='padl10 border' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
-                            <p className='light_black mart30'>Updated {course.updated}</p>
+                        <div className='padl10 border padb50' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
+                            <p className='light_black mart10'>Updated {course.updated}</p>
                             <h3 className='fz18 fw600'>{course.desc}</h3>
-                            <Rating />
                         </div>
                         </Link>
+                        <div className='posr padl10' style={{top:'-50px'}}> 
+                            <Rating/>
+                        </div>
                     </div>
                 )
             }

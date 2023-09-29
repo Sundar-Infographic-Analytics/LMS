@@ -1,14 +1,18 @@
 import React from 'react';
+import Navbar from '../Components/header/navbar';
 import { Col, Container, Row, Accordion, Image } from 'react-bootstrap';
 import data from '../api/PreviewCourse.js';
 
 const PreviewCourse = () => {
+  const styles={
+      background:'red',
+  }
   return (
     <div>
-        {/* <Header style={SubCate} text='Technology is bringing a massive wave of evolution for learning things in different ways.'title1='Web Development'/> */}
+      <Navbar style={styles}/>
         <Container fluid>
           <Row>
-            <Col lg={3}>
+            <Col lg={3} className='nowrap'>
               {
                 data.content.map(course =>
                   <div className='gray_bg pad15'>
