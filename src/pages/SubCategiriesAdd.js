@@ -35,7 +35,7 @@ const SubCategiriesAdd = () => {
             <tbody>
               {
                 data.content.map(course =>
-                <tr>
+                <tr className='lh30'>
                   <td key={course.id}>{course.id}</td>
                   <td className='fw400 fz16 light_black'><Image src={course.image} className='marr10' style={{width:'35px'}}/>{course.sub}</td>
                   <td>{course.main}</td>
