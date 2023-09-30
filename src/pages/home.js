@@ -11,11 +11,11 @@ const Home = () => {
   return (
     <>
     <Navbar />
-   <Header style={bgImage} text='Technology is bringing a massive wave of evolution for learning things in different ways.' title1='Learn From' title2='Anywhere'/>
-   <OurCourse />
-   <RecentCourse />
-   <LastView />
-   <Footer />
+    <Header style={bgImage} text='Technology is bringing a massive wave of evolution for learning things in different ways.' title1='Learn From' title2='Anywhere'/>
+    <OurCourse />
+    <RecentCourse />
+    <LastView />
+    <Footer />
    </>
   )
 }

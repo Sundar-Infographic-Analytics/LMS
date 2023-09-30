@@ -19,7 +19,7 @@ const Login = () => {
                   <Card.Body>
                   <Card.Img variant="top" src={logo} className='w20 mt-4 mb-3'/>
                     <Card.Title className='fw600 fz30  black' style={{marginBottom:'70px'}}>Login to your Account</Card.Title>
-                    <Form action='/home'>
+                    <Form action='/SubCategiriesAdd'>
                       <Form.Group className="mb-3 posr" controlId="formBasicEmail">
                         <Form.Label className='fw400 fz20 black'>Email address</Form.Label>
                         <Image src={mailion} className='posa r0 top45 marr10' />

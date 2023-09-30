@@ -17,7 +17,7 @@ const SubCategiries = () => {
             {
               data.content.map(course=>
                 <Col lg={3} className='mart50'>
-                  <Link to={course.link} >
+                  <Link to={course.link} key={course.id} >
                     <div className='center_img w100'>
                       <p className='posa white'>{course.title}</p>
                       <Image src={course.image} className='w100' />

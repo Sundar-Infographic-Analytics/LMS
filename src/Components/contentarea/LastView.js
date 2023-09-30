@@ -20,7 +20,7 @@ const LastView = () => {
         data.content.map(course=>
           <Col lg="3" className='marb10'>
           <div>
-            <Image src={course.image} className='w100' />
+            <Image src={course.image}className='w100' />
             <p className='fz16 fw400 padt10'>{course.para}</p>
             <Button className='fz16 padl30 padr30 dark_purple_bg bor_dark_purple br0 mart5' src="link">{course.buttontxt}</Button>
           </div>

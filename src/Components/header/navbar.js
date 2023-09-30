@@ -8,7 +8,7 @@ const Navbar = ({style, className}) => {
   return (    
     <div className={`navbar_color fl w100 padt15 padb15 ${className}`} style={style} >
       <Container>
-          <Link to="/" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
+          <Link to="/login" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
       </Container>
     </div>    
   )

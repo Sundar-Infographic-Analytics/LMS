@@ -16,6 +16,8 @@
     --light_red:#E97F78;
     --gray_color:#F1F1F1;
     --dark_purple:#6F3FBA;
+    --gray_color1:#F6F6F6;
+    --light_purple:#F9F5FF;
     --orange-bg:linear-gradient(123.49deg, #FAAA60 4.43%, #FA8560 91.54%);
     /*height*/
     --h100:100%;
@@ -153,6 +155,8 @@
     --padl20:20px;
     --padl25:25px;
     --padl30:30px;
+    --padl40:40px;
+    --padl50:50px;
     /*padding right*/
     --padr5:5px;
     --padr10:10px;
@@ -160,6 +164,8 @@
     --padr20:20px;
     --padr25:25px;
     --padr30:30px;
+    --padr40:40px;
+    --padr50:50px;
     /*padding*/
     --pad5:5px;
     --pad10:10px;

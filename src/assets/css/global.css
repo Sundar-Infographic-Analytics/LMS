@@ -9,6 +9,8 @@
 .light_black_bg{background: var(--light_black);}
 .gray_bg{background: var(--gray_color);}
 .dark_purple_bg{background: var(--dark_purple) !important;}
+.gray_color_bg1{background: var(--gray_color1) !important;}
+.light_purple_bg{background: var(--light_purple);}
 /*height*/
 .h100{height: var(--h100);}
 .h100vh{height: var(--h100vh);}
@@ -161,6 +163,8 @@ body{font-family: var(--main_font)}
 .padr20{padding-right: var(--padr20);}
 .padr25{padding-right: var(--padr25);}
 .padr30{padding-right: var(--padr30);}
+.padr40{padding-right: var(--padr40);}
+.padr50{padding-right: var(--padr50);}
 /*padding top*/
 .padt5{padding-top: var(--padt5);}
 .padt10{padding-top: var(--padt10);}
@@ -186,6 +190,8 @@ body{font-family: var(--main_font)}
 .padl20{padding-left: var(--padl20);}
 .padl25{padding-left: var(--padl25);}
 .padl30{padding-left: var(--padl30);}
+.padl40{padding-left: var(--padl40);}
+.padl50{padding-left: var(--padl50);}
 /*padding right*/
 .padr5{padding-right: var(--padr5);}
 .padr10{padding-right: var(--padr10);}

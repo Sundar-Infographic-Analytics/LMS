@@ -4,7 +4,7 @@ button.orange_bg:hover{background: linear-gradient(123.49deg, #FA8560 4.43%, #FA
 p{margin: 0;}.center_img{display: flex;text-align: center;align-items: center;justify-content: center;}
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 50px;left: -50px;position: relative;}
 button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -10px;position: relative;}
-.btn:hover{background: rgb(152 115 209);}
+.dark_purple_bg:hover{background: rgb(152 115 209) !important;}
 .form-control::placeholder{padding-left: 10px;}
 .tdn{text-decoration: none !important;}
 .form-control:focus{box-shadow:none !important;}

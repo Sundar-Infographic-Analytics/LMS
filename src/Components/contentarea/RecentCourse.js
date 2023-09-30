@@ -39,7 +39,7 @@ export const RecentCourse = () => {
             {
                 data.content.map(course=> 
                     <div className="padr10">
-                        <Image src={course.image} className='w100'/>
+                        <Image src={course.image} key={course.id} className='w100'/>
                         <div className='padl10 border padb20' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                             <p className='light_black mart10'>Updated {course.updated}</p>
                             <h3 className='fz18 fw600 marb20'>{course.desc}</h3>
