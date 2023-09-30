@@ -177,4 +177,8 @@
     --pad40:40px;
     --pad45:45px;
     --pad50:50px;
+    /*line height*/
+    --lh27:27px;
+    --lh30:30px;
+    --lh35:35px;
 }

@@ -1,10 +1,24 @@
 button.orange_bg:hover{background: linear-gradient(123.49deg, #FA8560 4.43%, #FAAA60 91.54%);transition-duration: 0.2s;transition-timing-function: ease-in-out;}
 .learnbg{background: url(../images/learn_image.png) no-repeat center center;background-size: cover;min-height: 450px;}
 .navbar_color{background:rgba(0, 0, 0, 0.1);}
+.padination_active{border: 2px solid #B4B4B4;background-color: #fff;border-radius: 5px;}
+.page-link{color: #000;background-color: transparent; border: none;font-size: 13px;}
+.img_action{border: 1px solid transparent;padding: 5px;}.img_action:hover{transform: scale(1.2);transition-duration: 0.2s;border: 1px solid #6f3fba;padding: 5px;}
 p{margin: 0;}.center_img{display: flex;text-align: center;align-items: center;justify-content: center;}
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 50px;left: -50px;position: relative;}
 button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -10px;position: relative;}
 .dark_purple_bg:hover{background: rgb(152 115 209) !important;}
+.lmstbl tr th{padding-bottom: 20px;padding-top: 20px;background: #F6F6F6;}
+.btn_color:hover{background: rgb(152 115 209) !important;color: #fff;}
+.lmstbl.table-striped>tbody>tr:nth-child(even)>td {
+   background-color: #f6f6f6 !important;
+   border-bottom-width:0;
+ }
+ .lmstbl.table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #ffffff !important;
+    box-shadow:none !important;
+    border-bottom-width:0;
+  }
 .form-control::placeholder{padding-left: 10px;}
 .tdn{text-decoration: none !important;}
 .form-control:focus{box-shadow:none !important;}

@@ -211,3 +211,7 @@ body{font-family: var(--main_font)}
 .h45{height: var(--h45);}
 .h50{height: var(--h50);}
 .border{border: 1px solid #eee;}
+/*line height*/
+.lh27{line-height: var(--lh27);}
+.lh30{line-height: var(--lh30);}
+.lh35{line-height: var(--lh35);}
