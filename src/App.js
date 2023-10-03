@@ -6,6 +6,7 @@ import Categiries from './pages/Categiries';
 import SubCategiriesCourse from './Components/contentarea/SubCategiriesCourse';
 import PreviewCourse from './pages/PreviewCourse';
 import SubCategiriesAdd from './pages/SubCategiriesAdd';
+import ProtectedRoute from './Components/Utils/ProtectedRoute';
 
 
 const App = () => {
@@ -13,12 +14,12 @@ const App = () => {
     <>
      <BrowserRouter>  
         <Routes>
-          <Route path='/' element={<Home />} />        
+          <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />        
           <Route path='/login' element={<Login />} />
-          <Route path='/Categiries' element={<Categiries />} />    
-          <Route path='/SubCategiriesCourse' element={<SubCategiriesCourse />} />    
-          <Route path='/PreviewCourse' element={<PreviewCourse />} />    
-          <Route path='/SubCategiriesAdd' element={<SubCategiriesAdd />} />    
+          <Route path='/Categiries' element={<ProtectedRoute><Categiries /></ProtectedRoute>} />    
+          <Route path='/SubCategiriesCourse' element={<ProtectedRoute><SubCategiriesCourse /></ProtectedRoute>} />    
+          <Route path='/PreviewCourse' element={<ProtectedRoute><PreviewCourse /></ProtectedRoute>} />    
+          <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
         </Routes> 
       </BrowserRouter>  
    
