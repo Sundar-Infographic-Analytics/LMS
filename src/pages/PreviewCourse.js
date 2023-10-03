@@ -43,8 +43,8 @@ const PreviewCourse = () => {
                 />              
                 </div>
                 <div className='fr mart20 dif'>
-                  <Link className='border pad5 padr30 padl30 tdn black fz20 marr10 fw400 dark_purple_bg white'>View</Link>
-                  <Link className='border pad5 padr30 padl30 tdn black fz20 fw400 dark_purple_bg white' src='/'>Complete</Link>
+                  <Link className='border pad5 padr30 padl30 tdn black fz20 marr10 fw400 dark_purple_bg white btn_color'>View</Link>
+                  <Link className='border pad5 padr30 padl30 tdn black fz20 fw400 dark_purple_bg white btn_color' src='/'>Complete</Link>
                 </div>
             </Col>
           </Row>

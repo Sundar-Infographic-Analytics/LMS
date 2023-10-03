@@ -38,7 +38,7 @@ export const RecentCourse = () => {
         <Slider {...settings} className='mart50'>           
             {
                 data.content.map(course=> 
-                    <div className="padr10">
+                    <div className="padr20">
                         <Image src={course.image} key={course.id} className='w100'/>
                         <div className='padl10 border padb20' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                             <p className='light_black mart10'>Updated {course.updated}</p>
@@ -51,7 +51,7 @@ export const RecentCourse = () => {
                                 </Col>
                                 <Col lg={6}>
                                 <Link to={course.link} className='tdn black'>
-                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20 posr padl30 padr30' src="link">{course.buttontxt}</Button>
+                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20 posr padl30 padr30 btn_color born' src="link">{course.buttontxt}</Button>
                                 </Link>
                                 </Col>
                             </Row>

@@ -129,7 +129,7 @@ const Login = () => {
                       </Form.Group>
                       <Form.Text className='fr mb-3 light_black'>Forgot Password?</Form.Text>
                       { error && <p className="w100 text-danger mart25 marb10">{error}</p>}
-                      <Button variant="primary" type="submit" className='w100 dark_purple_bg fz18 h50' style={{borderColor:"#6F3FBA"}}>
+                      <Button variant="primary" type="submit" className='w100 dark_purple_bg fz18 h50 btn_color' style={{borderColor:"#6F3FBA"}}>
                         Login
                       </Button>
                     </Form>

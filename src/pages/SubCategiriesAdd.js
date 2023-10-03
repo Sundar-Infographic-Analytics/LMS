@@ -1,7 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import '../assets/css/global.css';
 import '../assets/css/custom.css';
-import { Button, Col, Container, Row, Table, Pagination, Dropdown } from 'react-bootstrap';
+import { Button, Col, Container, Row, Table, Pagination, Dropdown, Modal, Form  } from 'react-bootstrap';
 import Navbar from '../Components/header/navbar';
 import data from '../api/SubCategiriesAdd.js';
 import {Image} from 'react-bootstrap';
@@ -10,14 +11,72 @@ import next_ion from '../assets/images/next_ion.png';
 import prev_ion from '../assets/images/prev_ion.png';
 import first_ion from '../assets/images/first_ion.png';
 import last_ion from '../assets/images/last_ion.png';
+import eye from '../assets/images/eye.png';
+const closebtn={
+  width:'20px',
+  height:'20px',
+  borderRadius:'50px',
+  justifyContent:'center',
+  cursor:'pointer',
+}
 const SubCategiriesAdd = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div>
+      <div>
+      <Modal show={show} onHide={handleClose}>
+          <Modal.Header onClick={handleClose} className='fr born white_bg fw600 fz16 pad15 posa r10 top15' style={closebtn}>x</Modal.Header>
+        <Modal.Body>
+          <Row>
+            <Col lg={6}>
+            <Form>
+                <Form.Group as={Col} controlId="formGridState">
+              <Form.Label className='fw600 fz16'>Category <span style={{color:'red',fontSize:'18px'}}>*</span></Form.Label>
+              <Form.Select defaultValue="Choose..." className='h50 light_black bor2'>
+                <option>Select</option>
+                <option>...</option>
+              </Form.Select>
+            </Form.Group>
+            </Form>
+            </Col>
+            <Col lg={6}>
+            <Form>
+            <Form.Group className="mb-3">
+                <Form.Label className='fw600'>Add Banner <span style={{color:'red',fontSize:'18px'}}> *</span></Form.Label>
+                <Image src={eye} className='posr fr top50 r5'></Image>
+                <Form.Control type="text" placeholder="Browse Image" className='h50 bor2' />
+              </Form.Group>
+              </Form>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12}>
+            <Form>
+            <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Label className='fw600'>Sub Category <span style={{color:'red',fontSize:'18px'}}>*</span></Form.Label>
+            <Form.Control placeholder="Enter Sub Category" className='h50 white_bg bor2' />
+          </Form.Group>
+          </Form>
+            </Col>
+          </Row>
+        </Modal.Body>
+        <Modal.Footer style={{justifyContent:'center'}} className='born'>
+          <Button variant="primary" onClick={handleClose} className='padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born' style={{flex:'1'}}>
+            Add
+          </Button>
+          <Button variant="secondary" onClick={handleClose} className='padl50 padr50 white_bg black h50 br5 fw600 fz18' style={{flex:'1'}}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </div>
       <Navbar className='dark_purple_bg'/>
       <Container fluid>
         <Row>
           <Col lg={12}>
-              <Button className='dark_purple_bg padl50 padr50 fz18 br0 mart30 marb30 fr marr30 bor_dark_purple' style={{borderRadius:'5px'}}>+ Add</Button>
+              <Button className='dark_purple_bg padl50 padr50 fz18 br0 mart30 marb30 fr marr30 bor_dark_purple btn_color born' style={{borderRadius:'5px'}} onClick={handleShow}>+ Add</Button>
           </Col>
         </Row>
         <Row>

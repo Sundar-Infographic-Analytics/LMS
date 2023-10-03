@@ -70,6 +70,7 @@
     --dif:inline-flex;
     /*right*/
     --r0:0px;
+    --r5:5px;
     --r10:10px;
     --r20:20px;
     /*left*/
@@ -89,7 +90,9 @@
     --top20:20px;
     --top25:25px;
     --top35:35px;
+    --top40:40px;
     --top45:45px;
+    --top50:50px;
     --top55:55px;
     /*margin top*/
     --mart5:5px;

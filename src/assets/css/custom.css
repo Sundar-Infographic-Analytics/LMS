@@ -7,9 +7,12 @@ button.orange_bg:hover{background: linear-gradient(123.49deg, #FA8560 4.43%, #FA
 p{margin: 0;}.center_img{display: flex;text-align: center;align-items: center;justify-content: center;}
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 50px;left: -50px;position: relative;}
 button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -10px;position: relative;}
-.dark_purple_bg:hover{background: rgb(152 115 209) !important;}
 .lmstbl tr th{padding-bottom: 20px;padding-top: 20px;background: #F6F6F6;color: #525252;}
 .btn_color:hover{background: rgb(152 115 209) !important;color: #fff;}
+input#formGridAddress1,input.form-control{background-color: #fff;}
+.modal-dialog{display: flex;height: 100vh;align-items: center;}
+.modal-content{background:#F7F1FF;padding: 25px;}
+.modal-header:hover {background: #6f3fba;color: #fff;}
 .lmstbl.table-striped>tbody>tr:nth-child(even)>td {
    background-color: #f6f6f6 !important;
    border-bottom-width:0;
