@@ -13,6 +13,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 .modal-dialog{display: flex;height: 100vh;align-items: center;}
 .modal-content{background:#F7F1FF;padding: 25px;}
 .modal-header:hover {background: #6f3fba;color: #fff;}
+.dark_green_bg:hover{background: #5bb84b;}
 .lmstbl.table-striped>tbody>tr:nth-child(even)>td {
    background-color: #f6f6f6 !important;
    border-bottom-width:0;
@@ -26,10 +27,22 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 .tdn{text-decoration: none !important;}
 .form-control:focus{box-shadow:none !important;}
 .form-control{background:#F4F4F4;}
+.form-check-input:checked{background-color: #6f3fba}
+.form-check{line-height: 1.8rem;}
+.custompos{display: flex;}
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}
+    .cusflexrow{flex-direction: column-reverse;}
+    .custompos .marl10{margin-left: 0;}
+    .custompos{display: inline;}
+input#formBasicEmail{bottom: 0 !important;}
+img.posr.fr.top5.r5{top: 35px;}
+.cusflexrow .padl20{
+    padding-left: 0;
 }
+}
+
 @media screen and (min-width:769px) and (max-width:1366px){
     .mw100{width:var(--w100);}
 }

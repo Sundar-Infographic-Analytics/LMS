@@ -18,6 +18,8 @@
     --dark_purple:#6F3FBA;
     --gray_color1:#F6F6F6;
     --light_purple:#F9F5FF;
+    --light_purple_bg:#FAF8FF;
+    --green:#199804;
     --orange-bg:linear-gradient(123.49deg, #FAAA60 4.43%, #FA8560 91.54%);
     /*height*/
     --h100:100%;
@@ -39,6 +41,7 @@
     --w70:70%;
     --w60:60%;
     --w50:50%;
+    --w45:45%;
     --w40:40%;
     --w30:30%;
     --w20:20%;
@@ -57,7 +60,10 @@
     --fz20:20px;
     --fz18:18px;
     --fz16:16px;
+    --fz15:15px;
+    --fz14:14px;
     --fz13:13px;
+
     /*border radious*/
     --br5:5px;
     --br10:10px;
@@ -68,6 +74,7 @@
     --posr:relative;
     --posa:absolute;
     --dif:inline-flex;
+    --df:'flex';
     /*right*/
     --r0:0px;
     --r5:5px;
