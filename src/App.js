@@ -7,20 +7,23 @@ import SubCategiriesCourse from './Components/contentarea/SubCategiriesCourse';
 import PreviewCourse from './pages/PreviewCourse';
 import SubCategiriesAdd from './pages/SubCategiriesAdd';
 import ProtectedRoute from './Components/Utils/ProtectedRoute';
+import { CourseTitleProvider } from './Components/Utils/CategoryTitleContext';
 
 
 const App = () => {
   return (
     <>
      <BrowserRouter>  
+     <CourseTitleProvider>
         <Routes>
-          <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />        
+          <Route path='/' element={<><Home /></>} />        
           <Route path='/login' element={<Login />} />
-          <Route path='/Categiries' element={<ProtectedRoute><Categiries /></ProtectedRoute>} />    
-          <Route path='/SubCategiriesCourse' element={<ProtectedRoute><SubCategiriesCourse /></ProtectedRoute>} />    
-          <Route path='/PreviewCourse' element={<ProtectedRoute><PreviewCourse /></ProtectedRoute>} />    
+          <Route path='/Categiries/:id' element={<><Categiries /></>} />    
+          <Route path='/SubCategiriesCourse' element={<><SubCategiriesCourse /></>} />    
+          <Route path='/PreviewCourse' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
           <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
         </Routes> 
+        </CourseTitleProvider>
       </BrowserRouter>  
    
     </>

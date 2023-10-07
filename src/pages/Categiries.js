@@ -7,7 +7,8 @@ import SubCategiries from './SubCategiries';
 import bgImage from '../assets/images/cate.png';
 import LastView from '../Components/contentarea/LastView';
 import Footer from '../Components/footer/footer';
-const Categiries = () => {
+
+const Categiries = () => {  
   return (
     <div>
       <Navbar />
