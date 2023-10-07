@@ -20,7 +20,7 @@ const OurCourse={
             "title":"Risk Management",
             "text":"Over 500 Courses",
             "color":"light_orange",
-            "link":"",
+            "link":"/Categiries",
             
         },
         {
@@ -29,7 +29,7 @@ const OurCourse={
             "title":"Finance",
             "text":"Over 400 Courses",
             "color":"purple",
-            "link":"",
+            "link":"/Categiries",
         },
         {
             "id":4,
@@ -37,7 +37,7 @@ const OurCourse={
             "title":"Legal",
             "text":"Over 200 Courses",
             "color":"light_red",
-            "link":"",
+            "link":"/Categiries",
         }
     ]
 }

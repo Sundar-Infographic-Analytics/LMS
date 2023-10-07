@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
+ // Initialize the specialLogout flag
 
   const [credentials, setCredentials] = useState({
     mobile: "",
@@ -75,6 +76,11 @@ const Login = () => {
           setError("Internal error. Please try again later.");
         }
       }
+
+      const previousLocation = localStorage.getItem('previousLocation');
+  
+      navigate(previousLocation || '/PreviewCourse');
+
     } catch (error) {
       if (error.response) {
         

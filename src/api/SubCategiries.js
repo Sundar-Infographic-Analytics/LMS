@@ -10,8 +10,8 @@ import img9 from '../assets/images/sub_9.png'
 import img10 from '../assets/images/sub_10.png'
 const SubCatagiries={
     "title":"Technology Courses Categories",
-    "desc":"can help learners to save time by grouping similar courses together."
-,    "content":[
+    "desc":"can help learners to save time by grouping similar courses together.",
+    "content":[
     {
         "id":1,
         "title":"Web Development",
