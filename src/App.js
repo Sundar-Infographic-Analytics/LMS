@@ -8,6 +8,7 @@ import PreviewCourse from './pages/PreviewCourse';
 import SubCategiriesAdd from './pages/SubCategiriesAdd';
 import ProtectedRoute from './Components/Utils/ProtectedRoute';
 import { CourseTitleProvider } from './Components/Utils/CategoryTitleContext';
+import AddCourse from './pages/AddCourse';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/SubCategiriesCourse' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
           <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
+          <Route path='/AddCourse' element={<AddCourse />} />    
         </Routes> 
         </CourseTitleProvider>
       </BrowserRouter>  
