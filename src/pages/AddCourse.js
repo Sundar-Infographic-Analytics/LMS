@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/css/global.css';
+import '../assets/css/custom.css';
 import Navbar from '../Components/header/navbar';
 import { Col, Container, Row, Card, Form,Image, Button} from 'react-bootstrap';
 import "../../node_modules/video-react/dist/video-react.css";
@@ -21,12 +22,26 @@ const AddCourse = () => {
     display:'flex',
     alignItems:'center',
   }
+  const buttonCSS={
+    background:'#6F3FBA',
+    width:'100px',
+    height:'100px',
+    borderRadius: '50px',
+    textAlign:'center',
+    alignItems:'center',
+    justifyContent:'center',
+    display:'flex',
+    color:'#fff',
+    fontWeight:'600',
+    fontSize:'25px',
+  }
   return (
     <div>
       <Navbar className='dark_purple_bg'/>
         <Container fluid>
           <Row>
             <Col lg={5}>
+            {/* <div style={buttonCSS} className='hide'>+ Add</div> */}
             <p className='fw600 fz18 mart20 padb10'>Add Course</p>
             <Card style={{boxShadow:'0 0 10px 5px #eee'}} className='born'>
               <Card.Body>
@@ -126,7 +141,7 @@ const AddCourse = () => {
               }
           </div>
             </Col>
-            <Col lg={7}>
+            <Col lg={7} className='mobhide'>
                 <div className='mart20'>
                   <Player
                   playsInline
