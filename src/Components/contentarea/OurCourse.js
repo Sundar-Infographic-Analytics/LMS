@@ -50,4 +50,4 @@ const OurCourse = () => {
   )
 }
 
-export default OurCourse
+export default OurCourse;
