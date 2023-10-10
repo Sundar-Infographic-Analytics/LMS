@@ -50,6 +50,9 @@ img.posr.fr.top5.r5{top: 35px;}
 .cusflexrow .padl20{
     padding-left: 0;
 }
+.mobhide{
+    display: none;
+}
 }
 
 @media screen and (min-width:769px) and (max-width:1366px){

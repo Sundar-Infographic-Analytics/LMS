@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/css/global.css';
+import '../assets/css/custom.css';
 import Navbar from '../Components/header/navbar';
 import { Col, Container, Row, Card, Form,Image, Button} from 'react-bootstrap';
 import "../../node_modules/video-react/dist/video-react.css";
@@ -126,7 +127,7 @@ const AddCourse = () => {
               }
           </div>
             </Col>
-            <Col lg={7}>
+            <Col lg={7} className='mobhide'>
                 <div className='mart20'>
                   <Player
                   playsInline
