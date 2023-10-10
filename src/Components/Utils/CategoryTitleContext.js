@@ -23,7 +23,6 @@ export const CourseTitleProvider = ({ children }) => {
 
     fetchCategories();
   }, []);
-
   return (
     <CourseTitleContext.Provider value={courseTitle}>
       {children}

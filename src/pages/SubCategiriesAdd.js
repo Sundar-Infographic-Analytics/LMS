@@ -36,13 +36,13 @@ const SubCategiriesAdd = () => {
 
   const handleShow = () => {
     setSubCategory({
-      categorySelect: "",  
+      categorySelect: "0",
       subCategoryInput: "",
       bannerImg: null,
     });
-    setError("")
+    setError("");
     setShow(true);
-  }
+  };
 
   const fileInputRef = useRef(null);
   const handleButtonClick = () => {
@@ -56,55 +56,115 @@ const SubCategiriesAdd = () => {
   });
 
   const [error, setError] = useState("");
-
+  const [hasError, setHasError] = useState(false);
+  const [imagename, setImageName] = useState("");
   const [show, setShow] = useState(false);
+  const MAX_FILE_SIZE = 500 * 1024;
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClose = () => {
     setShow(false);
+    setImageName("");
+    setSubCategory({
+      categorySelect: "",
+      subCategoryInput: "",
+      bannerImg: null,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(subCategory, 'subCategory');
+    console.log(subCategory, "subCategory");
 
-    if (
-      !subCategory.categorySelect ||
-      !subCategory.subCategoryInput ||
-      !subCategory.bannerImg
-    ) {
-      setError("All fields are required.");
+    if (hasError) {
       return;
     }
+    setIsLoading(true);
 
-    try {
-      // Send a POST request to your API endpoint
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/lmsAddsubcategory`,
-        subCategory,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log("Subcategory created:", response.data);
+    let formHasError = false;
 
-      handleClose();
+    if (subCategory.categorySelect === "0") {
+      setError("Please select category");
+      formHasError = true;
+    } else if (!subCategory.bannerImg) {
+      setError("Upload banner for subcategory");
+      formHasError = true;
+    } else if (!subCategory.subCategoryInput) {
+      setError("Enter Sub category");
+      formHasError = true;
+    } else {
+      try {
+        // Send a POST request to your API endpoint
+        const jwtToken = localStorage.getItem("jwtToken");
+        // console.log("vvv", jwtToken)
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/lmsAddsubcategory`,
+          subCategory,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: jwtToken,
+            },
+          }
+        );
+        console.log("Subcategory created:", response.data);
 
-      setSubCategory({
-        categorySelect: "",
-        bannerImg: null,
-        subCategoryInput: "",
-      });
-      setError("");
-    } catch (err) {
-      // Handle errors (e.g., show an error message)
-      setError("Error creating subcategory.");
-      console.error(err);
+        handleClose();
+
+        setSubCategory({
+          categorySelect: "",
+          bannerImg: null,
+          subCategoryInput: "",
+        });
+        setError("");
+      } catch (err) {
+        // Handle errors (e.g., show an error message)
+        setError("Error creating subcategory.");
+        console.error(err);
+      }
     }
+    setHasError(formHasError);
+    setIsLoading(false);
   };
-  
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+    if (name === "bannerImg") {
+      const file = files[0];
+
+      if (file.size > MAX_FILE_SIZE) {
+        //file size limit
+        setError("File size exceeds the limit (500KB)");
+        setHasError(true);
+        setImageName("");
+      } else {
+        setError("");
+        setHasError(false);
+        setImageName(file.name);
+      }
+
+      if (file) {
+        const truncatedName = file.name.slice(0, 15); // only 15 charatecter then ...
+        if (file.name.length > 15 && file.size <=MAX_FILE_SIZE) {
+          //file.size >= MAX_FILE_SIZE)
+          setImageName(truncatedName + "...");
+        } else {
+          setImageName(file.name);
+        }
+        if (file) {
+          if (file.size > MAX_FILE_SIZE) {
+            setImageName("");
+          } else {
+            setImageName(truncatedName + "...");
+          }
+        }
+      } else {
+        // no file selected
+        setImageName("");
+        setError("");
+        setHasError(false);
+      }
+    }
     setSubCategory({
       ...subCategory,
       [name]: name === "bannerImg" ? files[0] : value,
@@ -115,18 +175,18 @@ const SubCategiriesAdd = () => {
     <div>
       <div>
         <Modal show={show} onHide={handleClose}>
-        <Form onSubmit={handleSubmit}>
-          <Modal.Header
-            onClick={handleClose}
-            className="fr born white_bg fw600 fz16 pad15 posa r10 top15"
-            style={closebtn}
-          >
-            x
-          </Modal.Header>
-          <Modal.Body>
-            <Row>
-              <Col lg={6}>
-                {/* <Form onSubmit={handleSubmit}> */}
+          <Form onSubmit={handleSubmit}>
+            <Modal.Header
+              onClick={handleClose}
+              className="fr born white_bg fw600 fz16 pad15 posa r10 top15"
+              style={closebtn}
+            >
+              x
+            </Modal.Header>
+            <Modal.Body>
+              <Row>
+                <Col lg={6}>
+                  {/* <Form onSubmit={handleSubmit}> */}
                   <Form.Group as={Col} controlId="categorySelect">
                     <Form.Label className="fw600 fz16">
                       Category{" "}
@@ -134,24 +194,29 @@ const SubCategiriesAdd = () => {
                     </Form.Label>
                     <Form.Select
                       name="categorySelect"
-                      defaultValue="Select Category"
+                      defaultValue="0"
                       className="h50 light_black bor2"
                       value={subCategory.categorySelect}
                       onChange={handleChange}
                     >
-                      <option disabled>Select Category</option>
+                      <option disabled value={0}>
+                        Select Category
+                      </option>
                       {courseTitle.map((category) => (
-                       
-                        <option value={category.id} className="black" key={category.id}>
+                        <option
+                          value={category.id}
+                          className="black"
+                          key={category.id}
+                        >
                           {category.category_name}
                         </option>
                       ))}
                     </Form.Select>
                   </Form.Group>
-                {/* </Form> */}
-              </Col>
-              <Col lg={6}>
-                {/* <Form> */}
+                  {/* </Form> */}
+                </Col>
+                <Col lg={6}>
+                  {/* <Form> */}
                   <Form.Group className="mb-3" controlId="bannerImg">
                     <Form.Label className="fw600">
                       Add Banner{" "}
@@ -159,7 +224,7 @@ const SubCategiriesAdd = () => {
                     </Form.Label>
                     <div className="d-flex align-items-center">
                       <button
-                      type="button"
+                        type="button"
                         className="btn bg-white h50 light_black bor2 "
                         onClick={handleButtonClick}
                       >
@@ -175,22 +240,23 @@ const SubCategiriesAdd = () => {
                       <Form.Control
                         name="bannerImg"
                         type="file"
+                        accept=".png, .jpeg, .jpg, .webp, .svg"
                         className="d-none"
                         ref={fileInputRef}
                         onChange={handleChange}
-                        // value={subCategory.bannerImg ? subCategory.bannerImg.name : ''}
-                        // Add any additional file input attributes or event handlers here
                       />
                     </div>
+                    <div className="mt-2 light_black">Maximum size is 500KB </div>
+                    {imagename && <p className="mt-2 ">{imagename}</p>}
                     {/* <Image src={eye} className='posr fr top50 r5'></Image>
                 <Form.Control type="file" className='h50 bor2 ' /> */}
                   </Form.Group>
-                {/* </Form> */}
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={12}>
-                {/* <Form> */}
+                  {/* </Form> */}
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={12}>
+                  {/* <Form> */}
                   <Form.Group className="mb-3" controlId="subCategoryInput">
                     <Form.Label className="fw600">
                       Sub Category{" "}
@@ -204,30 +270,32 @@ const SubCategiriesAdd = () => {
                       onChange={handleChange}
                     />
                   </Form.Group>
-                {/* </Form> */}
-              </Col>
-            </Row>
-          </Modal.Body>
-          <Modal.Footer style={{ justifyContent: "center" }} className="born">
-          {error && <p className="text-danger">{error}</p>}
-            <Button
-              type="submit"
-              variant="primary"
-              onClick={handleClose}
-              className="padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
-              style={{ flex: "1" }}
-            >
-              Add
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={handleClose}
-              className="padl50 padr50 white_bg black h50 br5 fw600 fz18"
-              style={{ flex: "1" }}
-            >
-              Cancel
-            </Button>
-          </Modal.Footer>
+                  {/* </Form> */}
+                </Col>
+              </Row>
+              {hasError && <p className="text-danger fw600">{error}</p>}
+            </Modal.Body>
+
+            <Modal.Footer style={{ justifyContent: "center" }} className="born">
+              <Button
+                type="submit"
+                variant="primary"
+                onClick={handleSubmit}
+                className="padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+                style={{ flex: "1" }}
+                disabled={isLoading}
+              >
+                {isLoading ? "Adding..." : "Add"}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={handleClose}
+                className="padl50 padr50 white_bg black h50 br5 fw600 fz18"
+                style={{ flex: "1" }}
+              >
+                Cancel
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal>
       </div>
@@ -262,8 +330,8 @@ const SubCategiriesAdd = () => {
               </thead>
               <tbody>
                 {data.content.map((course) => (
-                  <tr className="lh30">
-                    <td key={course.id}>{course.id}</td>
+                  <tr className="lh30" key={course.id}>
+                    <td>{course.id}</td>
                     <td className="fw400 fz16 light_black">
                       <Image
                         src={course.image}

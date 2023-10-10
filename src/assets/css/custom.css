@@ -23,6 +23,15 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
     box-shadow:none !important;
     border-bottom-width:0;
   }
+  .objfit{
+    object-fit: cover;
+    width: 306px;
+    height: 184px;
+  }
+  .bannerImg{
+    width: 306px;
+    height: 184px;
+  }
 .form-control::placeholder{padding-left: 10px;}
 .tdn{text-decoration: none !important;}
 .form-control:focus{box-shadow:none !important;}

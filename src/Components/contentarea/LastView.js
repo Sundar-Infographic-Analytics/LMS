@@ -9,14 +9,14 @@ const LastView = () => {
     <>
       <Container>
         <Row>
-          <Col lg={12}>
+          <Col lg={12} >
             <h4 className="mart50 fw700 fz36">{data.title}</h4>
             <p className="fz18 fw400">{data.desc}</p>
           </Col>
         </Row>
         <Row className="mart40 padb40">
-          {data.content.map((course) => (
-            <Col lg="3" className="marb10">
+          {data.content.map((course, index) => (
+            <Col lg="3" className="marb10" key={index} >
               <div>
                 
                   <Image

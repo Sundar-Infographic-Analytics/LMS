@@ -19,7 +19,7 @@ const SubCategiries = () => {
           categoryid: id,
         })
         .then((response) => {
-          // console.log(response.data, "sd");
+          console.log(response.data, "sd");
           setData(response.data);
         })
         .catch((error) => {
@@ -38,12 +38,15 @@ const SubCategiries = () => {
             <h1 className="fw700 fz36 mart20">{data?.categoryTitle}</h1>
             <p className="fz18 fw400">{data?.categoryTagName}</p>
             <Row>
+           
               {data?.subcategory.map((course) => (                
-                <Col lg={3} className="mart50" key={course?.id}>
+                <Col lg={3} className="mart50 " key={course?.id}> 
                   <Link to={"/SubCategiriesCourse"}>
-                    <div className="center_img w100">
-                      <p className="posa white">{course?.category_name}</p>
-                      <Image src={course?.banner_image_url} className="w100"   />
+                    <div className="center_img posr ">
+                      <p className="posa white pad15">{course?.subcategory_name}</p>
+                     
+                      <Image src={course?.banner_image_url} className="objfit "  />
+                     
                     </div>
                   </Link>
                 </Col>                

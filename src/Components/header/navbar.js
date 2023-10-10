@@ -9,30 +9,32 @@ import { useNavigate } from "react-router-dom";
 const Navbar = ({style, className}) => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("jwtToken");
+  const username = localStorage.getItem("userName:");
   const location = useLocation();
 
-const handlelogout = (specialLogout) =>{
+const handlelogout = () =>{
   localStorage.removeItem("jwtToken");
   localStorage.removeItem("jwtTokenExpiration");
+  localStorage.removeItem('previousLocation');
+  localStorage.removeItem('userName:')
+  navigate('/');
   window.location.reload();
-  if (specialLogout) {
-    navigate("/previousCourse");
-  } else {
-    navigate("/");
-  }
+ 
 };
 
 const handleLogin = () =>{
-  localStorage.setItem('prevoiusLocation',location.pathname );
-  window.location.href = '/login';
+  localStorage.setItem('previousLocation',location.pathname );
+ navigate( '/login') ;
 };
 
   return (    
     <div className={`navbar_color fl w100 padt15 padb15 ${className}`} style={style} >
    
       <Container>
+    
       {isLoggedIn ? (
-          <Link onClick={() => handlelogout(true)} className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Logout</Link>
+        
+          <Link onClick={() => handlelogout(true)} className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>{username}Logout</Link>
        ):(<Link onClick={handleLogin} to="/login" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
        )}
         </Container>

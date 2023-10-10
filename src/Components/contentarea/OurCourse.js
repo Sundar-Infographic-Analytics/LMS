@@ -31,7 +31,7 @@ const OurCourse = () => {
             <Row>
              {
               data.content.map((course, index)=>
-                <Col lg={3}>
+                <Col lg={3} key={index} >
                 <Link to={`${course.link}/${courseTitle[index]?.id}`} style={{textDecoration:'none',}}>
                 <div className={course.color} style={{maxHeight:'263px'}}>
                   <div className='text-center padt50 padb50'>
