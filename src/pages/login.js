@@ -56,12 +56,12 @@ const Login = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/lmsLogin`,
-        credentials
-      );
+
+    await axios
+    .post(`${process.env.REACT_APP_BASE_URL}/lmsLogin`, credentials)
+    .then((response) => {
       console.log("nn", response);
+
       if (response.status === 200) {
         const token = response.data.jwtToken;
         const username = response.data.employee_name;
@@ -77,7 +77,7 @@ const Login = () => {
         setTimeout(() => {
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("jwtTokenExpiration");
-          navigate("/login"); // Navigate to the login if expire
+          navigate("/"); // Navigate to the login if expired
           window.location.reload();
         }, timeUntilExpiration);
         navigate("/");
@@ -91,21 +91,31 @@ const Login = () => {
 
       const previousLocation = localStorage.getItem("previousLocation");
       navigate(previousLocation || "/");
-    } catch (error) {
+    })
+    .catch((error) => {      
       if (error.response) {
-        if (error.response.status === 500) {
+        if (error.response.status === 401) {
           localStorage.removeItem("jwtToken");
-          localStorage.removeIte("jwtTokenExpiration");
-          navigate("/login");
+          localStorage.removeItem("jwtTokenExpiration");
+          localStorage.removeItem("previousLocation");
+          localStorage.removeItem("userName:");
+          
+          window.location.reload();
+          navigate("/");
+        } else if (error.response.status === 500) { 
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("jwtTokenExpiration");
+          setError("Internal Server Error. Please try again later.");
+          navigate("/");
           window.location.reload();
         } else {
-          setError("invalid Credentials");
+          setError("Invalid Credentials");
         }
       } else {
-        setError("Network error. Please check your network connection."); //  no network connection
+        setError("Network error. Please check your network connection.");
       }
-    }
-  };
+    });
+};
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -183,16 +193,16 @@ const Login = () => {
                             type="password"
                             name="password"
                             placeholder="Password"
-                            className="borltrn br0"
+                            className="borltrn br0 mb-3"
                             style={{ borderColor: "#6F3FBA" }}
                             value={credentials.password}
                             onChange={handleChange}
                             required
                           />
                         </Form.Group>
-                        <Form.Text className="fr mb-3 light_black">
+                        {/* <Form.Text className="fr mb-3 light_black">
                           Forgot Password?
-                        </Form.Text>
+                        </Form.Text> */}
                         {error && (
                           <p className="w100 text-danger mart25 marb10">
                             {error}

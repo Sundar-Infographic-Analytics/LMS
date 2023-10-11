@@ -17,10 +17,10 @@ const App = () => {
      <BrowserRouter>  
      <CourseTitleProvider>
         <Routes>
-          <Route path='/' element={<><Home /></>} />        
+          <Route path='/' element={<><Home /></>} />      
           <Route path='/login' element={<Login />} />
           <Route path='/Categiries/:id' element={<><Categiries /></>} />    
-          <Route path='/SubCategiriesCourse' element={<><SubCategiriesCourse /></>} />    
+          <Route path='/SubCategiriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse/:id' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
           <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
           <Route path='/AddCourse' element={<AddCourse />} />    

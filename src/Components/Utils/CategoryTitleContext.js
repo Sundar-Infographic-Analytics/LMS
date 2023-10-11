@@ -17,6 +17,7 @@ export const CourseTitleProvider = ({ children }) => {
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`);
         setCourseTitle(response.data.category);
       } catch (error) {
+        localStorage.clear();
         console.error('Error fetching categories:', error);
       }
     };

@@ -1,15 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../header/header'
 import SubCate from '../../assets/images/sub_cate_banner.png'
-import { Col, Container, Row, Image } from 'react-bootstrap'
-import data from '../../api/SubCategiriesCourse.js';
+import { Col, Container, Row, Image,Button } from 'react-bootstrap'
+// import data from '../../api/SubCategiriesCourse.js';
 // import Rating from './rating/Rating';
 import Footer from '../footer/footer';
 import LastView from './LastView';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Navbar from '../header/navbar';
+import axios from 'axios';
 
 const SubCategiriesCourse = () => {
+
+  const [Course, setCourse] = useState([]);
+  const {id} = useParams();
+
+ useEffect(() =>{
+    const fetchData = async (e) =>{
+        await axios
+        .post(`${process.env.REACT_APP_BASE_URL}/lmsCourseList`,{
+          subcategoryid: id,
+        })
+        .then((response) =>{
+          setCourse(response.data.courselist);
+            // console.log(Course, "idcheck");
+        })
+        .catch((error) =>{
+            localStorage.clear();
+            console.log(error, "er1ror");
+        })
+    };
+    fetchData();
+ },[id])
+
+ console.log(id,'iddddd');
+
   return (
     <div>
       <Navbar />
@@ -17,18 +42,24 @@ const SubCategiriesCourse = () => {
         <Container>
           <Row className='mart30'>
             {
-              data.map((course, index)=>
+              Course.map((course, index)=>
                 <Col lg={3} className='marb20' key={index}>
-                  <Link to={course.link} style={{textDecoration:'none',}} className='black fz16 fw400'>
-                  <Image src={course.image} className='w100' />
+                  <Link to={`/PreviewCourse/${course.id}`} style={{textDecoration:'none',}} className='black fz16 fw400'>
+                  <Image src={course.course_image_url} className='w100 border' />
                     <div className='border padt10 padr10 padl10 padb50'>
-                      <p className='fw600 fz18 light_black marb5'>{course.title}</p>
-                      <p className='fw400 fz15 light_black'>{course.desc}</p>
+                      <p className='fw600 fz18 light_black marb5'>{course.course_name}</p>
+                      <p className='fw400 fz15 light_black'>{course.course_desc}</p>
                     </div>
                   </Link>
-                  {/* <div className='posr b45 l10'>
-                    <Rating />
-                  </div> */}
+                  
+                  <div className='posr b45 l10'>
+                  <Col lg={3} className='marl20'>
+                                <Link to={`/PreviewCourse/${course.id}`} className='tdn black'>
+                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born '>View</Button>
+                                </Link>
+                                </Col>
+                    {/* <Rating /> */}
+                  </div>
                 </Col>
               )
             }

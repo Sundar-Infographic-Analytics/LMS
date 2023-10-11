@@ -291,7 +291,7 @@ const SubCategiriesAdd = () => {
                 variant="secondary"
                 onClick={handleClose}
                 className="padl50 padr50 white_bg black h50 br5 fw600 fz18"
-                style={{ flex: "1" }}
+                style={{ flex: "1" , border:'1px solid #6f3fba', color:'#6f3fba'}}
               >
                 Cancel
               </Button>

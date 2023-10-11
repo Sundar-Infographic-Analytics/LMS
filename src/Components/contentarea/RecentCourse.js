@@ -22,7 +22,8 @@ export const RecentCourse = () => {
             // console.log(recentCourse, "recentCourse");
         })
         .catch((error) =>{
-            console.log(error, "error")
+            localStorage.clear();
+            console.log(error, "er1ror")
         })
     };
     fetchData();
@@ -37,6 +38,8 @@ export const RecentCourse = () => {
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: true,
+        autoplay:true,
+        autoplaySpeed:2000,
         responsive: [{
 
         breakpoint: 480,
@@ -51,19 +54,19 @@ export const RecentCourse = () => {
 }
   return (
     <>
-    <Container>
+    <Container className='padb20'>
    
         <Row>
       
             <h1 className='mart50 fw700 fz36'>Recently Added Course</h1>
             <p className='fz18 fw400'>displays the courses which an enrolled user has most recently accessed</p>
         </Row>
-        <Slider {...settings} className='mart50'>           
+        <Slider {...settings} className='mart50 '>           
             {recentCourse?.map((course) => (
-                    <div className="padr20" key={course?.subcategory_id}>
-                        <Image src={course?.course_image_url}  className='w100'/>
+                    <div className="padr10 padl10  " key={course?.subcategory_id} >
+                        <Image src={course?.course_image_url} className='w100 border'/>
                         <div className='padl10 border padb20' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
-                            <p className='light_black mart10'>Updated {course.formatted_created_date}</p>
+                            <p className='light_black mart10'>Created {course.formatted_created_date}</p>
                             <h3 className='fz18 fw600 marb20'>{course.course_name}</h3>
                             <Row>
                                 {/* <Col lg={6}>
@@ -71,9 +74,9 @@ export const RecentCourse = () => {
                                         <Rating/>
                                     </div>
                                 </Col> */}
-                                <Col lg={6}>
+                                <Col lg={3} className='marl10'>
                                 <Link to={`/PreviewCourse/${course?.id}`} className='tdn black'>
-                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20 posr padl30 padr30 btn_color born' src="link">View</Button>
+                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born '>View</Button>
                                 </Link>
                                 </Col>
                             </Row>
