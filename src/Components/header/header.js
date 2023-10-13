@@ -2,7 +2,11 @@ import React from 'react'
 import '../../assets/css/global.css';
 import '../../assets/css/custom.css';
 import { Col, Container, Row, Card } from 'react-bootstrap';
+import { useParams } from 'react-router';
 const Header = ({style, text, title1, title2}) => {    
+  const param = useParams();  
+  console.log(param, 'param');
+  
   const styles = {
       backgroundImage:`url(${style})`,
       backgroundRepeat:'no-repeat',
@@ -13,6 +17,7 @@ const Header = ({style, text, title1, title2}) => {
     height:'450px',
     alignItems:'center',
   }
+  
   return (
     <>
     <div style={styles}>

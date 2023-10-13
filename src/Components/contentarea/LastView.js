@@ -7,20 +7,26 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const LastView = () => {
-   const[viewedCourse, setViewedCourse]=useState([]); 
-   const[isLoggedIn,setIsLoggedIn]=useState(false);
-
-   
-   useEffect(() =>{
-     const userName = localStorage.getItem("userName:");
-    
-     if(userName){
-      setIsLoggedIn(true);
-     
-     }
-   
-   },[]);
+   const[viewedCourse, setViewedCourse]=useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [lastViewedEmpty, setLastViewedEmpty]=useState(false);
   
+  useEffect(()=>{
+    if(viewedCourse.length === 0){
+      setLastViewedEmpty(true);
+    }else{
+      setLastViewedEmpty(false);
+    }
+  }, [viewedCourse])
+
+  console.log(viewedCourse, "crData");
+  useEffect(() => {
+    const userName = localStorage.getItem("userName:");
+
+    if (userName) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
    useEffect(()=>{
     const fetchData = async () => {
@@ -40,7 +46,7 @@ const LastView = () => {
       })
       .catch((error) =>{
         localStorage.clear();
-        console.log(error, "error1")        
+        console.log(error, "error1")
       })
       };
       fetchData();
@@ -48,43 +54,49 @@ const LastView = () => {
     // console.log(viewedCourse, "dkkk");
   return (
     <>
-    {isLoggedIn? (
-      <Container>
-        <Row>
-          <Col lg={12} >
-            <h4 className="mart50 fw700 fz36">Your Last Viewed course</h4>
-            <p className="fz18 fw400">displays the courses which an enrolled user has most recently accessed</p>
-          </Col>
-        </Row>
-        <Row className="mart40 padb40">
-          {viewedCourse?.map((course) => (
-            <Col lg="3" className="marb10 " key={course?.courseid} >
-              <div>
-                
+    
+      {isLoggedIn ? (
+        <Container>
+        {
+    console.log(lastViewedEmpty,'llllllllllllllllllllllllllllllllllllllllllllllllll')}
+          {lastViewedEmpty ? (
+            <></>
+          ) : (
+            <Row>
+              <Col lg={12}>
+                <h4 className="mart50 fw700 fz36">Your Last Viewed content</h4>
+                <p className="fz18 fw400">
+                  displays the courses which an enrolled user has most recently
+                  accessed
+                </p>
+              </Col>
+            </Row>
+          )}
+
+          <Row className="mart40 padb40">
+            {viewedCourse?.map((course, index) => (
+              <Col lg="3" className="marb10 " key={index}>
+                <div>
                   <Image
                     src={course.course_image_url}
                     className="w100 border"
-                    style={{objectFit:"contain"}}
+                    style={{ objectFit: "contain" }}
                   />
-                
-                <p className="fz16 fw400 padt10">{course.lesson_title}</p>
-                <Link to={`/PreviewCourse/${course?.courseid}`}>
-                <Button 
-                  className="fz16 padl30 padr30 dark_purple_bg bor_dark_purple br0 mart5 btn_color born"
-                
-                >
-                  View
-                </Button>
-                </Link>
-              </div>
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    ):(
-      <></>
-    )}
-     
+
+                  <p className="fz16 fw400 padt10">{course.lesson_title}</p>
+                  <Link to={`/PreviewCourse/${course?.courseid}`}>
+                    <Button className="fz16 padl30 padr30 dark_purple_bg bor_dark_purple br0 mart5 btn_color born">
+                      View
+                    </Button>
+                  </Link>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

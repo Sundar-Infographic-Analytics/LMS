@@ -63,8 +63,8 @@ export const RecentCourse = () => {
         </Row>
         <Slider {...settings} className='mart50 '>           
             {recentCourse?.map((course) => (
-                    <div className="padr10 padl10  " key={course?.subcategory_id} >
-                        <Image src={course?.course_image_url} className='w100 border'/>
+                    <div className="padr10 padl10  " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
+                        <Image src={course?.course_image_url} className='w100 border' style={{borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
                         <div className='padl10 border padb20' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                             <p className='light_black mart10'>Created {course.formatted_created_date}</p>
                             <h3 className='fz18 fw600 marb20'>{course.course_name}</h3>
