@@ -66,3 +66,42 @@ img.posr.fr.top5.r5{top: 35px;}
 @media screen and (min-width:1024px){
     .dr100{right: 100px;}
 }
+
+ul {
+  margin: 0 auto;
+  list-style-type: none;
+  counter-reset: steps;
+  margin: 0;
+  font-family: sans-serif;
+  padding-left: 0;
+}
+ul li {
+  padding:0;
+  position: relative;
+  margin: 0;
+}
+ul li:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid #000;
+  border-radius: 50%;
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  line-height: 24px;
+  background: #fff;
+}
+ul li:before {
+  position: absolute;
+  left: 13px;
+  top: 27px;
+  content: "";
+  height: 100%;
+  width: 0;
+  border-left: 2px solid #838383 !important;
+}
+.innerimg{
+  float: left;
+}
