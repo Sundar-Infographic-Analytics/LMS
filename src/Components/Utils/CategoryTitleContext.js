@@ -13,8 +13,15 @@ export const CourseTitleProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      const jwtToken=localStorage.getItem("jwtToken");
       try {
-        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`);
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`, null,
+        {
+          headers:{
+            Authorization:jwtToken,
+          },
+        }
+        );
         setCourseTitle(response.data.category);
       } catch (error) {
         localStorage.clear();

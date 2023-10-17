@@ -20,9 +20,9 @@ const ApiInterceptor = () => {
           // Handle the 401 error and show the session timeout modal
          
             // Show the session timeout modal only if logout was not explicitly clicked
-            localStorage.removeItem("jwtToken");
-            localStorage.removeItem("jwtTokenExpiration");
+            localStorage.clear();
             setShowTimeoutModal(true);
+            navigate("/");
           
           return Promise.reject(error);
         }
@@ -34,12 +34,14 @@ const ApiInterceptor = () => {
       // Remove the interceptor when the component unmounts
       axios.interceptors.response.eject(interceptor);
     };
-  }, []);
+  }, [navigate]);
 
   const handleClose = () => {
     // Close the session timeout modal
     setShowTimeoutModal(false);
     navigate("/");
+    // window.location.reload();
+
   };
 
   

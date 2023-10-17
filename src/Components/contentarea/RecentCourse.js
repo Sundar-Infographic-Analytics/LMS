@@ -16,7 +16,15 @@ export const RecentCourse = () => {
 
  useEffect(() =>{
     const fetchData = async () =>{
-        await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCourseList`)
+        const jwtToken=localStorage.getItem("jwtToken");
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCourseList`,
+        null,
+        {
+            headers:{
+              Authorization:jwtToken,
+            },
+          }
+        )
         .then((response) =>{
             setRecentCourse(response.data.courselist);
             // console.log(recentCourse, "recentCourse");

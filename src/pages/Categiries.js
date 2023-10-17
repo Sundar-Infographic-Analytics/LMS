@@ -25,9 +25,15 @@ const Categiries = () => {
 
   useEffect(() => {
     const fetchData = async (e) => {
+      const jwtToken=localStorage.getItem("jwtToken");
       await axios
         .post(`${process.env.REACT_APP_BASE_URL}/lmsSubCategoryList`, {
           categoryid: id,
+        },
+        {
+          headers:{
+            Authorization:jwtToken,
+          },
         })
         .then(({data}) => {
           setBgImg(data);

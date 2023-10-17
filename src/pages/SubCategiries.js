@@ -13,11 +13,18 @@ const SubCategiries = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const jwtToken=localStorage.getItem("jwtToken");
       // e.preventDefault();
       await axios
         .post(`${process.env.REACT_APP_BASE_URL}/lmsSubCategoryList`, {
           categoryid: id,
-        })
+        },
+        {
+          headers:{
+            Authorization:jwtToken,
+          },
+        }
+        )
         .then((response) => {
           console.log(response.data, "sd");
           setData(response.data);

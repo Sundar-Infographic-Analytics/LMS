@@ -17,7 +17,7 @@ import passion from "../assets/images/password.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
@@ -74,26 +74,26 @@ const Login = () => {
         const username = response.data.employee_name;
         localStorage.setItem("userName:", username);
         localStorage.setItem("jwtToken", token);
-        const decodedToken = jwt_decode(token);
+        // const decodedToken = jwt_decode(token);
       
-        const expirationTime = decodedToken.exp * 1000;
+        // const expirationTime = decodedToken.exp * 1000;
       
-        const currentTime = new Date().getTime();
+        // const currentTime = new Date().getTime();
       
-        const timeUntilExpiration = expirationTime - currentTime;
+        // const timeUntilExpiration = expirationTime - currentTime;
         toast.success( <div>
           Welcome, <strong>{username}</strong>!
         </div>,
         { position: 'top-right' });
-        localStorage.setItem("jwtTokenExpiration", expirationTime);
+        // localStorage.setItem("jwtTokenExpiration", expirationTime);
 
-        setTimeout(() => {
-          localStorage.removeItem("jwtToken");
-          localStorage.removeItem("jwtTokenExpiration");
-          navigate("/"); // Navigate to the login if expired
-          window.location.reload();
-        }, timeUntilExpiration);
-        navigate("/");
+        // setTimeout(() => {
+        //   localStorage.removeItem("jwtToken");
+        //   localStorage.removeItem("jwtTokenExpiration");
+        //   navigate("/"); // Navigate to the login if expired
+        //   window.location.reload();
+        // }, timeUntilExpiration);
+        // navigate("/");
       } else {
         if (response.data && response.data.error) {
           setError("Invalid Credentials");
@@ -108,10 +108,7 @@ const Login = () => {
     .catch((error) => {      
       if (error.response) {
         if (error.response.status === 401) {
-          localStorage.removeItem("jwtToken");
-          localStorage.removeItem("jwtTokenExpiration");
-          localStorage.removeItem("previousLocation");
-          localStorage.removeItem("userName:");
+          localStorage.clear();
           setShowTimeoutModal(true); // Show the session timeout modal
           window.location.reload();
           navigate("/");
@@ -144,7 +141,7 @@ const Login = () => {
         localStorage.removeItem("jwtTokenExpiration");
         // navigate("/login");
         setShowTimeoutModal(true); // Show the session timeout modal
-        window.location.reload(); // Refresh the page when token expires
+        // window.location.reload(); // Refresh the page when token expires
       }
     }
   }, [navigate]);
