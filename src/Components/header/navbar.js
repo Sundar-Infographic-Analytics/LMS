@@ -46,7 +46,7 @@ const handleLogin = () =>{
     
       {isLoggedIn ? (
         
-          <Link onClick={handleLogoutModal} className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>{username}Logout</Link>
+          <Link onClick={handleLogoutModal} className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w10 marr5 fw300'/>{username}Logout</Link>
        ):(<Link onClick={handleLogin} to="/login" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
        )}
         </Container>
