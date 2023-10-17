@@ -55,8 +55,11 @@ export const RecentCourse = () => {
   return (
     <>
     <Container className='padb20'>
-   
-        <Row>
+   {recentCourse.length === 0? (
+    <></>
+   ):(
+    <>
+    <Row>
       
             <h1 className='mart50 fw700 fz36'>Recently Added Course</h1>
             <p className='fz18 fw400'>displays the courses which an enrolled user has most recently accessed</p>
@@ -85,6 +88,9 @@ export const RecentCourse = () => {
                     </div>
                 ))}
      </Slider>
+     </>
+   )}
+        
   </Container>
   </>
   )

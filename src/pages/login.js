@@ -9,12 +9,14 @@ import {
   Form,
   Button,
   Image,
+  Modal
 } from "react-bootstrap";
 import logo from "../assets/images/logo.png";
 import mailion from "../assets/images/mail.png";
 import passion from "../assets/images/password.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import jwt_decode from "jwt-decode";
 
 const Login = () => {
@@ -26,6 +28,11 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState("");
+
+  const [showTimeoutModal, setShowTimeoutModal] = useState(false); // State for showing the session timeout modal
+  const handleClose = () => {
+    setShowTimeoutModal(false);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,10 +75,16 @@ const Login = () => {
         localStorage.setItem("userName:", username);
         localStorage.setItem("jwtToken", token);
         const decodedToken = jwt_decode(token);
+      
         const expirationTime = decodedToken.exp * 1000;
+      
         const currentTime = new Date().getTime();
+      
         const timeUntilExpiration = expirationTime - currentTime;
-
+        toast.success( <div>
+          Welcome, <strong>{username}</strong>!
+        </div>,
+        { position: 'top-right' });
         localStorage.setItem("jwtTokenExpiration", expirationTime);
 
         setTimeout(() => {
@@ -99,14 +112,15 @@ const Login = () => {
           localStorage.removeItem("jwtTokenExpiration");
           localStorage.removeItem("previousLocation");
           localStorage.removeItem("userName:");
-          
+          setShowTimeoutModal(true); // Show the session timeout modal
           window.location.reload();
           navigate("/");
         } else if (error.response.status === 500) { 
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("jwtTokenExpiration");
           setError("Internal Server Error. Please try again later.");
-          navigate("/");
+          // navigate("/");
+          setShowTimeoutModal(true); // Show the session timeout modal
           window.location.reload();
         } else {
           setError("Invalid Credentials");
@@ -128,7 +142,8 @@ const Login = () => {
       if (currentTime > expirationTime) {
         localStorage.removeItem("jwtToken");
         localStorage.removeItem("jwtTokenExpiration");
-        navigate("/login");
+        // navigate("/login");
+        setShowTimeoutModal(true); // Show the session timeout modal
         window.location.reload(); // Refresh the page when token expires
       }
     }
@@ -229,6 +244,19 @@ const Login = () => {
               <div className="text-center dark_purple_bg h100vh"></div>
             </Col>
           </Row>
+          <Modal show={showTimeoutModal} centered onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Session Timeout</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Your session has timed out. Please log in again.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={handleClose}>
+                OK
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Container>
       </div>
     </>

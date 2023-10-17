@@ -10,14 +10,16 @@ import ProtectedRoute from './Components/Utils/ProtectedRoute';
 import { CourseTitleProvider } from './Components/Utils/CategoryTitleContext';
 import AddCourse from './pages/AddCourse';
 import LoginPass from './pages/loginPass';
-import ScrollMemory from './Components/Utils/ScrollMemory'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor'
 
 const App = () => {
   return (
     <>
      <BrowserRouter>  
      <CourseTitleProvider>
-        <ScrollMemory/>
+        <Globale401Modal/>
         <Routes>
           <Route path='/' element={<><Home /></>} />      
           <Route path='/login' element={<Login />} />
@@ -30,6 +32,7 @@ const App = () => {
           <Route path='*' element={<>404 Page Page not Found</> }/>
         </Routes> 
         </CourseTitleProvider>
+        <ToastContainer position="top-right" autoClose={3000} />
       </BrowserRouter>  
    
     </>
