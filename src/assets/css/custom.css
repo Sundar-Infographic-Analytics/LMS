@@ -164,3 +164,6 @@ button.accordion-button {
 iframe {
   min-height: 750px;
 }
+.bg-info{
+  background-color: #4a4a4a !important;
+}
