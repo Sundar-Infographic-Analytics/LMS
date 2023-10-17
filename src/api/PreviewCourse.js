@@ -9,66 +9,180 @@ const PreviewCourse={
     "content":[
         {   
             "id":1,
-            "lesson":'Lesson 1',
+            "lesson":'Google Colab and Github 5/8',
             "checkmark":pick_img1,
             "lessons":[{
                 "id":1,
-                "file":'Lesson.mp4 Lesson.mp4 Lesson.mp4 Lesson.mp4 Lesson.mp4',
+                "file":'Welcome to the what do we have in store for you ?',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 },
                 {
                     "id":2,
-                    "file":'Lesson2.mp4',
+                    "file":'Welcome to the what do we have in store for you ?',
                     "poster":Poster,
-                    "checkmark":pick_img1
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
                 },
                 {
                     "id":3,
-                    "file":'Lesson3.mp4',
+                    "file":'Welcome to the what do we have in store for you ?',
                     "poster":Poster,
-                    "checkmark":pick_img1
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
                 },
                 {
                     "id":4,
-                    "file":'Lesson3.mp4',
+                    "file":'Welcome to the what do we have in store for you ?',
                     "poster":Poster,
-                    "checkmark":pick_img1
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
+                },
+                {
+                    "id":5,
+                    "file":'Welcome to the what do we have in store for you ?',
+                    "poster":Poster,
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
+                },
+                {
+                    "id":6,
+                    "file":'Welcome to the what do we have in store for you ?',
+                    "poster":Poster,
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
+                },
+                {
+                    "id":7,
+                    "file":'Welcome to the what do we have in store for you ?',
+                    "poster":Poster,
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
+                },
+                {
+                    "id":8,
+                    "file":'Welcome to the what do we have in store for you ?',
+                    "poster":Poster,
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
+                },
+                {
+                    "id":9,
+                    "file":'Welcome to the what do we have in store for you ?',
+                    "poster":Poster,
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
+                },
+                {
+                    "id":10,
+                    "file":'Welcome to the what do we have in store for you ?',
+                    "poster":Poster,
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
                 },
             ]
             
         },
         {   
             "id":2,
-            "lesson":'Lesson 2',
+            "lesson":'Google Colab and Github 5/8',
             "checkmark":pick_img1,
             "lessons":[
                 {
                 "id":1,
-                "file":'Lesson.mp4',
+                "file":'Welcome to the what do we have in store for you ?',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 },
                 {
                 "id":2,
-                "file":'Lesson.mp4',
+                "file":'Welcome to the what do we have in store for you ?',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 },
             ]
         },
         {   
             "id":3,
-            "lesson":'Lesson 3',
+            "lesson":'Google Colab and Github 5/8',
             "checkmark":pick_img1,
             "lessons":[{
                 "id":1,
-                "file":'Lesson.mp4',
+                "file":'Welcome to the what do we have in store for you ?',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 }
             ]
-        }
+        },
+        {   
+            "id":4,
+            "lesson":'Google Colab and Github 5/8',
+            "checkmark":pick_img1,
+            "lessons":[{
+                "id":1,
+                "file":'Welcome to the what do we have in store for you ?',
+                "poster":Poster,
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
+                }
+            ]
+        },
+        {   
+            "id":5,
+            "lesson":'Google Colab and Github 5/8',
+            "checkmark":pick_img1,
+            "lessons":[{
+                "id":1,
+                "file":'Welcome to the what do we have in store for you ?',
+                "poster":Poster,
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
+                }
+            ]
+        },
+        {   
+            "id":6,
+            "lesson":'Google Colab and Github 5/8',
+            "checkmark":pick_img1,
+            "lessons":[{
+                "id":1,
+                "file":'Welcome to the what do we have in store for you ?',
+                "poster":Poster,
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
+                }
+            ]
+        },
+        {   
+            "id":7,
+            "lesson":'Google Colab and Github 5/8',
+            "checkmark":pick_img1,
+            "lessons":[{
+                "id":1,
+                "file":'Welcome to the what do we have in store for you ?',
+                "poster":Poster,
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
+                }
+            ]
+        },
+        {   
+            "id":8,
+            "lesson":'Google Colab and Github 5/8',
+            "checkmark":pick_img1,
+            "lessons":[{
+                "id":1,
+                "file":'Welcome to the what do we have in store for you ?',
+                "poster":Poster,
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
+                }
+            ]
+        },
     ]
 }
 export default PreviewCourse
