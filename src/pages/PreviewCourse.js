@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/css/global.css';
 import Navbar from '../Components/header/navbar';
-import { Col, Container, Row, Accordion, Image, ProgressBar } from 'react-bootstrap';
+import { Col, Container, Row, Accordion, Image, ProgressBar, Dropdown } from 'react-bootstrap';
 import data from '../api/PreviewCourse.js';
 import "../../node_modules/video-react/dist/video-react.css";
 import { Player } from 'video-react';
@@ -26,6 +26,17 @@ const PreviewCourse = () => {
     zIndex: '2',
 
   }
+  const btnCss={
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    background: 'transparent',
+    color: '#000',
+    border: '1px solid #9B9B9B',
+    borderRadius: '0',
+    margin: '10px 0',
+    height: '55px',
+  }
   return (
     <div>
       <Navbar className='dark_purple_bg'/>
@@ -35,28 +46,41 @@ const PreviewCourse = () => {
                   <div className='gray_bg pad15'>
                     <div className='dif'>
                       <Image src={data.profile_img} className='w10 marb10 marr10' />
-                      <p className='mart10'>{data.updated}</p>
+                      <p className='mart10 fz14'>{data.updated}</p>
                     </div>
                     <div>
-                      <h2 className='fw600 fz22 text-center'>Fashion Photograph Colour Grading</h2>
+                      <h2 className='fw600 fz20'>Fashion Photograph Colour Grading</h2>
                     </div>
                     <ProgressBar striped variant="info" now={20} />
+                    <div>
+                    <Dropdown className='text-center'>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" className='w100' style={btnCss}>
+                      Dropdown Button
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                    </div>
                   </div>                  
-                    <Accordion defaultActiveKey="1" style={{height:'80vh',padding:'10px 20px'}}>
+                    <Accordion defaultActiveKey="1" style={{height:'65vh',padding:'10px 20px',overflowY:'scroll'}}>
                       {data.content.map(course=>
                       <ul className='custom_ul'>
                         <Accordion.Item eventKey={course.id} key={course.id}>
                           <Accordion.Header>
                             <Image src={course.checkmark} style={checkCss} className='w10 marr10'></Image>
-                            {course.lesson}
+                           <div className='fw500'> {course.lesson}</div>
                           </Accordion.Header>
                           {course.lessons.map(lesson=>   
                             <Accordion.Body>
                               <li>
                               <Image src={lesson.checkmark} style={checkinnerCss}  className='w10 marr10 innerimg'></Image>
-                              <div>
-                              <div>{lesson.file}</div>
-                                <p>{lesson.timeframe}</p>
+                              <div style={{padding:'10px 5px'}}>
+                              <div className='fz14'>{lesson.file}</div>
+                                <p className='fz14'>{lesson.timeframe}</p>
                               </div>
                               </li>
                             </Accordion.Body>  
