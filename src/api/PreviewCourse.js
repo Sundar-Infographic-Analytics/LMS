@@ -15,25 +15,29 @@ const PreviewCourse={
                 "id":1,
                 "file":'Lesson.mp4 Lesson.mp4 Lesson.mp4 Lesson.mp4 Lesson.mp4',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 },
                 {
                     "id":2,
                     "file":'Lesson2.mp4',
                     "poster":Poster,
-                    "checkmark":pick_img1
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
                 },
                 {
                     "id":3,
                     "file":'Lesson3.mp4',
                     "poster":Poster,
-                    "checkmark":pick_img1
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
                 },
                 {
                     "id":4,
                     "file":'Lesson3.mp4',
                     "poster":Poster,
-                    "checkmark":pick_img1
+                    "checkmark":pick_img1,
+                    "timeframe":'2 Mins | Video',
                 },
             ]
             
@@ -47,13 +51,15 @@ const PreviewCourse={
                 "id":1,
                 "file":'Lesson.mp4',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 },
                 {
                 "id":2,
                 "file":'Lesson.mp4',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 },
             ]
         },
@@ -65,7 +71,8 @@ const PreviewCourse={
                 "id":1,
                 "file":'Lesson.mp4',
                 "poster":Poster,
-                "checkmark":pick_img1
+                "checkmark":pick_img1,
+                "timeframe":'2 Mins | Video',
                 }
             ]
         }

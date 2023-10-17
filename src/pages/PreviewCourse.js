@@ -14,7 +14,7 @@ const PreviewCourse = () => {
     borderRadius: '50px',
     width: '30px',
     height: '30px',
-    padding: '5px',
+    padding: '8px',
 
   }
   const checkinnerCss={
@@ -22,7 +22,8 @@ const PreviewCourse = () => {
     borderRadius: '50px',
     width: '25px',
     height: '25px',
-    padding: '5px',
+    padding: '8px',
+    zIndex: '2',
 
   }
   return (
@@ -30,15 +31,18 @@ const PreviewCourse = () => {
       <Navbar className='dark_purple_bg'/>
         <Container fluid>
           <Row>
-            <Col lg={3} className='nowrap'>
+            <Col lg={3} className='nowrap p-3'>
                   <div className='gray_bg pad15'>
                     <div className='dif'>
                       <Image src={data.profile_img} className='w10 marb10 marr10' />
                       <p className='mart10'>{data.updated}</p>
                     </div>
+                    <div>
+                      <h2 className='fw600 fz22 text-center'>Fashion Photograph Colour Grading</h2>
+                    </div>
                     <ProgressBar striped variant="info" now={20} />
                   </div>                  
-                    <Accordion defaultActiveKey="1" style={{overflowY:'scroll',height:'85vh',}}>
+                    <Accordion defaultActiveKey="1" style={{height:'80vh',padding:'10px 20px'}}>
                       {data.content.map(course=>
                       <ul className='custom_ul'>
                         <Accordion.Item eventKey={course.id} key={course.id}>
@@ -46,14 +50,16 @@ const PreviewCourse = () => {
                             <Image src={course.checkmark} style={checkCss} className='w10 marr10'></Image>
                             {course.lesson}
                           </Accordion.Header>
-                          {course.lessons.map(lesson=>                        
+                          {course.lessons.map(lesson=>   
                             <Accordion.Body>
-                              
                               <li>
                               <Image src={lesson.checkmark} style={checkinnerCss}  className='w10 marr10 innerimg'></Image>
-                              {lesson.file}
+                              <div>
+                              <div>{lesson.file}</div>
+                                <p>{lesson.timeframe}</p>
+                              </div>
                               </li>
-                            </Accordion.Body>                        
+                            </Accordion.Body>  
                           )}               
                         </Accordion.Item>  
                         </ul>                       
