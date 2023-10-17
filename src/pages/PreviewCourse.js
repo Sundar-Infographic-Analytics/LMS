@@ -9,23 +9,6 @@ import YouTube from 'react-youtube';
 
 
 const PreviewCourse = () => {
-  const checkCss={
-    background: '#4A4A4A',
-    borderRadius: '50px',
-    width: '30px',
-    height: '30px',
-    padding: '8px',
-
-  }
-  const checkinnerCss={
-    background: '#838383',
-    borderRadius: '50px',
-    width: '25px',
-    height: '25px',
-    padding: '8px',
-    zIndex: '2',
-
-  }
   const btnCss={
     display: 'flex',
     alignItems: 'center',
@@ -79,13 +62,17 @@ const PreviewCourse = () => {
                       <ul className='custom_ul'>
                         <Accordion.Item eventKey={course.id} key={course.id}>
                           <Accordion.Header style={{paddingLeft:'10px',paddingRight:'10px'}}>
-                            <Image src={course.checkmark} style={checkCss} className='w10 marr10'></Image>
-                           <div className='fw600' style={{color:'#696c70'}}> {course.lesson}</div>
+                            <div className='checkCss enablebg' style={{background: 'transparent',}}>
+                              <Image src={course.checkmark} className='w10 marr10 imgactive enable_tick' style={{display:'none'}}></Image>
+                            </div>
+                           <div className='fw600 marl10' style={{color:'#696c70'}}> {course.lesson}</div>
                           </Accordion.Header>
                           {course.lessons.map(lesson=>   
                             <Accordion.Body style={{paddingLeft:'10px',paddingRight:'10px'}}>
                               <li>
-                              <Image src={lesson.checkmark} style={checkinnerCss}  className='w10 marr10 innerimg'></Image>
+                                <div className='checkCss1 enablebg1'>
+                                  <Image src={lesson.checkmark} style={{display:'none'}}  className='w10 marr10 innerimg imgactive1 enable_tick'></Image>
+                                </div>
                               <div style={{padding:'10px 5px'}}>
                               <div className='fz14'>{lesson.file}</div>
                                 <p className='fz14'>{lesson.timeframe}</p>

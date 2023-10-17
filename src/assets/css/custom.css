@@ -167,3 +167,46 @@ iframe {
 .bg-info{
   background-color: #4a4a4a !important;
 }
+.imgactive{
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  right: 2px;
+  position: relative;
+  bottom: 3px;
+}
+.imgactive1{
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  right: 2px;
+  bottom: 3px;
+}
+.checkCss{
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  border: 3px solid rgb(74, 74, 74);
+}
+.checkCss1{
+  border-radius: 50px;
+  width: 25px;
+  height: 25px;
+  padding: 8px;
+  z-index: 2; 
+  border: 3px solid #838383;
+}
+.enablebg{
+  background:  rgb(74, 74, 74) !important;
+}
+.enablebg1{
+  background: #838383;
+}
+.enablebg .enable_tick{
+  display: block !important;
+}
+.enablebg1 .enable_tick{
+  display: block !important;
+}
