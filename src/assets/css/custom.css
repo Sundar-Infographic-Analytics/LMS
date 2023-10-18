@@ -86,7 +86,7 @@ ul li {
   padding:0;
   position: relative;
   margin: 0;
-  background: #EBEBEB;
+  /* background: #EBEBEB; */
   display: flex;
   line-height: 24px;
 }

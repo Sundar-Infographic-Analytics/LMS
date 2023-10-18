@@ -73,7 +73,7 @@ const PreviewCourse = () => {
                                 <div className='checkCss1 enablebg1'>
                                   <Image src={lesson.checkmark} style={{display:'none'}}  className='w10 marr10 innerimg imgactive1 enable_tick'></Image>
                                 </div>
-                              <div style={{padding:'10px 5px'}}>
+                              <div style={{padding:'0 10px 8px 10px'}}>
                               <div className='fz14'>{lesson.file}</div>
                                 <p className='fz14'>{lesson.timeframe}</p>
                               </div>
