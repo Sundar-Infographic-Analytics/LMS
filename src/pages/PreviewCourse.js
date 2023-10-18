@@ -58,7 +58,7 @@ const PreviewCourse = () => {
                     </div>
                   </div>                  
                     <Accordion defaultActiveKey="1" style={{height:'72vh',padding:'10px 20px',overflowY:'scroll',maxHeight: '695px',}}>
-                      {data.content.map(course=>
+                      {data.content.map((course,index)=>
                       <ul className='custom_ul'>
                         <Accordion.Item eventKey={course.id} key={course.id}>
                           <Accordion.Header style={{paddingLeft:'10px',paddingRight:'10px'}}>
