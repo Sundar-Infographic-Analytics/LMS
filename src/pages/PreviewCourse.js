@@ -87,7 +87,7 @@ const PreviewCourse = () => {
             </Col>
             <Col lg={9}>
                 <div className='mart20'>
-                <YouTube videoId="bfHuZDlgtmo" opts={opts}  />;        
+                <YouTube videoId="bfHuZDlgtmo" opts={opts}  />     
                 </div>
                 <div className='fr dif'>
                   <Link className='border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn_color'>View</Link>
