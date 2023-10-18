@@ -11,7 +11,8 @@ const PreviewCourse={
             "id":1,
             "lesson":'Google Colab and Github 5/8',
             "checkmark":pick_img1,
-            "lessons":[{
+            "lessons":[
+                {
                 "id":1,
                 "file":'Welcome to the what do we have in store for you ?',
                 "poster":Poster,

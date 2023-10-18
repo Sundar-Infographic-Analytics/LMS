@@ -76,16 +76,16 @@ export const RecentCourse = () => {
             {recentCourse?.map((course) => (
                     <div className="padr10 padl10  " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
                         <Image src={course?.course_image_url} className='w100 border' style={{borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
-                        <div className='padl10 border padb20' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
+                        <div className='padl10 border padb20 padr10' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                             <p className='light_black mart10'>Created {course.formatted_created_date}</p>
-                            <h3 className='fz18 fw600 marb20'>{course.course_name}</h3>
+                            <h3 className='fz18 fw600 marb5 lh27'>{course.course_name}</h3>
                             <Row>
                                 {/* <Col lg={6}>
                                     <div>     
                                         <Rating/>
                                     </div>
                                 </Col> */}
-                                <Col lg={3} className='marl10'>
+                                <Col lg={3} className='marl15'>
                                 <Link to={`/PreviewCourse/${course?.id}`} className='tdn black'>
                                     <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born '>View</Button>
                                 </Link>
