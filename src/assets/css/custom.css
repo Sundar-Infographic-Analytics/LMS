@@ -116,6 +116,9 @@ ul li:before {
 .innerimg{
   float: left;
 }
+.last-item:before {
+  display: none;
+}
 .accordion,
 h2.accordion-header,
 .accordion-button,

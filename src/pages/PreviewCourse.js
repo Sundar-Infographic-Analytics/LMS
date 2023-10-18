@@ -46,7 +46,7 @@ const PreviewCourse = () => {
                     <div>
                     <Dropdown className='text-center'>
                     <Dropdown.Toggle variant="success" id="dropdown-basic" className='w100' style={btnCss}>
-                      Dropdown Button
+                    Search by lesson title
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
@@ -67,9 +67,9 @@ const PreviewCourse = () => {
                             </div>
                            <div className='fw600 marl10' style={{color:'#696c70'}}> {course.lesson}</div>
                           </Accordion.Header>
-                          {course.lessons.map(lesson=>   
-                            <Accordion.Body style={{paddingLeft:'10px',paddingRight:'10px'}}>
-                              <li>
+                          {course.lessons.map((lesson, index)=>   
+                            <Accordion.Body style={{paddingLeft:'10px',paddingRight:'10px'}} key={index}>
+                              <li className={`lesson-item ${index === course.lessons.length - 1 ? 'last-item' : ''}`}>
                                 <div className='checkCss1 enablebg1'>
                                   <Image src={lesson.checkmark} style={{display:'none'}}  className='w10 marr10 innerimg imgactive1 enable_tick'></Image>
                                 </div>
