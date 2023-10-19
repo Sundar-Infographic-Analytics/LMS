@@ -8,8 +8,8 @@ import {
   Accordion,
   Image,
   ProgressBar,
-  Dropdown,
 } from "react-bootstrap";
+// import {  Dropdown} from "react-bootstrap";
 // import data from "../api/PreviewCourse.js";
 import "../../node_modules/video-react/dist/video-react.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -22,7 +22,8 @@ const PreviewCourse = () => {
   const [chapter, setChapter] = useState([]);
   const [lessonList, setLessonList] = useState([]);
   const [allData, setAllData] = useState([]);
-  // const [percentage, setPercentage] = useState('');
+  const [selectedLesson, setSelectedLesson]=useState(null)
+  const [videoLink, setVideoLink] = useState('');
   // const [completedChapter, setCompletedChapter]=useState(false)
 
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const PreviewCourse = () => {
           setChapter(data.courseResults[0].chapter);
           setAllData(data)
           setLessonList(data.AllLessons);
+          setVideoLink(data.courseResults[0].chapter[0].lesson);
         } else {
           // Handle the case where data is not in the expected format
           console.log("Data is not in the expected format");
@@ -62,29 +64,47 @@ const PreviewCourse = () => {
     fetchData();
   }, [id, navigate, jwtToken]);
 
-  // useEffect(() =>{
-  //   if(chapter.TotalLesson === chapter.TotalLessonRead){
+    
+  //slid yotubeID from url
+  const extractVideoIdFromUrl = (url) => {
+    const regex = /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?|watch|.*[?&]v=|.*[?&]list=))|youtu\.be\/)([^"&?/ ]{11})/;
+    const match = url.match(regex);
+  
+    if (match && match[1]) {
+      return match[1];
+    }
+    return null;
+  };
 
-  //   }else{
 
-  //   }
-  // })
+
+ //when clcicck lesson for corresponding link
+ const handleLessonSelection = (lesson) =>{
+  const videoId = extractVideoIdFromUrl(lesson.file_path);
+  if (videoId) {
+    setVideoLink(lesson.file_path);
+    setSelectedLesson(videoId);
+    console.log('checkkkkkkkkkkkkkkkkk',videoId)
+  } else {
+    console.error("Invalid YouTube URL:", lesson.file_path);
+  }
+};
 
   console.log(chapter, "sssssssssssssssssssssssss");
   console.log(id, "dddddddddddddddddddddddddddddd");
   console.log(lessonList, "QQQQQQQQQQQQQQQQQQQQQQQQQQ");
 
-  const btnCss = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    background: "transparent",
-    color: "#000",
-    border: "1px solid #9B9B9B",
-    borderRadius: "0",
-    margin: "15px 0 0 0",
-    height: "45px",
-  };
+  // const btnCss = {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "space-between",
+  //   background: "transparent",
+  //   color: "#000",
+  //   border: "1px solid #9B9B9B",
+  //   borderRadius: "0",
+  //   margin: "15px 0 0 0",
+  //   height: "45px",
+  // };
   const opts = {
     height: "auto",
     width: "100%",
@@ -99,9 +119,10 @@ const PreviewCourse = () => {
       <Container fluid>
       {console.log(allData, "sssssssssssssssssssssssss")}
       {console.log('totalchapter',chapter)}
+      {console.log('linkkkkkkkkkkkkk',videoLink.file_path)}
         <Row>
           <Col lg={3} className="nowrap padl15 padr15 padt15">
-            <div className="gray_bg padl15 padr15 padt15">
+            <div className="gray_bg padl15 padr15 padt15 padb15">
               <div className="dif">
                 <Image src={profile_img} className="w10 marb10 marr10" />
                 <p className="mart10 fz14" style={{ color: "#696c70" }}>
@@ -124,7 +145,7 @@ const PreviewCourse = () => {
                 style={{ margin: "15px 0" }}
               />
               <div>
-                <Dropdown className="text-center">
+                {/* <Dropdown className="text-center">
                   <Dropdown.Toggle
                     variant="success"
                     id="dropdown-basic"
@@ -139,9 +160,9 @@ const PreviewCourse = () => {
                         {lessons.lesson_name}
                       </Dropdown.Item>
                     ))}
-                    {/* {console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',lessons.lesson_name)} */}
+                   
                   </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
               </div>
             </div>
             <Accordion
@@ -191,7 +212,7 @@ const PreviewCourse = () => {
                               : ""
                           }`}
                         >
-                          <div className= {`custom_ul ${lesson.lesson_read_status === 1 ? ' checkCss1 enablebg1' : 'checkCss1'}`} > 
+                          <div className= {`custom_ul ${lesson.lesson_read_status === 1 ? ' checkCss1 enablebg1' : 'checkCss1'}`}  > 
                             <Image
                               src={checkmark}
                               style={{ display: "none" }}
@@ -199,7 +220,7 @@ const PreviewCourse = () => {
                             ></Image>
                           </div>
                           <div style={{ padding: "0 10px 8px 10px" }}>
-                            <div className="fz14">{lesson.lesson_name}</div>
+                            <Link className="fz14 lesson-link" onClick={() => handleLessonSelection(lesson)}>{lesson.lesson_name}</Link>
                             <p className="fz14">2 Mins | Video</p>
                           </div>
                         </li>
@@ -212,7 +233,11 @@ const PreviewCourse = () => {
           </Col>
           <Col lg={9}>
             <div className="mart20">
-              <YouTube videoId="bfHuZDlgtmo" opts={opts} />
+            {selectedLesson && (
+              <YouTube videoId={selectedLesson} opts={opts} />
+            )}
+              
+          {/* {console.log("idddddddddddddddddddddddddddddddddddddddddddd:",lesson.file_path)} */}
             </div>
             <div className="fr dif">
               <Link className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn_color">
