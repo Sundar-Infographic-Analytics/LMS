@@ -43,6 +43,16 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
   background: transparent;
   color: #212529;
 }
+.dropdown-menu.show a {
+  color: #4c4c4c;
+  font-size: 12px;
+  /* border-bottom: 1px solid #dfdfdf; */
+}
+.dropdown-item {
+ 
+  white-space: wrap;
+ 
+}
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}
