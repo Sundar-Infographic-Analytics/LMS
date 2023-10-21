@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const ApiInterceptor = () => {
   const navigate = useNavigate();
   const [showTimeoutModal, setShowTimeoutModal] = useState(false);
+
   // const [logoutClicked, setLogoutClicked] = useState(false);
 
   useEffect(() => {

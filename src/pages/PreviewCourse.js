@@ -8,6 +8,8 @@ import {
   Accordion,
   Image,
   ProgressBar,
+  Modal,
+  Button,
 } from "react-bootstrap";
 // import {  Dropdown} from "react-bootstrap";
 // import data from "../api/PreviewCourse.js";
@@ -16,22 +18,79 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import YouTube from "react-youtube";
 import profile_img from "../assets/images/profile_img.png";
-import checkmark from '../assets/images/tick_mark.png';
+import checkmark from "../assets/images/tick_mark.png";
 
 const PreviewCourse = () => {
   const [chapter, setChapter] = useState([]);
   const [lessonList, setLessonList] = useState([]);
   const [allData, setAllData] = useState([]);
-  const [selectedLesson, setSelectedLesson]=useState(null)
-  const [videoLink, setVideoLink] = useState('');
-  // const [completedChapter, setCompletedChapter]=useState(false)
+  const [selectedLesson, setSelectedLesson] = useState(null);
+  const [videoLink, setVideoLink] = useState("");
+  const [showConditionModal, setShowConditionModal] = useState(false);
+  const [condtionError, setConditionError] = useState("");
+  const [completeButton, setcompletebutton] = useState("");
+  const [isLessonCompleted,setIsLessonCompleted] =useState('');
+  const [isLoading,setIsLoading] = useState(false);
+  const [confirmModal,setConfirmModal]=useState(false);
+  // const [completedChapter, setCompletedChapter]=useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
+
   const jwtToken = localStorage.getItem("jwtToken");
+
+  const handleClick = async () => {
+    if(completeButton){
+      try {
+        await axios.post(
+           `${process.env.REACT_APP_BASE_URL}/lmsAddHistory`,
+           {
+             lesson_id: completeButton,
+           },
+           {
+             headers: {
+               Authorization: jwtToken,
+             },
+           }
+         );
+
+         setcompletebutton(null);
+         window.location.reload();
+         
+     // Fetch updated data from the server
+     const response = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/lmsLessonList`,
+      {
+        id: id,
+      },
+      {
+        headers: {
+          Authorization: jwtToken,
+        },
+      }
+    );
+         const data = response.data;
+
+         if (data && data.courseResults && data.courseResults.length > 0) {
+           // Update the state with the new data
+           setChapter(data.courseResults[0].chapter);
+           setAllData(data);
+           setLessonList(data.AllLessons);
+           setVideoLink(data.courseResults[0].chapter[0].lesson);
+         } else {
+           // Handle the case where data is not in the expected format
+           console.log("Data is not in the expected format");
+         }
+       } catch (error) {
+         console.log(error, "error from complete button");
+       }
+     }
+   setConfirmModal(false)
+  };
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmsLessonList`,
@@ -47,9 +106,10 @@ const PreviewCourse = () => {
 
         const data = response.data;
 
-        if (data && data.courseResults && data.courseResults.length > 0) { // for avoid to 0th array problem
+        if (data && data.courseResults && data.courseResults.length > 0) {
+          // for avoid to 0th array problem
           setChapter(data.courseResults[0].chapter);
-          setAllData(data)
+          setAllData(data);
           setLessonList(data.AllLessons);
           setVideoLink(data.courseResults[0].chapter[0].lesson);
         } else {
@@ -60,35 +120,118 @@ const PreviewCourse = () => {
         console.log(error, "ssss");
       }
     };
-
+    setIsLoading(false);
     fetchData();
   }, [id, navigate, jwtToken]);
 
-    
   //slid yotubeID from url
   const extractVideoIdFromUrl = (url) => {
-    const regex = /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?|watch|.*[?&]v=|.*[?&]list=))|youtu\.be\/)([^"&?/ ]{11})/;
+    const regex =
+      /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?|watch|.*[?&]v=|.*[?&]list=))|youtu\.be\/)([^"&?/ ]{11})/;
     const match = url.match(regex);
-  
+
     if (match && match[1]) {
       return match[1];
     }
     return null;
   };
 
+  const handleLessonSelection = (chapterIndex, lessonIndex, lesson) => {
+    let lIndx = lessonIndex;
+    let cIndx = chapterIndex;
 
+    if (chapterIndex !== 0 || lessonIndex !== 0) {
+      if (lessonIndex === 0) {
+        chapterIndex -= 1;
+        setConditionError(
+          "Complete previous lesson in this chapter to continue this lesson"
+        );
+        if (chapterIndex <= 0) chapterIndex = 0;
+        lessonIndex = chapter[chapterIndex].lesson.length - 1; // to check chapter's last lesson status
+        setConditionError("Complete previous chapter to continue this lesson");
+      } else {
+        lessonIndex -= 1;
+        setConditionError(
+          "Complete previous lesson in this chapter to continue this lesson1"
+        );
+      }
+    }
+    if (
+      !chapter[chapterIndex].lesson[lessonIndex].lesson_read_status &&
+      (cIndx !== 0 || lIndx !== 0)
+    )
+      setShowConditionModal(true);
+    else {
+      const videoId = extractVideoIdFromUrl(lesson.file_path);
+      if (videoId) {
+        setVideoLink(lesson.file_path);
+        setSelectedLesson(videoId);
+        setcompletebutton(lesson.lesson_id);
+        setIsLessonCompleted(lesson.lesson_read_status)
+        setIsLoading(true);
+        console.log("checkkkkkkkkkkkkkkkkk", videoId);
+        console.log("selectedLesson", completeButton);
+      } else {
+        console.error("Invalid YouTube URL:", lesson.file_path);
+      }
+    }
+    setIsLoading(false);
+  };
 
- //when clcicck lesson for corresponding link
- const handleLessonSelection = (lesson) =>{
-  const videoId = extractVideoIdFromUrl(lesson.file_path);
-  if (videoId) {
-    setVideoLink(lesson.file_path);
-    setSelectedLesson(videoId);
-    console.log('checkkkkkkkkkkkkkkkkk',videoId)
-  } else {
-    console.error("Invalid YouTube URL:", lesson.file_path);
-  }
-};
+  //when clcicck lesson for corresponding link
+
+  //  const handleLessonSelection = (chapterIndex, lessonIndex, lesson) =>{  //dhivaaaaaaaaaaaaaagggggggggggggggggaaaaaaaaaaaaaaaarrrrrrrrrrrrr
+  // console.log(chapterIndex, "condiotion-CI")
+  // console.log(lessonIndex, "condiotion-LI")
+  // const isLessonReaded=chapter[chapterIndex].lesson[lessonIndex].lesson_read_status ===1;
+  // const isChapterReaded=chapter[chapterIndex].TotalLesson===chapter[chapterIndex].TotalLessonRead;
+  // // const PrevoiusLesson = lessonIndex-=1;
+  // console.log(isLessonReaded,'condiotion-les_read')
+  // console.log(isChapterReaded,'condiotion-chap_read')
+  // // if (chapter[chapterIndex].TotalLesson === chapter[chapterIndex].TotalLessonRead){
+  // //   const
+  // // }
+  // const PrevoiusChapter = chapterIndex - 1;
+  // if (!isLessonReaded){    //&& chapter[PrevoiusChapter].TotalLesson===chapter[chapterIndex].TotalLessonRead
+  //   if(lesson[lessonIndex]===0){
+
+  //     const PrevoiusChapter = chapter[chapterIndex] - 1;
+  //     if (chapter[PrevoiusChapter]===0 || chapter[PrevoiusChapter]===-1)
+  //     chapter[chapterIndex]=0
+  //  const lastlessonIndex= chapter[chapterIndex].lesson[lessonIndex].length-1
+  //  console.log(lastlessonIndex,'condiotion')
+  // if(!chapter[chapterIndex].lesson[lastlessonIndex].lesson_read_status){
+  //   alert("read prevoius chapter")
+  // }
+
+  //   }
+  //   const PrevoiusLessonIND = lessonIndex-1;
+  //   console.log(chapter[chapterIndex].lesson[PrevoiusLessonIND].lesson_read_status,'condiotion-les_prevoiusless')
+  //  if(chapter[chapterIndex].lesson[PrevoiusLessonIND].lesson_read_status===0){
+  // // console(PrevoiusLesson===!isLessonReaded,"condiotion")
+  //    alert("please read prevoius lesson")
+  //  }
+
+  //    else{
+
+  //     alert("you can read")
+
+  //   }
+
+  // }
+
+  //   alert("prevoius lesson is unread")
+
+  //   const videoId = extractVideoIdFromUrl(lesson.file_path);
+  //   if (videoId) {
+  //     setVideoLink(lesson.file_path);
+  //     setSelectedLesson(videoId);
+  //     console.log('checkkkkkkkkkkkkkkkkk',videoId)
+  //   } else {
+  //     console.error("Invalid YouTube URL:", lesson.file_path);
+  //   }
+
+  // };
 
   console.log(chapter, "sssssssssssssssssssssssss");
   console.log(id, "dddddddddddddddddddddddddddddd");
@@ -113,13 +256,49 @@ const PreviewCourse = () => {
       autoplay: 1,
     },
   };
+
+  const handleClose = () => {
+    setShowConditionModal(false);
+    setConfirmModal(false);
+  };
+
   return (
     <div>
       <Navbar className="dark_purple_bg" />
       <Container fluid>
-      {console.log(allData, "sssssssssssssssssssssssss")}
-      {console.log('totalchapter',chapter)}
-      {console.log('linkkkkkkkkkkkkk',videoLink.file_path)}
+        {console.log(allData, "sssssssssssssssssssssssss")}
+        {console.log("totalchapter", chapter)}
+        {console.log("linkkkkkkkkkkkkk", videoLink.file_path)}
+        <Modal show={showConditionModal} centered onHide={handleClose}>
+          <Modal.Header closeButton className="logout-modal">
+            <Modal.Title className="fw500">Alert!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{condtionError}</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+              onClick={handleClose}
+            >
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={confirmModal} onHide={handleClose} >
+      <Modal.Header  closeButton className='logout-modal'>
+        <Modal.Title className='fw500' >Confirmation</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Are you sure to complete current lesson?</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18" onClick={handleClose}>
+          Cancel
+        </Button>
+        <Button variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born" onClick={handleClick}>
+          Yes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
         <Row>
           <Col lg={3} className="nowrap padl15 padr15 padt15">
             <div className="gray_bg padl15 padr15 padt15 padb15">
@@ -174,16 +353,26 @@ const PreviewCourse = () => {
                 maxHeight: "695px",
               }}
             >
-            {console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", chapter)}
-              {chapter.map((course,index) => (
-                <ul className="custom_ul" key={index}>
-                  <Accordion.Item eventKey={course.chapter_id} key={course.chapter_id}>
+              {console.log(
+                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+                chapter
+              )}
+              {chapter.map((course, index1) => (
+                <ul className="custom_ul" key={index1}>
+                  <Accordion.Item
+                    eventKey={course.chapter_id}
+                    key={course.chapter_id}
+                  >
                     <Accordion.Header
                       style={{ paddingLeft: "10px", paddingRight: "10px" }}
                     >
                       <div
-                      // {}
-                      className=  {`custom_ul ${course.TotalLesson === course.TotalLessonRead ? ' checkCss enablebg' : 'checkCss'}`}    //"checkCss enablebg"
+                        // {}
+                        className={`custom_ul ${
+                          course.TotalLesson === course.TotalLessonRead
+                            ? " checkCss enablebg"
+                            : "checkCss"
+                        }`} //"checkCss enablebg"
                         style={{ background: "transparent" }}
                       >
                         <Image
@@ -200,19 +389,26 @@ const PreviewCourse = () => {
                         {course.chapter_name}
                       </div>
                     </Accordion.Header>
-                    {course.lesson.map((lesson, index) => (
+                    {course.lesson.map((lesson, index2) => (
                       <Accordion.Body
                         style={{ paddingLeft: "10px", paddingRight: "10px" }}
                         key={lesson.lesson_id}
                       >
                         <li
                           className={`lesson-item ${
-                            index === course.lesson.length - 1
+                            // for hide last LINE
+                            index2 === course.lesson.length - 1
                               ? "last-item"
                               : ""
                           }`}
                         >
-                          <div className= {`custom_ul ${lesson.lesson_read_status === 1 ? ' checkCss1 enablebg1' : 'checkCss1'}`}  > 
+                          <div
+                            className={`custom_ul ${
+                              lesson.lesson_read_status === 1
+                                ? " checkCss1 enablebg1"
+                                : "checkCss1"
+                            }`}
+                          >
                             <Image
                               src={checkmark}
                               style={{ display: "none" }}
@@ -220,7 +416,14 @@ const PreviewCourse = () => {
                             ></Image>
                           </div>
                           <div style={{ padding: "0 10px 8px 10px" }}>
-                            <Link className="fz14 lesson-link" onClick={() => handleLessonSelection(lesson)}>{lesson.lesson_name}</Link>
+                            <Link
+                              className="fz14 lesson-link"
+                              onClick={() =>
+                                handleLessonSelection(index1, index2, lesson)
+                              }
+                            >
+                              {lesson.lesson_name}
+                            </Link>
                             <p className="fz14">2 Mins | Video</p>
                           </div>
                         </li>
@@ -233,23 +436,36 @@ const PreviewCourse = () => {
           </Col>
           <Col lg={9}>
             <div className="mart20">
-            {selectedLesson && (
-              <YouTube videoId={selectedLesson} opts={opts} />
-            )}
-              
-          {/* {console.log("idddddddddddddddddddddddddddddddddddddddddddd:",lesson.file_path)} */}
-            </div>
-            <div className="fr dif">
+              {selectedLesson && (
+                <YouTube videoId={selectedLesson} opts={opts} />
+                
+              )}
+              {console.log("selllllllllllllllll",selectedLesson)}
+              {isLoading? (
+                <></>
+              ): (
+                <>
+                <div className="fr dif">
               <Link className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn_color">
                 View
               </Link>
-              <Link
+              <Button
                 className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color"
-                src="/"
+                onClick={ () =>{setConfirmModal(true)}}
+                disabled={!isLessonCompleted? false:true}
               >
                 Complete
-              </Link>
+              </Button>
             </div>
+                </>
+              )}
+              
+              {/* {console.log("idddddddddddddddddddddddddddddddddddddddddddd:",lesson.file_path)} */}
+            </div>
+           
+              
+           
+           
           </Col>
         </Row>
       </Container>
