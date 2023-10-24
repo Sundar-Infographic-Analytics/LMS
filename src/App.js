@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from './pages/home';
 import Login from './pages/login';
 import Categiries from './pages/Categiries';
@@ -15,14 +15,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor'
 
 const App = () => {
+const token = localStorage.getItem("jwtToken");
+
   return (
     <>
      <BrowserRouter>  
      <CourseTitleProvider>
         <Globale401Modal/>
         <Routes>
-          <Route path='/' element={<><Home /></>} />      
-          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<><Home /></>} />             
+          <Route path='/login' element={ token? (<Navigate to="/"/>):(<Login />) } />     
           <Route path='/Categiries/:id' element={<><Categiries /></>} />    
           <Route path='/SubCategiriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse/:id' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    

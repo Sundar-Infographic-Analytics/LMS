@@ -32,8 +32,8 @@ const PreviewCourse = () => {
   const [isLessonCompleted,setIsLessonCompleted] =useState('');
   const [isLoading,setIsLoading] = useState(false);
   const [confirmModal,setConfirmModal]=useState(false);
-  // const [completedChapter, setCompletedChapter]=useState(false);
 
+  const [boldText, setBoldText]=useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -167,8 +167,9 @@ const PreviewCourse = () => {
         setVideoLink(lesson.file_path);
         setSelectedLesson(videoId);
         setcompletebutton(lesson.lesson_id);
-        setIsLessonCompleted(lesson.lesson_read_status)
+        setIsLessonCompleted(lesson.lesson_read_status);
         setIsLoading(true);
+        setBoldText(lesson)
         console.log("checkkkkkkkkkkkkkkkkk", videoId);
         console.log("selectedLesson", completeButton);
       } else {
@@ -417,10 +418,11 @@ const PreviewCourse = () => {
                           </div>
                           <div style={{ padding: "0 10px 8px 10px" }}>
                             <Link
-                              className="fz14 lesson-link"
-                              onClick={() =>
+                              className={`fz14 " ${lesson ===boldText?"lesson-active":"lesson-link"}`}
+                              onClick={() =>{
                                 handleLessonSelection(index1, index2, lesson)
-                              }
+                                
+                              }}
                             >
                               {lesson.lesson_name}
                             </Link>
@@ -450,7 +452,7 @@ const PreviewCourse = () => {
                 View
               </Link>
               <Button
-                className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color"
+                className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color" style={{borderRadius:0}}
                 onClick={ () =>{setConfirmModal(true)}}
                 disabled={!isLessonCompleted? false:true}
               >
