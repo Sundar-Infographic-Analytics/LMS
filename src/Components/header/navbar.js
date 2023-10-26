@@ -45,7 +45,7 @@ const handleLogin = () =>{
 };
 
   return (    
-    <div className={`navbar_color fl w100 padt15 padb15 ${className}`} style={style} >
+    <div className={`navbar_color fl w100 ${className}`} style={style} >
    <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#"><img src={logo} alt='' className='w60' /></Navbar.Brand>
