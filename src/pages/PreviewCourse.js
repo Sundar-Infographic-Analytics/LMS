@@ -30,9 +30,8 @@ const PreviewCourse = () => {
   const [condtionError, setConditionError] = useState("");
   const [completeButton, setcompletebutton] = useState("");
   const [isLessonCompleted,setIsLessonCompleted] =useState('');
-  const [isLoading,setIsLoading] = useState(false);
+  // const [isLoading,setIsLoading] = useState(false);
   const [confirmModal,setConfirmModal]=useState(false);
-
   const [boldText, setBoldText]=useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -88,10 +87,11 @@ const PreviewCourse = () => {
    setConfirmModal(false)
   };
 
-  useEffect(() => {
+  useEffect( () => {
     const fetchData = async () => {
-      setIsLoading(true);
+   
       try {
+        // setIsLoading(true);
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmsLessonList`,
           {
@@ -103,15 +103,44 @@ const PreviewCourse = () => {
             },
           }
         );
-
+  
         const data = response.data;
-
-        if (data && data.courseResults && data.courseResults.length > 0) {
-          // for avoid to 0th array problem
-          setChapter(data.courseResults[0].chapter);
+  
+        if (data && data?.courseResults && data.courseResults?.length > 0) {
+          setChapter(data?.courseResults[0]?.chapter);
           setAllData(data);
-          setLessonList(data.AllLessons);
-          setVideoLink(data.courseResults[0].chapter[0].lesson);
+          setLessonList(data?.AllLessons);
+          setVideoLink(data.courseResults[0]?.chapter[0]?.lesson);
+          
+          // Find the first lesson that is not marked as read START
+          let initialLesson = null;
+          // Use .map and the index to iterate over chapters and lessons
+          data.courseResults[0].chapter.some((chapter, chapterIndex) => {
+            return chapter.lesson.some((lesson, lessonIndex) => {
+              if (lesson.lesson_read_status !== 1) {
+                initialLesson = lesson;
+                return true; // Exit the loop once the initial lesson is found
+              }
+              return false;
+            });
+          });
+          if (
+            data.courseResults[0]?.chapter[0] && 
+            data.courseResults[0]?.chapter[0]?.lesson
+          )
+          if (initialLesson) {
+            const videoId = extractVideoIdFromUrl(initialLesson?.file_path);
+            if (videoId) {
+              setVideoLink(initialLesson?.file_path);
+              setSelectedLesson(videoId);
+              setcompletebutton(initialLesson?.lesson_id);
+              setIsLessonCompleted(initialLesson?.lesson_read_status);
+              // setIsLoading(true);
+              setBoldText(initialLesson);
+            } else {
+              console.error("Invalid YouTube URL:", initialLesson?.file_path);
+            }
+          }
         } else {
           // Handle the case where data is not in the expected format
           console.log("Data is not in the expected format");
@@ -120,7 +149,7 @@ const PreviewCourse = () => {
         console.log(error, "ssss");
       }
     };
-    setIsLoading(false);
+    // setIsLoading(false);
     fetchData();
   }, [id, navigate, jwtToken]);
 
@@ -168,16 +197,17 @@ const PreviewCourse = () => {
         setSelectedLesson(videoId);
         setcompletebutton(lesson.lesson_id);
         setIsLessonCompleted(lesson.lesson_read_status);
-        setIsLoading(true);
-        setBoldText(lesson)
+        // setIsLoading(true);
+        setBoldText(lesson.lesson_id)
         console.log("checkkkkkkkkkkkkkkkkk", videoId);
         console.log("selectedLesson", completeButton);
       } else {
         console.error("Invalid YouTube URL:", lesson.file_path);
       }
     }
-    setIsLoading(false);
+    // setIsLoading(false);
   };
+
 
   //when clcicck lesson for corresponding link
 
@@ -262,14 +292,14 @@ const PreviewCourse = () => {
     setShowConditionModal(false);
     setConfirmModal(false);
   };
-
+  
   return (
     <div>
       <Navbar className="dark_purple_bg" />
       <Container fluid>
         {console.log(allData, "sssssssssssssssssssssssss")}
         {console.log("totalchapter", chapter)}
-        {console.log("linkkkkkkkkkkkkk", videoLink.file_path)}
+        {console.log("linkkkkkkkkkkkkk", videoLink?.file_path)}
         <Modal show={showConditionModal} centered onHide={handleClose}>
           <Modal.Header closeButton className="logout-modal">
             <Modal.Title className="fw500">Alert!</Modal.Title>
@@ -345,8 +375,9 @@ const PreviewCourse = () => {
                 </Dropdown> */}
               </div>
             </div>
+            {allData?.firstMatchingLesson?.chapter_id &&
             <Accordion
-              defaultActiveKey="1"
+              defaultActiveKey= {allData?.firstMatchingLesson?.chapter_id}
               style={{
                 height: "72vh",
                 padding: "10px 20px",
@@ -358,11 +389,10 @@ const PreviewCourse = () => {
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
                 chapter
               )}
-              {chapter.map((course, index1) => (
-                <ul className="custom_ul" key={index1}>
+              {chapter.map((course, index1) => (                                             
+                <ul className="custom_ul" key={index1} >
                   <Accordion.Item
-                    eventKey={course.chapter_id}
-                    key={course.chapter_id}
+                    eventKey={course.chapter_id}                    
                   >
                     <Accordion.Header
                       style={{ paddingLeft: "10px", paddingRight: "10px" }}
@@ -417,8 +447,9 @@ const PreviewCourse = () => {
                             ></Image>
                           </div>
                           <div style={{ padding: "0 10px 8px 10px" }}>
+                            {console.log(completeButton,"boldddddddddddddddddddd")}
                             <Link
-                              className={`fz14 " ${lesson ===boldText?"lesson-active":"lesson-link"}`}
+                              className={`fz14 " ${lesson.lesson_id === boldText?"lesson-active":"lesson-link"}`}
                               onClick={() =>{
                                 handleLessonSelection(index1, index2, lesson)
                                 
@@ -435,6 +466,7 @@ const PreviewCourse = () => {
                 </ul>
               ))}
             </Accordion>
+            }
           </Col>
           <Col lg={9}>
             <div className="mart20">
@@ -443,10 +475,7 @@ const PreviewCourse = () => {
                 
               )}
               {console.log("selllllllllllllllll",selectedLesson)}
-              {isLoading? (
-                <></>
-              ): (
-                <>
+              
                 <div className="fr dif">
               <Link className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn_color">
                 View
@@ -459,8 +488,7 @@ const PreviewCourse = () => {
                 Complete
               </Button>
             </div>
-                </>
-              )}
+               
               
               {/* {console.log("idddddddddddddddddddddddddddddddddddddddddddd:",lesson.file_path)} */}
             </div>
