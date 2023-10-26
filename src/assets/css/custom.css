@@ -62,9 +62,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
   color: #212529;
   font-weight: 600;
 }
-YouTube{
-  color:white
-}
+
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}

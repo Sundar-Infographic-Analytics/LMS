@@ -447,9 +447,9 @@ const PreviewCourse = () => {
                             ></Image>
                           </div>
                           <div style={{ padding: "0 10px 8px 10px" }}>
-                            {console.log(completeButton,"boldddddddddddddddddddd")}
+                            {console.log(boldText,"boldddddddddddddddddddd")}
                             <Link
-                              className={`fz14 " ${lesson.lesson_id === boldText?"lesson-active":"lesson-link"}`}
+                              className={`fz14 " ${lesson.lesson_name===boldText.lesson_name?"lesson-active":"lesson-link"}`}
                               onClick={() =>{
                                 handleLessonSelection(index1, index2, lesson)
                                 
