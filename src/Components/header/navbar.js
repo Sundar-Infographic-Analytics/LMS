@@ -8,9 +8,12 @@ import { useNavigate } from "react-router-dom";
 import LogoutModal from '../Utils/LogoutModal';
 import logout_ion from '../../assets/images/logout_ion.png';
 import mycourse_ion from '../../assets/images/mycourse_ion.png';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import logo from '../../assets/images/logo.png';
 
 
-const Navbar = ({style, className}) => {
+const NavBar = ({style, className}) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
  
 
@@ -43,28 +46,43 @@ const handleLogin = () =>{
 
   return (    
     <div className={`navbar_color fl w100 padt15 padb15 ${className}`} style={style} >
-   
+   <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
+        <Navbar.Brand href="#"><img src={logo} alt='' className='w60' /></Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home" className='nav_active'>Home</Nav.Link>
+            <Nav.Link href="#link">Technology</Nav.Link>
+            <Nav.Link href="#link">Risk Management</Nav.Link>
+            <Nav.Link href="#link">Finance</Nav.Link>
+            <Nav.Link href="#link">Legal</Nav.Link>
+         
     
+      <Container>
       {isLoggedIn ? (
-            <Dropdown className="fr">
+            <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born">
                 <Image src={loginion} className='w10 marr5 fw300'/>{username}
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <Dropdown.Item href="#/action-1" className='ff fz18 fw400 dropdown-item active'><img src={logout_ion} alt='' /><span className='padl10'>My Learnings</span></Dropdown.Item>
-                <Dropdown.Item href="#/action-1" className='ff fz18 fw400'><img src={logout_ion} alt='' /><span className='padl10'>My Library</span></Dropdown.Item>
-                <Dropdown.Item href="#/action-2" className='ff fz18 fw400'><img src={mycourse_ion} alt='' /><span className='padl10'>My Courses</span></Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' /><span className='padl10'> Logout</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400 dropdown-item active'><img src={logout_ion} alt='' /><span className='padl10'>My Learnings</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={logout_ion} alt='' /><span className='padl10'>My Library</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' /><span className='padl10'>My Courses</span></Dropdown.Item>
+                <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' /><span className='padl10'> Logout</span></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
        ):(<Link onClick={handleLogin} to="/login" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
        )}
         </Container>
         <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout} />
+        </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
     </div>    
   )
 }
 
-export default Navbar;
+export default NavBar;

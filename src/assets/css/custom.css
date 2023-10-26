@@ -18,6 +18,12 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
    background-color: #f6f6f6 !important;
    border-bottom-width:0;
  }
+ .nav_active{color: #fff !important;}
+ .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;width: 2%;position: absolute;top: 55px;animation: animate 1s linear;}
+ @keyframes animate {0% {width: 0;}100% {width: 2%;}}
+ .me-auto a {display: flex;align-items: center;white-space: pre;color: rgba(151, 151, 151, 1);margin: 0 10px;}
+ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {background: rgba(72, 72, 72, 0.2) !important;}
+ .dropdown-menu a {margin: 0;}
  .lmstbl.table-striped>tbody>tr:nth-child(odd)>td {
     background-color: #ffffff !important;
     box-shadow:none !important;
@@ -87,7 +93,7 @@ iframe{
   min-height: 200px !important;
 }
 }
-
+.dropdown-item.active{background:rgba(111, 63, 186, .2);}
 @media screen and (min-width:769px) and (max-width:1366px){
     .mw100{width:var(--w100);}
 }
@@ -158,6 +164,7 @@ h2.accordion-header,
   border-top: none;
   border-radius: 0 !important;
 }
+.navbar-collapse{flex-grow: 0;}
 h2.accordion-header{
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -183,6 +190,15 @@ h2.accordion-header {
   width: 100%;
   background: #ebebeb;
   border-radius: 0;
+  float: left;
+}
+.navbar-nav .nav-link.active{color: rgba(151, 151, 151, 1);;}
+button.navbar-toggler.collapsed,
+button.navbar-toggler {
+  background: #fff;
+}
+.nav-link:hover{
+  color: #fff;
 }
 button.accordion-button {
   padding-left: 0;
