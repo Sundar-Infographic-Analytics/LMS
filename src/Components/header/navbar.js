@@ -2,10 +2,12 @@ import React,{useState} from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import '../../assets/css/global.css';
 import '../../assets/css/custom.css';
-import { Container, Image } from 'react-bootstrap';
+import { Container, Image,Dropdown } from 'react-bootstrap';
 import loginion from '../../assets/images/login_ion.png';
 import { useNavigate } from "react-router-dom";
 import LogoutModal from '../Utils/LogoutModal';
+import logout_ion from '../../assets/images/logout_ion.png';
+import mycourse_ion from '../../assets/images/mycourse_ion.png';
 
 
 const Navbar = ({style, className}) => {
@@ -45,8 +47,18 @@ const handleLogin = () =>{
       <Container>
     
       {isLoggedIn ? (
-        
-          <Link onClick={handleLogoutModal} className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w10 marr5 fw300'/>{username}Logout</Link>
+            <Dropdown className="fr">
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born">
+                <Image src={loginion} className='w10 marr5 fw300'/>{username}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="ff lh27">
+                <Dropdown.Item href="#/action-1" className='ff fz18 fw400 dropdown-item active'><img src={logout_ion} alt='' /><span className='padl10'>My Learnings</span></Dropdown.Item>
+                <Dropdown.Item href="#/action-1" className='ff fz18 fw400'><img src={logout_ion} alt='' /><span className='padl10'>My Library</span></Dropdown.Item>
+                <Dropdown.Item href="#/action-2" className='ff fz18 fw400'><img src={mycourse_ion} alt='' /><span className='padl10'>My Courses</span></Dropdown.Item>
+                <Dropdown.Item href="#/action-3" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' /><span className='padl10'> Logout</span></Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
        ):(<Link onClick={handleLogin} to="/login" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
        )}
         </Container>
