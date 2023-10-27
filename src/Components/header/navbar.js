@@ -8,10 +8,10 @@ import LogoutModal from '../Utils/LogoutModal';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo.png';
-import logout_ion from '../../assets/images/logout.png';
-import mycourse_ion from '../../assets/images/mycourse.png';
-import library_ion from '../../assets/images/library.png';
-import my_learn_ion from '../../assets/images/learning.png';
+import logout_ion from '../../assets/images/logout.svg';
+import mycourse_ion from '../../assets/images/course.svg';
+import library_ion from '../../assets/images/library.svg';
+import my_learn_ion from '../../assets/images/learning.svg';
 import loginion from '../../assets/images/login_ion.png';
 
 const NavBar = ({style, className}) => {
@@ -68,10 +68,10 @@ const handleLogin = () =>{
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <Dropdown.Item href="#" className='ff fz18 fw400 dropdown-item active'><img src={my_learn_ion} alt='' /><span className='padl10'>My Learnings</span></Dropdown.Item>
-                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={library_ion} alt='' /><span className='padl10'>My Library</span></Dropdown.Item>
-                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' /><span className='padl10'>My Courses</span></Dropdown.Item>
-                <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' /><span className='padl10'> Logout</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400 dropdown-item active'><img src={my_learn_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Learnings</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={library_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Library</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
+                <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
        ):(<Link onClick={handleLogin} to="/login" className={`white fr`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
