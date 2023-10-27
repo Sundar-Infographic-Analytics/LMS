@@ -12,7 +12,6 @@ import {
   Button,
 } from "react-bootstrap";
 // import {  Dropdown} from "react-bootstrap";
-// import data from "../api/PreviewCourse.js";
 import "../../node_modules/video-react/dist/video-react.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -25,7 +24,7 @@ const PreviewCourse = () => {
   const [lessonList, setLessonList] = useState([]);
   const [allData, setAllData] = useState([]);
   const [selectedLesson, setSelectedLesson] = useState(null);
-  const [videoLink, setVideoLink] = useState("");
+  // const [videoLink, setVideoLink] = useState("");
   const [showConditionModal, setShowConditionModal] = useState(false);
   const [condtionError, setConditionError] = useState("");
   const [completeButton, setcompletebutton] = useState("");
@@ -57,29 +56,29 @@ const PreviewCourse = () => {
          window.location.reload();
          
      // Fetch updated data from the server
-     const response = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/lmsLessonList`,
-      {
-        id: id,
-      },
-      {
-        headers: {
-          Authorization: jwtToken,
-        },
-      }
-    );
-         const data = response.data;
+    //  const response = await axios.post(
+    //   `${process.env.REACT_APP_BASE_URL}/lmsLessonList`,
+    //   {
+    //     id: id,
+    //   },
+    //   {
+    //     headers: {
+    //       Authorization: jwtToken,
+    //     },
+    //   }
+    // );
+    //      const data = response.data;
 
-         if (data && data.courseResults && data.courseResults.length > 0) {
-           // Update the state with the new data
-           setChapter(data.courseResults[0].chapter);
-           setAllData(data);
-           setLessonList(data.AllLessons);
-           setVideoLink(data.courseResults[0].chapter[0].lesson);
-         } else {
-           // Handle the case where data is not in the expected format
-           console.log("Data is not in the expected format");
-         }
+    //      if (data && data.courseResults && data.courseResults.length > 0) {
+    //        // Update the state with the new data
+    //        setChapter(data.courseResults[0].chapter);
+    //        setAllData(data);
+    //        setLessonList(data.AllLessons);
+    //        setVideoLink(data.courseResults[0].chapter[0].lesson);
+    //      } else {
+    //        // Handle data is not in the expected format
+    //        console.log("Data is not in the expected format");
+    //      }
        } catch (error) {
          console.log(error, "error from complete button");
        }
@@ -105,12 +104,14 @@ const PreviewCourse = () => {
         );
   
         const data = response.data;
-  
+          
+          // console.log(videoLink, "videooooolink");
+          
         if (data && data?.courseResults && data.courseResults?.length > 0) {
           setChapter(data?.courseResults[0]?.chapter);
           setAllData(data);
           setLessonList(data?.AllLessons);
-          setVideoLink(data.courseResults[0]?.chapter[0]?.lesson);
+          // setVideoLink(data.courseResults[0]?.chapter[0]?.lesson);
           
           // Find the first lesson that is not marked as read START
           let initialLesson = null;
@@ -119,7 +120,20 @@ const PreviewCourse = () => {
             return chapter.lesson.some((lesson, lessonIndex) => {
               if (lesson.lesson_read_status !== 1) {
                 initialLesson = lesson;
-                return true; // Exit the loop once the initial lesson is found
+                return true; // Exit the loop once the initial lesson is found 
+              } 
+              
+              else if(lesson.lesson_read_status !== 0){ //did do whille
+                data.courseResults[0].chapter.some((chapter, chapterIndex) => {
+                  return chapter.lesson.some((lesson, lessonIndex) => {
+                    if (lesson.lesson_read_status !== 0) {
+                      initialLesson = lesson;
+                      return true; // Exit the loop once the initial lesson is found 
+                    } 
+                    return false;
+                  });
+                });
+                // initialLesson = lesson;
               }
               return false;
             });
@@ -128,10 +142,11 @@ const PreviewCourse = () => {
             data.courseResults[0]?.chapter[0] && 
             data.courseResults[0]?.chapter[0]?.lesson
           )
-          if (initialLesson) {
+          console.log(initialLesson, 'initialLesson');
+          // if (initialLesson == null) {
             const videoId = extractVideoIdFromUrl(initialLesson?.file_path);
             if (videoId) {
-              setVideoLink(initialLesson?.file_path);
+              // setVideoLink(initialLesson?.file_path);
               setSelectedLesson(videoId);
               setcompletebutton(initialLesson?.lesson_id);
               setIsLessonCompleted(initialLesson?.lesson_read_status);
@@ -141,10 +156,10 @@ const PreviewCourse = () => {
               console.error("Invalid YouTube URL:", initialLesson?.file_path);
             }
           }
-        } else {
-          // Handle the case where data is not in the expected format
-          console.log("Data is not in the expected format");
-        }
+        // } else {
+        //   // Handle the case where data is not in the expected format
+        //   console.log("Data is not in the expected format");
+        // }
       } catch (error) {
         console.log(error, "ssss");
       }
@@ -193,14 +208,15 @@ const PreviewCourse = () => {
     else {
       const videoId = extractVideoIdFromUrl(lesson.file_path);
       if (videoId) {
-        setVideoLink(lesson.file_path);
+        // setVideoLink(lesson.file_path);
         setSelectedLesson(videoId);
         setcompletebutton(lesson.lesson_id);
         setIsLessonCompleted(lesson.lesson_read_status);
         // setIsLoading(true);
-        setBoldText(lesson.lesson_id)
+        setBoldText(lesson);
         console.log("checkkkkkkkkkkkkkkkkk", videoId);
         console.log("selectedLesson", completeButton);
+        
       } else {
         console.error("Invalid YouTube URL:", lesson.file_path);
       }
@@ -284,7 +300,7 @@ const PreviewCourse = () => {
     width: "100%",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 1,
+      autoplay: 0,
     },
   };
 
@@ -299,7 +315,7 @@ const PreviewCourse = () => {
       <Container fluid>
         {console.log(allData, "sssssssssssssssssssssssss")}
         {console.log("totalchapter", chapter)}
-        {console.log("linkkkkkkkkkkkkk", videoLink?.file_path)}
+        {/* {console.log("linkkkkkkkkkkkkk", videoLink?.file_path)} */}
         <Modal show={showConditionModal} centered onHide={handleClose}>
           <Modal.Header closeButton className="logout-modal">
             <Modal.Title className="fw500">Alert!</Modal.Title>
@@ -348,12 +364,15 @@ const PreviewCourse = () => {
               <div>
                 <h2 className="fw600 fz20">{allData.Course_name}</h2>
               </div>
+              <div>
               <ProgressBar
                 striped
                 variant="info"
                 now={allData.Employee_Read_percentage}
-                style={{ margin: "15px 0" }}
+                style={{ margin: "15px 0 0px 0" }}
               />
+              <p className="fz10" style={{ color: "#696c70", margin: "5px 0 15px 0" }}>{allData.Employee_Read_percentage}% Completed</p>
+              </div>
               <div>
                 {/* <Dropdown className="text-center">
                   <Dropdown.Toggle
@@ -375,19 +394,21 @@ const PreviewCourse = () => {
                 </Dropdown> */}
               </div>
             </div>
-            {allData?.firstMatchingLesson?.chapter_id &&
+            {allData.firstMatchingLesson?.chapter_id &&(
             <Accordion
-              defaultActiveKey= {allData?.firstMatchingLesson?.chapter_id}
+              defaultActiveKey= {allData?.firstMatchingLesson?.chapter_id} //now initially 2 but pls chage 2 to 1 for live 
               style={{
-                height: "72vh",
+                height: "63vh",
                 padding: "10px 20px",
                 overflowY: "scroll",
                 maxHeight: "695px",
               }}
             >
+              {console.log(allData?.firstMatchingLesson?.chapter_id,"ghgghg")}
+            
               {console.log(
                 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-                chapter
+                allData
               )}
               {chapter.map((course, index1) => (                                             
                 <ul className="custom_ul" key={index1} >
@@ -452,7 +473,7 @@ const PreviewCourse = () => {
                               className={`fz14 " ${lesson.lesson_name===boldText.lesson_name?"lesson-active":"lesson-link"}`}
                               onClick={() =>{
                                 handleLessonSelection(index1, index2, lesson)
-                                
+                                // setBoldText(lesson);
                               }}
                             >
                               {lesson.lesson_name}
@@ -466,16 +487,18 @@ const PreviewCourse = () => {
                 </ul>
               ))}
             </Accordion>
-            }
+            )}
           </Col>
-          <Col lg={9}>
+          {console.log(allData,'bbbbbbbbbbbb')}
+          
+            <Col lg={9} >
             <div className="mart20">
               {selectedLesson && (
                 <YouTube videoId={selectedLesson} opts={opts} />
                 
               )}
               {console.log("selllllllllllllllll",selectedLesson)}
-              
+            
                 <div className="fr dif">
               <Link className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn_color">
                 View
@@ -492,11 +515,14 @@ const PreviewCourse = () => {
               
               {/* {console.log("idddddddddddddddddddddddddddddddddddddddddddd:",lesson.file_path)} */}
             </div>
+            </Col>
+     
+            
            
               
            
            
-          </Col>
+        
         </Row>
       </Container>
     </div>

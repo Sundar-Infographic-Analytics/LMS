@@ -16,6 +16,7 @@ import loginion from '../../assets/images/login_ion.png';
 
 const NavBar = ({style, className}) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  
  
 
   const navigate = useNavigate();
@@ -46,20 +47,19 @@ const handleLogin = () =>{
 };
 
   return (    
-    <div className={`navbar_color fl w100 ${className}`} style={style} >
-   <Navbar expand="lg" className="bg-body-tertiary">
+    <div className={`navbar_color fl w100 ${className} `} style={style} >
+   <Navbar expand="lg" className="bg-body-tertiary"  >
       <Container>
-        <Navbar.Brand href="#"><img src={logo} alt='' className='w60' /></Navbar.Brand>
+        <Navbar.Brand href="/"><img src={logo} alt='' className='w60' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home" className='nav_active'>Home</Nav.Link>
-            <Nav.Link href="#link">Technology</Nav.Link>
-            <Nav.Link href="#link">Risk Management</Nav.Link>
-            <Nav.Link href="#link">Finance</Nav.Link>
-            <Nav.Link href="#link">Legal</Nav.Link>
+            <Nav.Link href="/" className={ `${location.pathname ==='/'? 'nav_active fw600' : ""} `} >Home</Nav.Link>
+            <Nav.Link href="/Categiries/1" className={`${location.pathname ==='/Categiries/1'? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
+            <Nav.Link href="/Categiries/2" className={`${location.pathname ==='/Categiries/2'? 'nav_active fw600' : ""}`} >Risk Management</Nav.Link>
+            <Nav.Link href="/Categiries/3" className={`${location.pathname ==='/Categiries/3'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
+            <Nav.Link href="/Categiries/4" className={`${location.pathname ==='/Categiries/4'? 'nav_active fw600' : ""}`} >Legal</Nav.Link>
          
-    
       <Container>
       {isLoggedIn ? (
             <Dropdown>
