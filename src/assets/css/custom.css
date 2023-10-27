@@ -51,6 +51,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 }
 .dropdown-menu.show a {
   color: #4c4c4c;
+  padding: 10px 20px;
   font-size: 12px;
   /* border-bottom: 1px solid #dfdfdf; */
 }

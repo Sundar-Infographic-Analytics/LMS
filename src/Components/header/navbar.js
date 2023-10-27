@@ -3,15 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import '../../assets/css/global.css';
 import '../../assets/css/custom.css';
 import { Container, Image,Dropdown } from 'react-bootstrap';
-import loginion from '../../assets/images/login_ion.png';
 import { useNavigate } from "react-router-dom";
 import LogoutModal from '../Utils/LogoutModal';
-import logout_ion from '../../assets/images/logout_ion.png';
-import mycourse_ion from '../../assets/images/mycourse_ion.png';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo.png';
-
+import logout_ion from '../../assets/images/logout.png';
+import mycourse_ion from '../../assets/images/mycourse.png';
+import library_ion from '../../assets/images/library.png';
+import my_learn_ion from '../../assets/images/learning.png';
+import loginion from '../../assets/images/login_ion.png';
 
 const NavBar = ({style, className}) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -67,8 +68,8 @@ const handleLogin = () =>{
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <Dropdown.Item href="#" className='ff fz18 fw400 dropdown-item active'><img src={logout_ion} alt='' /><span className='padl10'>My Learnings</span></Dropdown.Item>
-                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={logout_ion} alt='' /><span className='padl10'>My Library</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400 dropdown-item active'><img src={my_learn_ion} alt='' /><span className='padl10'>My Learnings</span></Dropdown.Item>
+                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={library_ion} alt='' /><span className='padl10'>My Library</span></Dropdown.Item>
                 <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' /><span className='padl10'>My Courses</span></Dropdown.Item>
                 <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' /><span className='padl10'> Logout</span></Dropdown.Item>
               </Dropdown.Menu>
