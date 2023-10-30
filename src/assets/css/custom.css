@@ -18,10 +18,15 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
    background-color: #f6f6f6 !important;
    border-bottom-width:0;
  }
+ a.white.fr {
+  color: #fff;
+  padding: 7px 20px;
+}
+ .navbar-expand-lg .navbar-nav{display: flex;align-items: center;}
  .nav_active{color: #fff !important;}
- .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;width: 2%;position: absolute;top: 55px;animation: animate 1s linear;}
- @keyframes animate {0% {width: 0;}100% {width: 2%;}}
- .me-auto a {display: flex;align-items: center;white-space: pre;color: rgba(151, 151, 151, 1);margin: 0 10px;}
+ .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;width: 2%;position: absolute;top: 40px;animation: animate 1s linear;position: absolute;width: 80%;}
+ @keyframes animate {0% {width: 0;}100% {width: 80%;}}
+ .me-auto a {display: flex;align-items: center;white-space: pre;color: rgba(151, 151, 151, 1);margin: 0 10px;position: relative;}
  nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {background: rgba(72, 72, 72, 0.01) !important;padding: 0;}
  .dropdown-menu a {margin: 0;}
  .lmstbl.table-striped>tbody>tr:nth-child(odd)>td {
