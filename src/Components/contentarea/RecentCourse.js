@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 // import data from '../../api/RecentCourse.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Whistlist from '../Utils/Whistlist';
 
 export const RecentCourse = () => {
  
@@ -36,7 +37,7 @@ export const RecentCourse = () => {
     };
     fetchData();
  },[]);
-//  console.log(recentCourse, "recentCourse");
+ console.log(recentCourse, "recentCourse");
 //  console.log(recentCourse[0].id,"kkkk");
 
     const settings = {
@@ -86,9 +87,12 @@ export const RecentCourse = () => {
                                     </div>
                                 </Col> */}
                                 <Col lg={3} className='marl15'>
+                                <div style={{display:"flex", justifyContent:"space-between"}}>
                                 <Link to={`/PreviewCourse/${course?.id}`} className='tdn black'>
                                     <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born '>View</Button>
                                 </Link>
+                                <Whistlist course_id={course.id} active={true}/>
+                                </div>
                                 </Col>
                             </Row>
                         </div>

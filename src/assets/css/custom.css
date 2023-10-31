@@ -80,7 +80,24 @@ button#dropdown-basic {
 }
 .dropdown-menu{padding:0;border:0;}
 .dropdown-item.active{background:rgba(111, 63, 186, .5);}
-
+.modal-dialog{margin: 0 auto;}
+.whishlist img{
+  width: 30px;
+  height: auto;
+  margin-right: 18px;
+  cursor: pointer;
+}
+.whishlist{
+  cursor: pointer;
+}
+.b45 {
+  bottom: var(--b45);
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0 !important;
+  padding: 0 !important;
+  align-items: center;
+}
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}

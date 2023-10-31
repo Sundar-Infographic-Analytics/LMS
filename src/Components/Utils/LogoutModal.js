@@ -6,8 +6,8 @@ import Button from 'react-bootstrap/Button';
 function LogoutModal({ show, handleClose, handleLogout }) {
   
   return (
-    <Modal show={show} onHide={handleClose} >
-      <Modal.Header  closeButton className='logout-modal'>
+    <Modal show={show} onHide={handleClose} style={{margin:"0px"}}>
+      <Modal.Header  closeButton className='logout-modal' >
         <Modal.Title className='fw500' >Logout Confirmation</Modal.Title>
       </Modal.Header>
       <Modal.Body>Are you sure you want to log out?</Modal.Body>

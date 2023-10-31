@@ -68,7 +68,7 @@ const handleLogin = () =>{
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <Dropdown.Item href="#" className='ff fz18 fw400 dropdown-item active'><img src={my_learn_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Learnings</span></Dropdown.Item>
+                <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Learnings</span></Dropdown.Item>
                 <Dropdown.Item href="#" className='ff fz18 fw400'><img src={library_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Library</span></Dropdown.Item>
                 <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
                 <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
