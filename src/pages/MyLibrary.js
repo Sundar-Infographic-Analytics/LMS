@@ -9,44 +9,47 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Whistlist from "../Components/Utils/Whistlist";
 
-const MyLearnings = () => {
-  const [learnedCourse, setLearnedCourse] = useState([]);
-  const jwtToken = localStorage.getItem("jwtToken");
+const MyLibrary = () => {
+    const[libraryData, setLibraryData] = useState([]);
+    const jwtToken = localStorage.getItem("jwtToken");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/lmsCourseRead`,
-          null,
-          {
-            headers: {
-              Authorization: jwtToken,
-            },
-          }
-        );
-        setLearnedCourse(response.data);
-      } catch (error) {
-        localStorage.clear();
-        console.error("Error fetching categories:", error);
-      }
-    };
-    fetchData();
-  }, [jwtToken]);
+    const whishlistCount =  libraryData.length;
+    console.log("cccccc",whishlistCount)
+
+    useEffect(() =>{
+        const fetchData = async() =>{
+            try{
+const response = await axios.post (
+    `${process.env.REACT_APP_BASE_URL}/mylibrary`,
+    null,
+    {
+        headers:{
+            Authorization:jwtToken,
+        },
+    }
+);
+        setLibraryData(response.data.data);
+            } catch (error) {
+                localStorage.clear();
+                console.error("Error fetching categories:", error);
+            }
+        }
+        fetchData();
+    },[jwtToken])
 
   return (
     <>
-      <Navbar />
-      {/* {console.log("learned", learnedCourse)} */}
-      <Header
-        style={learningBg}
+        <Navbar/>
+        {console.log("libraryData",libraryData)}
+        <Header
+            style={learningBg}
         text="Technology is bringing a massive wave of evolution for learning things in different ways."
-        title1="My Learnings"
+        title1="My Library"
         title2="from @SNC"
-      />
-      <Container>
+        />
+        <Container>
         <Row className="mart30">
-          {learnedCourse?.readCourseList?.map((course, index) => (
+          {libraryData?.map((course, index) => (
             <Col lg={3} className="marb20" key={index}>
               <Link
                 to={`/PreviewCourse/${course.course_id}`}
@@ -59,7 +62,7 @@ const MyLearnings = () => {
                     className="light_black"
                     style={{ padding: "0 0px 0 0px", fontSize: "12px" }}
                   >
-                    Created by <b>{course.employee_name}</b> on{" "}
+                    Created by <b>{course.course_created_by}</b> on{" "}
                     {course.formatted_created_date}
                   </p>
                   <p className="fw600 fz18 light_black marb5">
@@ -82,8 +85,8 @@ const MyLearnings = () => {
                   
 
                   <Whistlist
-                    course_id={course.course_id}
-                    active={course.wishList}
+                    course_id={course.id}
+                    active={course.wishlist}
                   />
                 </div>
               </Col>
@@ -95,10 +98,10 @@ const MyLearnings = () => {
           ))}
         </Row>
       </Container>
-      <RecentCourse />
+         <RecentCourse />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default MyLearnings;
+export default MyLibrary

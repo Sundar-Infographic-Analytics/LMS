@@ -12,8 +12,9 @@ import {
   Modal
 } from "react-bootstrap";
 import logo from "../assets/images/logo.png";
-import mailion from "../assets/images/mail.png";
-import passion from "../assets/images/password.png";
+import mobicon from "../assets/images/Phone.svg";
+import eyeslash from "../assets/images/hide-pw.svg";
+import eye from "../assets/images/show.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -22,6 +23,13 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
   // Initialize the specialLogout flag
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handlePasswordClick  = async() =>{
+    setShowPassword(!showPassword)
+    console.log("passwordShow", showPassword)
+  }
+  
 
   const [credentials, setCredentials] = useState({
     mobile: "",
@@ -64,6 +72,7 @@ const Login = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    
     await axios
     .post(`${process.env.REACT_APP_BASE_URL}/lmsLogin`, credentials)
     .then((response) => {
@@ -94,10 +103,12 @@ const Login = () => {
         //   window.location.reload();
         // }, timeUntilExpiration);
         // navigate("/");
-      } else {
+      } 
+      else {
         if (response.data && response.data.error) {
           setError("Invalid Credentials");
         } else {
+          
           setError("Internal error. Please try again later.");
         }
       }
@@ -120,6 +131,7 @@ const Login = () => {
           setShowTimeoutModal(true); // Show the session timeout modal
           window.location.reload();
         } else {
+          
           setError("Invalid Credentials");
         }
       } else {
@@ -176,7 +188,7 @@ const Login = () => {
                             Mobile Number
                           </Form.Label>
                           <Image
-                            src={mailion}
+                            src={mobicon}
                             className="posa r0 top45 marr10"
                           />
                           <Form.Control
@@ -198,11 +210,12 @@ const Login = () => {
                             Password
                           </Form.Label>
                           <Image
-                            src={passion}
-                            className="posa r0 top45 marr10"
+                            src={!showPassword? eyeslash : eye}
+                            onClick={handlePasswordClick}
+                            className="posa r0 top45 marr10 password-field"
                           />
                           <Form.Control
-                            type="password"
+                            type={!showPassword? "password" : "text"}
                             name="password"
                             placeholder="Password"
                             className="borltrn br0 mb-3"

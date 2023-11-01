@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor';
 import MyLearnings from './pages/MyLearnings';
+import MyLibrary from './pages/MyLibrary';
 
 const App = () => {
 const token = localStorage.getItem("jwtToken");
@@ -32,6 +33,7 @@ const token = localStorage.getItem("jwtToken");
           <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
           <Route path='/AddCourse' element={<AddCourse />} />    
           <Route path='/mylearnings' element={<ProtectedRoute><MyLearnings /></ProtectedRoute>} />   
+          <Route path='/mylibrary' element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />   
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
           <Route path='*' element={<>404 Page Page not Found</> }/>
         </Routes> 

@@ -84,20 +84,29 @@ button#dropdown-basic {
 .whishlist img{
   width: 30px;
   height: auto;
-  margin-right: 18px;
   cursor: pointer;
 }
 .whishlist{
   cursor: pointer;
 }
-.b45 {
+
+.course-footer{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  align-items: center;
+}
+.password-field{
+  cursor: pointer;
+}
+/* .b45 {
   bottom: var(--b45);
   display: flex;
   justify-content: space-between;
   margin-left: 0 !important;
   padding: 0 !important;
   align-items: center;
-}
+} */
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}

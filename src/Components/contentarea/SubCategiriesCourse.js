@@ -87,34 +87,42 @@ const SubCategiriesCourse = () => {
                     className="black fz16 fw400"
                   >
                     <Image src={course.course_image} className="w100 border" />
-                    <div className="border padt10 padr10 padl10 padb50">
+                    <div className="border padt10 padr10 padl10 padb20">
+                    <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.employee_name}</b> on{" "}
+                    {course.formatted_created_date}
+                  </p>
                       <p className="fw600 fz18 light_black marb5">
                         {course.course_name}
                       </p>
                       <p className="fw400 fz15 light_black">
                         {course.course_desc}
                       </p>
-                    </div>
-                  </Link>
-
-                  <div className="posr b45 l10">
-                    <Col lg={3} className="marl20">
-                      <Link
+                    <div >
+                    <Col lg={12} >
+                    <div
+                  className="course-footer"
+                >
+                      {/* <Link
                         to={`/PreviewCourse/${course.id}`}
                         className="tdn black"
-                      >
+                      > */}
                         <Button className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born ">
                           View
                         </Button>
-                      </Link>
-                    </Col>
-                    {/* <Rating /> */}
+                      {/* </Link> */}
+                  
                     {jwtToken ? (
-                      <Whistlist course_id={Course.id} active={true} />
+                      <Whistlist course_id={course.id} active={course.wishlist} />
                     ) : (
                       <></>
                     )}
+                    </div>
+                    </Col>
                   </div>
+                    </div>
+                  </Link>
+
+                  
                 </Col>
               ))}
             </Row>

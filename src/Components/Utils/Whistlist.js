@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeartBlank from "../../assets/images/heartblank.png";
 import HeartRed from "../../assets/images/heartRed.png";
 import axios from "axios";
@@ -13,11 +13,18 @@ const Whistlist = ({ course_id, active }) => {
     e.preventDefault();
     setWishlist(!wishlist);
     await handleSubmit();
-    toast.info( <div>
+    
+  };
+
+  useEffect(() =>{
+if (msg) {
+  toast.success( 
+    <div>
       <p>{msg}</p>
     </div>,
-    { position: 'top-right' });
-  };
+    { position: 'top-right' })
+}
+  }, [msg])
 
   const handleSubmit = async () => {
     console.log(!wishlist, "wishlist");
