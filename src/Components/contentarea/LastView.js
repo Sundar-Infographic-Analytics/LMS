@@ -74,6 +74,7 @@ const LastView = () => {
           )}
 
           <Row className="mart40 padb40">
+          {console.log("viewd leson",viewedCourse)}
             {viewedCourse?.map((course, index) => (
               <Col lg="3" className="marb10 " key={index}>
                 <div>

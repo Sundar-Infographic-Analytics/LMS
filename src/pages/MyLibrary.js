@@ -1,20 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/header/header";
 import Navbar from "../Components/header/navbar";
-import { RecentCourse } from "../Components/contentarea/RecentCourse";
+// import { RecentCourse } from "../Components/contentarea/RecentCourse";
 import Footer from "../Components/footer/footer";
-import learningBg from "../assets/images/my-learning.jpg";
+import libraryBg from "../assets/images/library.jpg";
 import { Col, Container, Row, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Whistlist from "../Components/Utils/Whistlist";
+import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
+
 
 const MyLibrary = () => {
     const[libraryData, setLibraryData] = useState([]);
     const jwtToken = localStorage.getItem("jwtToken");
 
-    const whishlistCount =  libraryData.length;
-    console.log("cccccc",whishlistCount)
+
+    const courseTitle = useCategoryTitle(); // from useContext
+    // console.log("cccccc",libraryData)
+    
+//     const fetchDataUpdate = async() =>{
+//       try{
+// const response = await axios.post (
+// `${process.env.REACT_APP_BASE_URL}/mylibrary`,
+// null,
+// {
+//   headers:{
+//       Authorization:jwtToken,
+//   },
+// }
+// );
+//   setLibraryData(response.data.data);
+//   console.log("fetchDataUpdateeeee",response.data.data )
+//       } catch (error) {
+//           localStorage.clear();
+//           console.error("Error fetching categories:", error);
+//       }
+//   }
 
     useEffect(() =>{
         const fetchData = async() =>{
@@ -35,14 +57,16 @@ const response = await axios.post (
             }
         }
         fetchData();
-    },[jwtToken])
+    },[jwtToken]) //libraryData +
 
+    
   return (
     <>
-        <Navbar/>
+        <Navbar courseTitleProp={courseTitle}/>
         {console.log("libraryData",libraryData)}
+     
         <Header
-            style={learningBg}
+            style={libraryBg}
         text="Technology is bringing a massive wave of evolution for learning things in different ways."
         title1="My Library"
         title2="from @SNC"
@@ -52,7 +76,7 @@ const response = await axios.post (
           {libraryData?.map((course, index) => (
             <Col lg={3} className="marb20" key={index}>
               <Link
-                to={`/PreviewCourse/${course.course_id}`}
+                to={`/PreviewCourse/${course.id}`}
                 style={{ textDecoration: "none" }}
                 className="black fz16 fw400"
               >
@@ -87,6 +111,8 @@ const response = await axios.post (
                   <Whistlist
                     course_id={course.id}
                     active={course.wishlist}
+                    // onClick2={fetchDataUpdate}              
+                   
                   />
                 </div>
               </Col>
@@ -98,10 +124,10 @@ const response = await axios.post (
           ))}
         </Row>
       </Container>
-         <RecentCourse />
+         {/* <RecentCourse /> */}
       <Footer />
     </>
   )
 }
 
-export default MyLibrary
+export default MyLibrary;

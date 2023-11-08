@@ -28,7 +28,7 @@ const Categiries = () => {
       const jwtToken=localStorage.getItem("jwtToken");
       await axios
         .post(`${process.env.REACT_APP_BASE_URL}/lmsSubCategoryList`, {
-          categoryid: id,
+          categoryid: id, 
         },
         {
           headers:{

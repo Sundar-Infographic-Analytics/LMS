@@ -16,6 +16,27 @@ export const RecentCourse = () => {
  const [recentCourse, setRecentCourse] = useState([]);
  const jwtToken=localStorage.getItem("jwtToken");
 
+//  const fetchDataUpdate = async () =>{
+//     const jwtToken=localStorage.getItem("jwtToken");
+//     await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCourseList`,
+//     null,
+//     {
+//         headers:{
+//           Authorization:jwtToken,
+//         },
+//       }
+//     )
+//     .then((response) =>{
+//         setRecentCourse(response.data.courselist);
+//         console.log(recentCourse, "fetchDataUpdateeeee recentfromslide ");
+        
+//     })
+//     .catch((error) =>{
+//         localStorage.clear();
+//         console.log(error, "er1ror")
+//     })
+// };
+
  useEffect(() =>{
     const fetchData = async () =>{
         const jwtToken=localStorage.getItem("jwtToken");
@@ -30,6 +51,7 @@ export const RecentCourse = () => {
         .then((response) =>{
             setRecentCourse(response.data.courselist);
             // console.log(recentCourse, "recentCourse");
+            
         })
         .catch((error) =>{
             localStorage.clear();
@@ -37,8 +59,8 @@ export const RecentCourse = () => {
         })
     };
     fetchData();
- },[]);
- console.log(recentCourse, "recentCourse");
+ },[jwtToken]);
+ console.log(recentCourse, "recentCoursevvkkvkvvk");
 //  console.log(recentCourse[0].id,"kkkk");
 
     const settings = {
@@ -48,7 +70,7 @@ export const RecentCourse = () => {
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: true,
-        autoplay:true,
+        autoplay:false,
         autoplaySpeed:2000,
         responsive: [{
 
@@ -95,9 +117,9 @@ export const RecentCourse = () => {
                                     <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born '>View</Button>
                                 </Link>
                                 {jwtToken? (
-                                    <Whistlist course_id={course.id} active={course.wishlist}/>
+                                    <Whistlist course_id={course.id} active={course.wishlist} />
                                 ): (
-                                    <></>
+                                    <> </>
                                 )}
                                
                                 </div>

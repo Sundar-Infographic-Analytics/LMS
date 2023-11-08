@@ -9,11 +9,17 @@ export const useCategoryTitle = () => {
 };
 
 export const CourseTitleProvider = ({ children }) => {
+  
   const [courseTitle, setCourseTitle] = useState([]);
+  // const [libraryAndLearningCount, setLibraryAndLearningCount] = useState('');
 
-  useEffect(() => {
+  
+  
+  useEffect(() => {   
     const fetchCategories = async () => {
+      
       const jwtToken=localStorage.getItem("jwtToken");
+      
       try {
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`, null,
         {
@@ -22,17 +28,26 @@ export const CourseTitleProvider = ({ children }) => {
           },
         }
         );
-        setCourseTitle(response.data.category);
+      
+        
+        setCourseTitle(response.data);        
+
+        // setLibraryAndLearningCount(response.data.count)
       } catch (error) {
         localStorage.clear();
         console.error('Error fetching categories:', error);
       }
     };
-
     fetchCategories();
-  }, []);
+  }, []); //courseTitle
+
+
+
+  // console.log("addcheckkkNavvvvvvjwt",jwtToken)
+  
   return (
-    <CourseTitleContext.Provider value={courseTitle}>
+    <CourseTitleContext.Provider value={ courseTitle } >
+    {console.log('addcheckkkkcontect', courseTitle)}
       {children}
     </CourseTitleContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{  useEffect, useState} from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import '../../assets/css/global.css';
 import '../../assets/css/custom.css';
@@ -13,11 +13,63 @@ import mycourse_ion from '../../assets/images/course.svg';
 import library_ion from '../../assets/images/library.svg';
 import my_learn_ion from '../../assets/images/learning.svg';
 import loginion from '../../assets/images/login_ion.png';
+import { useCategoryTitle } from '../Utils/CategoryTitleContext';
+import { CourseTitleProvider } from '../../Components/Utils/CategoryTitleContext';
+import axios from 'axios';
+
 
 const NavBar = ({style, className}) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  
- 
+
+  const courseTitle = useCategoryTitle(); // from useContext
+   const [data, setData] = useState([]);
+
+   const jwtToken = localStorage.getItem("jwtToken");
+
+  useEffect(() => {   
+    const fetchCategories = async () => {
+      
+      const jwtToken=localStorage.getItem("jwtToken");
+      
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`, null,
+        {
+          headers:{
+            Authorization:jwtToken,
+          },
+        }
+        );
+      
+        
+          setData(response.data.count);        
+        
+
+        // setLibraryAndLearningCount(response.data.count)
+      } catch (error) {
+        localStorage.clear();
+        console.error('Error fetching categories:', error);
+      }
+    };
+    fetchCategories();
+  }, []); //courseTitle
+
+
+const onClick =  async () =>{
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`, null, {
+      headers: {
+        Authorization: jwtToken,
+      },
+    });
+
+    // Assuming that the response data contains the course title
+    setData(response.data.count);
+console.log(response.data.count,"mmmmmmmmmmmmmmmmmmmm")
+  } catch (error) {
+    // Handle any errors that might occur during the Axios POST request
+    console.error("Error while making the Axios request:", error);
+  }
+}
 
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("jwtToken");
@@ -41,12 +93,16 @@ const handlelogout = () =>{
  
 };
 
+
 const handleLogin = () =>{
   localStorage.setItem('previousLocation',location.pathname );
  navigate( '/login') ;
 };
 
   return (    
+   
+    <CourseTitleProvider>
+     { console.log("addcheckkkNavvvvvvDATA",data )}
     <div className={`navbar_color fl w100 ${className} `} style={style} >
    <Navbar expand="lg" className="bg-body-tertiary"  >
       <Container>
@@ -62,18 +118,19 @@ const handleLogin = () =>{
          
       <Container>
       {isLoggedIn ? (
-            <Dropdown>
+            <Dropdown onClick={onClick}>
               <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born">
                 <Image src={loginion} className='w10 marr5 fw300'/>{username}
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Learnings</span></Dropdown.Item>
-                <Dropdown.Item href="/mylibrary" className={`${location.pathname ==='/mylibrary'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={library_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Library</span></Dropdown.Item>
+                <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Learnings</span><p align="right" className='course-count dark_purple_bg'>{courseTitle && courseTitle?.count?.courseread}</p></div></Dropdown.Item>
+                <Dropdown.Item key={courseTitle} href="/mylibrary" className={`${location.pathname ==='/mylibrary'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={library_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Library</span><p className='course-count dark_purple_bg'>{data?.mylibrary}</p></div></Dropdown.Item>
                 <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
                 <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+            
        ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
        )}
         </Container>
@@ -82,7 +139,8 @@ const handleLogin = () =>{
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    </div>    
+    </div>  
+    </CourseTitleProvider>  
   )
 }
 

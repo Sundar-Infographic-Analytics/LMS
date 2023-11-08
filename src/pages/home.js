@@ -8,6 +8,7 @@ import Footer from '../Components/footer/footer';
 import bgImage from '../assets/images/learn_image.png';
 
 const Home = () => {
+  
   return (
     <>
     <Navbar />

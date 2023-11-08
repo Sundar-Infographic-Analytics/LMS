@@ -1,5 +1,5 @@
-import img1 from '../assets/images/technology.png'
-import img2 from '../assets/images/risk-management.png'
+import img1 from '../assets/images/tech.png'
+import img2 from '../assets/images/risk.png'
 import img3 from '../assets/images/finance.png'
 import img4 from '../assets/images/legal.png'
 const OurCourse={

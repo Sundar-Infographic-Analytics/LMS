@@ -26,7 +26,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
  .nav_active{color: #fff !important;}
  .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;width: 2%;position: absolute;top: 40px;animation: animate 1s linear;position: absolute;width: 80%;}
  @keyframes animate {0% {width: 0;}100% {width: 80%;}}
- .me-auto a {display: flex;align-items: center;white-space: pre;color: rgba(151, 151, 151, 1);margin: 0 10px;position: relative;}
+ .me-auto a {display: flex;align-items: center;white-space: pre;color: rgb(215, 215, 215);margin: 0 10px;position: relative;}
  nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {background: rgba(72, 72, 72, 0.01) !important;padding: 0;}
  .dropdown-menu a {margin: 0;}
  .lmstbl.table-striped>tbody>tr:nth-child(odd)>td {
@@ -98,6 +98,24 @@ button#dropdown-basic {
 }
 .password-field{
   cursor: pointer;
+}
+.course-count{
+  width: 25px;
+  height: 25px;
+  color: white;
+  /* background-color: red; */
+  /* margin-left: 10px; */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  padding: 1px;
+}
+.div-flex{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 /* .b45 {
   bottom: var(--b45);

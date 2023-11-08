@@ -18,10 +18,15 @@ import eye from "../assets/images/show.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-// import jwt_decode from "jwt-decode";
+import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
+
 
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
+
+  const courseTitle = useCategoryTitle(); //checkinggggg....
+  console.log("addcheckkkk03",courseTitle)
+
   // Initialize the specialLogout flag
   const [showPassword, setShowPassword] = useState(false);
 
@@ -90,10 +95,12 @@ const Login = () => {
         // const currentTime = new Date().getTime();
       
         // const timeUntilExpiration = expirationTime - currentTime;
+        
         toast.success( <div>
           Welcome, <strong>{username}</strong>!
         </div>,
         { position: 'top-right' });
+        // window.location.reload();
         // localStorage.setItem("jwtTokenExpiration", expirationTime);
 
         // setTimeout(() => {

@@ -15,14 +15,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor';
 import MyLearnings from './pages/MyLearnings';
 import MyLibrary from './pages/MyLibrary';
+// import { useCategoryTitle } from '../src/Components/Utils/CategoryTitleContext';
+
 
 const App = () => {
 const token = localStorage.getItem("jwtToken");
 
+
+// const courseTitle = useCategoryTitle(); //checkinggggg....
+// console.log("addcheckkkk03",courseTitle)
   return (
     <>
      <BrowserRouter>  
      <CourseTitleProvider>
+
         <Globale401Modal/>
         <Routes>
           <Route path='/' element={<><Home /></>} />             
@@ -37,6 +43,7 @@ const token = localStorage.getItem("jwtToken");
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
           <Route path='*' element={<>404 Page Page not Found</> }/>
         </Routes> 
+
         </CourseTitleProvider>
         <ToastContainer position="top-right" autoClose={3000} />
       </BrowserRouter>  

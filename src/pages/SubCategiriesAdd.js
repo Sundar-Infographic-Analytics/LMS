@@ -24,6 +24,7 @@ import last_ion from "../assets/images/last_ion.png";
 import eye from "../assets/images/eye.png";
 import { useCategoryTitle } from "../Components/Utils/CategoryTitleContext";
 import axios from "axios";
+
 const closebtn = {
   width: "20px",
   height: "20px",
@@ -32,8 +33,8 @@ const closebtn = {
   cursor: "pointer",
 };
 const SubCategiriesAdd = () => {
-  const courseTitle = useCategoryTitle();
-
+  const courseTitle = useCategoryTitle();  
+  
   const handleShow = () => {
     setSubCategory({
       categorySelect: "0",
@@ -202,7 +203,7 @@ const SubCategiriesAdd = () => {
                       <option disabled value={0}>
                         Select Category
                       </option>
-                      {courseTitle.map((category) => (
+                      {courseTitle?.category?.map((category) => (
                         <option
                           value={category.id}
                           className="black"
