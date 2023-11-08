@@ -13,7 +13,7 @@ import LoginPass from './pages/loginPass';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor';
-import MyLearnings from './pages/MyLearnings';
+import MyLearnings from './pages/MyMastery';
 import MyLibrary from './pages/MyLibrary';
 // import { useCategoryTitle } from '../src/Components/Utils/CategoryTitleContext';
 

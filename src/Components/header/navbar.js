@@ -120,11 +120,11 @@ const handleLogin = () =>{
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>
               <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born">
-                <Image src={loginion} className='w10 marr5 fw300'/>{username}
+                <Image src={loginion} className='w10 marr5 fw300'/> <b>{username}</b>
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Learnings</span><p align="right" className='course-count dark_purple_bg'>{courseTitle && courseTitle?.count?.courseread}</p></div></Dropdown.Item>
+                <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Mastery</span><p align="right" className='course-count dark_purple_bg'>{courseTitle && courseTitle?.count?.courseread}</p></div></Dropdown.Item>
                 <Dropdown.Item key={courseTitle} href="/mylibrary" className={`${location.pathname ==='/mylibrary'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={library_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Library</span><p className='course-count dark_purple_bg'>{data?.mylibrary}</p></div></Dropdown.Item>
                 <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
                 <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>

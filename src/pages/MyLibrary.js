@@ -19,24 +19,24 @@ const MyLibrary = () => {
     const courseTitle = useCategoryTitle(); // from useContext
     // console.log("cccccc",libraryData)
     
-//     const fetchDataUpdate = async() =>{
-//       try{
-// const response = await axios.post (
-// `${process.env.REACT_APP_BASE_URL}/mylibrary`,
-// null,
-// {
-//   headers:{
-//       Authorization:jwtToken,
-//   },
-// }
-// );
-//   setLibraryData(response.data.data);
-//   console.log("fetchDataUpdateeeee",response.data.data )
-//       } catch (error) {
-//           localStorage.clear();
-//           console.error("Error fetching categories:", error);
-//       }
-//   }
+    const fetchDataUpdate = async() =>{
+      try{
+const response = await axios.post (
+`${process.env.REACT_APP_BASE_URL}/mylibrary`,
+null,
+{
+  headers:{
+      Authorization:jwtToken,
+  },
+}
+);
+  setLibraryData(response.data.data);
+  console.log("fetchDataUpdateeeee",response.data.data )
+      } catch (error) {
+          localStorage.clear();
+          console.error("Error fetching categories:", error);
+      }
+  }
 
     useEffect(() =>{
         const fetchData = async() =>{
@@ -111,7 +111,7 @@ const response = await axios.post (
                   <Whistlist
                     course_id={course.id}
                     active={course.wishlist}
-                    // onClick2={fetchDataUpdate}              
+                    onClick2={fetchDataUpdate}    // note:if dont't need instanly remove course from whistlist  pls remove onclick2 event
                    
                   />
                 </div>
