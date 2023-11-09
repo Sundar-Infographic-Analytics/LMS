@@ -4,7 +4,7 @@ import HeartRed from "../../assets/images/heartRed.png";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { useCategoryTitle } from "./CategoryTitleContext";
-import Tick from '../../assets/images/toast-check-mark.png';
+import Tick from '../../assets/images/books.png';
 import Delete from '../../assets/images/toast-delete.png';
 
 const Whistlist = ({ course_id, active, onClick2}) => {
@@ -25,9 +25,9 @@ const Whistlist = ({ course_id, active, onClick2}) => {
         onClick2();
       }  
   }  ;
-  
+
   const CustomToast = () => (
-    <div className="vmiddle" style={{gap:"10px"}}>
+    <div className="vmiddle" style={{gap:"10px" }}>
       <img style={{width:"30px"}} src={msg ==='Successfully added in wish list!!!'? Tick : Delete} alt="Custom" />
       <p>
       {msg === 'Successfully added in wish list!!!' ? (

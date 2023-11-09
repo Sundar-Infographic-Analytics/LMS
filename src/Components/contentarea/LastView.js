@@ -79,13 +79,13 @@ const LastView = () => {
               <Col lg="3" className="marb10 " key={index}>
                 <div>
                   <Image
-                    src={course.course_image_url}
+                    src={course.course_image}
                     className="w100 border"
                     style={{ objectFit: "contain" }}
                   />
 
-                  <p className="fz16 fw400 padt10">{course.lesson_title}</p>
-                  <Link to={`/PreviewCourse/${course?.courseid}`}>
+                  <p className="fz16 fw400 padt10">{course.lesson_name}</p>
+                  <Link to={`/PreviewCourse/${course?.course_id}`}>
                     <Button className="fz16 padl30 padr30 dark_purple_bg bor_dark_purple br0 mart5 btn_color born">
                       View
                     </Button>

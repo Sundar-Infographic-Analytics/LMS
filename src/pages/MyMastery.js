@@ -41,7 +41,7 @@ const MyLearnings = () => {
       <Header
         style={learningBg}
         text="Technology is bringing a massive wave of evolution for learning things in different ways."
-        title1="My Learnings"
+        title1="My Mastery"
         title2="from @SNC"
       />
       <Container>

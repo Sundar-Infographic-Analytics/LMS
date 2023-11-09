@@ -41,8 +41,7 @@ const ApiInterceptor = () => {
     // Close the session timeout modal
     setShowTimeoutModal(false);
     navigate("/");
-    // window.location.reload();
-
+    window.location.reload();
   };
 
   

@@ -25,9 +25,9 @@ const AddCourse = () => {
   return (
     <div>
       <Navbar className='dark_purple_bg'/>
-        <Container fluid>
+        <Container >
           <Row>
-            <Col lg={5}>
+            <Col lg={12}>
             <p className='fw600 fz18 mart20 padb10'>Add Course</p>
             <Card style={{boxShadow:'0 0 10px 5px #eee'}} className='born'>
               <Card.Body>
@@ -94,13 +94,14 @@ const AddCourse = () => {
                   </div>
                 </div> 
                 </Card.Body>
-              </Card>   
-              <Button className='w100 mart20 marb20 dark_purple_bg born fw400 fz16 pad10 br5 btn_color'>+ Add New Chapter</Button>       
-              <div style={{overflowY:'scroll',height:'50vh'}}>
+              </Card> 
+              <p className='fw600 fz18 mart40 padb10'>Add Chapter</p>  
+              <Button className='w100 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color'>+ Add New Chapter</Button>       
+              <Row xs={1} sm={1} lg={2} style={{overflowY:'scroll',height:'50vh', padding:"20px"}} >
               {
                 data.content.map(course=>
-              <Card className='born' style={{boxShadow:'0 0 10px 5px #eee'}}>
-                <Card.Body>
+              <Card className='born marb15' style={{boxShadow:'0 0 10px 5px #eee'}} >
+                <Card.Body >
                   <div style={Chaptercss}>
                     <p className='black fw600 fz18'>{course.id}. {course.chapter}<Image src={data.Edit_Ion1} className='marl5' style={{width:'15px'}}></Image></p>
                     <Button className='dark_green_bg br5 born fz16'><Image src={data.Add_Ion}></Image> Add Lesson</Button>
@@ -125,9 +126,9 @@ const AddCourse = () => {
               </Card> 
                 )     
               }
-          </div>
+          </Row>
             </Col>
-            <Col lg={7} className='mobhide'>
+            {/* <Col lg={7} className='mobhide'>
                 <div className='mart20'>
                   <Player
                   playsInline
@@ -135,7 +136,7 @@ const AddCourse = () => {
                   src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
                 />              
                 </div>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
     </div>

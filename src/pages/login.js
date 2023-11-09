@@ -23,6 +23,8 @@ import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
 
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
+   const[userData, setUserData] = useState('');
+   console.log("urlNew,", userData);
 
   const courseTitle = useCategoryTitle(); //checkinggggg....
   console.log("addcheckkkk03",courseTitle)
@@ -74,6 +76,9 @@ const Login = () => {
     });
   };
 
+
+  
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -82,12 +87,15 @@ const Login = () => {
     .post(`${process.env.REACT_APP_BASE_URL}/lmsLogin`, credentials)
     .then((response) => {
       console.log("nn", response);
-
+      setUserData(response.data);
       if (response.status === 200) {
         const token = response.data.jwtToken;
         const username = response.data.employee_name;
         localStorage.setItem("userName:", username);
         localStorage.setItem("jwtToken", token);
+
+        
+        console.log("userDataaaaAAA",response.data);
         // const decodedToken = jwt_decode(token);
       
         // const expirationTime = decodedToken.exp * 1000;
@@ -96,10 +104,37 @@ const Login = () => {
       
         // const timeUntilExpiration = expirationTime - currentTime;
         
-        toast.success( <div>
-          Welcome, <strong>{username}</strong>!
-        </div>,
-        { position: 'top-right' });
+        // toast.success( <div>
+        //   Welcome, <strong>{username}</strong>!
+        // </div>,
+        // { position: 'top-right' });
+        const CustomToast = () => (    
+          
+          <div className="vmiddle " style={{padding:"0 10px", gap:"10px"}}>
+          <div className="user-profile">
+            <img  src={response.data.photo_url} alt="userprofile"/>
+          </div>
+            <p>      
+            Welcome, <strong>{response.data.employee_name}</strong>!
+          </p>
+      
+          </div>
+          
+          
+        );
+        
+        toast( <CustomToast />, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        
+          });
+
         // window.location.reload();
         // localStorage.setItem("jwtTokenExpiration", expirationTime);
 
@@ -168,11 +203,14 @@ const Login = () => {
   return (
     <>
       <div>
+      {console.log("userDataaaaAAA",userData)}
         <Container fluid>
           <Row>
+          
             <Col lg={4} md={4} xs={12}>
               <div className="vmiddle dr100 h100vh marl20">
                 <div className="w80 mw100 p-2">
+                
                   <Card className="br15 born">
                     <Card.Body>
                       <Card.Img
@@ -259,6 +297,7 @@ const Login = () => {
             </Col>
             <Col lg={8} md={8} xs={12}>
               <div className="text-center dark_purple_bg h100vh"></div>
+              
             </Col>
           </Row>
           <Modal show={showTimeoutModal} centered onHide={handleClose}>
