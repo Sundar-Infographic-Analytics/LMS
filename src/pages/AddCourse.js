@@ -4,7 +4,7 @@ import '../assets/css/custom.css';
 import Navbar from '../Components/header/navbar';
 import { Col, Container, Row, Card, Form,Image, Button} from 'react-bootstrap';
 import "../../node_modules/video-react/dist/video-react.css";
-import { Player } from 'video-react';
+// import { Player } from 'video-react';
 import { Link } from 'react-router-dom';
 import data from '../api/AddCourse.js';
 
