@@ -76,7 +76,12 @@ YouTube{
   color:white
 }
 button#dropdown-basic {
-  width: 200px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+button#dropdown-basic:after {
+  display: none;
 }
 .dropdown-menu{padding:0;border:0;}
 .dropdown-item.active{background:rgba(111, 63, 186, .5);}
@@ -147,6 +152,9 @@ img.posr.fr.top5.r5{top: 35px;}
 }
 iframe{
   min-height: 200px !important;
+}
+.navbar-expand-lg .navbar-nav{
+  align-items:start;
 }
 }
 .dropdown-item.active{background:rgba(111, 63, 186, .2);}
@@ -247,6 +255,11 @@ h2.accordion-header {
   background: #ebebeb;
   border-radius: 0;
   float: left;
+  min-width: 200px;
+}
+.dropdown-menu[data-bs-popper]{
+  top: 110%;
+  left: -65px;
 }
 .navbar-nav .nav-link.active{color: rgba(151, 151, 151, 1);;}
 button.navbar-toggler.collapsed,

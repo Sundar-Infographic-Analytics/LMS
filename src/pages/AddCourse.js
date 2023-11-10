@@ -49,7 +49,9 @@ const AddCourse = () => {
                         </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3 w40 marl10 mw100" controlId="formBasicEmail">
+                        <div>
                         <Form.Label className='fw600 fz14'>Add  Thumbnail<span className='light_black fz13'> (optional)</span><span style={{color:'red'}}>*</span></Form.Label>
+                        </div>
                         <Link><Image src={data.Thumb} className='posr fr top5 r5' style={{zIndex:'1'}}></Image></Link>
                         <Form.Control type="Button" className='bor_dark_purple br5' style={{position:'relative',bottom:'25px'}} />
                         </Form.Group>
@@ -95,11 +97,24 @@ const AddCourse = () => {
                 </div> 
                 </Card.Body>
               </Card> 
-              <p className='fw600 fz18 mart40 padb10'>Add Chapter</p>  
-              <Button className='w100 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color'>+ Add New Chapter</Button>       
-              <Row xs={1} sm={1} lg={2} style={{overflowY:'scroll',height:'50vh', padding:"20px"}} >
+              <Row className='mart30'>
+                <Col lg={6}>
+                  <div style={{display:'flex',alignItems:'center'}}>
+                    <div>
+                    <span className='fw600 fz18 mart40 padb10'>Add Chapter</span>  
+                  </div>
+                </div>
+                </Col>
+                <Col lg={6}>
+                  <div style={{display:'flex',justifyContent:'end'}}>
+                  <Button className='w40 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color'>+ Add New Chapter</Button>       
+                  </div>
+                </Col>
+              </Row>
+              <Row xs={1} sm={1} lg={2} style={{overflowY:'scroll',height:'50vh', padding:"20px",paddingLeft:'0'}} >
               {
                 data.content.map(course=>
+                <Col lg={6}>
               <Card className='born marb15' style={{boxShadow:'0 0 10px 5px #eee'}} >
                 <Card.Body >
                   <div style={Chaptercss}>
@@ -124,6 +139,7 @@ const AddCourse = () => {
                   </div>
                 </Card.Body>  
               </Card> 
+              </Col>
                 )     
               }
           </Row>
