@@ -117,7 +117,6 @@ const handleLogin = () =>{
             <Nav.Link href="/Categiries/2" className={`${location.pathname ==='/Categiries/2'? 'nav_active fw600' : ""}`} >Risk Management</Nav.Link>
             <Nav.Link href="/Categiries/3" className={`${location.pathname ==='/Categiries/3'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
             <Nav.Link href="/Categiries/4" className={`${location.pathname ==='/Categiries/4'? 'nav_active fw600' : ""}`} >Legal</Nav.Link>
-         
       <Container>
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>
