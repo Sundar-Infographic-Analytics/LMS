@@ -88,6 +88,7 @@ const Login = () => {
     .then((response) => {
       console.log("nn", response);
       setUserData(response.data);
+      localStorage.setItem("userImg:", response.data.photo_url)
       if (response.status === 200) {
         const token = response.data.jwtToken;
         const username = response.data.employee_name;

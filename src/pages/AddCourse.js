@@ -114,14 +114,14 @@ const AddCourse = () => {
               <Row xs={1} sm={1} lg={2} style={{overflowY:'scroll',height:'50vh', padding:"20px",paddingLeft:'0'}} >
               {
                 data.content.map(course=>
-                <Col lg={6}>
+                <Col lg={12}>
               <Card className='born marb15' style={{boxShadow:'0 0 10px 5px #eee'}} >
                 <Card.Body >
                   <div style={Chaptercss}>
                     <p className='black fw600 fz18'>{course.id}. {course.chapter}<Image src={data.Edit_Ion1} className='marl5' style={{width:'15px'}}></Image></p>
                     <Button className='dark_green_bg br5 born fz16'><Image src={data.Add_Ion}></Image> Add Lesson</Button>
                   </div>
-                  <div className='border pad20 mart10 br5 dif w100' style={{justifyContent:'space-around'}}>
+                  <div className='border pad20 mart10 br5 dif w100' style={{justifyContent:'space-around', alignItems:"center"}}>
                     <div style={{flex:'1'}}>
                       <Image src={course.Video_Ion} key={course.id}></Image>
                     </div>

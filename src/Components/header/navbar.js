@@ -24,6 +24,8 @@ const NavBar = ({style, className}) => {
   const courseTitle = useCategoryTitle(); // from useContext
    const [data, setData] = useState([]);
 
+   const userPhoto=localStorage.getItem("userImg:")
+
    const jwtToken = localStorage.getItem("jwtToken");
 
   useEffect(() => {   
@@ -101,16 +103,16 @@ const handleLogin = () =>{
 
   return (    
    
-    <CourseTitleProvider>
+    <CourseTitleProvider  >
      { console.log("addcheckkkNavvvvvvDATA",data )}
     <div className={`navbar_color fl w100 ${className} `} style={style} >
-   <Navbar expand="lg" className="bg-body-tertiary"  >
-      <Container>
-        <Navbar.Brand href="/"><img src={logo} alt='' className='w60' /></Navbar.Brand>
+   <Navbar  expand="lg" className="bg-body-tertiary"  >
+      <Container  >
+        <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/" className={ `${location.pathname ==='/'? 'nav_active fw600' : ""} `} >Home</Nav.Link>
+            <Nav.Link href="/" className={`${location.pathname ==='/'? 'nav_active fw600' : ""} `} >Home</Nav.Link>
             <Nav.Link href="/Categiries/1" className={`${location.pathname ==='/Categiries/1'? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
             <Nav.Link href="/Categiries/2" className={`${location.pathname ==='/Categiries/2'? 'nav_active fw600' : ""}`} >Risk Management</Nav.Link>
             <Nav.Link href="/Categiries/3" className={`${location.pathname ==='/Categiries/3'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
@@ -119,12 +121,12 @@ const handleLogin = () =>{
       <Container>
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>
-              <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born">
-                <Image src={loginion} className='w100 marr5 fw300'/>
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born user-profile-nav">
+                <Image src={userPhoto} className='w100 marr5 fw300'/>
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">
-                <div style={{margin:'10px 0 0 20px'}}>{username}</div>
+                <div style={{padding:'10px  20px'}}> hi! <b>{username}</b></div>
                 <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Mastery</span><p align="right" className='course-count dark_purple_bg'>{courseTitle && courseTitle?.count?.courseread}</p></div></Dropdown.Item>
                 <Dropdown.Item key={courseTitle} href="/mylibrary" className={`${location.pathname ==='/mylibrary'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={library_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Library</span><p className='course-count dark_purple_bg'>{data?.mylibrary}</p></div></Dropdown.Item>
                 <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
