@@ -43,7 +43,6 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
     width: 306px;
     height: 184px;
   }
-.form-control::placeholder{padding-left: 10px;}
 .tdn{text-decoration: none !important;}
 .form-control:focus{box-shadow:none !important;}
 .form-control{background:#F4F4F4;}
@@ -373,5 +372,30 @@ iframe {
 .enablebg1 .enable_tick{
   display: block !important;
 }
-
-
+.cus_btn_new{
+  background: transparent;
+  color: #000;
+  border: 1px solid #6f3fba;
+}
+.red{
+  color:rgba(255, 0, 0, 1);
+}
+.custome .modal-content{background: #fff !important;}
+.form-check {
+  display: inline-flex;
+  margin-right: 50px;
+}
+.form-check input {
+  margin-right: 10px;
+}
+input[type=file]::file-selector-button {display: none;}
+input.bor_dark_purple.br5.form-control {
+  border: 1px solid rgba(153, 143, 143, 1);
+  padding: 10px 0;
+}
+input#inputPassword5 {
+  padding-left: 10px;
+}
+select#formBasicEmail{
+  padding: 10px;
+}
