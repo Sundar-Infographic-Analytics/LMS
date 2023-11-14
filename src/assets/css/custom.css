@@ -46,7 +46,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 .tdn{text-decoration: none !important;}
 .form-control:focus{box-shadow:none !important;}
 .form-control{background:#F4F4F4;}
-.form-check-input:checked{background-color: #6f3fba}
+.form-check-input:checked{background-color: #6f3fba;border-color: #6f3fba;}
 .form-check{line-height: 1.8rem;}
 .custompos{display: flex;}
 .logout-modal:hover {
@@ -393,6 +393,27 @@ input.bor_dark_purple.br5.form-control {
 input#inputPassword5 {
   padding-left: 10px;
 }
-select#formBasicEmail{
+select#formBasicEmail,
+input#formBasicEmail,
+input.bor_dark_purple.br5.form-control{
   padding: 10px;
+}
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show{
+  background:#199804;
+}
+.block .form-check{display: block !important;}
+input#formBasicEmail{
+  border-color: #6f3fba;
+}
+.form-select:focus{
+  box-shadow: unset;
+  border-color:#6f3fba
+}
+.dark_purple.btn.btn-primary{
+  color: #6F3FBA !important;
+}
+.dark_purple.btn.btn-primary:hover{
+  color: #fff !important;
+  border-color: transparent;
+  background: #6F3FBA !important;
 }
