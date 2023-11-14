@@ -78,41 +78,10 @@ const AddCourse = () => {
             <Card style={{boxShadow:'0 0 10px 5px #eee'}} className='born'>
               <Card.Body>
               <div style={{display:'flex'}} className='padt20 cusflexrow'>
-                  <div style={{flex:'2'}} className='padl20'>
-                      <div>
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Label className='fw600 fz15'>Add Course Title <span style={{color:'red'}}>*</span></Form.Label>
-                      <Form.Control type="email" className='bor_dark_purple br5' />
-                      </Form.Group>
-                        <div className='custompos'>
-                        <Form.Group className="mb-3 w40 mw100" controlId="formBasicEmail">
-                        <Form.Label className='fw600 fz15'>Sub Category <span style={{color:'red'}}>*</span></Form.Label>
-                        <Form.Select aria-label="Default select example" className='br5 bor_dark_purple'>
-                          <option>Power Bank </option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </Form.Select>
-                        </Form.Group>
-                        <Form.Group className="mb-3 w40 marl10 mw100" controlId="formBasicEmail">
-                        <div>
-                        <Form.Label className='fw600 fz14'>Add  Thumbnail<span className='light_black fz13'> (optional)</span><span style={{color:'red'}}>*</span></Form.Label>
-                        </div>
-                        <div className='posr'>
-                        <Link><Image src={data.Thumb} className='posa' style={{zIndex:'1',right:'10px',top:'10px'}}></Image></Link>
-                        <Form.Control type="Button" className='bor_dark_purple br5' style={{position:'relative'}} />
-                        </div>
-                        </Form.Group>
-                        <div style={{alignItems:'center',justifyContent:'center',display:'flex'}} className='marl10 marl10 marb10'>
-                          <Image src={data.Thum_Img} rounded className='w80 posr mw100' style={{justifyContent:'center', alignItems:'center'}}></Image>
-                        </div>
-                        </div>
-                      </div>
-                  </div> 
-                  <div style={{flex:'1'}} className='padl20'>
+              <div style={{flex:'1'}} className='padl20'>
                     <p className='fw600 marb10'>Category<span style={{color:'red'}}>*</span></p>
                     <fieldset>
-                    <Form.Group as={Row} className="mb-3">
+                    <Form.Group as={Row} className="mb-3 block">
                       <Col sm={10}>
                         <Form.Check
                           type="radio"
@@ -142,6 +111,38 @@ const AddCourse = () => {
                     </Form.Group>
                   </fieldset>
                   </div>
+                  <div style={{flex:'3'}} className='padl20'>
+                      <div>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label className='fw600 fz15'>Add Course Title <span style={{color:'red'}}>*</span></Form.Label>
+                      <Form.Control type="email" className='bor_dark_purple br5' />
+                      </Form.Group>
+                        <div className='custompos'>
+                        <Form.Group className="mb-3 w40 mw100" controlId="formBasicEmail">
+                        <Form.Label className='fw600 fz15'>Sub Category <span style={{color:'red'}}>*</span></Form.Label>
+                        <Form.Select aria-label="Default select example" className='br5 bor_dark_purple'>
+                          <option>Power Bank </option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3 w40 marl10 mw100" controlId="formBasicEmail">
+                        <div>
+                        <Form.Label className='fw600 fz14'>Add  Thumbnail<span className='light_black fz13'> (optional)</span><span style={{color:'red'}}>*</span></Form.Label>
+                        </div>
+                        <div className='posr'>
+                        <Link><Image src={data.Thumb} className='posa' style={{zIndex:'1',right:'10px',top:'10px'}}></Image></Link>
+                        <Form.Control type="file" className='bor_dark_purple br5 padl10' style={{position:'relative'}} />
+                        </div>
+                        </Form.Group>
+                        <div style={{alignItems:'center',justifyContent:'center',display:'flex'}} className='marl10 marl10 marb10'>
+                          <Image src={data.Thum_Img} rounded className='w80 posr mw100' style={{justifyContent:'center', alignItems:'center'}}></Image>
+                        </div>
+                        </div>
+                      </div>
+                  </div> 
+                  
                 </div> 
                 </Card.Body>
               </Card> 
@@ -159,7 +160,7 @@ const AddCourse = () => {
                   </div>
                 </Col>
               </Row>
-              <Row xs={1} sm={1} lg={2} style={{padding:"20px",paddingLeft:'0'}} >
+              <Row xs={1} sm={1} lg={2} style={{padding:"20px",paddingLeft:'0',paddingRight:'0'}} >
               {
                 data.content.map(course=>
                 <Col lg={12}>
@@ -192,7 +193,7 @@ const AddCourse = () => {
               }   
           </Row>
           <div className='mart30 text-center'>
-            <Button className='w20 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new'>Save Draft</Button>
+            <Button className='w20 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple'>Save Draft</Button>
             <Button className='w20 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color'>Submit</Button>
           </div>
             </Col>
