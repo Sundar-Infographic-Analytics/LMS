@@ -3,7 +3,7 @@ import Delete_Ion1 from '../assets/images/delete_ion1.png';
 import Edit_Ion2 from '../assets/images/edit_ion2.png';
 import Add_Ion from '../assets/images/add_ion.png';
 import Thum_Img from '../assets/images/thumb_img.png';
-import Thumb from '../assets/images/thumb.png';
+import Thumb from '../assets/images/user_upload.png';
 import Pdf_Ion from '../assets/images/pdf_ion.png';
 import Video_Ion from '../assets/images/video_ion.png';
 
