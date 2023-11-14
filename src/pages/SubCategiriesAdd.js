@@ -412,11 +412,11 @@ const SubCategiriesAdd = () => {
                     ></Image>
                     {"Back"}
                   </Pagination.Item>
-                  <Pagination.Item className="padination_active">
+                  <Pagination.Item >
                     {3}
                   </Pagination.Item>
-                  <Pagination.Item className="black">{"of"}</Pagination.Item>
-                  <Pagination.Item>{4}</Pagination.Item>
+                  <div className="black" style={{display:'flex',alignItems:'center',marginLeft:'10px',marginRight:'10px'}}>{"of"}</div>
+                  <Pagination.Item className="padination_active">{4}</Pagination.Item>
                   <Pagination.Item>
                     {"Next"}
                     <Image

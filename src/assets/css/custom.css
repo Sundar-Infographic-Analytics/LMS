@@ -24,7 +24,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 }
  .navbar-expand-lg .navbar-nav{display: flex;align-items: center;}
  .nav_active{color: #fff !important;}
- .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;width: 2%;position: absolute;top: 40px;animation: animate 1s linear;position: absolute;width: 80%;}
+ .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
  @keyframes animate {0% {width: 0;}100% {width: 80%;}}
  .me-auto a {display: flex;align-items: center;white-space: pre;color: rgb(215, 215, 215);margin: 0 10px;position: relative;}
  nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {background: rgba(72, 72, 72, 0.01) !important;padding: 0;}
@@ -237,7 +237,7 @@ ul li:after {
   line-height: 24px;
   background: #EBEBEB;
 }
-ul li:before {
+li.lesson-item:before {
   position: absolute;
   left: 12px;
   top: 28px;
@@ -252,6 +252,9 @@ ul li:before {
 }
 .last-item:before {
   display: none;
+}
+.outline_remove{
+  outline: none;
 }
 .accordion,
 h2.accordion-header,

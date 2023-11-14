@@ -98,7 +98,7 @@ export const RecentCourse = () => {
         </Row>
         <Slider {...settings} className='mart50 '>           
             {recentCourse?.map((course) => (
-                    <div className="padr10 padl10  " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
+                    <div className="padr10 padl10 outline_remove " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
                         <Image src={course?.course_image_url} className='w100 border' style={{borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
                         <div className='padl10 border padb20 padr10' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                         <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.employee_name}</b> on{" "}
