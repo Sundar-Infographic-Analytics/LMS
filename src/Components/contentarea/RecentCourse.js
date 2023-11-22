@@ -114,7 +114,7 @@ export const RecentCourse = () => {
                                 <Col lg={12} >
                                 <div className="course-footer">
                                 <Link to={`/PreviewCourse/${course?.id}`} className='tdn black'>
-                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born '>View</Button>
+                                    <Button className='fz16 padl20 padr20 dark_purple_bg bor_dark_purple fr r20  padl30 padr30 btn_color born'>View</Button>
                                 </Link>
                                 {jwtToken? (
                                     <Whistlist course_id={course.id} active={course.wishlist} />

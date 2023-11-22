@@ -500,11 +500,11 @@ const PreviewCourse = () => {
               {console.log("selllllllllllllllll",selectedLesson)}
             
                 <div className="fr dif">
-              <Link className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn_color">
+              <button className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn btn_color">
                 View
-              </Link>
+              </button>
               <Button
-                className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color" style={{borderRadius:0}}
+                className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color"
                 onClick={ () =>{setConfirmModal(true)}}
                 disabled={!isLessonCompleted? false:true}
               >
