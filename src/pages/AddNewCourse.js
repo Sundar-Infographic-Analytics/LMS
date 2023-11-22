@@ -9,6 +9,7 @@ import "../../node_modules/video-react/dist/video-react.css";
 import { Link } from 'react-router-dom';
 import data from '../api/AddCourse.js';
 import Modal from 'react-bootstrap/Modal';
+import img1 from '../assets/images/sub_cate_banner.png'
 
 const AddCourse = () => {
   const Chaptercss={
@@ -101,7 +102,7 @@ const AddCourse = () => {
             <p className='fw600 fz18 mart20 padb10'>Add Course</p>
             <Card style={{boxShadow:'0 0 10px 5px #eee'}} className='born'>
               <Card.Body>
-              <div style={{display:'flex'}} className='padt20 cusflexrow'>
+              <div style={{display:'flex'}} className='cusflexrow'>
               <div style={{flex:'1'}} className='padl20'>
                     <p className='fw600 marb10'>Category<span style={{color:'red'}}>*</span></p>
                     <fieldset>
@@ -139,10 +140,14 @@ const AddCourse = () => {
                       <div>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label className='fw600 fz15'>Add Course Title <span style={{color:'red'}}>*</span></Form.Label>
-                      <Form.Control type="email" className='bor_dark_purple br5' />
+                      <Form.Control type="text" className='bor_dark_purple br5' />
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label className='fw600 fz15'>Description<span style={{color:'red'}}>*</span></Form.Label>
+                      <Form.Control as="textarea" className='bor_dark_purple br5' style={{minHeight: '50px',}} />
                       </Form.Group>
                         <div className='custompos'>
-                        <Form.Group className="mb-3 w40 mw100" controlId="formBasicEmail">
+                        <Form.Group className="mb-3 w50 mw100" controlId="formBasicEmail">
                         <Form.Label className='fw600 fz15'>Sub Category <span style={{color:'red'}}>*</span></Form.Label>
                         <Form.Select aria-label="Default select example" className='br5 bor_dark_purple'>
                           <option>Power Bank </option>
@@ -153,7 +158,7 @@ const AddCourse = () => {
                         </Form.Group>
                         <Form.Group className="mb-3 w40 marl10 mw100" controlId="formBasicEmail">
                         <div>
-                        <Form.Label className='fw600 fz14'>Add  Thumbnail<span className='light_black fz13'> (optional)</span><span style={{color:'red'}}>*</span></Form.Label>
+                        <Form.Label className='fw600 fz14'>Add  Thumbnail<span className='light_black fz13'> (optional)</span></Form.Label>
                         </div>
                         <div className='posr'>
                         <Link><Image src={data.Thumb} className='posa' style={{zIndex:'1',right:'10px',top:'10px'}}></Image></Link>
@@ -164,12 +169,36 @@ const AddCourse = () => {
                           <Image src={data.Thum_Img} rounded className='w80 posr mw100' style={{justifyContent:'center', alignItems:'center'}}></Image>
                         </div>
                         </div>
+                        <Button type='submit' id='submit' className='btn dark_purple_bg born btn_color w30 pad10'>Submit</Button>
                       </div>
                   </div> 
                   
                 </div> 
                 </Card.Body>
-              </Card> 
+              </Card>
+              <Row className='mart30'>
+              <Col lg='12'>
+              <p className='fw600 fz18 mart20 padb10'>Add Course</p>
+              <Card style={{boxShadow:'0 0 10px 5px #eee'}} className='born'>
+               <Card.Body>
+                <div style={{display:'flex'}}>
+                  <div style={{display:'flex',alignItems:'center'}}>
+                    <Image src={img1} rounded className='w100 posr mw100 objfit' style={{justifyContent:'center', alignItems:'center'}}></Image>
+                  </div>
+                  <div className='pad20'>
+                  <p className='fw300 fz18'>Introduction to tally</p>
+                  <p className='fw600 fz18 marb10'>Web development refers to the creating building and maintaining of websites.</p>
+                  <p className='fw300 fz15'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                  </div>
+                  <div style={{display:'inline-flex'}}>
+                    <Link><Image src={data.Edit_Ion1} className='marl5' style={{width:'20px'}}></Image></Link>
+                    <Link><Image src={data.delete_ion} className='padl10' style={{width:'28px'}}></Image></Link>
+                  </div>
+                </div>
+               </Card.Body>
+               </Card>
+               </Col>
+               </Row>
               <Row className='mart30'>
                 <Col lg={6}>
                   <div style={{display:'flex',alignItems:'center'}}>
