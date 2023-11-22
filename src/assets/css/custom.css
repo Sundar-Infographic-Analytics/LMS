@@ -306,11 +306,12 @@ outline: 2px solid #B4B4B4 ;
 width: 22px;
 height: 22px;
 font-size: 12px;
+font-weight: 600;
 display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 50%;
-background-color: #eeeeee;
+
   cursor: pointer;
   color: #3e3e3e;
   position: absolute;
@@ -318,8 +319,9 @@ background-color: #eeeeee;
   right: 10px;
 }
 .clear-icon:hover{
+  background-color: #eeeeee;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.9;
 }
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
