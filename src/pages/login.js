@@ -92,8 +92,10 @@ const Login = () => {
       if (response.status === 200) {
         const token = response.data.jwtToken;
         const username = response.data.employee_name;
+        const Role = response.data.roles;
         localStorage.setItem("userName:", username);
         localStorage.setItem("jwtToken", token);
+        localStorage.setItem("role", Role);
 
         
         console.log("userDataaaaAAA",response.data);

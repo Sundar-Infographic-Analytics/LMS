@@ -41,12 +41,8 @@ const NavBar = ({style, className}) => {
           },
         }
         );
-      
-        
           setData(response.data.count);        
-        
-
-        // setLibraryAndLearningCount(response.data.count)
+                // setLibraryAndLearningCount(response.data.count)
       } catch (error) {
         localStorage.clear();
         console.error('Error fetching categories:', error);
@@ -66,7 +62,7 @@ const onClick =  async () =>{
 
     // Assuming that the response data contains the course title
     setData(response.data.count);
-console.log(response.data.count,"mmmmmmmmmmmmmmmmmmmm")
+    console.log(response.data.count,"mmmmmmmmmmmmmmmmmmmm")
   } catch (error) {
     // Handle any errors that might occur during the Axios POST request
     console.error("Error while making the Axios request:", error);
@@ -128,12 +124,18 @@ const handleLogin = () =>{
                 <div style={{padding:'10px  20px'}}> hi! <b>{username}</b></div>
                 <Dropdown.Item href="/mylearnings" className={`${location.pathname ==='/mylearnings'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={my_learn_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Mastery</span><p align="right" className='course-count dark_purple_bg'>{courseTitle && courseTitle?.count?.courseread}</p></div></Dropdown.Item>
                 <Dropdown.Item key={courseTitle} href="/mylibrary" className={`${location.pathname ==='/mylibrary'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={library_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Library</span><p className='course-count dark_purple_bg'>{data?.mylibrary}</p></div></Dropdown.Item>
-                <Dropdown.Item href="#" className='ff fz18 fw400'><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
-                <Dropdown.Item href="#" onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
+                <Dropdown.Item href="/mycourse" className={`${location.pathname ==='/mycourse'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
+                {localStorage.getItem("role")=== "superadmin" ? (
+                  <Dropdown.Item href="/approvalhub" className={`${location.pathname ==='/approvalhub'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>Approval Hub</span></Dropdown.Item>
+                ) : (
+                  <></>
+                )}
+                
+                <Dropdown.Item onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             
-       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
+       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg fw600`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
        )}
         </Container>
         <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import '../assets/css/global.css';
 import '../assets/css/custom.css';
-import Navbar from '../Components/header/navbar';
+import Navbar from '../Components/header/navbar.js';
 import { Col, Container, Row, Card, Form,Image, Button} from 'react-bootstrap';
 import "../../node_modules/video-react/dist/video-react.css";
 // import { Player } from 'video-react';
@@ -25,6 +25,11 @@ const AddCourse = () => {
     alignItems:'center',
   }
   const [show, setShow] = useState(false);
+
+  const [showChapter, setShowChpter]=useState(false);
+
+  const handleChapterClose = () =>setShowChpter(false);
+  const handleChapterShow = () =>setShowChpter(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -64,11 +69,30 @@ const AddCourse = () => {
           <Button className='dark_purple_bg born w30' onClick={handleClose}>
             Save
           </Button>
-          <Button className='born w30 cus_btn_new' style={{background:'transparent',color:'#000'}} onClick={handleClose}>
+          <Button className='born w30 cus_btn_new' style={{background:'transparent',color:'#6f3fba'}} onClick={handleClose}>
             Clear
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>  
+
+      <Modal show={showChapter} onHide={handleChapterClose} animation={false} className='custome'>
+      <Form.Label htmlFor="inputPassword5" className='fw700'>Chapter Name <span className='red'>*</span></Form.Label>
+      <Form.Control
+        type="text"
+        id="inputPassword5"
+        aria-describedby="passwordHelpBlock"
+        placeholder='new chapter name'
+        className='mart10'
+      />
+        <Modal.Footer style={{marginTop:"20px", borderTop:"0px solid red !important"}}>
+          <Button className='dark_purple_bg born w30' onClick={handleChapterClose} >
+            Save
+          </Button>
+          <Button className='born w30 cus_btn_new' style={{background:'transparent',color:'#6f3fba'}} onClick={handleChapterClose}>
+            Clear
+          </Button>
+        </Modal.Footer>
+      </Modal> 
 
       <Navbar className='dark_purple_bg'/>
         <Container >
@@ -83,17 +107,11 @@ const AddCourse = () => {
                     <fieldset>
                     <Form.Group as={Row} className="mb-3 block">
                       <Col sm={10}>
-                        <Form.Check
+                      <Form.Check
                           type="radio"
-                          label="Legal"
+                          label="Technology"
                           name="formHorizontalRadios"
-                          id="formHorizontalRadios1"
-                        />
-                        <Form.Check
-                          type="radio"
-                          label="Finance"
-                          name="formHorizontalRadios"
-                          id="formHorizontalRadios2"
+                          id="formHorizontalRadios4"
                         />
                         <Form.Check
                           type="radio"
@@ -103,9 +121,15 @@ const AddCourse = () => {
                         />
                         <Form.Check
                           type="radio"
-                          label="Technology"
+                          label="Finance"
                           name="formHorizontalRadios"
-                          id="formHorizontalRadios4"
+                          id="formHorizontalRadios2"
+                        />
+                        <Form.Check
+                          type="radio"
+                          label="Legal"
+                          name="formHorizontalRadios"
+                          id="formHorizontalRadios1"
                         />
                       </Col>
                     </Form.Group>
@@ -136,7 +160,7 @@ const AddCourse = () => {
                         <Form.Control type="file" className='bor_dark_purple br5 padl10' style={{position:'relative'}} />
                         </div>
                         </Form.Group>
-                        <div style={{alignItems:'center',justifyContent:'center',display:'flex'}} className='marl10 marl10 marb10'>
+                        <div style={{alignItems:'center',justifyContent:"flex-end",display:'flex', flexDirection:"column", marginBottom:"14px" }} className='marl10 marl10'>
                           <Image src={data.Thum_Img} rounded className='w80 posr mw100' style={{justifyContent:'center', alignItems:'center'}}></Image>
                         </div>
                         </div>
@@ -156,7 +180,7 @@ const AddCourse = () => {
                 </Col>
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
-                  <Button className='w40 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color'>+ Add New Chapter</Button>       
+                  <Button className='w40 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color' onClick={handleChapterShow}>+ Add New Chapter</Button>       
                   </div>
                 </Col>
               </Row>

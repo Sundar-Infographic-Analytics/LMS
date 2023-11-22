@@ -8,13 +8,15 @@ import PreviewCourse from './pages/PreviewCourse';
 import SubCategiriesAdd from './pages/SubCategiriesAdd';
 import ProtectedRoute from './Components/Utils/ProtectedRoute';
 import { CourseTitleProvider } from './Components/Utils/CategoryTitleContext';
-import AddCourse from './pages/AddCourse';
+import AddNewCourse from './pages/AddNewCourse';
+import MyCourse from './pages/MyCourse';
 import LoginPass from './pages/loginPass';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor';
 import MyLearnings from './pages/MyMastery';
 import MyLibrary from './pages/MyLibrary';
+import ApprovalHub from './pages/ApprovalHub';
 // import { useCategoryTitle } from '../src/Components/Utils/CategoryTitleContext';
 
 
@@ -37,9 +39,11 @@ const token = localStorage.getItem("jwtToken");
           <Route path='/SubCategiriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse/:id' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
           <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
-          <Route path='/AddCourse' element={<AddCourse />} />    
+          <Route path='/addnewcourse' element={<ProtectedRoute><AddNewCourse /></ProtectedRoute>} />  
+          <Route path='/mycourse' element={<ProtectedRoute><MyCourse /></ProtectedRoute>} />    
           <Route path='/mylearnings' element={<ProtectedRoute><MyLearnings /></ProtectedRoute>} />   
           <Route path='/mylibrary' element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />   
+          <Route path='/approvalhub' element={<ProtectedRoute><ApprovalHub /></ProtectedRoute>} />   
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
           <Route path='*' element={<>404 Page Page not Found</> }/>
         </Routes> 
