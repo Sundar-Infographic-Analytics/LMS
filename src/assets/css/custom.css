@@ -52,7 +52,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 .form-control{background:#F4F4F4;}
 .form-check-input:checked{background-color: #6f3fba;border-color: #6f3fba;}
 .form-check{line-height: 1.8rem;}
-.custompos{display: flex;}
+.custompos{display: flex;justify-content: space-between;}
 .logout-modal:hover {
   background: transparent;
   color: #212529;
@@ -610,3 +610,7 @@ input#formBasicEmail{
   --bs-btn-disabled-border-color: #ffc107;
   --bs-gradient: none;
 }
+textarea#formBasicEmail {
+  padding: 10px;
+}
+.objfit{object-fit: cover;width: 250px;height: 180px;}
