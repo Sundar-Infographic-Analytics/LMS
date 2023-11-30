@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../assets/css/global.css";
 import "../assets/css/custom.css";
+import log1 from '../assets/images/login_man.png';
 import {
   Card,
   Col,
@@ -210,7 +211,7 @@ const Login = () => {
         <Container fluid>
           <Row>
           
-            <Col lg={4} md={4} xs={12}>
+            <Col lg={5} md={12} xs={12}>
               <div className="vmiddle dr100 h100vh marl20">
                 <div className="w80 mw100 p-2">
                 
@@ -285,7 +286,7 @@ const Login = () => {
                           variant="primary"
                           type="submit"
                           className="w100 dark_purple_bg fz18 h50 btn_color"
-                          style={{ borderColor: "#6F3FBA" }}
+                          style={{ background: 'linear-gradient(90deg, rgba(111, 63, 186, 1), rgba(139, 63, 186, 1)) !important',}}
                         >
                           Login
                         </Button>
@@ -298,9 +299,10 @@ const Login = () => {
                 </div>
               </div>
             </Col>
-            <Col lg={8} md={8} xs={12}>
-              <div className="text-center dark_purple_bg h100vh"></div>
-              
+            <Col lg={7} md={12} xs={12}>
+              <div className="text-center dark_purple_bg h100vh vmiddle">
+                  <Image src={log1} className="w100"></Image>
+              </div>
             </Col>
           </Row>
           <Modal show={showTimeoutModal} centered onHide={handleClose}>

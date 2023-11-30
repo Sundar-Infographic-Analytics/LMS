@@ -48,7 +48,7 @@ const SubCategiries = () => {
             <Row>
            
               {data?.subcategory.map((course) => (                
-                <Col lg={3} className="mart50 " key={course?.id}> 
+                <Col lg={3} md={4} className="mart50 " key={course?.id}> 
                   <Link to={`/SubCategiriesCourse/${course?.id}`}>
                     <div className="center_img posr ">
                       <p className="posa white pad15">{course?.subcategory_name}</p>
