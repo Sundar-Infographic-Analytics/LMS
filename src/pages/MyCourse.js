@@ -7,10 +7,12 @@ import EditIcon from "../assets/images/edit_ion.png";
 import DeleteIcon from "../assets/images/delete_ion.png";
 // import Img from '../assets/images/sub_cate_banner.png';
 // import img2 from "../assets/images/sub_9.png";
+import { useNavigate } from 'react-router-dom';
 import FilterComponent from '../Components/Utils/CourseFilter.js';
 import axios from 'axios';
 
 const MyCourse = () => {
+  const navigate = useNavigate();
 
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
@@ -38,6 +40,12 @@ const MyCourse = () => {
     }
     fetchCourseListData();
   },[])
+
+  const handleAddnewcourseClick = async() =>{
+localStorage.removeItem("getcourseID");
+ await navigate("/addnewcourse")
+
+}
 
    const StatusColor={
     draft_bg :"#8c8f93",
@@ -209,7 +217,7 @@ const paginationComponentOptions = {
                 </Col>
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
-                  <Button href="/addnewcourse" className='w30 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color ' ><b>+</b> Add New Chapter</Button>       
+                  <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>       
                   </div>
                 </Col>
               </Row>

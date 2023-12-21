@@ -40,8 +40,6 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
   } */
   .objfit{
     object-fit: cover;
-    width: 306px;
-    height: 184px;
     max-width: 100%;
   }
   .bannerImg{
@@ -324,6 +322,34 @@ border-radius: 50%;
   cursor: pointer;
   opacity: 0.9;
 }
+.form-check-input[type=radio]{
+  cursor: pointer;
+}
+.my-loading-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.97); /* Semi-transparent white background */
+  z-index: 999; 
+}
+.my-cardLoading {
+  margin: 0 auto;
+}
+.icon-zoom img{
+  cursor: pointer;
+}
+.icon-zoom img:hover{
+  transition: '0.9s all';
+  transform: scale(1.2);
+}
+.edit-btn:hover{
+background-color: #f6f6f6;
+}
 @media screen and (min-width:320px) and (max-width:768px){
     .unset{display: unset;}
     .mw100{width:var(--w100);}
@@ -557,7 +583,7 @@ input.bor_dark_purple.br5.form-control{
 /* .btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show{
   background:#199804;
 } */
-.block .form-check{display: block !important;}
+/* .block .form-check{display: block ;} */
 input#formBasicEmail{
   border-color: #6f3fba;
 }
@@ -614,7 +640,7 @@ input#formBasicEmail{
 textarea#formBasicEmail {
   padding: 10px;
 }
-.objfit{object-fit: cover;width: 250px;height: 180px;}
+.objfit{object-fit: cover;height: 100%;}
 @media screen and (min-width:320px) and (max-width:768px){
   .h100vh{
     height: unset;
