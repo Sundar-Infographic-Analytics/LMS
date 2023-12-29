@@ -14,16 +14,22 @@ import {
 // import {  Dropdown} from "react-bootstrap";
 import "../../node_modules/video-react/dist/video-react.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axios, { all } from "axios";
 import YouTube from "react-youtube";
 import profile_img from "../assets/images/profile_img.png";
 import checkmark from "../assets/images/tick_mark.png";
+//pdf-viewer
+import { Worker } from '@react-pdf-viewer/core';
+import { Viewer } from '@react-pdf-viewer/core';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import sample from '../../src/assets/pdf/sample.pdf';
+
 
 const PreviewCourse = () => {
   const [chapter, setChapter] = useState([]);
   const [lessonList, setLessonList] = useState([]);
   const [allData, setAllData] = useState([]);
-  const [selectedLesson, setSelectedLesson] = useState(null);
+  const [selectedLesson, setSelectedLesson] = useState({ videoId:null ,lesson_type:''});
   // const [videoLink, setVideoLink] = useState("");
   const [showConditionModal, setShowConditionModal] = useState(false);
   const [condtionError, setConditionError] = useState("");
@@ -106,6 +112,7 @@ const PreviewCourse = () => {
         const data = response.data;
           
           // console.log(videoLink, "videooooolink");
+          console.log("dataaa",data.firstMatchingLesson.file_type)
           
         if (data && data?.courseResults && data.courseResults?.length > 0) {
           setChapter(data?.courseResults[0]?.chapter);
@@ -145,9 +152,10 @@ const PreviewCourse = () => {
           console.log(initialLesson, 'initialLesson');
           // if (initialLesson == null) {
             const videoId = extractVideoIdFromUrl(initialLesson?.file_path);
-            if (videoId) {
+            console.log("videoId",videoId)
+            if (videoId ) {
               // setVideoLink(initialLesson?.file_path);
-              setSelectedLesson(videoId);
+              setSelectedLesson({ videoId:videoId ,lesson_type:data.firstMatchingLesson.file_type});
               setcompletebutton(initialLesson?.lesson_id);
               setIsLessonCompleted(initialLesson?.lesson_read_status);
               // setIsLoading(true);
@@ -180,7 +188,7 @@ const PreviewCourse = () => {
     return null;
   };
 
-  const handleLessonSelection = (chapterIndex, lessonIndex, lesson) => {
+  const handleLessonSelection = (chapterIndex, lessonIndex, lesson,lesson_type) => {
     let lIndx = lessonIndex;
     let cIndx = chapterIndex;
 
@@ -209,13 +217,11 @@ const PreviewCourse = () => {
       const videoId = extractVideoIdFromUrl(lesson.file_path);
       if (videoId) {
         // setVideoLink(lesson.file_path);
-        setSelectedLesson(videoId);
+        setSelectedLesson({videoId:videoId,lesson_type:lesson_type});
         setcompletebutton(lesson.lesson_id);
         setIsLessonCompleted(lesson.lesson_read_status);
         // setIsLoading(true);
         setBoldText(lesson);
-        console.log("checkkkkkkkkkkkkkkkkk", videoId);
-        console.log("selectedLesson", completeButton);
         
       } else {
         console.error("Invalid YouTube URL:", lesson.file_path);
@@ -280,9 +286,9 @@ const PreviewCourse = () => {
 
   // };
 
-  console.log(chapter, "sssssssssssssssssssssssss");
-  console.log(id, "dddddddddddddddddddddddddddddd");
-  console.log(lessonList, "QQQQQQQQQQQQQQQQQQQQQQQQQQ");
+  console.log( "0001chapter",chapter);
+  console.log("0002Alldata",allData);
+  console.log("000seleced",selectedLesson);
 
   // const btnCss = {
   //   display: "flex",
@@ -308,13 +314,12 @@ const PreviewCourse = () => {
     setShowConditionModal(false);
     setConfirmModal(false);
   };
+  const url = 'https://d3idlkk51igt07.cloudfront.net/LMS-lesson/eb3864b7-6d94-4edc-9c75-6554b3575e28.pdf'
   
   return (
     <div>
       <Navbar className="dark_purple_bg" />
       <Container fluid>
-        {console.log(allData, "sssssssssssssssssssssssss")}
-        {console.log("totalchapter", chapter)}
         {/* {console.log("linkkkkkkkkkkkkk", videoLink?.file_path)} */}
         <Modal show={showConditionModal} centered onHide={handleClose}>
           <Modal.Header closeButton className="logout-modal">
@@ -404,12 +409,6 @@ const PreviewCourse = () => {
                 maxHeight: "695px",
               }}
             >
-              {console.log(allData?.firstMatchingLesson?.chapter_id,"ghgghg")}
-            
-              {console.log(
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-                allData
-              )}
               {chapter.map((course, index1) => (                                             
                 <ul className="custom_ul" key={index1} >
                   <Accordion.Item
@@ -443,9 +442,10 @@ const PreviewCourse = () => {
                     </Accordion.Header>
                     {course.lesson.map((lesson, index2) => (
                       <Accordion.Body
-                        style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                        key={lesson.lesson_id}
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                      key={lesson.lesson_id}
                       >
+                        { console.log("00000 course",lesson.file_type)}
                         <li
                           className={`lesson-item ${
                             // for hide last LINE
@@ -468,11 +468,10 @@ const PreviewCourse = () => {
                             ></Image>
                           </div>
                           <div style={{ padding: "0 10px 8px 10px" }}>
-                            {console.log(boldText,"boldddddddddddddddddddd")}
                             <Link
-                              className={`fz14 " ${lesson.lesson_name===boldText.lesson_name?"lesson-active":"lesson-link"}`}
+                              className={`fz14 " ${lesson.lesson_name === boldText.lesson_name ? "lesson-active":"lesson-link"}`}
                               onClick={() =>{
-                                handleLessonSelection(index1, index2, lesson)
+                                handleLessonSelection(index1, index2, lesson,lesson.file_type)
                                 // setBoldText(lesson);
                               }}
                             >
@@ -489,20 +488,27 @@ const PreviewCourse = () => {
             </Accordion>
             )}
           </Col>
-          {console.log(allData,'bbbbbbbbbbbb')}
           
             <Col lg={9} >
-            <div className="mart20">
-              {selectedLesson && (
-                <YouTube videoId={selectedLesson} opts={opts} />
-                
-              )}
-              {console.log("selllllllllllllllll",selectedLesson)}
-            
+              {console.log("003",selectedLesson)}
+            <div className="mart20">{
+              console.log("selectedlessson",selectedLesson)
+              
+            }
+              { 
+              selectedLesson.lesson_type !== 'P' ? (
+                //pdf viewer
+               
+            <div>
+               <object id="myPdf" title="pdf" type="application/pdf" data={url} style={{ width:'100%',height:"100vh"}}></object>
+              </div>
+                ) :
+                <YouTube videoId={selectedLesson.videoId} opts={opts} />
+              }
                 <div className="fr dif">
-              <button className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn btn_color">
-                View
-              </button>
+              {/* <button className="border pad5 padr30 padl30 tdn black fz18 marr10 fw400 dark_purple_bg white btn btn_color">
+                {selectedLesson.lesson_type === "V" ? 'View' : 'Download'}
+              </button> */}
               <Button
                 className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color"
                 onClick={ () =>{setConfirmModal(true)}}
@@ -512,17 +518,8 @@ const PreviewCourse = () => {
               </Button>
             </div>
                
-              
-              {/* {console.log("idddddddddddddddddddddddddddddddddddddddddddd:",lesson.file_path)} */}
             </div>
             </Col>
-     
-            
-           
-              
-           
-           
-        
         </Row>
       </Container>
     </div>
