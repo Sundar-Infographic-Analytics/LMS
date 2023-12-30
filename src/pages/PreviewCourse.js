@@ -14,22 +14,22 @@ import {
 // import {  Dropdown} from "react-bootstrap";
 import "../../node_modules/video-react/dist/video-react.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios, { all } from "axios";
+import axios from "axios";
 import YouTube from "react-youtube";
 import profile_img from "../assets/images/profile_img.png";
 import checkmark from "../assets/images/tick_mark.png";
 //pdf-viewer
-import { Worker } from '@react-pdf-viewer/core';
-import { Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import sample from '../../src/assets/pdf/sample.pdf';
+// import { Worker } from '@react-pdf-viewer/core';
+// import { Viewer } from '@react-pdf-viewer/core';
+// import '@react-pdf-viewer/core/lib/styles/index.css';
+// import sample from '../../src/assets/pdf/sample.pdf';
 
 
 const PreviewCourse = () => {
   const [chapter, setChapter] = useState([]);
-  const [lessonList, setLessonList] = useState([]);
+  // const [lessonList, setLessonList] = useState([]);
   const [allData, setAllData] = useState([]);
-  const [selectedLesson, setSelectedLesson] = useState({ videoId:null ,lesson_type:''});
+  const [selectedLesson, setSelectedLesson] = useState({ videoId:null ,lesson_type:'', pdf_path:null});
   // const [videoLink, setVideoLink] = useState("");
   const [showConditionModal, setShowConditionModal] = useState(false);
   const [condtionError, setConditionError] = useState("");
@@ -111,13 +111,13 @@ const PreviewCourse = () => {
   
         const data = response.data;
           
-          // console.log(videoLink, "videooooolink");
+          console.log(data, "videooooolink");
           console.log("dataaa",data.firstMatchingLesson.file_type)
           
         if (data && data?.courseResults && data.courseResults?.length > 0) {
           setChapter(data?.courseResults[0]?.chapter);
           setAllData(data);
-          setLessonList(data?.AllLessons);
+          // setLessonList(data?.AllLessons);
           // setVideoLink(data.courseResults[0]?.chapter[0]?.lesson);
           
           // Find the first lesson that is not marked as read START
@@ -150,8 +150,9 @@ const PreviewCourse = () => {
             data.courseResults[0]?.chapter[0]?.lesson
           )
           console.log(initialLesson, 'initialLesson');
+          console.log(data, 'dataaaaaaaaaaaaaaa');
           // if (initialLesson == null) {
-            const videoId = extractVideoIdFromUrl(initialLesson?.file_path);
+            const videoId = initialLesson?.file_type === "V" ? extractVideoIdFromUrl(initialLesson?.file_path) : initialLesson?.file_path;
             console.log("videoId",videoId)
             if (videoId ) {
               // setVideoLink(initialLesson?.file_path);
@@ -214,7 +215,7 @@ const PreviewCourse = () => {
     )
       setShowConditionModal(true);
     else {
-      const videoId = extractVideoIdFromUrl(lesson.file_path);
+      const videoId = lesson.file_type === "V" ? extractVideoIdFromUrl(lesson.file_path) : lesson.file_path;
       if (videoId) {
         // setVideoLink(lesson.file_path);
         setSelectedLesson({videoId:videoId,lesson_type:lesson_type});
@@ -314,7 +315,7 @@ const PreviewCourse = () => {
     setShowConditionModal(false);
     setConfirmModal(false);
   };
-  const url = 'https://d3idlkk51igt07.cloudfront.net/LMS-lesson/eb3864b7-6d94-4edc-9c75-6554b3575e28.pdf'
+  // const url = 'https://d3idlkk51igt07.cloudfront.net/LMS-lesson/eb3864b7-6d94-4edc-9c75-6554b3575e28.pdf'
   
   return (
     <div>
@@ -477,7 +478,7 @@ const PreviewCourse = () => {
                             >
                               {lesson.lesson_name}
                             </Link>
-                            <p className="fz14">2 Mins | Video</p>
+                            <p className="fz14">2 Mins | {lesson.file_type ==="V"? "Video" : "PDF"}</p>
                           </div>
                         </li>
                       </Accordion.Body>
@@ -496,11 +497,12 @@ const PreviewCourse = () => {
               
             }
               { 
-              selectedLesson.lesson_type !== 'P' ? (
+              selectedLesson?.lesson_type === 'P' ? (
                 //pdf viewer
                
             <div>
-               <object id="myPdf" title="pdf" type="application/pdf" data={url} style={{ width:'100%',height:"100vh"}}></object>
+            {console.log("selectedddddd")}
+               <object id="myPdf" title="pdf" type="application/pdf" data={selectedLesson?.videoId} height="750" width="100%"></object>
               </div>
                 ) :
                 <YouTube videoId={selectedLesson.videoId} opts={opts} />

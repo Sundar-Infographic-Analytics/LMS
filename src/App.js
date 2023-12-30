@@ -22,6 +22,9 @@ import ApprovalHub from './pages/ApprovalHub';
 
 const App = () => {
 const token = localStorage.getItem("jwtToken");
+const superAdmin = localStorage.getItem("role") === "superadmin" ;
+
+// console.log("power", superAdmin)
 
 
 // const courseTitle = useCategoryTitle(); //checkinggggg....
@@ -38,12 +41,12 @@ const token = localStorage.getItem("jwtToken");
           <Route path='/Categiries/:id' element={<><Categiries /></>} />    
           <Route path='/SubCategiriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse/:id' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
-          <Route path='/SubCategiriesAdd' element={<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>} />    
+          <Route path='/SubCategiriesAdd' element={superAdmin? (<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>):<Navigate to="/"/>} />    
           <Route path='/addnewcourse' element={<ProtectedRoute><AddNewCourse /></ProtectedRoute>} />  
           <Route path='/mycourse' element={<ProtectedRoute><MyCourse /></ProtectedRoute>} />    
           <Route path='/mylearnings' element={<ProtectedRoute><MyLearnings /></ProtectedRoute>} />   
           <Route path='/mylibrary' element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />   
-          <Route path='/approvalhub' element={<ProtectedRoute><ApprovalHub /></ProtectedRoute>} />   
+          <Route path='/approvalhub' element={superAdmin?(<ProtectedRoute><ApprovalHub /></ProtectedRoute>):<Navigate to="/"/>} />   
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
           <Route path='*' element={<>404 Page Page not Found</> }/>
         </Routes> 

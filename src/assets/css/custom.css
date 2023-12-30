@@ -640,6 +640,9 @@ input#formBasicEmail{
 textarea#formBasicEmail {
   padding: 10px;
 }
+.block.row .form-check {
+  display: inline-block;
+}
 .objfit{object-fit: cover;height: 100%;}
 @media screen and (min-width:320px) and (max-width:768px){
   .h100vh{

@@ -248,6 +248,7 @@ const Login = () => {
                             style={{ borderColor: "#6F3FBA" }}
                             value={credentials.mobile}
                             onChange={handleChange}
+                            autoComplete="username"
                             required
                           />
                         </Form.Group>
@@ -269,6 +270,7 @@ const Login = () => {
                             placeholder="Password"
                             className="borltrn br0 mb-3"
                             style={{ borderColor: "#6F3FBA" }}
+                            autoComplete="current-password"
                             value={credentials.password}
                             onChange={handleChange}
                             required

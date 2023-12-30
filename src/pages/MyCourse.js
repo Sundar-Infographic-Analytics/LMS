@@ -1,7 +1,6 @@
 import React,{useState,useMemo, useEffect} from 'react';
 import Navbar from '../Components/header/navbar.js';
-import { Link } from "react-router-dom";
-import { Container,Image,Col,Row,Button } from 'react-bootstrap';
+import { Container,Image,Col,Row,Button,Modal,Spinner } from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 import EditIcon from "../assets/images/edit_ion.png";
 import DeleteIcon from "../assets/images/delete_ion.png";
@@ -16,8 +15,17 @@ const MyCourse = () => {
 
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const [showdelete, setShowDelete] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [deleteId, setDeleteId] = useState('')
 
   const [datas,setData] = useState([]);
+  console.log(deleteId,"daaaaaaaaaaaaaaaaaaaaaaaa")
+
+  const handledeleteClose = () => {
+    setShowDelete(false);
+   
+  };
 
   useEffect(() =>{
     const fetchCourseListData = async() =>{
@@ -43,9 +51,26 @@ const MyCourse = () => {
 
   const handleAddnewcourseClick = async() =>{
 localStorage.removeItem("getcourseID");
- await navigate("/addnewcourse")
+  navigate("/addnewcourse")
 
 }
+
+const handleCourseEditSumbit = async  (row) =>{
+  const  courseId = row.id;
+  // console.log("Course ID:", courseId);
+  localStorage.setItem("getcourseID", courseId) ;
+  navigate("/addnewcourse");
+  // console.log(" daaaaaaaaaaaaaaaaaaaaaaaadaasss", courseId)
+}
+
+
+// const handleCourseDeleteClick = async  (row) =>{
+//   setShowDelete(true);
+//   const  courseId = row.id;
+//   // console.log("Course ID:", courseId);
+//   localStorage.setItem("getcourseID", courseId) ;
+
+// }
 
    const StatusColor={
     draft_bg :"#8c8f93",
@@ -56,8 +81,9 @@ localStorage.removeItem("getcourseID");
   const columns = [
     {
       name: 'SI. No',
-      selector: (row, index) => index + 1,
+      selector: (row, index) => index + 1, 
       width: "6%",
+      sortable: false,
     },
     {
         name: 'Course Name',
@@ -66,12 +92,18 @@ localStorage.removeItem("getcourseID");
         style: {
           whiteSpace: 'normal !important', // Set whiteSpace to 'normal' for wrapping
         },
-        width: "47%",      
+        width: "35%",      
         cell: row => <div className="wrap-content">{row.course_title}</div>, 
     },
     {
       name:'Catogory',
       selector:row => row.category_name,
+      sortable:true,
+      width:'10%'
+    },
+    {
+      name:'Subcatogory',
+      selector:row => row.sub_category,
       sortable:true,
       width:'20%'
     },
@@ -98,63 +130,21 @@ localStorage.removeItem("getcourseID");
     sortable: true,
     width: "7%",
    cell:(row) =>(
-    <>
+     <>
+     {console.log(row, "rowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" )}
       <div className="dif">
-                          <Link className="">
-                            <Image src={EditIcon} className="img_action" alt="Edit" />
-                          </Link>
-                          <Link className="padl20 padr20">
-                            <Image src={DeleteIcon} className="img_action" alt="Delete" />
-                          </Link>
+                          {/* <Link className="/addnewcourse"> */}
+                            <Image src={EditIcon} className="img_action" style={{cursor:"pointer"}} alt="Edit" onClick={() => handleCourseEditSumbit(row)}/>
+                          {/* </Link> */}
+                          {/* <Link className="padl20 padr20"> */}
+                            <Image src={DeleteIcon} className="img_action" style={{cursor:"pointer", marginLeft:"10px"}} alt="Delete" onClick={() => {setShowDelete(true); setDeleteId(row.id)}} />
+                          {/* </Link> */}
                         </div>
     </>
    ),
    
   },
 ];
-// const data = [ 
-//   {
-//       id: 1,
-//       course_title: 'use state04 is a hook that can be used as a hook.custom reference is a reference.custom reference is a reference. displays the courses which an enrolled user has most recently accessed displays the courses which an enrolled user has most recently accessed',
-//       sub_catogory:'Technology',
-//       thumbnail:Img,
-//       status:"Pending",
-//       index:0 //need for striped color
-//   },
-//   {
-//     id: 2,
-//     course_title: 'Course Enrollments by Student Academic Level IDE',
-//     sub_catogory:'Legal',
-//     thumbnail:img2,
-//     status:"Approved",
-//     index:1
-// },
-// {
-//   id: 3,
-//   course_title: 'displays the courses which an enrolled user has most recently accessed',
-//   sub_catogory:'Technology',
-//   thumbnail:Img,
-//   status:"Approved",
-//   index:2
-// },
-// {
-//   id: 4,
-//   course_title: 'The Supreme Court Practice and Procedure',
-//   sub_catogory:'Finance',
-//   thumbnail:img2,
-//   status:"Rejected",
-//   index:3
-// },
-// {
-//   id: 5,
-//   course_title: 'The Supreme Court Practice and Procedure',
-//   sub_catogory:'Finance',
-//   thumbnail:img2,
-//   status:"Draft",
-//   index:4
-// },
-  
-// ];
 
 const conditionalRowStyles = [
   
@@ -172,7 +162,7 @@ const conditionalRowStyles = [
 const filteredItems = datas.filter(
   (item) =>
   (item.course_title && item.course_title.toLowerCase().includes(filterText.toLowerCase())) ||
-  (item.status && item.status.toLowerCase().includes(filterText.toLowerCase())) || (item.category_name && item.category_name.toLowerCase().includes(filterText.toLowerCase()))
+  (item.status && item.status.toLowerCase().includes(filterText.toLowerCase())) || (item.category_name && item.category_name.toLowerCase().includes(filterText.toLowerCase())) || (item.sub_category && item.sub_category.toLowerCase().includes(filterText.toLowerCase()))
 );
 
 const subHeaderComponentMemo = useMemo(() => {
@@ -199,8 +189,83 @@ const paginationComponentOptions = {
 };
 
 
+
+//deletecourse 
+const handleCourseDeleteSubmit = async () => {
+  setButtonLoading(true);
+  // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
+  await axios
+    .post(
+      `${process.env.REACT_APP_BASE_URL}/deletecourse`,
+      {
+        id:deleteId,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("jwtToken"),
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data,"courseDelete");
+      navigate(0);
+      // setButtonLoading(false);
+    })
+    .catch((error) => {
+      console.log(error, "courseDelete errors");
+    })
+    .finally(() => {
+      setButtonLoading(false);
+    });
+};
+
+console.log(datas,"dddddddddddddddddddddddd")
   return (
     <>
+     <div className="delete modal">
+        <Modal
+          show={showdelete}
+          onHide={handledeleteClose}
+          style={{ margin: "0px" }}
+        >
+          <Modal.Header closeButton className="logout-modal">
+            <Modal.Title className="fw500">Confirmation!!!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Are you sure to delete course?{" "}
+            {/* <span className="fw600">
+             
+            </span>
+            <span> with Chapters and lessons</span> */}
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
+              onClick={handledeleteClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+            onClick={handleCourseDeleteSubmit}
+              disabled={buttonLoading}
+            >
+              {buttonLoading && (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  style={{ marginRight: "5px" }}
+                />
+              )}
+              Delete
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
       <Navbar className="dark_purple_bg"/>
       <div className='clearfix'></div>
       <Container fluid>
@@ -211,13 +276,17 @@ const paginationComponentOptions = {
                     {/* <span className='fw600 fz18 mart40 padb10'>Add Chapter</span>   */}
                     {/* </div> */}
                   <div className="filter-container">
-                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name (or) Status"}/>
+                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / sub Ccategory /   Status"}/>
                   </div>
                 </div>
                 </Col>
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
-                  <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>       
+                  <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button> 
+                  {localStorage.getItem("role") === "superadmin" && (
+
+                  <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 marl10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>       
+                  )}
                   </div>
                 </Col>
               </Row>

@@ -6,6 +6,7 @@ import FilterComponent from "../Components/Utils/CourseFilter.js";
 // import img2 from "../assets/images/sub_9.png";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from "react-router-dom";
 
 const ApprovalHub = () => {
   
@@ -110,7 +111,8 @@ const ApprovalHub = () => {
   //   setData(newArr);
   // }
 
- 
+ const [getPreviewCourseID, setGetPreviewCourseID]= useState('');
+ console.log(getPreviewCourseID, "check superadmin link")
 
     const columns = [
         {
@@ -161,7 +163,13 @@ const ApprovalHub = () => {
         // },
         {
           name:"View",
-          cell: row => <div className="view-btn">View</div>,
+          // selector
+          cell: row => (
+          <>
+          {/* <div>{console.log(row, 'check superadmin linkClick')}</div> */}
+          <Link to={`/PreviewCourse/${row?.id}`}  onClick={()=> setGetPreviewCourseID(row?.id)} style={{textDecoration:"none"}} className="view-btn">View</Link> 
+          </>
+          )
         },
         {
           name:"Action",
@@ -245,14 +253,14 @@ const ApprovalHub = () => {
       
     ];
 
-   
+   console.log(adminList, "llllllllllllllllllllllllll")
 
   return (
     <>
       <Navbar className="dark_purple_bg" />
       <div className="clearfix"></div>
       <Container fluid className="mart50 marb10">
-        <Col lg={6} lassName="filter-containern">
+        <Col lg={6} className="filter-containern">
           <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"filter by course title / employee name / category and sub category"} onApprovalStatusChange={handleApprovalStatusChange}/>
         </Col>
       </Container>

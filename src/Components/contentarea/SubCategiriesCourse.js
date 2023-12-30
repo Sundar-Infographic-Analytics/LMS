@@ -88,7 +88,7 @@ const SubCategiriesCourse = () => {
                   >
                     <Image src={course.course_image} className="w100 border" />
                     <div className="border padt10 padr10 padl10 padb20">
-                    <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.employee_name}</b> on{" "}
+                    <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}
                     {course.formatted_created_date}
                   </p>
                       <p className="fw600 fz18 light_black marb5">

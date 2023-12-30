@@ -12,6 +12,7 @@ import logout_ion from '../../assets/images/logout.svg';
 import mycourse_ion from '../../assets/images/course.svg';
 import library_ion from '../../assets/images/library.svg';
 import my_learn_ion from '../../assets/images/learning.svg';
+import ApprovalHub_icon from '../../assets/images/approval hub.svg'
 import loginion from '../../assets/images/login_ion.png';
 import { useCategoryTitle } from '../Utils/CategoryTitleContext';
 import { CourseTitleProvider } from '../../Components/Utils/CategoryTitleContext';
@@ -126,7 +127,7 @@ const handleLogin = () =>{
                 <Dropdown.Item key={courseTitle} href="/mylibrary" className={`${location.pathname ==='/mylibrary'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`} ><img src={library_ion} alt='' style={{width:'24px',}} /><div className='div-flex'><span className='padl10'>My Library</span><p className='course-count dark_purple_bg'>{data?.mylibrary}</p></div></Dropdown.Item>
                 <Dropdown.Item href="/mycourse" className={`${location.pathname ==='/mycourse'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
                 {localStorage.getItem("role")=== "superadmin" ? (
-                  <Dropdown.Item href="/approvalhub" className={`${location.pathname ==='/approvalhub'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>Approval Hub</span></Dropdown.Item>
+                  <Dropdown.Item href="/approvalhub" className={`${location.pathname ==='/approvalhub'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={ApprovalHub_icon} alt='' style={{width:'24px',}} /><span className='padl10'>Approval Hub</span></Dropdown.Item>
                 ) : (
                   <></>
                 )}

@@ -7,15 +7,15 @@ import { Col, Row, Card, Form, Image, Button, Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import data from "../../../api/AddCourse.js";
 import Modal from "react-bootstrap/Modal";
-import Edit_Ion1 from "../../../assets/images/edit_ion1.png";
-import Delete_Ion1 from "../../../assets/images/delete_ion1.png";
+import Edit_Ion1 from "../../../assets/images/Vector_new_edit_icon.svg";
+import Delete_Ion1 from "../../../assets/images/New_Delete.svg";
 import Edit_Ion2 from "../../../assets/images/edit_ion2.png";
 import Delete_chapter from "../../../assets/images/delete_iconRed-course.png";
 import Add_Ion from "../../../assets/images/add_ion.png";
 // import Thum_Img from '../../../assets/images/thumb_img.png';
 // import Thumb from '../../../assets/images/user_upload.png';
-import Pdf_Ion from "../../../assets/images/pdf_ion.png";
-import Video_Ion from "../../../assets/images/video_ion.png";
+import Pdf_Ion from "../../../assets/images/pdf_ion.svg";
+import Video_Ion from "../../../assets/images/video_ion.svg";
 import LinkIcon from "../../../assets/images/link.png";
 import axios from "axios";
 
@@ -48,15 +48,18 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const jwtToken = localStorage.getItem("jwtToken");
 
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [draftbuttonLoading, setDraftButtonLoading] = useState(false);
   const [submitbuttonLoading, setSubmitButtonLoading] = useState(false);
   const [spinnerLoadingTiming, setSpinnerLoadingTiming] = useState(false);
 
   const [chapterename, setChapterename] = useState("");
   const [errors, setErrors] = useState({});
+  // const [editlessonerror, seteditlessonerror] = useState({});
   const [ChapterMapData, setChapterMapData] = useState([]);
   const [selectedChapterID, setSelectedChapterID] = useState("");
-  const [deleteChapterlesson, setDeleteChapterLesson] =useState('');
-  
+  const [deleteChapterlesson, setDeleteChapterLesson] = useState("");
+
+  const [cardloading, setCardLoading] = useState(false);
 
   const [editchapterState, setEditState] = useState({
     chapter_id: null,
@@ -78,12 +81,11 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     { label: "PDF", value: "P" },
   ];
 
-
-  const handleChapterClose =  () => {
-     setShowChpter(false);
+  const handleChapterClose = () => {
+    setShowChpter(false);
     setErrors({});
-   setEditState({});
-   setChapterename("");
+    setEditState({});
+    setChapterename("");
   };
   const handleChapterShow = () => {
     setShowChpter(true);
@@ -94,34 +96,36 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     setFiletypeOption(null);
     setLessonData({});
     setErrors({});
-    // setEditLessonState({});
- 
+    setEditLessonState({
+      lesson_id: null,
+      lesson_name: "",
+      file_type: "",
+      file_path: "",
+      chapter_id: null,
+    });
   };
   const handleShow = () => {
     setShow(true);
     setFiletypeOption(null);
     setLessonData({});
-     setFiletypeOption(null);
+    setFiletypeOption(null);
   };
 
   //for delte modal
-  const handledeleteClose = () =>{
+  const handledeleteClose = () => {
     setShowDelete(false);
-    setDeleteChapterLesson('');
-  }
- 
-  
+    setDeleteChapterLesson("");
+  };
+
   const handleFileOptionChange = (event) => {
     setFiletypeOption(event.target.value);
-
-   
   };
 
   const [lesssonData, setLessonData] = useState({
     //for lesson
     lesson_name: "",
     file_type: "",
-    file_path: '',
+    file_path: "",
     chapter_id: selectedChapterID,
   });
 
@@ -129,7 +133,6 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const handleChapterchange = (e) => {
     setChapterename(e.target.value);
     setErrors({});
-    
   };
 
   const handleChapterSubmit = async () => {
@@ -137,9 +140,9 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     if (!chapterename.trim() || chapterename.trim().length < 20) {
       // Set errors in the state
       setErrors({
+        ...editchapterState,
         chapter_name: "Chapter name must be at least 20 characters long",
       });
-
       return;
     }
 
@@ -178,9 +181,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
   useEffect(() => {
     const fetchChapterList = async () => {
+      setCardLoading(true);
       try {
         const reschapter = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/chapter`,
+          `${process.env.REACT_APP_BASE_URL}/lmschaptersAndLesson`,
           {
             id: GetLastCourseLocalID,
           },
@@ -198,6 +202,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       }
     };
     fetchChapterList();
+    setCardLoading(false);
   }, [jwtToken, GetLastCourseLocalID]);
   console.log("chapter getlist", ChapterMapData);
 
@@ -211,7 +216,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
   //for lesson
   const handlechange = (e) => {
-    
+   
     const { name, value } = e.target;
     setLessonData({
       ...lesssonData,
@@ -283,6 +288,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
   const lessonValidation = async () => {
     const lessonerror = {};
+    
     // console.log("lesson type", typeof(lesssonData.file_path))
     if (
       !lesssonData?.lesson_name?.trim() ||
@@ -324,6 +330,80 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     setErrors(lessonerror);
     return Object.keys(lessonerror).length === 0;
   };
+  const lessonEditValidation = async () => {
+    const lessonEditerror = {};
+    // console.log("lesson type", typeof(lesssonData.file_path))
+    // console.log(editchapterState)
+    if (
+      !editchapterState?.chapter_name?.trim() ||
+      editchapterState?.chapter_name?.trim().length < 10
+    ) {
+      lessonEditerror.chapter_name =
+        "chapter name must be at least 10 characters long";
+    }
+    setErrors(lessonEditerror);
+    return Object.keys(lessonEditerror).length === 0;
+  };
+
+
+
+
+  const chapterEditValidation = async () => {
+    const lessonEditerror = {};
+    // console.log("lesson type", typeof(lesssonData.file_path))
+    // console.log(editchapterState)
+    // if (
+    //   !(editchapterState.chapter_name?.trim()) ||
+    //   editchapterState.chapter_name?.trim().length < 10
+    // ) {
+    //   lessonEditerror.chapter_name =
+    //     "chapter name must be at least 10 characters long";
+    // }
+    
+    
+
+    if (
+      !editLessonState?.lesson_name?.trim() ||
+      editLessonState?.lesson_name?.trim().length < 10
+    ) {
+      lessonEditerror.lesson_name =
+        "lesson name must be at least 10 characters long";
+    }
+    if (!editLessonState.file_type) {
+      lessonEditerror.file_type = "Must be select file type";
+    }
+    // console.log("lesson 01",!lesssonData.file_path?.trim(), "lesson 02", !lesssonData.file_path?.name?.trim())
+    if (!editLessonState?.file_path && !editLessonState?.file_path?.name) {
+      if (editLessonState?.file_type === "V") {
+        lessonEditerror.file_path = "Enter youtube link";
+      }
+      if (editLessonState?.file_type === "P") {
+        lessonEditerror.file_path = "Upload PDF file";
+      }
+    }
+
+    if (editLessonState.file_path) {
+      if (editLessonState?.file_type === "V") {
+        try {
+          const videoId = checkValidYoutubeLink(
+            editLessonState?.file_path?.trim()
+          );
+          const videoExists = await checkYoutubeVideoExistence(videoId, apiKey);
+
+          if (!videoExists) {
+            lessonEditerror.file_path = "YouTube video does not exist";
+            console.log("Video does not existtttttttttttttttttttttttttttttttt");
+          } else {
+            console.log("Video existsssssssssssssssssssssssssssssssssss");
+          }
+        } catch (error) {
+          lessonEditerror.file_path = error.message;
+        }
+      }
+    }
+    setErrors(lessonEditerror);
+    return Object.keys(lessonEditerror).length === 0;
+  };
 
   const handleLessonSubmit = async () => {
     setButtonLoading(true);
@@ -357,8 +437,6 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           await setLessonData({});
           // window.location.reload();
           navigate(0);
-
-          
         }
       } catch (err) {
         localStorage.clear();
@@ -372,7 +450,6 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   //course submit
 
   const fullCourseSubmitValidation = async () => {
-   
     const submitError = {};
 
     ChapterMapData.forEach((chapterMap, index) => {
@@ -434,44 +511,51 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const handleEditclick = async (chapterMap) => {
     setEditState({
       chapter_id: chapterMap?.chapter_id,
-      chapter_name: chapterMap?.chapter_name ,
+      chapter_name: chapterMap?.chapter_name,
       course_id: chapterMap?.course_id,
     });
     setShowChpter(true);
   };
 
   const handleEditSubmit = async () => {
-    try {
-      setButtonLoading(true);
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/updatechapter`,
-        editchapterState,
-        {
-          headers: {
-            Authorization: jwtToken,
-          },
+    const isValid = await lessonEditValidation();
+    
+console.log(isValid,"lllllllllll")
+    if(isValid) {
+      try {
+        setButtonLoading(true);
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/updatechapter`,
+          editchapterState,
+          {
+            headers: {
+              Authorization: jwtToken,
+            },
+          }
+        );
+        console.log(response.data);
+        if (response?.data?.code === 200) {
+          setSpinnerLoadingTiming(true);
+          setTimeout(() => {
+            // window.location.reload();
+            setSpinnerLoadingTiming(false);
+          }, 1000);
         }
-      );
-      console.log(response.data);
-      if (response?.data?.code === 200) {
-        setSpinnerLoadingTiming(true);
-        setTimeout(() => {
-          // window.location.reload();
-          setSpinnerLoadingTiming(false);
-        }, 1000);
+      } catch (error) {
+        localStorage.clear();
+        console.log(error);
+        console.error("Error fetching categories:", error);
+        setButtonLoading(false);
       }
-    } catch (error) {
-      localStorage.clear();
-      console.log(error);
-      console.error("Error fetching categories:", error);
+  
       setButtonLoading(false);
+      // window.location.reload();
+      navigate(0);
+    } else{
+      console.log("Form validation failed");
     }
-
-    setButtonLoading(false);
-    // window.location.reload();
-    navigate(0);
+   
   };
-
 
   //edit lesson
 
@@ -492,83 +576,109 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   };
 
   const handleLessonEditSubmit = async () => {
+    const  isvalid =  await chapterEditValidation();
+    console.log(isvalid, "kkkkkkkkkkkkkkkkkkkkkkkk")
+
+    if (isvalid) {
+      setButtonLoading(true);
+      await axios
+        .post(
+          `${process.env.REACT_APP_BASE_URL}/updatelesson`,
+          editLessonState,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: jwtToken,
+            },
+          }
+        )
+        .then(({ data }) => {
+          if (data.code === 200) {
+            setSpinnerLoadingTiming(true);
+            setTimeout(() => {
+              // window.location.reload();
+              setSpinnerLoadingTiming(false);
+            }, 1000);
+          }
+        })
+        .catch((error) => {
+          // localStorage.clear();
+          console.log(error);
+        })
+        .finally(() => {
+          setButtonLoading(false);
+          navigate(0);
+        });
+    }
+    else {
+      // Handle validation errors, e.g., display error messages
+      console.log("Form validation failed");
+    }
+  };
+
+  //Delete lesson
+  const handlelessonDeleteSubmit = async () => {
     setButtonLoading(true);
+    // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
     await axios
-      .post(`${process.env.REACT_APP_BASE_URL}/updatelesson`, editLessonState, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: jwtToken,
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/deletelesson`,
+        {
+          lesson_id: deleteChapterlesson?.lesson_id,
         },
-      })
-      .then(({ data }) => {
-        if (data.code === 200) {
-          setSpinnerLoadingTiming(true);
-          setTimeout(() => {
-            // window.location.reload();
-            setSpinnerLoadingTiming(false);
-          }, 1000);
+        {
+          headers: {
+            Authorization: jwtToken,
+          },
         }
+      )
+      .then((response) => {
+        console.log(response.data);
+        navigate(0);
       })
       .catch((error) => {
-        // localStorage.clear();
         console.log(error);
       })
       .finally(() => {
         setButtonLoading(false);
-        navigate(0);
       });
   };
 
-  //Delete lesson
-  const handlelessonDeleteSubmit = async() =>{
+  //delete chapter
+  const handlechapterDeleteSubmit = async () => {
     setButtonLoading(true);
     // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
-   await axios.post (`${process.env.REACT_APP_BASE_URL}/deletelesson`,{
-    lesson_id:deleteChapterlesson?.lesson_id,
-    },
-    {
-      headers:{
-        Authorization:jwtToken,
-      },
-    }
-    )
-    .then((response) =>{
-      console.log(response.data);
-      navigate(0);
-    })
-    .catch((error) =>{
-      console.log(error);
-    })
-    .finally(() =>{
-      setButtonLoading(false);
-    })
-  }
+    await axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/deletechapter`,
+        {
+          id: deleteChapterlesson?.chapter_id,
+        },
+        {
+          headers: {
+            Authorization: jwtToken,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setButtonLoading(false);
+        navigate(0);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {});
+  };
 
-  //delete chapter 
-  const handlechapterDeleteSubmit = async() =>{
-    setButtonLoading(true);
-    // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
-   await axios.post (`${process.env.REACT_APP_BASE_URL}/deletechapter`,{
-    id:deleteChapterlesson?.chapter_id,
-    },
-    {
-      headers:{
-        Authorization:jwtToken,
-      },
-    }
-    )
-    .then((response) =>{
-      console.log(response.data);
-      setButtonLoading(false);
-      navigate(0);
-    })
-    .catch((error) =>{
-      console.log(error);
-    })
-    .finally(() =>{
-     
-    })
-  }
+const HandleDraftSubmit = async () =>{
+  setDraftButtonLoading(true);
+  setTimeout(() => {
+    navigate("/mycourse")
+    setDraftButtonLoading(false);
+  }, 1000);
+}
+  
 
   console.log("lesson all error", errors);
   console.log("lesson onchange data", lesssonData);
@@ -580,6 +690,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   console.log("edit lesson  editLESSONState  oldfile type", previousFile);
   console.log("delete lesson data deletelesson", deleteChapterlesson);
   console.log("file types", filetypeOption);
+  console.log("errorrrrrr", errors);
 
   return (
     <>
@@ -632,7 +743,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
               type="text"
               id="inputPassword5"
               aria-describedby="passwordHelpBlock"
-            value={editLessonState?.lesson_name}
+              value={lesssonData?.lesson_name || ""}
               placeholder="Enter lesson name*"
               onChange={handlechange}
             />
@@ -694,14 +805,14 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                   />
                 ))}
               </Col>
-              {errors.file_type !==null && (
+              {errors.file_type !== null && (
                 <Form.Text className="text-danger">
                   {errors.file_type}
                 </Form.Text>
               )}
             </Form.Group>
           </fieldset>
-          {filetypeOption !==null ||  editLessonState.lesson_id !==null ? (
+          {filetypeOption !== null || editLessonState.lesson_id !== null ? (
             <div>
               <Form.Label htmlFor="inputPassword5" className="fw700">
                 {filetypeOption === "V" || editLessonState?.file_type === "V"
@@ -727,7 +838,6 @@ const AddChapterLesson = ({ catgorySubcat }) => {
               {filetypeOption === "V" ||
               editLessonState?.file_type === "V" ||
               editLessonState?.file_type === undefined ? (
-
                 editLessonState?.file_type === "V" ? (
                   <Form.Control
                     name="file_path"
@@ -748,7 +858,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                     type="text"
                     placeholder="Enter YouTube URL"
                     className="bor_dark_purple br5"
-                    value={""}
+                    value={lesssonData.file_path}
                     style={{ position: "relative" }}
                     onChange={handlechange}
                   />
@@ -760,7 +870,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                   accept={"application/pdf"}
                   className="bor_dark_purple br5"
                   style={{ position: "relative" }}
-                  value={ ""}
+                  // value={editLessonState? editLessonState?.file_path.name : lesssonData?.file_path.name}
                   onChange={(e) => {
                     if (editLessonState?.lesson_id) {
                       setEditLessonState({
@@ -797,7 +907,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           <Modal.Footer>
             <Button
               className="dark_purple_bg born w30"
-              onClick={ () =>
+              onClick={() =>
                 editLessonState.lesson_id
                   ? handleLessonEditSubmit()
                   : handleLessonSubmit()
@@ -807,7 +917,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                   ? submitbuttonLoading
                   : spinnerLoadingTiming
                   ? spinnerLoadingTiming
-                  : null
+                  : submitbuttonLoading
               }
             >
               {buttonLoading && (
@@ -844,7 +954,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
         <Modal
           show={showChapter}
-          onHide={()=>handleChapterClose()}
+          onHide={() => handleChapterClose()}
           animation={true}
           className="custome"
         >
@@ -871,34 +981,34 @@ const AddChapterLesson = ({ catgorySubcat }) => {
               editchapterState.course_id ? editchapterState?.chapter_name : null
             }
           /> */}
-          {editchapterState?.chapter_id ?(   ///check !==null 
+          {editchapterState?.chapter_id ? ( ///check !==null
             <Form.Control
               type="text"
               id={"inputPassword5"}
               aria-describedby="passwordHelpBlock"
               className="mart10"
               name="chapter_name"
-              value={editchapterState?.chapter_name }
+              value={editchapterState?.chapter_name}
               onChange={(e) =>
                 setEditState({
                   ...editchapterState,
                   chapter_name: e.target.value,
                 })
               }
-              placeholder={editchapterState?.chapter_id ? "new chapter name" : ""}
+              placeholder={
+                editchapterState?.chapter_id ? "new chapter name" : ""
+              }
             />
           ) : (
-          
             <Form.Control
               type="text"
               id={"inputPassword5"}
               aria-describedby="passwordHelpBlock"
               placeholder="new chapter name"
               className="mart10"
-              value={chapterename || ''}
+              value={chapterename || ""}
               name="chapter_name"
               onChange={handleChapterchange}
-             
             />
           )}
 
@@ -930,10 +1040,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
             <Button
               className="dark_purple_bg born w30"
               // onClick={handleChapterSubmit}
-              onClick={ () => 
+              onClick={() =>
                 editchapterState.course_id
-                  ? handleEditSubmit ()
-                  : handleChapterSubmit ()
+                  ? handleEditSubmit()
+                  : handleChapterSubmit()
               }
               disabled={
                 submitbuttonLoading
@@ -969,8 +1079,8 @@ const AddChapterLesson = ({ catgorySubcat }) => {
               className="born w30 cus_btn_new"
               style={{ background: "transparent", color: "#6f3fba" }}
               onClick={() => {
-        handleChapterClose();
-      }}
+                handleChapterClose();
+              }}
             >
               Clear
             </Button>
@@ -978,11 +1088,25 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         </Modal>
       </div>
       <div className="delete modal">
-        <Modal show={showdelete} onHide={handledeleteClose} style={{ margin: "0px" }}>
+        <Modal
+          show={showdelete}
+          onHide={handledeleteClose}
+          style={{ margin: "0px" }}
+        >
           <Modal.Header closeButton className="logout-modal">
             <Modal.Title className="fw500">Confirmation!!!</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Are you sure to delete <span className="fw600">{deleteChapterlesson?.lesson_name? deleteChapterlesson?.lesson_name : deleteChapterlesson?.chapter_name} </span>{deleteChapterlesson?.lesson_name? "lesson?" : "chapter with lessons?"}</Modal.Body>
+          <Modal.Body>
+            Are you sure to delete{" "}
+            <span className="fw600">
+              {deleteChapterlesson?.lesson_name
+                ? deleteChapterlesson?.lesson_name
+                : deleteChapterlesson?.chapter_name}{" "}
+            </span>
+            {deleteChapterlesson?.lesson_name
+              ? "lesson?"
+              : "chapter with lessons?"}
+          </Modal.Body>
           <Modal.Footer>
             <Button
               variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
@@ -990,11 +1114,16 @@ const AddChapterLesson = ({ catgorySubcat }) => {
             >
               Cancel
             </Button>
-            <Button variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
-            onClick={deleteChapterlesson?.lesson_id? ( handlelessonDeleteSubmit) : (handlechapterDeleteSubmit)}
-            disabled={buttonLoading}
+            <Button
+              variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+              onClick={
+                deleteChapterlesson?.lesson_id
+                  ? handlelessonDeleteSubmit
+                  : handlechapterDeleteSubmit
+              }
+              disabled={buttonLoading}
             >
-            {buttonLoading && (
+              {buttonLoading && (
                 <Spinner
                   as="span"
                   animation="border"
@@ -1004,7 +1133,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                   style={{ marginRight: "5px" }}
                 />
               )}
-             Delete
+              Delete
             </Button>
           </Modal.Footer>
         </Modal>
@@ -1027,7 +1156,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                 <div style={{ display: "flex", justifyContent: "end" }}>
                   <Button
                     className="w40 mart0 marb10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color"
-                    onClick={ () => handleChapterShow()}
+                    onClick={() => handleChapterShow()}
                   >
                     + Add New Chapter
                   </Button>
@@ -1052,6 +1181,17 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                   style={{ boxShadow: "0 0 10px 5px #eee" }}
                   key={chapterMap.course_id}
                 >
+                  {cardloading && (
+                    <div className="my-loading-overlay">
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        role="status"
+                        aria-hidden="true"
+                        className="my-cardLoading"
+                      />
+                    </div>
+                  )}
                   <Card.Body>
                     <div style={Chaptercss}>
                       <p className="black fw600 fz18 icon-zoom ">
@@ -1066,7 +1206,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                           src={Delete_chapter}
                           className="marl10 "
                           style={{ width: "17px" }}
-                          onClick={() => {setDeleteChapterLesson(chapterMap); setShowDelete(true)}}
+                          onClick={() => {
+                            setDeleteChapterLesson(chapterMap);
+                            setShowDelete(true);
+                          }}
                         ></Image>
                       </p>
                       <Button
@@ -1150,7 +1293,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                                 <Image
                                   src={Delete_Ion1}
                                   className="padl10"
-                                  onClick={() =>{setDeleteChapterLesson(lessonmap); setShowDelete(true)}}
+                                  onClick={() => {
+                                    setDeleteChapterLesson(lessonmap);
+                                    setShowDelete(true);
+                                  }}
                                 ></Image>
                               </Link>
                             </div>
@@ -1186,7 +1332,20 @@ const AddChapterLesson = ({ catgorySubcat }) => {
             <Row>
               <Col lg={12}>
                 <div className="mart30 text-center">
-                  <Button className="w20 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple">
+                  <Button className="w20 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple" onClick={HandleDraftSubmit}
+                  disabled = {draftbuttonLoading}
+                  >
+
+                  {draftbuttonLoading && (
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        style={{ marginRight: "5px" }}
+                      />
+                    )}
                     Save Draft
                   </Button>
                   <Button
