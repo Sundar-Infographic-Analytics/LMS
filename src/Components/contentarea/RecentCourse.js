@@ -10,8 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Whistlist from '../Utils/Whistlist';
-import NoImg from '../../assets/images/NoImg.svg';
-
+import NoImg from '../../assets/images/9f3ae86c-80f5-42f0-9940-740d8ff96f35.svg'
 export const RecentCourse = () => {
  
  const [recentCourse, setRecentCourse] = useState([]);
