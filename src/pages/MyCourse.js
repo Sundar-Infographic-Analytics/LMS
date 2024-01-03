@@ -282,10 +282,10 @@ console.log(datas,"dddddddddddddddddddddddd")
                 </Col>
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
-                  <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button> 
+                  <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 marr10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>  
                   {localStorage.getItem("role") === "superadmin" && (
-
-                  <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 marl10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>       
+                    <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button>
+                        
                   )}
                   </div>
                 </Col>

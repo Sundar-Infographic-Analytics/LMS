@@ -137,11 +137,11 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
   const handleChapterSubmit = async () => {
     // Validate that chapterName is not empty and has a minimum length of 20 characters
-    if (!chapterename.trim() || chapterename.trim().length < 20) {
+    if (!chapterename.trim() || chapterename.trim().length < 10) {
       // Set errors in the state
       setErrors({
         ...editchapterState,
-        chapter_name: "Chapter name must be at least 20 characters long",
+        chapter_name: "Chapter name must be at least 10 characters long",
       });
       return;
     }
@@ -220,7 +220,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     const { name, value } = e.target;
     setLessonData({
       ...lesssonData,
-      [name]: value?.trim(),
+      [name]: value,
     });
     // lessonValidation();
   };
@@ -842,9 +842,11 @@ const HandleDraftSubmit = async () =>{
                   <Form.Control
                     name="file_path"
                     type="text"
+                    placeholder="Enter YouTube URL"
                     className="bor_dark_purple br5"
                     style={{ position: "relative" }}
-                    value={editLessonState?.file_path || ""}
+                    value={editLessonState?.file_path || ''}
+                    // value={editLessonState?.file_path || ""}
                     onChange={(e) => {
                       setEditLessonState({
                         ...editLessonState,
@@ -870,6 +872,7 @@ const HandleDraftSubmit = async () =>{
                   accept={"application/pdf"}
                   className="bor_dark_purple br5"
                   style={{ position: "relative" }}
+                  value={editLessonState?.file_path || ""}
                   // value={editLessonState? editLessonState?.file_path.name : lesssonData?.file_path.name}
                   onChange={(e) => {
                     if (editLessonState?.lesson_id) {

@@ -68,7 +68,7 @@ const SubCategiriesCourse = () => {
         title1={subCategory?.subcategory_name}
       />
       {courseEmpty ? (
-        <Container style={{ padding: "33px 0px 100px 0", textAlign: "center" }}>
+        <Container style={{ padding: "33px 0px 188px 0", textAlign: "center" }}>
           <div
             style={{ fontSize: 25, fontWeight: 600, color: "rgb(94, 94, 94)" }}
           >

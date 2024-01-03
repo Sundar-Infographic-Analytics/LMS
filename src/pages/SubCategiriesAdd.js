@@ -541,7 +541,7 @@ console.log(subcatData, "deleteData")
                     </Form.Label>
                     <Form.Select
                       name="categorySelect"
-                      defaultValue="0"
+                      // defaultValue="0"
                       className="h50 light_black bor2"
                       value={
                         editMode

@@ -67,7 +67,8 @@ export const RecentCourse = () => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        initialSlide: 0,
+        slidesToShow: recentCourse.length >= 3 ? 3 : recentCourse.length,
         slidesToScroll: 1,
         arrows: true,
         autoplay:false,
@@ -98,10 +99,10 @@ export const RecentCourse = () => {
         </Row>
         <Slider {...settings} className='mart50 '>           
             {recentCourse?.map((course) => (
-                    <div className="padr10 padl10 outline_remove " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
-                        <Image src={course?.course_image_url} className='w100 border' style={{borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
-                        <div className='padl10 border padb20 padr10' style={{borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
-                        <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.employee_name}</b> on{" "}
+                    <div  className="padr10 padl10 outline_remove " key={course?.subcategory_id} style={{width:"447px", height:"auto",borderRadius:"20px"}}>
+                        <Image src={course?.course_image} className=' border' style={{ borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
+                        <div className='padl10 border padb20 padr10' style={{width:"447px", height:"auto",borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
+                        <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.first_name}</b> on{" "}
                     {course.formatted_created_date}
                   </p>
                             <h3 className='fz18 fw600 marb5 lh27'>{course.course_name}</h3>
