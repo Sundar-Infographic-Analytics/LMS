@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useMemo } from "react";
 import { useState } from "react";
 import "../assets/css/global.css";
 import "../assets/css/custom.css";
+import "../assets/css/variable.css";
 import { Button, Col, Container, Row, Modal, Form,Spinner } from "react-bootstrap";
 import Navbar from "../Components/header/navbar";
 

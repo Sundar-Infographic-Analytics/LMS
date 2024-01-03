@@ -17,6 +17,9 @@ import Globale401Modal from './Components/Utils/401GlobalyApiInterceptor';
 import MyLearnings from './pages/MyMastery';
 import MyLibrary from './pages/MyLibrary';
 import ApprovalHub from './pages/ApprovalHub';
+import '../src/assets/css/custom.css'
+import '../src/assets/css/global.css'
+import '../src/assets/css/variable.css'
 // import { useCategoryTitle } from '../src/Components/Utils/CategoryTitleContext';
 
 

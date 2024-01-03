@@ -11,6 +11,27 @@ import FilterComponent from '../Components/Utils/CourseFilter.js';
 import axios from 'axios';
 
 const MyCourse = () => {
+  // const customStyles = {
+  //   rows: {
+  //       style: {
+  //           minHeight: '72px', // override the row height
+  //       },
+  //   },
+  //   headCells: {
+  //       style: {
+  //         // backgroundColor:"#F6F6F6",
+  //           paddingLeft: '8px', // override the cell padding for head cells
+  //           paddingRight: '8px',
+  //       },
+  //   },
+  //   cells: {
+  //       style: {
+  //           paddingLeft: '8px', // override the cell padding for data cells
+  //           paddingRight: '8px',
+  //       },
+  //   },
+  // };
+
   const navigate = useNavigate();
 
   const [filterText, setFilterText] = useState('');
@@ -292,7 +313,7 @@ console.log(datas,"dddddddddddddddddddddddd")
               </Row>
         </Container>
       <Container fluid>
-<DataTable pagination columns={columns} data={filteredItems} subHeaderComponent={subHeaderComponentMemo} conditionalRowStyles={conditionalRowStyles} paginationComponentOptions={paginationComponentOptions}/>
+<DataTable  pagination columns={columns} data={filteredItems} subHeaderComponent={subHeaderComponentMemo} conditionalRowStyles={conditionalRowStyles} paginationComponentOptions={paginationComponentOptions}/>
       </Container>
     </>
   )

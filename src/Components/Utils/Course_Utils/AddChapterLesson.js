@@ -872,7 +872,7 @@ const HandleDraftSubmit = async () =>{
                   accept={"application/pdf"}
                   className="bor_dark_purple br5"
                   style={{ position: "relative" }}
-                  value={editLessonState?.file_path || ""}
+                  // value={editLessonState?.file_path || ""}
                   // value={editLessonState? editLessonState?.file_path.name : lesssonData?.file_path.name}
                   onChange={(e) => {
                     if (editLessonState?.lesson_id) {
