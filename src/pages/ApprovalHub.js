@@ -7,6 +7,7 @@ import FilterComponent from "../Components/Utils/CourseFilter.js";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from "react-router-dom";
+import NoImg from '../assets/images/9f3ae86c-80f5-42f0-9940-740d8ff96f35.svg'
 
 const ApprovalHub = () => {
   
@@ -152,7 +153,7 @@ const ApprovalHub = () => {
         },
         {
           name:"Thumbnail",
-          cell: row => <img src={row.thumbnail} alt="Thumbnail" style={{ maxWidth: '100%', maxHeight: '100%', width: '100px', height: '50px', margin:"5px 5px 5px 0" }} />,
+          cell: row => <img src={row.thumbnail || NoImg} alt="Thumbnail" style={{ maxWidth: '100%', maxHeight: '100%', width: '100px', height: '50px', margin:"5px 5px 5px 0" }} />,
           selector:row => row.thumbnail,
           sortable:true,
         },
