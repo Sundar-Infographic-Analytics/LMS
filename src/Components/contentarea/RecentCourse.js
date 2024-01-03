@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Whistlist from '../Utils/Whistlist';
+import NoImg from '../../assets/images/NoImg.svg';
 
 export const RecentCourse = () => {
  
@@ -100,7 +101,7 @@ export const RecentCourse = () => {
         <Slider {...settings} className='mart50 '>           
             {recentCourse?.map((course) => (
                     <div  className="padr10 padl10 outline_remove " key={course?.subcategory_id} style={{width:"447px", height:"auto",borderRadius:"20px"}}>
-                        <Image src={course?.course_image} className=' border' style={{ borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
+                        <Image src={course?.course_image || NoImg}  className=' border' style={{ borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
                         <div className='padl10 border padb20 padr10' style={{width:"447px", height:"auto",borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                         <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.first_name}</b> on{" "}
                     {course.formatted_created_date}
