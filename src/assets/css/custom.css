@@ -4,7 +4,7 @@ button.orange_bg:hover{background: linear-gradient(123.49deg, #FA8560 4.43%, #FA
 .padination_active{border: 2px solid #B4B4B4;background-color: #fff;border-radius: 5px;}
 .page-link{color: #000;background-color: transparent; border: none;font-size: 13px;}
 .img_action{border: 1px solid transparent;padding: 5px;}.img_action:hover{transform: scale(1.2);transition-duration: 0.2s;border: 1px solid #6f3fba;padding: 5px; border-color: transparent;}
-p{margin: 0;}.center_img{width: 275px; height: 165px ; display: flex;text-align: center;align-items: center;justify-content: center;}
+p{margin: 0;}.center_img{width: 310px; height: 185px ; display: flex;text-align: center;align-items: center;justify-content: center;}
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 50px;left: -50px;position: relative;}
 button.slick-arrow.slick-next::before{color: #ddd;font-size: 50px;right: -10px;position: relative;}
 .lmstbl tr th{padding-bottom: 20px;padding-top: 20px;background: #F6F6F6;color: #525252;}

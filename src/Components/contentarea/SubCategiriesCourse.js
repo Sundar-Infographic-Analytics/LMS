@@ -104,7 +104,7 @@ const SubCategiriesCourse = () => {
                   >
                
                     <Image src={course.course_image} className="w100 border" />
-                    <div className="border padt10 padr10 padl10 padb20" style={{ width:"306px", height:"223px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                    <div className="border padt10 padr10 padl10 padb20" style={{ width:"306px", height:"240px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                          <div>
                             <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}
                                {course.formatted_created_date}
@@ -112,7 +112,7 @@ const SubCategiriesCourse = () => {
                             <p className="fw600 fz18 light_black marb5">
                                    {truncateText(course.course_name,55)}
                                 </p>
-                            <p className="fw400 fz15 light_black">
+                            <p title={course.course_desc} className="fw400 fz15 light_black">
                                 {truncateDesc(course.course_desc, 145)}
                             </p>
                           </div>

@@ -64,7 +64,7 @@ const LastView = () => {
           ) : (
             <Row>
               <Col lg={12}>
-                <h4 className="mart50 fw700 fz36">Your Last Viewed content</h4>
+                <h4 className="mart30 fw700 fz36">Your Last Viewed content</h4>
                 <p className="fz18 fw400">
                   displays the courses which an enrolled user has most recently
                   accessed
@@ -73,15 +73,15 @@ const LastView = () => {
             </Row>
           )}
 
-          <Row className="mart40 padb40">
+          <Row className="mart20 padb40">
           {console.log("viewd leson",viewedCourse)}
             {viewedCourse?.map((course, index) => (
               <Col lg="3" className="marb10 " key={index}>
-                <div>
+                <div style={{width:"310px"}}>
                   <Image
                     src={course.course_image}
                     className="w100 border"
-                    style={{ objectFit: "contain" }}
+                    style={{ objectFit: "cover" , height:"185px"}}
                   />
 
                   <p className="fz16 fw400 padt10">{course.lesson_name}</p>

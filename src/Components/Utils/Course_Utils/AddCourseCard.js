@@ -19,8 +19,10 @@ import Edit_Ion1 from "../../../assets/images/edit_ion1.png";
 import Delete_Ion1 from "../../../assets/images/delete_ion1.png";
 import AddChapaterlesson from "../Course_Utils/AddChapterLesson.js";
 import axios from "axios";
+import { useLoader } from "../Loading/LoaderContext.js";
 
 const AddCourse = () => {
+  const {setLoading} = useLoader();
   const courseTitle = useCategoryTitle();
   console.log(courseTitle, "kkkkkkkkkkkkkkkk");
 
@@ -200,7 +202,6 @@ const AddCourse = () => {
     if (isValid) {
       setButtonLoading(true);
       try {
-        // setLoading(true);
         const res = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/addcourse`,
           courseFormData,
@@ -237,9 +238,10 @@ const AddCourse = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     setCardLoading(true);
     if (localStorage.getItem("getcourseID")) {
-      const fetchData = async () => {
+      const fetchData = async () => { 
         const getres = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/courseid`,
           {
@@ -252,13 +254,16 @@ const AddCourse = () => {
           }
         );
         setGetSubmitedCourse(getres?.data[0]);
+        setCardLoading(false);
+        setLoading(false);
         console.log("resdata", getres?.data[0]);
         // console.log(" resdata getstate",getSubmitedcourse);
       };
       fetchData();
-      setCardLoading(false);
+      // setCardLoading(false);
+      setLoading(false);
     }
-  }, [jwtToken]);
+  }, [jwtToken,setLoading]);
 
 
   const openEditModal = (courseData) => {

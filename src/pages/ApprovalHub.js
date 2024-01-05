@@ -7,10 +7,11 @@ import FilterComponent from "../Components/Utils/CourseFilter.js";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from "react-router-dom";
-import NoImg from '../assets/images/9f3ae86c-80f5-42f0-9940-740d8ff96f35.svg'
+import NoImg from '../assets/images/9f3ae86c-80f5-42f0-9940-740d8ff96f35.svg';
+import { useLoader } from "../Components/Utils/Loading/LoaderContext.js";
 
 const ApprovalHub = () => {
-  
+const {setLoading}   = useLoader();
 
   const [radioValue, setRadioValue] = useState({});
   const [adminList, setAdminList] = useState([]);
@@ -54,6 +55,7 @@ const ApprovalHub = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const res = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmsCourseListAdmin`,
@@ -74,10 +76,12 @@ const ApprovalHub = () => {
       } catch (error) {
         localStorage.clear();
         console.error("Error fetching courses:", error);
+      }finally{
+        setLoading(false);
       }
     };
     fetchData();
-  }, []);
+  }, [setLoading]);
   
  
   

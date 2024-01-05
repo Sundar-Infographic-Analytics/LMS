@@ -8,11 +8,12 @@ import SubCategiries from "./SubCategiries";
 import LastView from "../Components/contentarea/LastView";
 import Footer from "../Components/footer/footer";
 import { RecentCourse } from "../Components/contentarea/RecentCourse";
-import { Container } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
+import { useLoader } from "../Components/Utils/Loading/LoaderContext";
 
 const Categiries = () => {
+  const {setLoading} = useLoader();
   const navigate = useNavigate();
   const [bgImg, setBgImg] = useState({
     categoryTitle: "",
@@ -25,6 +26,7 @@ const Categiries = () => {
 
   useEffect(() => {
     const fetchData = async (e) => {
+    setLoading(true);
       const jwtToken=localStorage.getItem("jwtToken");
       await axios
         .post(`${process.env.REACT_APP_BASE_URL}/lmsSubCategoryList`, {
@@ -47,15 +49,19 @@ const Categiries = () => {
           } else if (response.status === 401) {
             localStorage.clear();
           }
-        });
+        })
+        .finally(() =>{
+          setLoading(false);
+        })
     };
     fetchData();
-  }, [id, navigate]);
+  }, [id, navigate,setLoading]);
 
  
 
   console.log(id, "oooo");
   console.log(subCat, "cattttttttttttttttttt");
+  console.log(bgImg, "bg Imggggggggggggggggggggggggg");
 
   return (
     <div>
@@ -67,26 +73,7 @@ const Categiries = () => {
         title1="Learn From"
         title2="Anywhere"
       />
-      {subCat.length !== 0 ? (
-        <SubCategiries />
-      ) : (
-        <>
-          <Container
-            style={{  textAlign: "center", height: 230,padding:50  }}
-          >
-            <div
-              style={{
-                fontSize: 25,
-                fontWeight: 600,
-                color: "rgb(94, 94, 94)",
-              }}
-            >
-              Subcategory List is Empty{" "}
-            </div>
-          </Container>
-        </>
-      )}
-
+        <SubCategiries data={bgImg} />
       <RecentCourse />
       <LastView />
       <Footer />

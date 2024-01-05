@@ -9,28 +9,11 @@ import DeleteIcon from "../assets/images/delete_ion.png";
 import { useNavigate } from 'react-router-dom';
 import FilterComponent from '../Components/Utils/CourseFilter.js';
 import axios from 'axios';
+import { useLoader } from '../Components/Utils/Loading/LoaderContext.js';
 
 const MyCourse = () => {
-  // const customStyles = {
-  //   rows: {
-  //       style: {
-  //           minHeight: '72px', // override the row height
-  //       },
-  //   },
-  //   headCells: {
-  //       style: {
-  //         // backgroundColor:"#F6F6F6",
-  //           paddingLeft: '8px', // override the cell padding for head cells
-  //           paddingRight: '8px',
-  //       },
-  //   },
-  //   cells: {
-  //       style: {
-  //           paddingLeft: '8px', // override the cell padding for data cells
-  //           paddingRight: '8px',
-  //       },
-  //   },
-  // };
+
+  const {setLoading} = useLoader();
 
   const navigate = useNavigate();
 
@@ -50,6 +33,7 @@ const MyCourse = () => {
 
   useEffect(() =>{
     const fetchCourseListData = async() =>{
+      setLoading(true);
       try{
         const res = await axios.post( `${process.env.REACT_APP_BASE_URL}/lmsMyAddedCourseList`, 
         null ,
@@ -65,10 +49,13 @@ const MyCourse = () => {
         localStorage.clear();
         console.error("Error fetching categories:", error)
 
+      } finally {
+        setLoading(false);
       }
+      
     }
     fetchCourseListData();
-  },[])
+  },[setLoading])
 
   const handleAddnewcourseClick = async() =>{
 localStorage.removeItem("getcourseID");

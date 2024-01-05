@@ -18,14 +18,11 @@ import axios from "axios";
 import YouTube from "react-youtube";
 import profile_img from "../assets/images/profile_img.png";
 import checkmark from "../assets/images/tick_mark.png";
-//pdf-viewer
-// import { Worker } from '@react-pdf-viewer/core';
-// import { Viewer } from '@react-pdf-viewer/core';
-// import '@react-pdf-viewer/core/lib/styles/index.css';
-// import sample from '../../src/assets/pdf/sample.pdf';
+import { useLoader } from "../Components/Utils/Loading/LoaderContext";
 
 
 const PreviewCourse = () => {
+  const {setLoading} = useLoader();
   const [chapter, setChapter] = useState([]);
   // const [lessonList, setLessonList] = useState([]);
   const [allData, setAllData] = useState([]);
@@ -59,7 +56,7 @@ const PreviewCourse = () => {
          );
 
          setcompletebutton(null);
-         window.location.reload();
+        navigate(0);
          
      // Fetch updated data from the server
     //  const response = await axios.post(
@@ -96,7 +93,7 @@ const PreviewCourse = () => {
     const fetchData = async () => {
    
       try {
-        // setIsLoading(true);
+        setLoading(true);
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmsLessonList`,
           {
@@ -171,11 +168,13 @@ const PreviewCourse = () => {
         // }
       } catch (error) {
         console.log(error, "ssss");
+      } finally{
+        setLoading(false);
       }
     };
     // setIsLoading(false);
     fetchData();
-  }, [id, navigate, jwtToken]);
+  }, [id, navigate, jwtToken,setLoading]);
 
   //slid yotubeID from url
   const extractVideoIdFromUrl = (url) => {

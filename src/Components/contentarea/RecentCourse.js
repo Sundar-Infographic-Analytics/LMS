@@ -102,14 +102,14 @@ const truncateText = (text, maxLength) => {
     <>
     <Row>
       
-            <h1 className='mart50 fw700 fz36'>Recently Added Course</h1>
+            <h1 className='mart40 fw700 fz36'>Recently Added Course</h1>
             <p className='fz18 fw400'>displays the courses which an enrolled user has most recently accessed</p>
         </Row>
-        <Slider {...settings} className='mart50 ' >           
+        <Slider {...settings} className='mart20 ' >           
             {recentCourse?.map((course) => (
                     <div title={course.course_name} className="padr10 padl10 outline_remove slide-item " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
-                        <Image src={course?.course_image || NoImg}  className=' border' style={{width:"420px", height:"auto", borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
-                        <div className='padl10 border padb20 padr10 content-container' style={{width:"420px", height:"auto", borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
+                        <Image src={course?.course_image || NoImg}  className=' border' style={{width:"410px", height:"auto", borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
+                        <div className='padl10 border padb20 padr10 content-container' style={{width:"410px", height:"auto", borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
                             <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.first_name}</b> on{" "}
                              {course.formatted_created_date}
                             </p>

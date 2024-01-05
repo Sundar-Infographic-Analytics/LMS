@@ -16,6 +16,7 @@ import FilterComponent from "../Components/Utils/CourseFilter.js";
 import eye from "../assets/images/eye.png";
 import { useCategoryTitle } from "../Components/Utils/CategoryTitleContext";
 import axios from "axios";
+import { useLoader } from "../Components/Utils/Loading/LoaderContext.js";
 
 const closebtn = {
   width: "20px",
@@ -25,6 +26,7 @@ const closebtn = {
   cursor: "pointer",
 };
 const SubCategiriesAdd = () => {
+  const {setLoading} = useLoader();
   const courseTitle = useCategoryTitle();
   const navigate = useNavigate();
 
@@ -202,6 +204,7 @@ const SubCategiriesAdd = () => {
 
   useEffect(() => {
     const fetchSubcategoryList = async () => {
+      setLoading(true);
       const response = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/subcategory`,
         null,
@@ -212,9 +215,10 @@ const SubCategiriesAdd = () => {
         }
       );
       setAllSubcategory(response?.data?.results);
+      setLoading(false);
     };
     fetchSubcategoryList();
-  }, []);
+  }, [setLoading]);
 
   const columns = [
     {

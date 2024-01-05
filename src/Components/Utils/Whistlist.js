@@ -89,7 +89,7 @@ const Whistlist = ({ course_id, active, onClick2}) => {
   return (
     <>
   
-      <div className="whishlist" onClick={handleclick}  >
+      <div title="Library" className="whishlist" onClick={handleclick}  >
         <img src={!wishlist ? HeartBlank : HeartRed} alt="favicon" />
       </div>
     </>

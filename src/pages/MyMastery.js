@@ -8,13 +8,16 @@ import { Col, Container, Row, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Whistlist from "../Components/Utils/Whistlist";
+import { useLoader } from "../Components/Utils/Loading/LoaderContext";
 
 const MyLearnings = () => {
+  const {setLoading} = useLoader();
   const [learnedCourse, setLearnedCourse] = useState([]);
   const jwtToken = localStorage.getItem("jwtToken");
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmsCourseRead`,
@@ -29,10 +32,12 @@ const MyLearnings = () => {
       } catch (error) {
         localStorage.clear();
         console.error("Error fetching categories:", error);
+      }finally{
+        setLoading(false);
       }
     };
     fetchData();
-  }, [jwtToken]);
+  }, [jwtToken,setLoading]);
 
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -69,7 +74,8 @@ const MyLearnings = () => {
                 className="black fz16 fw400"
               >
                 <Image src={course.course_image} className="w100 border" />
-                <div className="border padt10 padr10 padl10 padb20">
+                <div className="border padt10 padr10 padl10 padb20" style={{ width:"306px", height:"240px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                <div>
                   <p
                     className="light_black"
                     style={{ padding: "0 0px 0 0px", fontSize: "12px" }}
@@ -82,6 +88,7 @@ const MyLearnings = () => {
                   </p>
                   <p title = {course.course_desc}className="fw400 fz15 light_black">{truncateDesc(course.course_desc, 145)}</p>
                   {/* for bottom button and whistlist */}
+                  </div>
                   <Col lg={12} >
                 <div
                  className="course-footer"

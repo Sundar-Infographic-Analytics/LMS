@@ -51,7 +51,7 @@ const superAdmin = localStorage.getItem("role") === "superadmin" ;
           <Route path='/mylibrary' element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />   
           <Route path='/approvalhub' element={superAdmin?(<ProtectedRoute><ApprovalHub /></ProtectedRoute>):<Navigate to="/"/>} />   
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
-          {/* <Route path='*' element={<>404 Page Page not Found</> }/> */}
+          <Route path='*' element={<>404 Page Page not Found</> }/>
         </Routes> 
 
         </CourseTitleProvider>

@@ -5,13 +5,19 @@ import '../../assets/css/custom.css';
 import { Link } from 'react-router-dom';
 import data from '../../api/OurCourse.js';
 import axios from 'axios';
+import { useLoader } from '../Utils/Loading/LoaderContext.js';
 
 
 const OurCourse = () => {
+  const { setLoading } = useLoader();
   const [courseTitle, setCourseTitle]=useState([]);
 
+  
+
   useEffect(() => {
+
     const fetchCategories = async () => {
+      setLoading(true);
       const jwtToken=localStorage.getItem("jwtToken");
       try {
         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsCategoryList`,
@@ -21,13 +27,15 @@ const OurCourse = () => {
           },
         });
         setCourseTitle(response.data.category);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error fetching categories:', error);
       }
     };
 
     fetchCategories();
-  }, []);
+  }, [setLoading]);
 
   return (
       <div>
