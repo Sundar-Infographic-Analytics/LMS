@@ -34,21 +34,36 @@ const MyLearnings = () => {
     fetchData();
   }, [jwtToken]);
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+  const truncateDesc = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
   return (
     <>
       <Navbar />
-      {/* {console.log("learned", learnedCourse)} */}
+      {/* {console.log("learned", learnedCourse?.readCourseList?.length)} */}
       <Header
         style={learningBg}
         text="Technology is bringing a massive wave of evolution for learning things in different ways."
         title1="My Mastery"
         title2="from @SNC"
       />
-      <Container>
+      {learnedCourse?.readCourseList?.length !== 0 ? (
+        <Container>
         <Row className="mart30">
           {learnedCourse?.readCourseList?.map((course, index) => (
             <Col lg={3} className="marb20" key={index}>
               <Link
+              title = {course.course_name}
                 to={`/PreviewCourse/${course.course_id}`}
                 style={{ textDecoration: "none" }}
                 className="black fz16 fw400"
@@ -63,9 +78,9 @@ const MyLearnings = () => {
                     {course.formatted_created_date}
                   </p>
                   <p className="fw600 fz18 light_black marb5">
-                    {course.course_name}
+                    {truncateText(course.course_name, 55 )}
                   </p>
-                  <p className="fw400 fz15 light_black">{course.course_desc}</p>
+                  <p title = {course.course_desc}className="fw400 fz15 light_black">{truncateDesc(course.course_desc, 145)}</p>
                   {/* for bottom button and whistlist */}
                   <Col lg={12} >
                 <div
@@ -95,6 +110,24 @@ const MyLearnings = () => {
           ))}
         </Row>
       </Container>
+      ) : (
+        <>
+        <Container
+            style={{  textAlign: "center", height: 230,padding:50  }}
+          >
+            <div
+              style={{
+                fontSize: 25,
+                fontWeight: 600,
+                color: "rgb(94, 94, 94)",
+              }}
+            >
+              Your Mastery is Empty{" "}
+            </div>
+          </Container>
+        </>
+      )}
+      
       <RecentCourse />
       <Footer />
     </>

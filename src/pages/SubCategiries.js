@@ -49,9 +49,9 @@ const SubCategiries = () => {
            
               {data?.subcategory.map((course) => (                
                 <Col lg={3} md={4} className="mart50 " key={course?.id}> 
-                  <Link to={`/SubCategiriesCourse/${course?.id}`}>
+                  <Link to={`/SubCategiriesCourse/${course?.id}`} style={{width:"275px", height:"165px"}}>
                     <div className="center_img posr ">
-                      <p className="posa white pad15">{course?.subcategory_name}</p>
+                      <p className="posa white pad15 ">{course?.subcategory_name}</p>
                      
                       <Image src={course?.banner_image_url} className="objfit "  />
                      

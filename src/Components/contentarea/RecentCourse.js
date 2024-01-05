@@ -71,7 +71,7 @@ export const RecentCourse = () => {
         slidesToShow: recentCourse.length >= 3 ? 3 : recentCourse.length,
         slidesToScroll: 1,
         arrows: true,
-        autoplay:false,
+        autoplay:true,
         autoplaySpeed:2000,
         responsive: [{
 
@@ -85,6 +85,14 @@ export const RecentCourse = () => {
     ]
     
 }
+const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
+
   return (
     <>
     <Container className='padb20'>
@@ -97,15 +105,15 @@ export const RecentCourse = () => {
             <h1 className='mart50 fw700 fz36'>Recently Added Course</h1>
             <p className='fz18 fw400'>displays the courses which an enrolled user has most recently accessed</p>
         </Row>
-        <Slider {...settings} className='mart50 '>           
+        <Slider {...settings} className='mart50 ' >           
             {recentCourse?.map((course) => (
-                    <div  className="padr10 padl10 outline_remove " key={course?.subcategory_id} style={{width:"447px", height:"auto",borderRadius:"20px"}}>
-                        <Image src={course?.course_image || NoImg}  className=' border' style={{ borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
-                        <div className='padl10 border padb20 padr10' style={{width:"447px", height:"auto",borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
-                        <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.first_name}</b> on{" "}
-                    {course.formatted_created_date}
-                  </p>
-                            <h3 className='fz18 fw600 marb5 lh27'>{course.course_name}</h3>
+                    <div title={course.course_name} className="padr10 padl10 outline_remove slide-item " key={course?.subcategory_id} style={{borderRadius:"20px"}}>
+                        <Image src={course?.course_image || NoImg}  className=' border' style={{width:"420px", height:"auto", borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}/>
+                        <div className='padl10 border padb20 padr10 content-container' style={{width:"420px", height:"auto", borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px"}}>
+                            <p className="light_black" style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}>Created by <b>{course.first_name}</b> on{" "}
+                             {course.formatted_created_date}
+                            </p>
+                            <h3 className='fz18 fw600 marb5 lh27 course-name'>{truncateText(course.course_name, 80)}</h3>
                             <Row>
                                 {/* <Col lg={6}>
                                     <div>     

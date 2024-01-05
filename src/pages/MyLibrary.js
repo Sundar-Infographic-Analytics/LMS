@@ -59,7 +59,18 @@ const response = await axios.post (
         fetchData();
     },[jwtToken]) //libraryData +
 
-    
+    const truncateText = (text, maxLength) => {
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+      }
+      return text;
+    };
+    const truncateDesc = (text, maxLength) => {
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+      }
+      return text;
+    };
   return (
     <>
         <Navbar courseTitleProp={courseTitle}/>
@@ -76,6 +87,7 @@ const response = await axios.post (
           {libraryData?.map((course, index) => (
             <Col lg={3} className="marb20" key={index}>
               <Link
+                title={course.course_name}
                 to={`/PreviewCourse/${course.id}`}
                 style={{ textDecoration: "none" }}
                 className="black fz16 fw400"
@@ -90,29 +102,29 @@ const response = await axios.post (
                     {course.formatted_created_date}
                   </p>
                   <p className="fw600 fz18 light_black marb5">
-                    {course.course_name}
+                    {truncateText(course.course_name, 55)}
                   </p>
-                  <p className="fw400 fz15 light_black">{course.course_desc}</p>
+                  <p title={course.course_desc} className="fw400 fz15 light_black">{truncateDesc(course.course_desc, 145)}</p>
                   {/* for bottom button and whistlist */}
                   <Col lg={12} >
                 <div
-                 className="course-footer"
+                 className="course-footer padt20"
                 >
                   {/* <Link
                     to={`/PreviewCourse/${course.course_id}`}
                     className="tdn black"
                   ></Link> */} 
                   {/* // button is there between link tag */}
-                    <Button className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born ">
+                    <Button className="fz16 padl20  padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born ">
                       View
                     </Button>
                   
 
-                  <Whistlist
+                  <Whistlist 
                     course_id={course.id}
                     active={course.wishlist}
                     onClick2={fetchDataUpdate}    // note:if dont't need instanly remove course from whistlist  pls remove onclick2 event
-                   
+                  
                   />
                 </div>
               </Col>
