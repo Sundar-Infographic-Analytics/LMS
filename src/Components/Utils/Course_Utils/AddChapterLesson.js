@@ -18,6 +18,8 @@ import Pdf_Ion from "../../../assets/images/pdf_ion.svg";
 import Video_Ion from "../../../assets/images/video_ion.svg";
 import LinkIcon from "../../../assets/images/link.png";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import BookSubmission from '../../../assets/images/books.gif'
 
 const AddChapterLesson = ({ catgorySubcat }) => {
   const navigate = useNavigate();
@@ -487,13 +489,41 @@ const AddChapterLesson = ({ catgorySubcat }) => {
             },
           }
         );
-        console.log("course submit msg:", response.data);
+        console.log("course submit msg:", response?.data);
+        
+        
         if (response?.data?.code === 200) {
           setSpinnerLoadingTiming(true);
           setTimeout(() => {
             setSpinnerLoadingTiming(false);
             navigate("/mycourse");
+            const CustomToast = () => (    
+          
+              <div className="vmiddle " style={{padding:"0 10px", gap:"10px"}}>
+              <div className="user-profile">
+                <img  src={BookSubmission} alt="submit"/>
+              </div>
+                <p>      
+                Your course is, <strong>Submitted</strong>!
+              </p>
+          
+              </div>
+              
+              
+            );
+            toast( <CustomToast />, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
           }, 2000);
+          
+          
         }
       } catch (error) {
         localStorage.clear();
@@ -674,8 +704,30 @@ console.log(isValid,"lllllllllll")
 const HandleDraftSubmit = async () =>{
   setDraftButtonLoading(true);
   setTimeout(() => {
-    navigate("/mycourse")
     setDraftButtonLoading(false);
+    navigate("/mycourse")
+    const CustomToast = () => (    
+          
+      <div className="vmiddle " style={{padding:"0 10px", gap:"10px"}}>
+      <div className="user-profile">
+        <img  src={BookSubmission} alt="submit"/>
+      </div>
+        <p>      
+        Your course saved as , <strong>Draft</strong>!
+      </p>
+  
+      </div>
+    );
+    toast( <CustomToast />, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }, 1000);
 }
   

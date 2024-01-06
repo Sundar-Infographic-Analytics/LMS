@@ -238,10 +238,11 @@ const AddCourse = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     setCardLoading(true);
     if (localStorage.getItem("getcourseID")) {
       const fetchData = async () => { 
+         setLoading(true);
         const getres = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/courseid`,
           {
@@ -261,7 +262,7 @@ const AddCourse = () => {
       };
       fetchData();
       // setCardLoading(false);
-      setLoading(false);
+      // setLoading(false);
     }
   }, [jwtToken,setLoading]);
 
