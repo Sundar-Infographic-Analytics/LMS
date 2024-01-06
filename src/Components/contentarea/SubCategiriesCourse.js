@@ -11,8 +11,10 @@ import Navbar from "../header/navbar";
 import axios from "axios";
 import { RecentCourse } from "./RecentCourse";
 import Whistlist from "../Utils/Whistlist";
+import { useLoader } from "../Utils/Loading/LoaderContext";
 
 const SubCategiriesCourse = () => {
+  const {setLoading} = useLoader();
   const [Course, setCourse] = useState([]);
   const { id } = useParams();
   const [subCategory, setSubCategory] = useState("");
@@ -31,6 +33,7 @@ const SubCategiriesCourse = () => {
 
   useEffect(() => {
     const fetchData = async (e) => {
+      setLoading(true);
       const jwtToken = localStorage.getItem("jwtToken");
       await axios
         .post(
@@ -52,10 +55,12 @@ const SubCategiriesCourse = () => {
         .catch((error) => {
           localStorage.clear();
           console.log(error, "er1ror");
-        });
+        }).finally(() =>{
+          setLoading(false);
+        })
     };
     fetchData();
-  }, [id]);
+  }, [id,setLoading]);
 
 
   const truncateText = (text, maxLength) => {
