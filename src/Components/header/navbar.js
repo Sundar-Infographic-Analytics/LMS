@@ -118,7 +118,7 @@ const handleLogin = () =>{
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>
               <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born user-profile-nav">
-                <Image src={userPhoto} className='w100 marr5 fw300'/>
+                <Image title={username} src={userPhoto} className='w100 marr5 fw300'/>
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="ff lh27">

@@ -1,5 +1,7 @@
 import React from 'react';
-import LoaderGif from '../../../assets/images/education.gif';
+// import LoaderGif from '../../../assets/images/education.gif';
+// import LoaderGif2 from '../../../assets/images/graduate.gif';
+import LoaderGif2 from '../../../assets/images/books.gif';
 import { useLoader } from './LoaderContext';
 
 const Loader = () => {
@@ -16,7 +18,7 @@ const Loader = () => {
     alignItems: 'center',
     overflow:"hidden",
     zIndex: 9999,}}>
-    <img style={{width:"60px", height:"auto"}} src={LoaderGif} alt="loader"/>
+    <img style={{width:"70px", height:"auto"}} src={LoaderGif2} alt="loader"/>
     </div>
   )
 }

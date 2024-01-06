@@ -19,7 +19,7 @@ import Video_Ion from "../../../assets/images/video_ion.svg";
 import LinkIcon from "../../../assets/images/link.png";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import BookSubmission from '../../../assets/images/books.gif'
+import BookSubmission from '../../../assets/images/graduate.gif'
 
 const AddChapterLesson = ({ catgorySubcat }) => {
   const navigate = useNavigate();

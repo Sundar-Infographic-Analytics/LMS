@@ -25,6 +25,10 @@ import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
    const[userData, setUserData] = useState('');
+
+   const currentDate = new Date();
+  const year = currentDate.getFullYear();
+
    console.log("urlNew,", userData);
 
   const courseTitle = useCategoryTitle(); //checkinggggg....
@@ -294,7 +298,7 @@ const Login = () => {
                         </Button>
                       </Form>
                       <Card.Text className="black mt-4 light_black fz13 fw400">
-                        © 2023 Sundar&Co All Rights Reserved.
+                        © {year} Sundar&Co All Rights Reserved.
                       </Card.Text>
                     </Card.Body>
                   </Card>

@@ -66,7 +66,8 @@ const MyLearnings = () => {
         <Container>
         <Row className="mart30">
           {learnedCourse?.readCourseList?.map((course, index) => (
-            <Col lg={3} className="marb20" key={index}>
+            <Col lg={3} className="marb20 scale-animation" key={index}>
+            <div className="myanimation">
               <Link
               title = {course.course_name}
                 to={`/PreviewCourse/${course.course_id}`}
@@ -74,7 +75,7 @@ const MyLearnings = () => {
                 className="black fz16 fw400"
               >
                 <Image src={course.course_image} className="w100 border" />
-                <div className="border padt10 padr10 padl10 padb20" style={{ width:"306px", height:"240px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                <div className="border pad10" style={{ width:"306px", height:"240px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                 <div>
                   <p
                     className="light_black"
@@ -111,8 +112,7 @@ const MyLearnings = () => {
               </Col>
                 </div>
               </Link>
-
-              
+            </div>              
             </Col>
           ))}
         </Row>

@@ -91,7 +91,7 @@ const SubCategiriesCourse = () => {
           <div
             style={{ fontSize: 25, fontWeight: 600, color: "rgb(94, 94, 94)" }}
           >
-            Course List is Empty{" "}
+            Course List is Empty
           </div>
         </Container>
       ) : (
@@ -100,7 +100,8 @@ const SubCategiriesCourse = () => {
           <div style={{display:"flex", flexDirection:"column"}}>
             <Row className="mart30" style={{display:"flex"}}>
               {Course?.map((course, index) => (
-                <Col lg={3} className="marb20" key={index} >
+                <Col lg={3} className="marb20 scale-animation" key={index} >
+                <div className="myanimation">
                   <Link
                   title={course.course_name}
                     to={`/PreviewCourse/${course.id}`}
@@ -109,7 +110,7 @@ const SubCategiriesCourse = () => {
                   >
                
                     <Image src={course.course_image} className="w100 border" />
-                    <div className="border padt10 padr10 padl10 padb20" style={{ width:"306px", height:"240px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                    <div className="border pad10" style={{ width:"306px", height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                          <div>
                             <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}
                                {course.formatted_created_date}
@@ -143,7 +144,7 @@ const SubCategiriesCourse = () => {
                   </div>
                     </div>
                   </Link>
-
+                </div>    
                   
                 </Col>
               ))}
