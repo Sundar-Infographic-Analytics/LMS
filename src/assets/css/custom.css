@@ -373,6 +373,10 @@ background-color: #f6f6f6;
   overflow: hidden;
 }
 
+.slick-slide{
+  width: auto !important;
+}
+
 /* //subcat */
 .center_img p{
   filter: drop-shadow(10px 0px 5px #363636);
