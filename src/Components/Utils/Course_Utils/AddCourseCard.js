@@ -262,7 +262,7 @@ const AddCourse = () => {
       };
       fetchData();
       // setCardLoading(false);
-      // setLoading(false);
+      // setLoading(false);handleRadioClick
     }
   }, [jwtToken,setLoading]);
 
@@ -645,6 +645,7 @@ const AddCourse = () => {
           </Modal.Footer>
         </Modal>
       </div>
+
       {!GetLastCourseLocalID && (
         <div className="input-card">
           <Row>
@@ -709,12 +710,17 @@ const AddCourse = () => {
                                         label={category.category_name}
                                         name="category_id"
                                         onClick={() => {
-                                          handleRadioClick(category.id);
+                                          setCourseFormData((prevData) => ({
+                                            ...prevData,
+                                            category_id: category?.id,
+                                            subcategory_id: 0,
+                                          }));
+                                          handleRadioClick(category?.id);
                                         }}
                                         onChange={(e) => {
                                           setCourseFormData((prevData) => ({
                                             ...prevData,
-                                            category_id: category.id,
+                                            category_id: category?.id,
                                           }));
                                         }}
                                         // isInvalid={formErrors.category_id}
@@ -745,7 +751,7 @@ const AddCourse = () => {
                                 aria-label="Default select example"
                                 className="br5 bor_dark_purple"
                                 defaultValue="0"
-                                name="subcategory_name"
+                                name="subcategory_name"                                
                                 onChange={(e) => {
                                   setCourseFormData((prevData) => ({
                                     ...prevData,
@@ -754,18 +760,18 @@ const AddCourse = () => {
                                 }}
                               >
                                 <option
-                                  style={{ color: "#4c4c4c !important" }}
-                                  disabled
+                                  style={{ color: "#4c4c4c !important" }}  
+                                      
                                   value={0}
                                 >
                                   &nbsp; Select Subcategory
                                 </option>
                                 {subcatList?.map((subCategory) => (
                                   <option
-                                    key={subCategory.id}
-                                    value={subCategory.id}
+                                    key={subCategory?.id}
+                                    value={subCategory?.id}
                                   >
-                                    {subCategory.subcategory_name}
+                                    {subCategory?.subcategory_name}
                                   </option>
                                 ))}
                               </Form.Select>
