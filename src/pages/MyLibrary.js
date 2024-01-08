@@ -22,7 +22,7 @@ const MyLibrary = () => {
     // console.log("cccccc",libraryData)
     
     const fetchDataUpdate = async() =>{
-      setLoading(true);
+      // setLoading(true);
       try{
 const response = await axios.post (`${process.env.REACT_APP_BASE_URL}/mylibrary`,
 null,
@@ -32,13 +32,13 @@ null,
   },
 }
 );
-  setLibraryData(response.data.data);
-  console.log("fetchDataUpdateeeee",response.data.data )
+  setLibraryData(response?.data?.data);
+  console.log("fetchDataUpdateeeee",response.data.data)
       } catch (error) {
           localStorage.clear();
           console.error("Error fetching categories:", error);
       } finally{
-        setLoading(false);
+        // setLoading(false);
       }
   }
 
@@ -55,7 +55,7 @@ const response = await axios.post (
         },
     }
 );
-        setLibraryData(response.data.data);
+        setLibraryData(response?.data?.data);
             } catch (error) {
                 localStorage.clear();
                 console.error("Error fetching categories:", error);
@@ -109,10 +109,10 @@ const response = await axios.post (
                     style={{ padding: "0 0px 0 0px", fontSize: "12px" }}
                   >
                     Created by <b>{course.course_created_by}</b> on{" "}
-                    {course.formatted_created_date}
+                    {course?.formatted_created_date}
                   </p>
                   <p className="fw600 fz18 light_black marb5">
-                    {truncateText(course.course_name, 55)}
+                    {truncateText(course?.course_name, 55)}
                   </p>
                   <p title={course.course_desc} className="fw400 fz15 light_black">{truncateDesc(course.course_desc, 145)}</p>
                   {/* for bottom button and whistlist */}
@@ -130,13 +130,15 @@ const response = await axios.post (
                       View
                     </Button>
                   
-
-                  <Whistlist 
-                    course_id={course.id}
-                    active={course.wishlist}
+{libraryData && (
+  <Whistlist 
+                    course_id={course?.id}
+                    active={course?.wishlist}
                     onClick2={fetchDataUpdate}    // note:if dont't need instanly remove course from whistlist  pls remove onclick2 event
                   
                   />
+)}
+                  
                 </div>
               </Col>
                 </div>

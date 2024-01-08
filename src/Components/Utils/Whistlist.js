@@ -6,10 +6,10 @@ import { toast } from 'react-toastify';
 import { useCategoryTitle } from "./CategoryTitleContext";
 import Tick from '../../assets/images/books.png';
 import Delete from '../../assets/images/toast-delete.png';
-
+import { useNavigate } from "react-router-dom";
 const Whistlist = ({ course_id, active, onClick2}) => {
-
   
+  const navigate = useNavigate();
   const jwtToken = localStorage.getItem("jwtToken");
   const [wishlist, setWishlist] = useState(active);
   const [msg, setmsg] = useState("");
@@ -23,6 +23,7 @@ const Whistlist = ({ course_id, active, onClick2}) => {
     await handleSubmit();
     if (onClick2) {
         onClick2();
+        navigate(0);
       }  
   }  ;
 
