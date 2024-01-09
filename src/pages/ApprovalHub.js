@@ -270,7 +270,9 @@ const {setLoading}   = useLoader();
         </Col>
       </Container>
       <Container fluid>
+      <div className='rdt_Table'>
         <DataTable pagination columns={columns}  data={filteredItemsByAction} conditionalRowStyles={conditionalRowStyles} subHeaderComponent={subHeaderComponentMemo}/>
+        </div>
         {console.log("checkVal",radioValue, "inddd")}
         {console.log("checkValadmin",adminList, "admin")}
       </Container>

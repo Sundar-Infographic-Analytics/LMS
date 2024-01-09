@@ -19,9 +19,11 @@ import Video_Ion from "../../../assets/images/video_ion.svg";
 import LinkIcon from "../../../assets/images/link.png";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import BookSubmission from '../../../assets/images/graduate.gif'
+import BookSubmission from '../../../assets/images/graduate.gif';
+import { useLoader } from "../Loading/LoaderContext.js";
 
 const AddChapterLesson = ({ catgorySubcat }) => {
+  const {setLoading} = useLoader();
   const navigate = useNavigate();
   const apiKey = process.env?.REACT_APP_YOUTUBE_API_KEY;
   console.log("lesson apikeymain", process.env.REACT_APP_YOUTUBE_API_KEY);
@@ -61,7 +63,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const [selectedChapterID, setSelectedChapterID] = useState("");
   const [deleteChapterlesson, setDeleteChapterLesson] = useState("");
 
-  const [cardloading, setCardLoading] = useState(false);
+  // const [cardloading, setCardLoading] = useState(false);
 
   const [editchapterState, setEditState] = useState({
     chapter_id: null,
@@ -175,7 +177,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       // Handle the response as needed
     } catch (err) {
       localStorage.clear();
-      navigate(0);
+      // navigate(0);
       console.error("Error adding chapter:", err);
       setButtonLoading(false);
     }
@@ -183,8 +185,9 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
   useEffect(() => {
     const fetchChapterList = async () => {
-      setCardLoading(true);
+      // setCardLoading(true);
       try {
+        setLoading(true);
         const reschapter = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmschaptersAndLesson`,
           {
@@ -197,15 +200,18 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           }
         );
         setChapterMapData(reschapter?.data);
+      
         console.log("chapter mapin console", reschapter?.data);
       } catch (err) {
         localStorage.clear();
         console.error(err, "error");
+      } finally{
+        setLoading(false);
       }
     };
     fetchChapterList();
-    setCardLoading(false);
-  }, [jwtToken, GetLastCourseLocalID]);
+    // setCardLoading(false);
+  }, [jwtToken, GetLastCourseLocalID,setLoading]);
   console.log("chapter getlist", ChapterMapData);
 
   //for store slected chapterID
@@ -521,7 +527,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
               progress: undefined,
               theme: "light",
               });
-          }, 2000);
+          });
           
           
         }
@@ -968,24 +974,10 @@ const HandleDraftSubmit = async () =>{
                   : handleLessonSubmit()
               }
               disabled={
-                submitbuttonLoading
-                  ? submitbuttonLoading
-                  : spinnerLoadingTiming
-                  ? spinnerLoadingTiming
-                  : submitbuttonLoading
+               buttonLoading
               }
             >
               {buttonLoading && (
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                  style={{ marginRight: "5px" }}
-                />
-              )}
-              {spinnerLoadingTiming && (
                 <Spinner
                   as="span"
                   animation="border"
@@ -1101,24 +1093,10 @@ const HandleDraftSubmit = async () =>{
                   : handleChapterSubmit()
               }
               disabled={
-                submitbuttonLoading
-                  ? submitbuttonLoading
-                  : spinnerLoadingTiming
-                  ? spinnerLoadingTiming
-                  : null
+               buttonLoading
               }
             >
               {buttonLoading && (
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                  style={{ marginRight: "5px" }}
-                />
-              )}
-              {spinnerLoadingTiming && (
                 <Spinner
                   as="span"
                   animation="border"
@@ -1236,7 +1214,7 @@ const HandleDraftSubmit = async () =>{
                   style={{ boxShadow: "0 0 10px 5px #eee" }}
                   key={chapterMap.course_id}
                 >
-                  {cardloading && (
+                  {/* {cardloading && (
                     <div className="my-loading-overlay">
                       <Spinner
                         as="span"
@@ -1246,7 +1224,7 @@ const HandleDraftSubmit = async () =>{
                         className="my-cardLoading"
                       />
                     </div>
-                  )}
+                  )} */}
                   <Card.Body>
                     <div style={Chaptercss}>
                       <p className="black fw600 fz18 icon-zoom ">

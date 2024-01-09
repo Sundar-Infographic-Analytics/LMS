@@ -38,6 +38,7 @@ const FilterComponent = ({ onFilter, onClear, filterText,placeholderTxt,onApprov
 
 {categoryOptions && (
   <Form.Select
+      style={{border:"1px solid #6f3fba !important"}}
       className="marl20 category-dropdown"
       onChange={onCategoryChange}
       value={selectedCategory}

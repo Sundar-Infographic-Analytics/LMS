@@ -28,7 +28,8 @@ const MyLearnings = () => {
             },
           }
         );
-        setLearnedCourse(response.data);
+        setLearnedCourse(response?.data);
+        
       } catch (error) {
         localStorage.clear();
         console.error("Error fetching categories:", error);
@@ -51,7 +52,7 @@ const MyLearnings = () => {
     }
     return text;
   };
-
+  console.log(learnedCourse,"my Mstery dataaaaaa")
   return (
     <>
       <Navbar />

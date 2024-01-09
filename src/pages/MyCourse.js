@@ -13,6 +13,9 @@ import { useLoader } from '../Components/Utils/Loading/LoaderContext.js';
 
 const MyCourse = () => {
 
+  
+
+
   const {setLoading} = useLoader();
 
   const navigate = useNavigate();
@@ -293,14 +296,17 @@ console.log(datas,"dddddddddddddddddddddddd")
                   <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 marr10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>  
                   {localStorage.getItem("role") === "superadmin" && (
                     <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button>
-                        
+                     
                   )}
                   </div>
                 </Col>
               </Row>
         </Container>
       <Container fluid>
-<DataTable  pagination columns={columns} data={filteredItems} subHeaderComponent={subHeaderComponentMemo} conditionalRowStyles={conditionalRowStyles} paginationComponentOptions={paginationComponentOptions}/>
+      <div className='rdt_Table'>
+
+<DataTable pagination columns={columns} data={filteredItems} subHeaderComponent={subHeaderComponentMemo} conditionalRowStyles={conditionalRowStyles} paginationComponentOptions={paginationComponentOptions}/>
+      </div>
       </Container>
     </>
   )

@@ -172,7 +172,9 @@ const SubCategiriesAdd = () => {
           },
         }
       );
-      console.log("Subcategory created:", response.data);
+      console.log("Subcategory created:", response?.data);
+
+      
 
       setSubCategory({
         categorySelect: "",
@@ -182,7 +184,8 @@ const SubCategiriesAdd = () => {
       setError("");
       setIsLoading(false);
       handleClose();
-      navigate(0);
+      navigate(0);  
+      
     } else {
       setIsLoading(false);
       console.log("Form validation failed");
@@ -447,7 +450,7 @@ console.log(subcatData, "deleteData")
  const handleDeleteSubmit = async () =>{
   setIsLoading(true);
   // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
-  await axios
+await axios
     .post(
       `${process.env.REACT_APP_BASE_URL}/deletesubcategory`,
       {
@@ -462,12 +465,14 @@ console.log(subcatData, "deleteData")
     .then((response) => {
       console.log(response.data,"subcatDelete");
       navigate(0);
+      // setIsLoading(false);
     })
     .catch((error) => {
+      setIsLoading(false);
       console.log(error, "subcatDelete errors");
     })
     .finally(() => {
-      setIsLoading(false);
+      // setIsLoading(false);
     });
  }
 
@@ -710,10 +715,10 @@ console.log(subcatData, "deleteData")
       </div>
       <Navbar className="dark_purple_bg" />
       <Container fluid>
-        <Row className="mart50 marb10">
+        <Row className="mart50 marb20"> 
           <Col lg={6} className="filter-containern">
             <div
-              style={{ display: "flex", alignItems: "center", height: "100%" }}
+              style={{ display: "flex", alignItems: "end", height: "100%" }}
             >
               <div className="filter-container">
                 <FilterComponent
@@ -730,10 +735,10 @@ console.log(subcatData, "deleteData")
               </div>
             </div>
           </Col>
-          <Col lg={6}>
-            <div style={{ display: "flex", justifyContent: "end" }}>
+          <Col lg={6} style={{ display: "flex", justifyContent: "end", alignItems:"flex-end" }}>
+            <div style={{ display: "flex", justifyContent: "end", alignItems:"flex-end" }}>
               <Button
-                className="dark_purple_bg padl50 padr50 fz18 br0 mart30 marb30 fr marr30 bor_dark_purple btn_color born"
+                className="dark_purple_bg padl50 padr50 fz18 br0 mart30  fr marr30 bor_dark_purple btn_color born"
                 style={{ borderRadius: "5px" }}
                 onClick={handleShow}
               >
@@ -742,6 +747,7 @@ console.log(subcatData, "deleteData")
             </div>
           </Col>
         </Row>
+        <div className='rdt_Table'>
         <DataTable
           pagination
           columns={columns}
@@ -750,6 +756,7 @@ console.log(subcatData, "deleteData")
           conditionalRowStyles={conditionalRowStyles}
           paginationComponentOptions={paginationComponentOptions}
         />
+        </div>
       </Container>
     </div>
   );

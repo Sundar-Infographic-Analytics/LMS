@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/header/header";
 import Navbar from "../Components/header/navbar";
 // import { RecentCourse } from "../Components/contentarea/RecentCourse";
+import LastView from "../Components/contentarea/LastView";
 import Footer from "../Components/footer/footer";
 import libraryBg from "../assets/images/library.jpg";
 import { Col, Container, Row, Image, Button } from "react-bootstrap";
@@ -163,7 +164,8 @@ const response = await axios.post (
           <></>
         )}
      
-
+{/* <RecentCourse/> */}
+<LastView/>
       <Footer />
     </>
   )

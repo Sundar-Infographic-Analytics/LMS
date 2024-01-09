@@ -201,9 +201,10 @@ const AddCourse = () => {
 
     if (isValid) {
       setButtonLoading(true);
+     
       try {
         const res = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/addcourse`,
+          `${process.env.REACT_APP_BASE_URL}/addcourse`, 
           courseFormData,
           {
             headers: {
@@ -217,14 +218,21 @@ const AddCourse = () => {
         console.log("getsubmitedCorseIDDDDDD", getsubmitCourseID);
         localStorage.setItem("getcourseID", res.data?.courseId);
         console.log("getsubmitedCorseTEST", res.data?.courseId);
-
-        setTimeout(() => {
-          setButtonLoading(false);
-        }, 5000);
+        setLoading(true);
+        // navigate(0);
+        // setButtonLoading(false);
+        // setTimeout(() => {
+        //   setButtonLoading(false);
+        // }, 5000);
       } catch (err) {
         localStorage.clear();
-
+        // setButtonLoading(false);
         console.error(err);
+      } finally{
+
+        // setLoading(false);
+        setButtonLoading(false);
+        
       }
       navigate(0);
       // setButtonLoading(false);
@@ -242,7 +250,7 @@ const AddCourse = () => {
     setCardLoading(true);
     if (localStorage.getItem("getcourseID")) {
       const fetchData = async () => { 
-         setLoading(true);
+        //  setLoading(true);
         const getres = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/courseid`,
           {
@@ -255,8 +263,8 @@ const AddCourse = () => {
           }
         );
         setGetSubmitedCourse(getres?.data[0]);
+        // setLoading(false);
         setCardLoading(false);
-        setLoading(false);
         console.log("resdata", getres?.data[0]);
         // console.log(" resdata getstate",getSubmitedcourse);
       };
@@ -664,9 +672,10 @@ const AddCourse = () => {
                           <Form.Control
                             type="text"
                             name="course_name"
-                            className={`bor_dark_purple br5 ${
-                              formErrors.course_name ? "is-invalid" : ""
-                            }`}
+                            className="bor_dark_purple br5"
+                            // className={`bor_dark_purple br5 ${
+                            //   formErrors.course_name ? "is-invalid" : ""
+                            // }`}
                             onChange={handleInputChange}
                             // onBlur={validateForm}
                           />
@@ -683,9 +692,10 @@ const AddCourse = () => {
                           <Form.Control
                             name="course_desc"
                             as="textarea"
-                            className={`bor_dark_purple br5 ${
-                              formErrors.course_desc ? "is-invalid" : ""
-                            }`}
+                            className="bor_dark_purple br5"
+                            // className={`bor_dark_purple br5 ${
+                            //   formErrors.course_desc ? "is-invalid" : ""
+                            // }`}
                             style={{ minHeight: "50px" }}
                             onChange={handleInputChange}
                           />
@@ -891,7 +901,7 @@ const AddCourse = () => {
         <div className="submit-card">
           <Row className="mart30">
             <Col lg="12">
-              <p className="fw600 fz18 mart20 padb10">Add Course</p>
+              <p className="fw600 fz18 mart20 padb10">Added Course</p>
               <Card
                 style={{ boxShadow: "0 0 10px 5px #eee" }}
                 className="born "
@@ -916,8 +926,9 @@ const AddCourse = () => {
                         style={{
                           display: "flex",
                           alignItems: "center",
-                          width: "400px",
-                          minHeight: "150px",
+                          justifyContent:"center",
+                          width: "300px",
+                          height: "150px",
                         }}
                       >
                         <Image
