@@ -102,8 +102,8 @@ const truncateText = (text, maxLength) => {
     <>
     <Row>
       
-            <h1 className='mart40 fw700 fz36'>Recently Added Course</h1>
-            <p className='fz18 fw400'>displays the courses which an enrolled user has most recently accessed</p>
+            <h1 className='mart40 fw700 fz36'>Recent Additions</h1>
+            <p className='fz18 fw400'>Stay updated to explore our latest courses and learning materials</p>
         </Row>
         <Slider {...settings} className='mart20 ' >           
             {recentCourse?.map((course) => (

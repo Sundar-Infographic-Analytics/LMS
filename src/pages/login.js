@@ -227,10 +227,16 @@ const Login = () => {
                         className="w20 mt-4 mb-3"
                       />
                       <Card.Title
+                        className="fw400 fz20  black"
+                        style={{ marginBottom: "30px" }}
+                      >
+                        Welcome!
+                      </Card.Title>
+                      <Card.Title
                         className="fw600 fz30  black"
                         style={{ marginBottom: "70px" }}
                       >
-                        Login to your Account
+                        Log in to continue learning
                       </Card.Title>
                       <Form onSubmit={handleFormSubmit}>
                         <Form.Group
@@ -238,7 +244,7 @@ const Login = () => {
                           controlId="formBasicEmail"
                         >
                           <Form.Label className="fw400 fz20 black">
-                            Mobile Number
+                            Mobile Number <span style={{color:"red"}}>*</span>
                           </Form.Label>
                           <Image
                             src={mobicon}
@@ -261,7 +267,7 @@ const Login = () => {
                           className="posr mart20"
                         >
                           <Form.Label className="fw400 fz20 black">
-                            Password
+                            Password <span style={{color:"red"}}>*</span>
                           </Form.Label>
                           <Image
                             src={!showPassword? eyeslash : eye}
@@ -272,7 +278,7 @@ const Login = () => {
                             type={!showPassword? "password" : "text"}
                             name="password"
                             placeholder="Password"
-                            className="borltrn br0 mb-3"
+                            className="borltrn br0 mb-3 bor1 pad10"
                             style={{ borderColor: "#6F3FBA" }}
                             autoComplete="current-password"
                             value={credentials.password}

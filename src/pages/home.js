@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
     <Navbar />
-    <Header style={bgImage} text='The Company that invests in you for learning things in different ways' title1='Learn From' title2='Anywhere'/>
+    <Header style={bgImage} text="Fuel your ambitions with today's lessons for future leadership." title1='LEARNING TODAY,' title2='LEADING TOMORROW'/>
     <OurCourse />
     <RecentCourse />
     <LastView />

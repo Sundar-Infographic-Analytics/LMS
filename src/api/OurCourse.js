@@ -3,8 +3,8 @@ import img2 from '../assets/images/risk.png'
 import img3 from '../assets/images/finance.png'
 import img4 from '../assets/images/legal.png'
 const OurCourse={
-    "main_title":"Our Courses Categories",
-    "desc":"can help learners to save time by grouping similar courses together.",
+    "main_title":"Explore Our Course Selections",
+    "desc":"Your all-in-one learning solution, making it easy and fast to acquire knowledge effortlessly",
     "content":[
         {
             "id":1 ,
