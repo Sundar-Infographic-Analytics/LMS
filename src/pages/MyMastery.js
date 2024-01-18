@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Whistlist from "../Components/Utils/Whistlist";
 import { useLoader } from "../Components/Utils/Loading/LoaderContext";
+import LastView from "../Components/contentarea/LastView";
 
 const MyLearnings = () => {
   const {setLoading} = useLoader();
@@ -59,9 +60,9 @@ const MyLearnings = () => {
       {/* {console.log("learned", learnedCourse?.readCourseList?.length)} */}
       <Header
         style={learningBg}
-        text="Technology is bringing a massive wave of evolution for learning things in different ways."
-        title1="My Mastery"
-        title2="from @SNC"
+        text="Your Journey to Skillful Mastery Begins Here"
+        title1="Ignite Your Abilities,"
+        title2="Master Your Craft"
       />
       {learnedCourse?.readCourseList?.length !== 0 ? (
         <Container>
@@ -137,6 +138,7 @@ const MyLearnings = () => {
       )}
       
       <RecentCourse />
+      <LastView/>
       <Footer />
     </>
   );

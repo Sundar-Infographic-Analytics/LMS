@@ -87,9 +87,9 @@ const response = await axios.post (
      
         <Header
             style={libraryBg}
-        text="Technology is bringing a massive wave of evolution for learning things in different ways."
-        title1="My Library"
-        title2="from @SNC"
+        text="Explore Your Wisdom and Knowledge in Our Library"
+        title1="Where Knowledge Unfolds,"
+        title2="and Courses Take Flight"
         />
         <Container>
         <Row className="mart30">
