@@ -927,7 +927,7 @@ const HandleDraftSubmit = async () =>{
                 <Form.Control
                   name="file_path"
                   type="file"
-                  accept={"application/pdf"}
+                  accept="application/pdf, application/vnd.ms-excel"
                   className="bor_dark_purple br5"
                   style={{ position: "relative" }}
                   // value={editLessonState?.file_path || ""}

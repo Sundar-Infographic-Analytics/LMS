@@ -287,7 +287,7 @@ console.log(datas,"dddddddddddddddddddddddd")
                     {/* <span className='fw600 fz18 mart40 padb10'>Add Chapter</span>   */}
                     {/* </div> */}
                   <div className="filter-container">
-                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / sub Ccategory /   Status"}/>
+                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / Subcategory /   Status"}/>
                   </div>
                 </div>
                 </Col>

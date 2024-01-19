@@ -3,7 +3,15 @@ import { useState } from "react";
 import "../assets/css/global.css";
 import "../assets/css/custom.css";
 import "../assets/css/variable.css";
-import { Button, Col, Container, Row, Modal, Form,Spinner } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+  Modal,
+  Form,
+  Spinner,
+} from "react-bootstrap";
 import Navbar from "../Components/header/navbar";
 
 import { Image } from "react-bootstrap";
@@ -26,7 +34,7 @@ const closebtn = {
   cursor: "pointer",
 };
 const SubCategiriesAdd = () => {
-  const {setLoading} = useLoader();
+  const { setLoading } = useLoader();
   const courseTitle = useCategoryTitle();
   const navigate = useNavigate();
 
@@ -59,12 +67,11 @@ const SubCategiriesAdd = () => {
 
   const handledeleteClose = () => {
     setShowDeleteModal(false);
-   
   };
 
   const [editMode, setEditMode] = useState(false);
   const [showdeleteModal, setShowDeleteModal] = useState(false);
-  const [deleteSubcat, setDeleteSubcat] = useState('');
+  const [deleteSubcat, setDeleteSubcat] = useState("");
 
   const [error, setError] = useState({});
   const [filterText, setFilterText] = useState("");
@@ -116,7 +123,7 @@ const SubCategiriesAdd = () => {
       }
     }
 
-    if (!subCategory?.subCategoryInput) {
+    if (!subCategory?.subCategoryInput.trim()) {
       error.subCategoryInput = "Enter Sub category";
     }
 
@@ -136,7 +143,7 @@ const SubCategiriesAdd = () => {
     if (editedSubCategory?.categorySelect === "0") {
       error.categorySelect = "Please select category";
     }
-    
+
     if (editedSubCategory?.bannerImg) {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
         error.bannerImg = "File size exceeds the limit (500KB)";
@@ -174,8 +181,6 @@ const SubCategiriesAdd = () => {
       );
       console.log("Subcategory created:", response?.data);
 
-      
-
       setSubCategory({
         categorySelect: "",
         bannerImg: null,
@@ -184,8 +189,7 @@ const SubCategiriesAdd = () => {
       setError("");
       setIsLoading(false);
       handleClose();
-      navigate(0);  
-      
+      navigate(0);
     } else {
       setIsLoading(false);
       console.log("Form validation failed");
@@ -272,15 +276,21 @@ const SubCategiriesAdd = () => {
       width: "10%",
     },
     {
-      name:"View Sub Category",
+      name: "View Sub Category",
       width: "10%",
       // selector
-      cell: row => (
-      <>
-      {/* <div>{console.log(row, 'check superadmin linkClick')}</div> */}
-      <Link to={`/SubCategiriesCourse/${row?.subcategory_id}`}  style={{textDecoration:"none"}} className="view-btn">View</Link> 
-      </>
-      )
+      cell: (row) => (
+        <>
+          {/* <div>{console.log(row, 'check superadmin linkClick')}</div> */}
+          <Link
+            to={`/SubCategiriesCourse/${row?.subcategory_id}`}
+            style={{ textDecoration: "none" }}
+            className="view-btn"
+          >
+            View
+          </Link>
+        </>
+      ),
     },
 
     {
@@ -297,14 +307,16 @@ const SubCategiriesAdd = () => {
               alt="Edit"
               onClick={() => handleEditClick(row)}
             />
-            
 
             <Image
               src={DeleteIcon}
               className="img_action"
               style={{ cursor: "pointer", marginLeft: "10px" }}
               alt="Delete"
-              onClick={() =>{setShowDeleteModal(true); handleSubCatDeleteClick(row)}}
+              onClick={() => {
+                setShowDeleteModal(true);
+                handleSubCatDeleteClick(row);
+              }}
             />
           </div>
         </>
@@ -382,44 +394,41 @@ const SubCategiriesAdd = () => {
       categorySelect: row?.category_id,
       subCategoryInput: row?.subcategory_name,
       bannerImg: row?.banner_path,
-      subcategory_id:row?.subcategory_id
+      subcategory_id: row?.subcategory_id,
     });
     handleShow(); // Open the modal for editing
   };
 
-
-  const handleEditsubcatSubmit = async(e) =>{
+  const handleEditsubcatSubmit = async (e) => {
     e.preventDefault();
     const isvalid = await Editvalidation();
-    if(isvalid) {
-
+    if (isvalid) {
       setIsLoading(true);
-     await axios.post(`${process.env.REACT_APP_BASE_URL}/updatesubcategory`,
-     editedSubCategory,
-     {
-      headers:{
-        "Content-Type": "multipart/form-data",
-        Authorization:localStorage.getItem("jwtToken"),
-      },
-     }
-     )
-     .then((response) =>{
-      console.log(response.data,"courseUpdate");
-      navigate(0);
-     })
-     .catch((error) =>{
-      console.log(error, "courseUpdate errors");
-     })
-     .finally(() =>{
-      setIsLoading(false);
-     })
-
-    } else{
-      console.log( "courseUpdate errors");
+      await axios
+        .post(
+          `${process.env.REACT_APP_BASE_URL}/updatesubcategory`,
+          editedSubCategory,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: localStorage.getItem("jwtToken"),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data, "courseUpdate");
+          navigate(0);
+        })
+        .catch((error) => {
+          console.log(error, "courseUpdate errors");
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      console.log("courseUpdate errors");
     }
-
-     
-  }
+  };
   // const openEditModal = (courseData) => {
   //   setIsEditMode(true);
   //   setEditCourseData({
@@ -434,49 +443,44 @@ const SubCategiriesAdd = () => {
   //   setShow(true);
   // };
 
-
   //delete
- const handleSubCatDeleteClick = (subcatData) =>{
+  const handleSubCatDeleteClick = (subcatData) => {
+    // setDeleteSubcat({
+    //   ...deleteSubcat,
+    //   id:subcatData?.subcategory_id
+    // });
+    setDeleteSubcat(subcatData);
+    console.log(subcatData, "deleteData");
+  };
 
-  // setDeleteSubcat({
-  //   ...deleteSubcat,
-  //   id:subcatData?.subcategory_id
-  // });
-  setDeleteSubcat(subcatData)
-console.log(subcatData, "deleteData")
- }
-
-
- const handleDeleteSubmit = async () =>{
-  setIsLoading(true);
-  // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
-await axios
-    .post(
-      `${process.env.REACT_APP_BASE_URL}/deletesubcategory`,
-      {
-        id:deleteSubcat?.subcategory_id,
-      },
-      {
-        headers: {
-          Authorization:localStorage?.getItem("jwtToken"),
+  const handleDeleteSubmit = async () => {
+    setIsLoading(true);
+    // { console.log(deletelesson?.lesson_id, "ggggggggggggggggg")}
+    await axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/deletesubcategory`,
+        {
+          id: deleteSubcat?.subcategory_id,
         },
-      }
-    )
-    .then((response) => {
-      console.log(response.data,"subcatDelete");
-      navigate(0);
-      // setIsLoading(false);
-    })
-    .catch((error) => {
-      setIsLoading(false);
-      console.log(error, "subcatDelete errors");
-    })
-    .finally(() => {
-      // setIsLoading(false);
-    });
- }
-
-
+        {
+          headers: {
+            Authorization: localStorage?.getItem("jwtToken"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data, "subcatDelete");
+        navigate(0);
+        // setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error, "subcatDelete errors");
+      })
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  };
 
   console.log(subCategory, "subcatttttttttttttttttt");
   console.log(allSubcategory, "all sub");
@@ -484,10 +488,10 @@ await axios
   console.log(selectedCategory, ".....all sub selectedCategory");
   console.log(editMode, ".....edit editmode");
   console.log(editedSubCategory, ".....edit subcatedit");
-  console.log(deleteSubcat, "deleteData setData")
+  console.log(deleteSubcat, "deleteData setData");
   return (
     <div>
-    <div className="delete modal">
+      <div className="delete modal">
         <Modal
           show={showdeleteModal}
           onHide={handledeleteClose}
@@ -498,11 +502,8 @@ await axios
           </Modal.Header>
           <Modal.Body>
             Are you sure to delete{" "}
-            <span className="fw600">
-             { deleteSubcat?.subcategory_name} 
-            </span>
+            <span className="fw600">{deleteSubcat?.subcategory_name}</span>
             <span> with its course</span>
-            
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -513,7 +514,7 @@ await axios
             </Button>
             <Button
               variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
-            onClick={handleDeleteSubmit}
+              onClick={handleDeleteSubmit}
               disabled={isLoading}
             >
               {isLoading && (
@@ -533,7 +534,11 @@ await axios
       </div>
       <div>
         <Modal show={show} onHide={handleClose}>
-          <Form onSubmit={(e) => editMode? handleEditsubcatSubmit(e) : handleSubmit(e)}>
+          <Form
+            onSubmit={(e) =>
+              editMode ? handleEditsubcatSubmit(e) : handleSubmit(e)
+            }
+          >
             <Modal.Header
               onClick={handleClose}
               className="fr born white_bg fw600 fz16 pad15 posa r10 top15"
@@ -613,14 +618,18 @@ await axios
                         className="bor_dark_purple br5 padl10 "
                         style={{ position: "relative" }}
                         ref={fileInputRef}
-                        onChange={(e) => {
+                        onChange={ async (e) => {
                           const file = e.target.files[0];
                           editMode
-                            ? setEditedSubCategory({
+                            ?
+
+                            setEditedSubCategory({
                                 ...editedSubCategory,
                                 bannerImg: file,
                               })
-                            : handleChange(e);
+                            :
+
+                          handleChange(e);
                           handleButtonClick(e);
                         }}
                       />
@@ -656,15 +665,19 @@ await axios
                       name="subCategoryInput"
                       placeholder="Enter Sub Category"
                       className="h50 white_bg bor2"
-                      value={editMode? editedSubCategory?.subCategoryInput : subCategory.subCategoryInput}
+                      value={
+                        editMode
+                          ? editedSubCategory?.subCategoryInput
+                          : subCategory.subCategoryInput
+                      }
                       onChange={(e) =>
-                      editMode?
-                      setEditedSubCategory({
-                        ...editedSubCategory,
-                        subCategoryInput : e.target.value
-                      }) 
-                      :
-                      handleChange(e)}
+                        editMode
+                          ? setEditedSubCategory({
+                              ...editedSubCategory,
+                              subCategoryInput: e.target.value,
+                            })
+                          : handleChange(e)
+                      }
                     />
                     {error.subCategoryInput && (
                       <Form.Text className="text-danger">
@@ -685,17 +698,17 @@ await axios
                 style={{ flex: "1" }}
                 disabled={isLoading}
               >
-              {isLoading && (
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                  style={{ marginRight: "5px" }}
-                />
-              )} 
-              { editMode? "Edit " : "Add"    }           
+                {isLoading && (
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    style={{ marginRight: "5px" }}
+                  />
+                )}
+                {editMode ? "Edit " : "Add"}
               </Button>
               <Button
                 variant="secondary"
@@ -715,11 +728,9 @@ await axios
       </div>
       <Navbar className="dark_purple_bg" />
       <Container fluid>
-        <Row className="mart50 marb20"> 
+        <Row className="mart50 marb20">
           <Col lg={6} className="filter-containern">
-            <div
-              style={{ display: "flex", alignItems: "end", height: "100%" }}
-            >
+            <div style={{ display: "flex", alignItems: "end", height: "100%" }}>
               <div className="filter-container">
                 <FilterComponent
                   onFilter={(e) => setFilterText(e.target.value)}
@@ -735,8 +746,21 @@ await axios
               </div>
             </div>
           </Col>
-          <Col lg={6} style={{ display: "flex", justifyContent: "end", alignItems:"flex-end" }}>
-            <div style={{ display: "flex", justifyContent: "end", alignItems:"flex-end" }}>
+          <Col
+            lg={6}
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              alignItems: "flex-end",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                alignItems: "flex-end",
+              }}
+            >
               <Button
                 className="dark_purple_bg padl50 padr50 fz18 br0 mart30  fr marr30 bor_dark_purple btn_color born"
                 style={{ borderRadius: "5px" }}
@@ -747,15 +771,15 @@ await axios
             </div>
           </Col>
         </Row>
-        <div className='rdt_Table'>
-        <DataTable
-          pagination
-          columns={columns}
-          data={filteredItems}
-          subHeaderComponent={subHeaderComponentMemo}
-          conditionalRowStyles={conditionalRowStyles}
-          paginationComponentOptions={paginationComponentOptions}
-        />
+        <div className="rdt_Table">
+          <DataTable
+            pagination
+            columns={columns}
+            data={filteredItems}
+            subHeaderComponent={subHeaderComponentMemo}
+            conditionalRowStyles={conditionalRowStyles}
+            paginationComponentOptions={paginationComponentOptions}
+          />
         </div>
       </Container>
     </div>

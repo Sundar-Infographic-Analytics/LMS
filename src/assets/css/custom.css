@@ -14,6 +14,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 .modal-content{background:#F7F1FF;padding: 25px;}
 .modal-header:hover {background: #6f3fba;color: #fff;}
 .dark_green_bg:hover{background: #5bb84b;}
+.fiance_clr {background-color: #50bb96;}
 .lmstbl.table-striped>tbody>tr:nth-child(even)>td {
    background-color: #f6f6f6 !important;
    border-bottom-width:0;
