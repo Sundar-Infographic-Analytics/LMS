@@ -477,7 +477,7 @@ const PreviewCourse = () => {
                             >
                               {lesson.lesson_name}
                             </Link>
-                            <p className="fz14">2 Mins | {lesson.file_type ==="V"? "Video" : "PDF"}</p>
+                            <p className="fz14">File type |  {lesson.file_type ==="V"? "Video" : "PDF"}</p>
                           </div>
                         </li>
                       </Accordion.Body>
