@@ -122,11 +122,15 @@ const SubCategiriesAdd = () => {
         error.bannerImg = "File size exceeds the limit (500KB)";
       }
     }
-
+    // console.log("conditionsnew", (subCategory?.subCategoryInput.trim())&&subCategory?.subCategoryInput?.trim().length )
     if (!subCategory?.subCategoryInput.trim()) {
       error.subCategoryInput = "Enter Sub category";
+      console.log("conditions111")
+    } else if (subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length <10) {
+      // console.log("conditions",subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length >=10 )
+      error.subCategoryInput = "should be 10 characters";
+      console.log("conditions222")
     }
-
     setError(error);
     // console.log(
     //   Object.keys(error).length === 0,
@@ -150,9 +154,9 @@ const SubCategiriesAdd = () => {
       }
     }
 
-    if (!editedSubCategory?.subCategoryInput) {
+    if (!editedSubCategory?.subCategoryInput.trim()) {
       error.subCategoryInput = "Enter Sub category";
-    }
+    } 
 
     setError(error);
     return Object.keys(error).length === 0;
