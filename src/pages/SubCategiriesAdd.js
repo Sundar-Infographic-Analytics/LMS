@@ -128,7 +128,7 @@ const SubCategiriesAdd = () => {
       console.log("conditions111")
     } else if (subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length <10) {
       // console.log("conditions",subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length >=10 )
-      error.subCategoryInput = "should be 10 characters";
+      error.subCategoryInput = "Must have at least 10 characters";
       console.log("conditions222")
     }
     setError(error);
@@ -239,7 +239,7 @@ const SubCategiriesAdd = () => {
       sortable: false,
     },
     {
-      name: "Subcategory",
+      name: "Sub category",
       selector: (row) => row.subcategory_name,
       sortable: true,
       style: {
@@ -249,7 +249,7 @@ const SubCategiriesAdd = () => {
       // cell: row => <div className="wrap-content">{row.course_title}</div>,
     },
     {
-      name: "Catogory",
+      name: "Category",
       selector: (row) => row.category_name,
       sortable: true,
       width: "20%",
@@ -305,6 +305,7 @@ const SubCategiriesAdd = () => {
         <>
           <div className="dif">
             <Image
+            title="Edit"
               src={EditIcon}
               className="img_action"
               style={{ cursor: "pointer" }}
@@ -313,6 +314,7 @@ const SubCategiriesAdd = () => {
             />
 
             <Image
+            title="Delete"
               src={DeleteIcon}
               className="img_action"
               style={{ cursor: "pointer", marginLeft: "10px" }}

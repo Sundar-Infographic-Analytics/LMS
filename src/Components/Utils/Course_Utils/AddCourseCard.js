@@ -135,16 +135,16 @@ const AddCourse = () => {
       editCourseData.course_name.trim() &&
       editCourseData.course_name.trim().length < 10
     ) {
-      errors.course_name = "should be 10 character";
+      errors.course_name = "Must be at least 10 characters";
     }
 
     if (!editCourseData.course_desc.trim()) {
-      errors.course_desc = "Please enter the course Description.";
+      errors.course_desc = "Please enter the description.";
     } else if (
       editCourseData.course_desc.trim() &&
       editCourseData.course_desc.trim().length < 20
     ) {
-      errors.course_desc = "should be 20 character";
+      errors.course_desc = "Must be at least 20 characters";
     }
 
     if (!editCourseData.category_id) {
@@ -616,14 +616,14 @@ const AddCourse = () => {
           style={{ margin: "0px" }}
         >
           <Modal.Header closeButton className="logout-modal">
-            <Modal.Title className="fw500">Confirmation!!!</Modal.Title>
+            <Modal.Title className="fw500">Confirm Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Are you sure to delete{" "}
+          Proceed with deleting the {" "}
             <span className="fw600">
              { getSubmitedcourse?.course_name} 
             </span>
-            <span> with Chapters and lessons</span>
+            <span> course?</span>
             
           </Modal.Body>
           <Modal.Footer>
@@ -985,7 +985,7 @@ const AddCourse = () => {
         </div>
       )}
       <div className="addchapterlesson">
-        <AddChapaterlesson catgorySubcat={getSubmitedcourse} />
+        <AddChapaterlesson catgorySubcat={getSubmitedcourse}  />
       </div>
     </>
   );

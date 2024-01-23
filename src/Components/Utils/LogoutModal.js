@@ -8,9 +8,9 @@ function LogoutModal({ show, handleClose, handleLogout }) {
   return (
     <Modal show={show} onHide={handleClose} style={{margin:"0px"}}>
       <Modal.Header  closeButton className='logout-modal' >
-        <Modal.Title className='fw500' >Logout Confirmation</Modal.Title>
+        <Modal.Title className='fw500' >Confirm Logout</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Are you sure you want to log out?</Modal.Body>
+      <Modal.Body>Proceed with the logout?</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18" onClick={handleClose}>
           Cancel

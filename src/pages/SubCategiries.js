@@ -22,11 +22,11 @@ console.log(data, "dataaaaaaaaaaaaaaaaaa")
             <p className="fz18 fw400">{data?.categoryTagName}</p>
 
             {(data?.subcategory?.length) ? (
-            <Row>
+            <Row  style={{display:"flex",justifyContent:"center", alignItems:"center"}}>
            
               {data?.subcategory.map((course) => (                
-                <Col lg={3} md={4} className="mart50" key={course?.id}> 
-                  <Link to={`/SubCategiriesCourse/${course?.id}`} style={{width:"310px", height:"165px"}}>
+                <Col lg={3} md={6}  className="mart50" key={course?.id}  style={{display:"flex",justifyContent:"center", alignItems:"center"}}> 
+                  <Link to={`/SubCategiriesCourse/${course?.id}`} >
                     <div className="center_img posr ">
                       <p className="posa white pad15 ">{course?.subcategory_name}</p>
                      

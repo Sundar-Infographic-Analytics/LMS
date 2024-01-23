@@ -63,6 +63,8 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const [selectedChapterID, setSelectedChapterID] = useState("");
   const [deleteChapterlesson, setDeleteChapterLesson] = useState("");
 
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
   // const [cardloading, setCardLoading] = useState(false);
 
   const [editchapterState, setEditState] = useState({
@@ -90,6 +92,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     setErrors({});
     setEditState({});
     setChapterename("");
+    setButtonLoading(false);
   };
   const handleChapterShow = () => {
     setShowChpter(true);
@@ -107,6 +110,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       file_path: "",
       chapter_id: null,
     });
+    setButtonLoading(false);
   };
   const handleShow = () => {
     setShow(true);
@@ -145,7 +149,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       // Set errors in the state
       setErrors({
         ...editchapterState,
-        chapter_name: "Chapter name must be at least 10 characters long",
+        chapter_name: "Chapter name must have a minimum of 10 characters",
       });
       return;
     }
@@ -262,10 +266,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           youtubeUrl.pathname.split("/").pop();
         return videoId;
       } else {
-        throw new Error("Invalid YouTube link01");
+        throw new Error("Invalid Youtube Link");
       }
     } catch (error) {
-      throw new Error("Invalid YouTube link02");
+      throw new Error("Invalid Youtube Link");
     }
   };
 
@@ -303,10 +307,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       lesssonData?.lesson_name?.trim().length < 10
     ) {
       lessonerror.lesson_name =
-        "lesson name must be at least 10 characters long";
+        "Lesson name must have a minimum of 10 characters";
     }
     if (!lesssonData.file_type) {
-      lessonerror.file_type = "Must be select file type";
+      lessonerror.file_type = "Must have select file type";
     }
     // console.log("lesson 01",!lesssonData.file_path?.trim(), "lesson 02", !lesssonData.file_path?.name?.trim())
     if (!lesssonData?.file_path && !lesssonData?.file_path?.name) {
@@ -325,7 +329,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           const videoExists = await checkYoutubeVideoExistence(videoId, apiKey);
 
           if (!videoExists) {
-            lessonerror.file_path = "YouTube video does not exist";
+            lessonerror.file_path = "There is no such Youtube Link doesn’t exist";
             console.log("Video does not existtttttttttttttttttttttttttttttttt");
           } else {
             console.log("Video existsssssssssssssssssssssssssssssssssss");
@@ -333,6 +337,11 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         } catch (error) {
           lessonerror.file_path = error.message;
         }
+      }
+      if (lesssonData?.file_type === "P") {
+       if (lesssonData?.file_path.size > MAX_FILE_SIZE) {
+        lessonerror.file_path = "PDF file must have a maximum file size of 5 MB";
+       }
       }
     }
     setErrors(lessonerror);
@@ -347,7 +356,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       editchapterState?.chapter_name?.trim().length < 10
     ) {
       lessonEditerror.chapter_name =
-        "chapter name must be at least 10 characters long";
+        "Chapter name must have a minimum of 10 characters";
     }
     setErrors(lessonEditerror);
     return Object.keys(lessonEditerror).length === 0;
@@ -375,10 +384,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       editLessonState?.lesson_name?.trim().length < 10
     ) {
       lessonEditerror.lesson_name =
-        "lesson name must be at least 10 characters long";
+        "Lesson name must have a minimum of 10 characters";
     }
     if (!editLessonState.file_type) {
-      lessonEditerror.file_type = "Must be select file type";
+      lessonEditerror.file_type = "Must have select file type";
     }
     // console.log("lesson 01",!lesssonData.file_path?.trim(), "lesson 02", !lesssonData.file_path?.name?.trim())
     if (!editLessonState?.file_path && !editLessonState?.file_path?.name) {
@@ -408,6 +417,11 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           lessonEditerror.file_path = error.message;
         }
       }
+      if (editLessonState?.file_type === "P") {
+        if (editLessonState?.file_path.size > MAX_FILE_SIZE) {
+          lessonEditerror.file_path = "PDF file must have a maximum file size of 5 MB";
+        }
+       }
     }
     setErrors(lessonEditerror);
     return Object.keys(lessonEditerror).length === 0;
@@ -464,13 +478,13 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       if (!chapterMap.lessons || chapterMap.lessons.length === 0) {
         submitError[
           `empty_lesson_chapter_${index + 1}`
-        ] = `${chapterMap.chapter_name} must have at least one lesson`;
+        ] = `this ${chapterMap.chapter_name} chapter must contain at least one lesson`;
       }
     });
 
     if (ChapterMapData[0]?.chapter_id === null || ChapterMapData.length === 0) {
       submitError.empty_course =
-        "Must have at least one chapter with lessons to submit";
+        "To submit, there must be at least one chapter with lessons";
     }
 
     setErrors(submitError);
@@ -927,7 +941,7 @@ const HandleDraftSubmit = async () =>{
                 <Form.Control
                   name="file_path"
                   type="file"
-                  accept="application/pdf, application/vnd.ms-excel"
+                  accept="application/pdf"
                   className="bor_dark_purple br5"
                   style={{ position: "relative" }}
                   // value={editLessonState?.file_path || ""}
@@ -1130,7 +1144,7 @@ const HandleDraftSubmit = async () =>{
             <Modal.Title className="fw500">Confirmation!!!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Are you sure to delete{" "}
+          Are you sure about deleting {" "}
             <span className="fw600">
               {deleteChapterlesson?.lesson_name
                 ? deleteChapterlesson?.lesson_name
@@ -1138,7 +1152,7 @@ const HandleDraftSubmit = async () =>{
             </span>
             {deleteChapterlesson?.lesson_name
               ? "lesson?"
-              : "chapter with lessons?"}
+              : "along with lessons ?"}
           </Modal.Body>
           <Modal.Footer>
             <Button

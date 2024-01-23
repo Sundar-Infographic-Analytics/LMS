@@ -196,7 +196,7 @@ const PreviewCourse = () => {
       if (lessonIndex === 0) {
         chapterIndex -= 1;
         setConditionError(
-          "Complete previous lesson in this chapter to continue this lesson"
+          "Complete the prior lesson in this chapter to proceed with the current one"
         );
         if (chapterIndex <= 0) chapterIndex = 0;
         lessonIndex = chapter[chapterIndex].lesson.length - 1; // to check chapter's last lesson status
@@ -204,7 +204,7 @@ const PreviewCourse = () => {
       } else {
         lessonIndex -= 1;
         setConditionError(
-          "Complete previous lesson in this chapter to continue this lesson1"
+          "Complete the prior lesson in this chapter to proceed with the current one"
         );
       }
     }
@@ -340,7 +340,7 @@ const PreviewCourse = () => {
       <Modal.Header  closeButton className='logout-modal'>
         <Modal.Title className='fw500' >Confirmation</Modal.Title>
       </Modal.Header>
-      <Modal.Body>Are you sure to complete current lesson?</Modal.Body>
+      <Modal.Body>Are you sure to proceed with the present lesson?</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18" onClick={handleClose}>
           Cancel

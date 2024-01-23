@@ -107,13 +107,13 @@ const handleCourseEditSumbit = async  (row) =>{
         cell: row => <div className="wrap-content">{row.course_title}</div>, 
     },
     {
-      name:'Catogory',
+      name:'Category',
       selector:row => row.category_name,
       sortable:true,
       width:'10%'
     },
     {
-      name:'Subcatogory',
+      name:'Sub category',
       selector:row => row.sub_category,
       sortable:true,
       width:'20%'
@@ -145,10 +145,10 @@ const handleCourseEditSumbit = async  (row) =>{
      {console.log(row, "rowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" )}
       <div className="dif">
                           {/* <Link className="/addnewcourse"> */}
-                            <Image src={EditIcon} className="img_action" style={{cursor:"pointer"}} alt="Edit" onClick={() => handleCourseEditSumbit(row)}/>
+                            <Image title={row?.status === "Approved" ? "Disabled when Approved" :"Edit"} src={EditIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1",}} alt="Edit" onClick={() => row?.status ==="Approved" ? "" : handleCourseEditSumbit(row)}/>
                           {/* </Link> */}
                           {/* <Link className="padl20 padr20"> */}
-                            <Image src={DeleteIcon} className="img_action" style={{cursor:"pointer", marginLeft:"10px"}} alt="Delete" onClick={() => {setShowDelete(true); setDeleteId(row.id)}} />
+                            <Image title={row?.status === "Approved" ? "Disabled when Approved" :"Delete"} src={DeleteIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1", marginLeft:"10px"}} alt="Delete" onClick={() => {setShowDelete(true); setDeleteId(row.id)}} />
                           {/* </Link> */}
                         </div>
     </>
@@ -240,10 +240,10 @@ console.log(datas,"dddddddddddddddddddddddd")
           style={{ margin: "0px" }}
         >
           <Modal.Header closeButton className="logout-modal">
-            <Modal.Title className="fw500">Confirmation!!!</Modal.Title>
+            <Modal.Title className="fw500">Confirm Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Are you sure to delete course?{" "}
+          Proceed with deleting the course?{" "}
             {/* <span className="fw600">
              
             </span>
@@ -294,10 +294,10 @@ console.log(datas,"dddddddddddddddddddddddd")
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
                   <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 marr10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>  
-                  {localStorage.getItem("role") === "superadmin" && (
+                  {/* {localStorage.getItem("role") === "superadmin" && (
                     <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button>
                      
-                  )}
+                  )} */}
                   </div>
                 </Col>
               </Row>

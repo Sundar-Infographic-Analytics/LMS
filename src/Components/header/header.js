@@ -12,21 +12,22 @@ const Header = ({style, text, title1, title2}) => {
       backgroundRepeat:'no-repeat',
       backgroundSize:'cover',
   }
-  const divcss={
-    display:'flex',
-    height:'450px',
-    alignItems:'center',
-  }
+  // const divcss={
+  //   display:'flex',
+  //   height:'230px',
+  //   // alignItems:'center',
+  //   marginTop:"210px"
+  // }
   
   return (
     <>
-    <div style={styles}>
+    <div style={styles} >
       <Container>
         <Row>
          <Col lg={12}>
-          <div className='' style={divcss}>
-            <h1 className='fz40 white fw600'>{title1}<span className='orange'> {title2}</span></h1>
-            <Card.Text className='white posa mart100 fz20 fw400 padt20'>
+          <div className='d-flex flex-column customHead'>
+            <h1 className='fz40 white fw600'>{title1}<span className='orange'>{title2}</span></h1>
+            <Card.Text className='white mart10 fz20 fw400'>
                 {text}
             </Card.Text>
           </div>
