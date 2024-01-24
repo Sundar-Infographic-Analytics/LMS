@@ -145,10 +145,11 @@ const handleCourseEditSumbit = async  (row) =>{
      {console.log(row, "rowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" )}
       <div className="dif">
                           {/* <Link className="/addnewcourse"> */}
-                            <Image title={row?.status === "Approved" ? "Disabled when Approved" :"Edit"} src={EditIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1",}} alt="Edit" onClick={() => row?.status ==="Approved" ? "" : handleCourseEditSumbit(row)}/>
+                            <Image title={row?.status === "Approved" ? "Disabled when Approved" :"Edit"} src={EditIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1",}} alt="Edit" onClick={() => {if (row && row.status !== "Approved") {handleCourseEditSumbit(row)}}}/>
                           {/* </Link> */}
                           {/* <Link className="padl20 padr20"> */}
-                            <Image title={row?.status === "Approved" ? "Disabled when Approved" :"Delete"} src={DeleteIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1", marginLeft:"10px"}} alt="Delete" onClick={() => {setShowDelete(true); setDeleteId(row.id)}} />
+                            <Image title={row?.status === "Approved" ? "Disabled when Approved" :"Delete"} src={DeleteIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1", marginLeft:"10px"}} alt="Delete" onClick={() =>{ if (row && row.status !== "Approved") { setShowDelete(true); setDeleteId(row.id); }
+}} />
                           {/* </Link> */}
                         </div>
     </>

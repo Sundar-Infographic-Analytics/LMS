@@ -109,7 +109,7 @@ const SubCategiriesCourse = () => {
                     className="black fz16 fw400"
                   >
                
-                    <Image src={course.course_image} className="w100 border" />
+                    <Image src={course.course_image} className="w100 border" style={{width:"306px", height:"167px", objectFit:"contain"}} />
                     <div className="border pad10" style={{ width:"306px", height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                          <div>
                             <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}

@@ -55,7 +55,7 @@ const AddCourse = () => {
     course_image: null,
   });
 
-
+ const MAX_IMG_SIZE = 1 * 1024 *1024;
   const handledeleteClose = () => {
     setShowDelete(false);
    
@@ -153,6 +153,11 @@ const AddCourse = () => {
 
     if (editCourseData.category_id && !editCourseData.subcategory_id) {
       errors.subcategory_id = "Please select a subcategory.";
+    }
+    if (editCourseData?.course_image ) {
+      if (editCourseData?.course_image.size > MAX_IMG_SIZE){
+        errors.course_image = "file size must not exceed 1 MB";
+      }
     }
     // Add more validations as needed
 
@@ -474,13 +479,14 @@ const AddCourse = () => {
               <div className="">
                 <Col sm={12}>
                   <Form.Group
-                    className="mb-3 w50 mw100"
+                    className="mb-3 w100 mw100"
                     controlId="formBasicEmail"
                   >
                     <Form.Label className="fw600 fz15">
                       Sub Category <span style={{ color: "red" }}>*</span>
                     </Form.Label>
                     <Form.Select
+                    
                       sm={12}
                       aria-label="Default select example"
                       className="br5 bor_dark_purple"
@@ -516,18 +522,19 @@ const AddCourse = () => {
                   </Form.Group>
                 </Col>
 
-                <Col sm={12} className="custompos">
-                  <Form.Group
-                    className="mb-3 w40 marl10 mw100"
+                <Col sm={12} lg={12} className="custompos">
+                <Col lg={9} >
+                <Form.Group
+                    className="mb-3 w100  mw100"
                     controlId="formBasicEmail"
                   >
                     <div>
-                      <Form.Label className="fw600 fz14">
+                      <Form.Label className="fw600 fz14 ">
                         Add Thumbnail
                         <span className="light_black fz13"> (optional)</span>
                       </Form.Label>
                     </div>
-                    <div className="posr">
+                    <div className="posr" >
                       <Link>
                         <Image
                           src={data.Thumb}
@@ -541,20 +548,24 @@ const AddCourse = () => {
                       </Link>
                       <Form.Control
                         type="file"
+                        accept=".png, .jpeg, .jpg"
                         className="bor_dark_purple br5 padl10 "
-                        style={{ position: "relative" }}
+                        style={{ position: "relative", paddingRight:"30px" }}
                         onChange={handleImageEditChange}
                       />
                     </div>
+                   
                   </Form.Group>
-                  <div
-                    style={{
+                </Col>
+                  <Col lg={3} style={{
                       alignItems: "center",
                       justifyContent: "flex-end",
                       display: "flex",
                       flexDirection: "column",
-                      marginBottom: "14px",
-                    }}
+                      marginBottom:"15px"
+                    }}>
+                  <div
+                    
                     className="marl10 marl10"
                   >
                     {/* {imagePreview && ( */}
@@ -565,17 +576,25 @@ const AddCourse = () => {
                           : getSubmitedcourse?.course_image
                       }
                       rounded
-                      className="w80 posr mw100"
+                      className="w100 posr mw100"
                       style={{
                         justifyContent: "center",
                         alignItems: "center",
-                        height: "55px",
+                        height: "50px",
                         width: "80px",
+                        objectFit:"cover"
                       }}
                     ></Image>
                     {/* )} */}
                   </div>
+                  </Col>
+                  
                 </Col>
+                {formErrors.course_image && (
+                  <Form.Text className="text-danger">
+                    {formErrors.course_image}
+                  </Form.Text>
+                )}
               </div>
             </div>
           </Modal.Body>
@@ -818,6 +837,7 @@ const AddCourse = () => {
                                 </Link>
                                 <Form.Control
                                   type="file"
+                                  accept=".png, .jpeg, .jpg"
                                   className="bor_dark_purple br5 padl10 "
                                   style={{ position: "relative" }}
                                   onChange={handleImageChange}

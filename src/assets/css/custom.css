@@ -374,9 +374,10 @@ background-color: #f6f6f6;
 }
 
 .slider-Img{
-  width: 100%;
+  width: 412px;
   height: 225px;
   border-radius: 20px 20px 0 0;
+  object-fit: cover;
 }
 .slide-item .content-container {
   width: 100% ;
