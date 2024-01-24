@@ -97,7 +97,7 @@ const SubCategiriesCourse = () => {
       ) : (
         <>
           <Container>
-          <div style={{display:"flex", flexDirection:"column"}}>
+          <div className="courseCard-container">
             <Row className="mart30" style={{display:"flex"}}>
               {Course?.map((course, index) => (
                 <Col lg={3} className="marb20 scale-animation" key={index} >
@@ -109,8 +109,8 @@ const SubCategiriesCourse = () => {
                     className="black fz16 fw400"
                   >
                
-                    <Image src={course.course_image} className="w100 border" style={{width:"306px", height:"167px", objectFit:"contain"}} />
-                    <div className="border pad10" style={{ width:"306px", height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                    <Image src={course.course_image} className="w100 border courseCard-IMG" />
+                    <div className="border pad10 courseCard-Content" >
                          <div>
                             <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}
                                {course.formatted_created_date}
@@ -129,7 +129,7 @@ const SubCategiriesCourse = () => {
                         to={`/PreviewCourse/${course.id}`}
                         className="tdn black"
                       > */}
-                        <Button className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple fr r20  padl30 padr30 btn_color born ">
+                        <Button style={{borderRadius:"0"}} className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple fr r20  padl30 padr30 btn_color born ">
                           View
                         </Button>
                       {/* </Link> */}

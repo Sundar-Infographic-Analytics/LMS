@@ -161,7 +161,7 @@ export const RecentCourse = () => {
                     // }}
                   />
                   <div
-                    className="padl10 border padb20 padr10 content-container"
+                    className=" border content-container"
                     // style={{
                     //   width: "412px",
                     //   height: "auto",
@@ -191,7 +191,7 @@ export const RecentCourse = () => {
                             to={`/PreviewCourse/${course?.id}`}
                             className="tdn black"
                           >
-                            <Button className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple fr r20  padl30 padr30 btn_color born">
+                            <Button style={{borderRadius:"0"}} className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple fr r20  padl30 padr30 btn_color born">
                               View
                             </Button>
                           </Link>

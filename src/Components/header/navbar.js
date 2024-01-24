@@ -13,7 +13,7 @@ import mycourse_ion from '../../assets/images/course.svg';
 import library_ion from '../../assets/images/library.svg';
 import my_learn_ion from '../../assets/images/learning.svg';
 import ApprovalHub_icon from '../../assets/images/approval hub.svg'
-import loginion from '../../assets/images/login_ion.png';
+import loginion from '../../assets/images/user.svg';
 import { useCategoryTitle } from '../Utils/CategoryTitleContext';
 import { CourseTitleProvider } from '../../Components/Utils/CategoryTitleContext';
 import Subcategory from '../../assets/images/subcategory.png'
@@ -140,7 +140,7 @@ const handleLogin = () =>{
               </Dropdown.Menu>
             </Dropdown>
             
-       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg fw600`} style={{textDecoration:'none'}}><Image src={loginion} className='w30 marr5 fw300'/>Login</Link>
+       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg fw500`} style={{textDecoration:'none',padding:"5px 20px"}}><Image src={loginion} className='w30  fw300' style={{width:"15px", height:"auto", marginRight:"8px"}}/>Login</Link>
        )}
         </Container>
         <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout} />
