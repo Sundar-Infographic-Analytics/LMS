@@ -10,7 +10,8 @@ import {
   Form,
   Button,
   Image,
-  Modal
+  Modal,
+  Spinner
 } from "react-bootstrap";
 import logo from "../assets/images/logo.png";
 import mobicon from "../assets/images/Phone.svg";
@@ -30,7 +31,7 @@ const Login = () => {
   const year = currentDate.getFullYear();
 
    console.log("urlNew,", userData);
-
+const [buttonLoading, setButtonLoading] = useState(false);
   const courseTitle = useCategoryTitle(); //checkinggggg....
   console.log("addcheckkkk03",courseTitle)
 
@@ -85,6 +86,7 @@ const Login = () => {
   
 
   const handleFormSubmit = async (e) => {
+    setButtonLoading(true);
     e.preventDefault();
 
     
@@ -187,7 +189,10 @@ const Login = () => {
       } else {
         setError("Network error. Please check your network connection.");
       }
-    });
+    })
+    .finally(()=>{
+      setButtonLoading(false);
+    })
 };
 
   useEffect(() => {
@@ -299,7 +304,18 @@ const Login = () => {
                           type="submit"
                           className="w100 dark_purple_bg fz18 h50 btn_color"
                           style={{ background: 'linear-gradient(90deg, rgba(111, 63, 186, 1), rgba(139, 63, 186, 1)) !important',}}
+                          disabled={buttonLoading}
                         >
+                        {buttonLoading && (
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        style={{ marginRight: "5px" }}
+                      />
+                    )}
                           Login
                         </Button>
                       </Form>

@@ -288,13 +288,13 @@ console.log(datas,"dddddddddddddddddddddddd")
                     {/* <span className='fw600 fz18 mart40 padb10'>Add Chapter</span>   */}
                     {/* </div> */}
                   <div className="filter-container">
-                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / Subcategory /   Status"}/>
+                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / Sub category /   Status"}/>
                   </div>
                 </div>
                 </Col>
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
-                  <Button onClick={handleAddnewcourseClick} className='w30 mart0 marb10 marr10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>  
+                  <Button onClick={handleAddnewcourseClick} className='add-btn mart0 marb10 marr10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>  
                   {/* {localStorage.getItem("role") === "superadmin" && (
                     <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button>
                      

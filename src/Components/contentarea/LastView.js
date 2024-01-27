@@ -64,7 +64,7 @@ const LastView = () => {
           ) : (
             <Row>
               <Col lg={12}>
-                <h4 className="mart30 fw700 fz36">Recently viewed courses</h4>
+                <h4 className="mart30 fw700 fz36">Recently viewed content</h4>
                 <p className="fz18 fw400">
                 Discover New Horizons - Recently Explored Courses Await!
                 </p>

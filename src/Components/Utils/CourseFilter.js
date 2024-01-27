@@ -12,6 +12,7 @@ const FilterComponent = ({ onFilter, onClear, filterText,placeholderTxt,onApprov
       placeholder={placeholderTxt}
       value={filterText}
       onChange={onFilter}
+      // style={{ fontSize: '5px' }}
   />
   {filterText && ( 
     <>

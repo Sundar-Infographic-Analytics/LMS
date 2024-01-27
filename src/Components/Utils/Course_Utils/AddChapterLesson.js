@@ -28,11 +28,12 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const apiKey = process.env?.REACT_APP_YOUTUBE_API_KEY;
   console.log("lesson apikeymain", process.env.REACT_APP_YOUTUBE_API_KEY);
 
-  const Chaptercss = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  };
+  // const Chaptercss = {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "space-between",
+  //   // border:"1px solid red"
+  // };
   const EditBtnCss = {
     border: "1px solid #6F3FBA",
   };
@@ -1057,7 +1058,7 @@ const HandleDraftSubmit = async () =>{
                 })
               }
               placeholder={
-                editchapterState?.chapter_id ? "new chapter name" : ""
+                editchapterState?.chapter_id ? "New chapter name" : ""
               }
             />
           ) : (
@@ -1065,7 +1066,7 @@ const HandleDraftSubmit = async () =>{
               type="text"
               id={"inputPassword5"}
               aria-describedby="passwordHelpBlock"
-              placeholder="new chapter name"
+              placeholder="New chapter name"
               className="mart10"
               value={chapterename || ""}
               name="chapter_name"
@@ -1199,8 +1200,8 @@ const HandleDraftSubmit = async () =>{
                 </div>
               </Col>
 
-              <Col lg={6}>
-                <div style={{ display: "flex", justifyContent: "end" }}>
+              <Col md={12} sm={12} lg={6}  >
+                <div style={{ display: "flex", justifyContent: "end" }} className="Add-btn">
                   <Button
                     className="w40 mart0 marb10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color"
                     onClick={() => handleChapterShow()}
@@ -1240,9 +1241,10 @@ const HandleDraftSubmit = async () =>{
                     </div>
                   )} */}
                   <Card.Body>
-                    <div style={Chaptercss}>
+                    <div className="Chapter-items">
                       <p className="black fw600 fz18 icon-zoom ">
                         {index + 1}. {chapterMap.chapter_name}
+                        
                         <Image
                           src={Edit_Ion1}
                           className="marl20 "
@@ -1260,7 +1262,7 @@ const HandleDraftSubmit = async () =>{
                         ></Image>
                       </p>
                       <Button
-                        className="dark_green_bg br5 born fz16"
+                        className="dark_green_bg br5 born fz16 btn-mar"
                         onClick={() =>
                           handleSelectedChapter(chapterMap.chapter_id)
                         }
@@ -1273,16 +1275,12 @@ const HandleDraftSubmit = async () =>{
                         {chapterMap?.lessons?.map((lessonmap, index) => (
                           <div
                             key={index}
-                            className=" pad20 mart10 br5 dif w100"
-                            style={{
-                              justifyContent: "space-around",
-                              border: " 1px solid #eee",
-                              alignItems: "center",
-                              boxShadow: "0 0 4px 2px #f7f7f7",
-                            }}
+                            className=" pad20 mart10 br5 dif w100 lesson-items"
+                           
                             // style={{ boxShadow: "0 0 10px 5px #eee" }}
                           >
-                            <div style={{ flex: "0.5" }}>
+                          <div className="lesson-set1">
+                            <div style={{ flex: "0.5" }} className="">
                               <Image
                                 src={
                                   lessonmap?.file_type === "V"
@@ -1315,6 +1313,8 @@ const HandleDraftSubmit = async () =>{
                                   : null}
                               </p>
                             </div>
+                            </div>
+                            <div className="lesson-set2">
                             <div style={EditCss}>
                               <Link
                                 style={{ textDecoration: "none" }}
@@ -1346,6 +1346,7 @@ const HandleDraftSubmit = async () =>{
                                   }}
                                 ></Image>
                               </Link>
+                              </div>
                             </div>
                           </div>
                         ))}
@@ -1378,7 +1379,7 @@ const HandleDraftSubmit = async () =>{
           <div className="button-Components-draft-submit">
             <Row>
               <Col lg={12}>
-                <div className="mart30 text-center">
+                <div className="mart10 text-center marb30">
                   <Button className="w20 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple" onClick={HandleDraftSubmit}
                   disabled = {draftbuttonLoading}
                   >

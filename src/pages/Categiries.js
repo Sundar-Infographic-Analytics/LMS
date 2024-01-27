@@ -21,10 +21,10 @@ const Categiries = () => {
       "Get your IT skills with our diverse courses covering all for career growth",
     ],
     TitleMain: [
-      "Your Path to Profound",
-      "Understanding Legal Matters and",
-      "Resolve Your",
-      "Navigating Tomorrow's World with",
+      "Your Path to Profound ",
+      "Understanding Legal Matters and ",
+      "Resolve Your ",
+      "Navigating Tomorrow's World with ",
     ],
     TitleSub: [
       "Financial Understanding",

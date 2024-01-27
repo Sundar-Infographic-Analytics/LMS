@@ -109,11 +109,21 @@ const AddCourse = () => {
 
   const validateForm = () => {
     const errors = {};
-    if (!courseFormData.course_name.trim()) {
+    if (!courseFormData?.course_name.trim()) {
       errors.course_name = "Please enter the course title.";
+    } else if (
+      courseFormData?.course_name.trim() &&
+      courseFormData?.course_name.trim().length < 10
+    ) {
+      errors.course_name = "Must be at least 10 characters";
     }
     if (!courseFormData.course_desc.trim()) {
-      errors.course_desc = "Please enter the course description.";
+      errors.course_desc = "Please enter the description.";
+    } else if (
+      courseFormData.course_desc.trim() &&
+      courseFormData.course_desc.trim().length < 20
+    ) {
+      errors.course_desc = "Must be at least 20 characters";
     }
     if (!courseFormData.category_id) {
       errors.category_id = "Please select a category";
@@ -557,7 +567,7 @@ const AddCourse = () => {
                    
                   </Form.Group>
                 </Col>
-                  <Col lg={3} style={{
+                  <Col className="course-preview" lg={3} style={{
                       alignItems: "center",
                       justifyContent: "flex-end",
                       display: "flex",
@@ -566,7 +576,7 @@ const AddCourse = () => {
                     }}>
                   <div
                     
-                    className="marl10 marl10"
+                    className="marl10 marl10 "
                   >
                     {/* {imagePreview && ( */}
                     <Image
@@ -601,7 +611,7 @@ const AddCourse = () => {
 
           <Modal.Footer>
             <Button
-              className=" w30 mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color"
+              className=" w30 mobile-btn  mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color"
               onClick={handleEditSubmit}
               disabled={buttonLoading}
             >
@@ -618,7 +628,7 @@ const AddCourse = () => {
               Submit
             </Button>
             <Button
-              className="w30 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple"
+              className="w30 mobile-btn  mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple"
               style={{ background: "transparent", color: "#6f3fba" }}
               onClick={handleClose}
             >
@@ -647,13 +657,13 @@ const AddCourse = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
+              variant=" secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
               onClick={handledeleteClose}
             >
               Cancel
             </Button>
             <Button
-              variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+              variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born mobile-btn"
             onClick={handleCourseDeleteSubmit}
               disabled={buttonLoading}
             >
@@ -715,7 +725,7 @@ const AddCourse = () => {
                             // className={`bor_dark_purple br5 ${
                             //   formErrors.course_desc ? "is-invalid" : ""
                             // }`}
-                            style={{ minHeight: "50px" }}
+                            style={{ minHeight: "50px", backgroundColor:"white" }}
                             onChange={handleInputChange}
                           />
                           {formErrors.course_desc && (
@@ -923,8 +933,8 @@ const AddCourse = () => {
             <Col lg="12">
               <p className="fw600 fz18 mart20 padb10">Added Course</p>
               <Card
-                style={{ boxShadow: "0 0 10px 5px #eee" }}
-                className="born "
+                
+                className="born course-card"
               >
                 {cardloading && (
                   <div className="my-loading-overlay">
@@ -939,18 +949,9 @@ const AddCourse = () => {
                 )}
                 <>
                   <Card.Body>
-                    <div style={{ display: "flex" , justifyContent:"space-between"}}> 
-                    <div className="bodyyy" style={{display:"flex", flexDirection:"row"}}>
-                      <div
-                        className=""
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent:"center",
-                          width: "300px",
-                          height: "150px",
-                        }}
-                      >
+                    <div className ="courseBody"> 
+                    <div className="course_submittedCard-content" >
+                      <div className="course_submittedCard">
                         <Image
                           src={getSubmitedcourse?.course_image}
                           className="w100 posr mw100 objfit"
@@ -961,7 +962,7 @@ const AddCourse = () => {
                           }}
                         ></Image>
                       </div>
-                      <div className="pad20">
+                      <div className="course-bodyContentBox ">
                         <p
                           className="fw300 fz18 "
                           style={{ color: "#a0a0a0", fontSize: "15px" }}
@@ -977,7 +978,7 @@ const AddCourse = () => {
                         </p>
                       </div>
                       </div>
-                      <div style={{ display: "inline-flex" }}>
+                      <div className ="courseEditDelete-icon" >
                         <Link className="icon-zoom">
                           <Image
                             src={Edit_Ion1}

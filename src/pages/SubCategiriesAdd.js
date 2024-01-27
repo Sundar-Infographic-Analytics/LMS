@@ -68,7 +68,7 @@ const SubCategiriesAdd = () => {
   const handledeleteClose = () => {
     setShowDeleteModal(false);
   };
-
+  const [previewSubCatIMG, setPreviewSubCatIMG] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [showdeleteModal, setShowDeleteModal] = useState(false);
   const [deleteSubcat, setDeleteSubcat] = useState("");
@@ -119,7 +119,7 @@ const SubCategiriesAdd = () => {
 
     if (subCategory?.bannerImg) {
       if (subCategory?.bannerImg?.size > MAX_FILE_SIZE) {
-        error.bannerImg = "File size exceeds the limit (500KB)";
+        error.bannerImg = " file size must not exceed 500 KB";
       }
     }
     // console.log("conditionsnew", (subCategory?.subCategoryInput.trim())&&subCategory?.subCategoryInput?.trim().length )
@@ -150,7 +150,7 @@ const SubCategiriesAdd = () => {
 
     if (editedSubCategory?.bannerImg) {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
-        error.bannerImg = "File size exceeds the limit (500KB)";
+        error.bannerImg = " file size must not exceed 500 KB";
       }
     }
 
@@ -245,14 +245,14 @@ const SubCategiriesAdd = () => {
       style: {
         whiteSpace: "normal !important", // Set whiteSpace to 'normal' for wrapping
       },
-      width: "37%",
+      width: "30%",
       // cell: row => <div className="wrap-content">{row.course_title}</div>,
     },
     {
       name: "Category",
       selector: (row) => row.category_name,
       sortable: true,
-      width: "20%",
+      width: "10%",
     },
     {
       name: "Total Course",
@@ -281,7 +281,7 @@ const SubCategiriesAdd = () => {
     },
     {
       name: "View Sub Category",
-      width: "10%",
+      width: "17%",
       // selector
       cell: (row) => (
         <>
@@ -300,7 +300,7 @@ const SubCategiriesAdd = () => {
     {
       name: "Action",
       sortable: true,
-      width: "7%",
+      width: "12%",
       cell: (row) => (
         <>
           <div className="dif">
@@ -310,7 +310,7 @@ const SubCategiriesAdd = () => {
               className="img_action"
               style={{ cursor: "pointer" }}
               alt="Edit"
-              onClick={() => handleEditClick(row)}
+              onClick={() => {handleEditClick(row) ; setPreviewSubCatIMG(row?.banner_path)}}
             />
 
             <Image
@@ -495,6 +495,7 @@ const SubCategiriesAdd = () => {
   console.log(editMode, ".....edit editmode");
   console.log(editedSubCategory, ".....edit subcatedit");
   console.log(deleteSubcat, "deleteData setData");
+  console.log(previewSubCatIMG, "previewSubCatIMG setData");
   return (
     <div>
       <div className="delete modal">
@@ -621,8 +622,8 @@ const SubCategiriesAdd = () => {
                         name="bannerImg"
                         type="file"
                         accept=".png, .jpeg, .jpg, .webp, .svg"
-                        className="bor_dark_purple br5 padl10 "
-                        style={{ position: "relative" }}
+                        className="bor_dark_purple br5 padl10  "
+                        style={{ position: "relative",paddingRight:40}}
                         ref={fileInputRef}
                         onChange={ async (e) => {
                           const file = e.target.files[0];
@@ -644,18 +645,19 @@ const SubCategiriesAdd = () => {
                       <a
                         target="_blank"
                         rel="noreferrer"
-                        href={editedSubCategory?.bannerImg}
+                        href={previewSubCatIMG}
                         className="mt-2"
                       >
                         View previous Thubmnail
                       </a>
                     )}
-
+                      <div>
                     {error.bannerImg && (
                       <Form.Text className="text-danger">
                         {error.bannerImg}
                       </Form.Text>
                     )}
+                   </div>
                   </Form.Group>
                 </Col>
               </Row>
@@ -745,6 +747,7 @@ const SubCategiriesAdd = () => {
                   categoryOptions={courseTitle?.category || []}
                   onCategoryChange={handleCategoryChange}
                   selectedCategory={selectedCategory}
+                  className  ="mbl-text"
                   placeholderTxt={
                     "Filter by Subcategory name (or) Category name"
                   }
