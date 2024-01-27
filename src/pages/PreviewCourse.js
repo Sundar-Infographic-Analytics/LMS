@@ -549,7 +549,7 @@ const PreviewCourse = () => {
                     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
                       <Viewer
                         plugins={[defaultLayoutPluginInstance]}
-                        fileUrl={selectedLesson?.videoId}
+                        fileUrl='https://learnnest.asncuniverse.com/static/pdf/lms.pdf'
                       />
                     </Worker>
                   </>
