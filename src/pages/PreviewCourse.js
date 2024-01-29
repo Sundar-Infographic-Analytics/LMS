@@ -22,7 +22,7 @@ import { useLoader } from "../Components/Utils/Loading/LoaderContext";
 
 
 // Import styles
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+
 
 const PreviewCourse = () => {
   const { setLoading } = useLoader();
