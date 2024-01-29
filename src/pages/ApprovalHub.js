@@ -126,7 +126,7 @@ const {setLoading}   = useLoader();
             width:"5%",
         },
         {
-            name:"Course Name",
+            name:"Course title",
             selector: row => row.course_title,
             sortable:true,
             style: {
@@ -142,14 +142,14 @@ const {setLoading}   = useLoader();
           width:"7%"
         },
         {
-          name:"subcatogory",
+          name:"Subcatogory",
           selector:row =>row.sub_category,
           sortable:true,
           width:"10%",
           cell: row => <div className="wrap-content">{row.sub_category}</div>,
         },
         {
-          name:"Employee name",
+          name:"Uploaded by",
           selector:row => row.first_name,
           sortable:true,
           width:"10%",

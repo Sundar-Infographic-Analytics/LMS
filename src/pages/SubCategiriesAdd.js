@@ -255,7 +255,7 @@ const SubCategiriesAdd = () => {
       width: "10%",
     },
     {
-      name: "Total Course",
+      name: "Total course",
       selector: (row) => row.course_count,
       sortable: true,
       width: "10%",
@@ -280,7 +280,7 @@ const SubCategiriesAdd = () => {
       width: "10%",
     },
     {
-      name: "View Sub Category",
+      name: "View subcategory",
       width: "17%",
       // selector
       cell: (row) => (
