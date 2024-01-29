@@ -75,8 +75,8 @@ const LastView = () => {
           <Row className="mart20 padb40">
           {console.log("viewd leson",viewedCourse)}
             {viewedCourse?.map((course, index) => (
-              <Col lg="3" className="marb10 " key={index}>
-                <div style={{width:"310px"}}>
+              <Col lg={4} sm={6} xl={12} xxl={3} className=" marb10 " key={index}>
+                <div className="" style={{width:"310px"}}>
                   <Image
                     src={course.course_image}
                     className="w100 border"

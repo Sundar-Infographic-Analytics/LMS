@@ -19,10 +19,7 @@ import YouTube from "react-youtube";
 import profile_img from "../assets/images/profile_img.png";
 import checkmark from "../assets/images/tick_mark.png";
 import { useLoader } from "../Components/Utils/Loading/LoaderContext";
-import { Viewer } from "@react-pdf-viewer/core";
-import { Worker } from "@react-pdf-viewer/core"
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+
 
 // Import styles
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
@@ -49,7 +46,6 @@ const PreviewCourse = () => {
   const { id } = useParams();
 
   const jwtToken = localStorage.getItem("jwtToken");
-  const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   const handleClick = async () => {
     if (completeButton) {
@@ -544,15 +540,7 @@ const PreviewCourse = () => {
                   {console.log("selectedddddd")}
                   {/* <object id="myPdf" title="pdf" type="application/pdf" data={selectedLesson?.videoId} ></object> */}
                   {/* <object  id="myPdf"   title="pdf"data={`https://docs.google.com/gview?embedded=true&url=${selectedLesson?.videoId}`} type="application/pdf"> </object> */}
-                  {/* <iframe  id="myPdf" src={selectedLesson?.videoId} title='SOME_TITLE' /> */}
-                  <>
-                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-                      <Viewer
-                        plugins={[defaultLayoutPluginInstance]}
-                        fileUrl='https://learnnest.asncuniverse.com/static/pdf/lms.pdf'
-                      />
-                    </Worker>
-                  </>
+                  <iframe  id="myPdf" src={`https://d3idlkk51igt07.cloudfront.net/LMS-lesson/pdf_viewer/web/viewer.html?reference=${selectedLesson?.videoId}`} title='PDF' />
                 </div>
               ) : (
                 <YouTube videoId={selectedLesson?.videoId} opts={opts} />
@@ -562,7 +550,9 @@ const PreviewCourse = () => {
                 {selectedLesson.lesson_type === "V" ? 'View' : 'Download'}
               </button> */}
                 <Button
-                  className="border pad5 padr30 padl30 tdn black fz18 fw400 dark_purple_bg white btn_color"
+                
+                  className="border mart10 pad5 padr30 padl30 tdn black fz18 marb30 fw400 dark_purple_bg white btn_color"
+                  style={{borderRadius:"0"}}
                   onClick={() => {
                     setConfirmModal(true);
                   }}
