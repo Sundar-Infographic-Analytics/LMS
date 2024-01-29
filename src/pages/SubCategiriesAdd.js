@@ -287,7 +287,7 @@ const SubCategiriesAdd = () => {
         <>
           {/* <div>{console.log(row, 'check superadmin linkClick')}</div> */}
           <Link
-            to={`/SubCategiriesCourse/${row?.subcategory_id}`}
+            to={`/SubCategoriesCourse/${row?.subcategory_id}`}
             style={{ textDecoration: "none" }}
             className="view-btn"
           >

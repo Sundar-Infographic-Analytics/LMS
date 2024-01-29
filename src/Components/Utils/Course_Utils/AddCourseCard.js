@@ -787,6 +787,7 @@ const AddCourse = () => {
                                 <span style={{ color: "red" }}>*</span>
                               </Form.Label>
                               <Form.Select
+                              style={{paddingRight:"35px"}}
                                 aria-label="Default select example"
                                 className="br5 bor_dark_purple"
                                 defaultValue="0"
@@ -848,8 +849,8 @@ const AddCourse = () => {
                                 <Form.Control
                                   type="file"
                                   accept=".png, .jpeg, .jpg"
-                                  className="bor_dark_purple br5 padl10 "
-                                  style={{ position: "relative" }}
+                                  className="bor_dark_purple br5 "
+                                  style={{ position: "relative" , paddingRight:"35px"}}
                                   onChange={handleImageChange}
                                 />
                               </div>
@@ -896,7 +897,7 @@ const AddCourse = () => {
                           <Button
                             type="submit"
                             id="submit"
-                            className="btn dark_purple_bg born btn_color w20 pad10 marb5 mart10 fw600"
+                            className="btn dark_purple_bg born btn_color  pad10 marb5 mart10 fw600"
                             onClick={handleSubmit}
                             disabled={buttonLoading}
                           >

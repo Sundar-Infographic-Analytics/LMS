@@ -16,7 +16,7 @@ const SubCatagiries={
         "id":1,
         "title":"Web Development",
         "image":img1,
-        "link":'/SubCategiriesCourse',
+        "link":'/SubCategoriesCourse',
     },
     {
         "id":2,

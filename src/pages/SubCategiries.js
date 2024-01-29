@@ -26,7 +26,7 @@ console.log(data, "dataaaaaaaaaaaaaaaaaa")
            
               {data?.subcategory.map((course) => (                
                 <Col lg={3} md={6}  className="mart50" key={course?.id}  style={{display:"flex",justifyContent:"center", alignItems:"center"}}> 
-                  <Link to={`/SubCategiriesCourse/${course?.id}`} >
+                  <Link to={`/SubCategoriesCourse/${course?.id}`} >
                     <div className="center_img posr ">
                       <p className="posa white pad15 ">{course?.subcategory_name}</p>
                      

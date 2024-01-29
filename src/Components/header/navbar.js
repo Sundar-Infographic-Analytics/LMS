@@ -111,10 +111,10 @@ const handleLogin = () =>{
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/" className={`${location.pathname ==='/'? 'nav_active fw600' : ""} `} >Home</Nav.Link>
-            <Nav.Link href="/Categiries/1" className={`${location.pathname ==='/Categiries/1'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
-            <Nav.Link href="/Categiries/2" className={`${location.pathname ==='/Categiries/2'? 'nav_active fw600' : ""}`} >Legal</Nav.Link>
-            <Nav.Link href="/Categiries/3" className={`${location.pathname ==='/Categiries/3'? 'nav_active fw600' : ""}`} >Risk</Nav.Link>
-            <Nav.Link href="/Categiries/4" className={`${location.pathname ==='/Categiries/4'? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
+            <Nav.Link href="/Categories/1" className={`${location.pathname ==='/Categories/1'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
+            <Nav.Link href="/Categories/2" className={`${location.pathname ==='/Categories/2'? 'nav_active fw600' : ""}`} >Legal</Nav.Link>
+            <Nav.Link href="/Categories/3" className={`${location.pathname ==='/Categories/3'? 'nav_active fw600' : ""}`} >Risk</Nav.Link>
+            <Nav.Link href="/Categories/4" className={`${location.pathname ==='/Categories/4'? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
       <Container>
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>
@@ -129,7 +129,7 @@ const handleLogin = () =>{
                 <Dropdown.Item href="/mycourse" className={`${location.pathname ==='/mycourse'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
                 {localStorage.getItem("role")=== "superadmin" ? (
                   <>
-                  <Dropdown.Item href="/SubCategiriesAdd" className={`${location.pathname ==='/SubCategiriesAdd'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={Subcategory} alt='' style={{width:'24px',}} /><span className='padl10'>Sub category</span></Dropdown.Item>
+                  <Dropdown.Item href="/SubCategoriesAdd" className={`${location.pathname ==='/SubCategoriesAdd'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={Subcategory} alt='' style={{width:'24px',}} /><span className='padl10'>Subcategory</span></Dropdown.Item>
                   <Dropdown.Item href="/approvalhub" className={`${location.pathname ==='/approvalhub'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={ApprovalHub_icon} alt='' style={{width:'24px',}} /><span className='padl10'>Approval Hub</span></Dropdown.Item>
                   </>
                 ) : (

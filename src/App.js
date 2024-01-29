@@ -41,10 +41,10 @@ const superAdmin = localStorage.getItem("role") === "superadmin" ;
         <Routes>
           <Route path='/' element={<><Home /></>} />             
           <Route path='/login' element={ token? (<Navigate to="/"/>):(<Login />) } />     
-          <Route path='/Categiries/:id' element={<><Categiries /></>} />    
-          <Route path='/SubCategiriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
+          <Route path='/Categories/:id' element={<><Categiries /></>} />    
+          <Route path='/SubCategoriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse/:id' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
-          <Route path='/SubCategiriesAdd' element={superAdmin? (<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>):<Navigate to="/"/>} />    
+          <Route path='/SubCategoriesAdd' element={superAdmin? (<ProtectedRoute><SubCategiriesAdd /></ProtectedRoute>):<Navigate to="/"/>} />    
           <Route path='/addnewcourse' element={<ProtectedRoute><AddNewCourse /></ProtectedRoute>} />  
           <Route path='/mycourse' element={<ProtectedRoute><MyCourse /></ProtectedRoute>} />    
           <Route path='/mylearnings' element={<ProtectedRoute><MyLearnings /></ProtectedRoute>} />   

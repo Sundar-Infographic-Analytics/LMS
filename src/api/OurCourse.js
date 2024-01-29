@@ -12,7 +12,7 @@ const OurCourse={
             "title":" Finance",
             // "text":"Over 400 Courses",
             "color":"fiance_clr ",
-            "link":"/Categiries",
+            "link":"/Categories",
         },
         {
             "id":2 ,
@@ -20,7 +20,7 @@ const OurCourse={
             "title":"Legal",
             // "text":"Over 200 Courses",
             "color":"light_red ",
-            "link":"/Categiries",
+            "link":"/Categories",
         },
         {
             "id":3,
@@ -28,7 +28,7 @@ const OurCourse={
             "title":"Risk Management",
             // "text":"Over 500 Courses",
             "color":"light_orange ",
-            "link":"/Categiries",
+            "link":"/Categories",
             
         },
         {
@@ -37,7 +37,7 @@ const OurCourse={
             "title":"Technology",
             // "text":"Over 800 Courses",
             "color":"light_blue",
-            "link":"/Categiries",
+            "link":"/Categories",
         }
         
         

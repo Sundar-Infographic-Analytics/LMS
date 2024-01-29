@@ -10,7 +10,7 @@ const data = {
         "image":img1,
         "updated":"22/12/19",
         "desc":"Web development refers to the creating, building, and maintaining of websites.",
-        "link":'/Categiries',
+        "link":'/Categories',
         "buttontxt":"View",
     },
     {
