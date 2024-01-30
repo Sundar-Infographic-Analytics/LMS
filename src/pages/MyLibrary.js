@@ -88,13 +88,13 @@ const response = await axios.post (
         <Header
             style={libraryBg}
         text="Explore Your Wisdom and Knowledge in Our Library"
-        title1="Where Knowledge Unfolds,"
+        title1="Where Knowledge Unfolds, "
         title2="and Courses Take Flight"
         />
         <Container>
         <Row className="mart30">
           {libraryData?.map((course, index) => (
-            <Col lg={3} className="marb20 scale-animation" key={index}>
+            <Col xxl={3} lg={4} md={6} sm={12}  className="marb20 scale-animation" key={index}>
             <div className="myanimation">
               <Link
                 title={course.course_name}
@@ -103,7 +103,7 @@ const response = await axios.post (
                 className="black fz16 fw400 "
               >
                 <Image src={course.course_image} className="w100 border" />
-                <div className="border pad10 " style={{ width:"306px", height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                <div className="border pad10 " style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                 <div >
                   <p
                     className="light_black"
@@ -127,7 +127,7 @@ const response = await axios.post (
                     className="tdn black"
                   ></Link> */} 
                   {/* // button is there between link tag */}
-                    <Button className="fz16 padl20  padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born ">
+                    <Button  style={{borderRadius:"0"}} className="fz16 padl20  padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born ">
                       View
                     </Button>
                   

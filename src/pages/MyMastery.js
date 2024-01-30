@@ -61,14 +61,14 @@ const MyLearnings = () => {
       <Header
         style={learningBg}
         text="Your Journey to Skillful Mastery Begins Here"
-        title1="Ignite Your Abilities,"
+        title1="Ignite Your Abilities, "
         title2="Master Your Craft"
       />
       {learnedCourse?.readCourseList?.length !== 0 ? (
         <Container>
         <Row className="mart30">
           {learnedCourse?.readCourseList?.map((course, index) => (
-            <Col lg={3} className="marb20 scale-animation" key={index}>
+            <Col xxl={3} lg={4} md={6} sm={12} className="marb20 scale-animation" key={index} >
             <div className="myanimation">
               <Link
               title = {course.course_name}
@@ -77,7 +77,7 @@ const MyLearnings = () => {
                 className="black fz16 fw400"
               >
                 <Image src={course.course_image} className="w100 border" />
-                <div className="border pad10" style={{ width:"306px", height:"240px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                <div className="border pad10" style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                 <div>
                   <p
                     className="light_black"

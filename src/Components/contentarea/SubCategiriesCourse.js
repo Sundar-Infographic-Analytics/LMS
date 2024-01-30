@@ -97,10 +97,10 @@ const SubCategiriesCourse = () => {
       ) : (
         <>
           <Container>
-          <div className="courseCard-container">
+          <div className="">
             <Row className="mart30" style={{display:"flex"}}>
               {Course?.map((course, index) => (
-                <Col lg={3} className="marb20 scale-animation" key={index} >
+                <Col xxl={3} lg={4} md={6} sm={12} className="marb20 scale-animation" key={index} >
                 <div className="myanimation">
                   <Link
                   title={course.course_name}
@@ -109,8 +109,8 @@ const SubCategiriesCourse = () => {
                     className="black fz16 fw400"
                   >
                
-                    <Image src={course.course_image} className="w100 border courseCard-IMG" />
-                    <div className="border pad10 courseCard-Content" >
+                    <Image src={course.course_image} className="w100 border" />
+                    <div className="border pad10 " style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                          <div>
                             <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}
                                {course.formatted_created_date}
@@ -124,12 +124,12 @@ const SubCategiriesCourse = () => {
                           </div>
                         <div >
                           <Col lg={12} >
-                             <div className="course-footer padt15" style={{display:"flex", alignItems:"baseline"}}>
+                             <div className="course-footer padt20">
                       {/* <Link
                         to={`/PreviewCourse/${course.id}`}
                         className="tdn black"
                       > */}
-                        <Button style={{borderRadius:"0"}} className="fz16 padl20 padr20 dark_purple_bg bor_dark_purple fr r20  padl30 padr30 btn_color born ">
+                        <Button style={{borderRadius:"0"}} className="fz16 padl20  padr20 dark_purple_bg bor_dark_purple br0 fr r20  padl30 padr30 btn_color born  ">
                           View
                         </Button>
                       {/* </Link> */}

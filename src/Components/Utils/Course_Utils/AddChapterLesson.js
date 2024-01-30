@@ -89,11 +89,11 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   ];
 
   const handleChapterClose = () => {
-    setShowChpter(false);
     setErrors({});
     setEditState({});
     setChapterename("");
     setButtonLoading(false);
+    setShowChpter(false);
   };
   const handleChapterShow = () => {
     setShowChpter(true);
@@ -112,6 +112,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       chapter_id: null,
     });
     setButtonLoading(false);
+    setShowDelete(false);
   };
   const handleShow = () => {
     setShow(true);
@@ -1159,6 +1160,7 @@ const HandleDraftSubmit = async () =>{
             <Button
               variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
               onClick={handleClose}
+
             >
               Cancel
             </Button>
