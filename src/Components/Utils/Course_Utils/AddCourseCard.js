@@ -27,7 +27,7 @@ const AddCourse = () => {
   console.log(courseTitle, "kkkkkkkkkkkkkkkk");
 
   const navigate = useNavigate();
-
+  const allowedTypes = ["image/jpeg","image/jpg", "image/png","image/svg"];
   const [show, setShow] = useState(false);
   const [showdelete, setShowDelete] = useState(false);
   const [cardloading, setCardLoading] = useState(false);
@@ -106,7 +106,7 @@ const AddCourse = () => {
       setImagePreview(null);
     }
   };
-
+  
   const validateForm = () => {
     const errors = {};
     if (!courseFormData?.course_name.trim()) {
@@ -131,6 +131,19 @@ const AddCourse = () => {
     if (courseFormData.category_id && !courseFormData.subcategory_id) {
       errors.subcategory_id = "Please select a subcategory.";
     }
+    if(courseFormData?.course_image){
+
+      if(courseFormData?.course_image?.type){
+        if(!allowedTypes.includes(courseFormData?.course_image?.type)){
+          errors.course_image = "Only JPEG, PNG, SVG images are allowed";
+        }
+      }
+
+      if(courseFormData?.course_image?.size >1*1024*1024){
+          errors.course_image = "File size must be less than 1 MB";
+      }
+    }
+    
     // Add more validations as needed
 
     setFormErrors(errors);
@@ -167,6 +180,18 @@ const AddCourse = () => {
     if (editCourseData?.course_image ) {
       if (editCourseData?.course_image.size > MAX_IMG_SIZE){
         errors.course_image = "file size must not exceed 1 MB";
+      }
+    }
+    if(editCourseData?.course_image){
+
+      if(editCourseData?.course_image?.type){
+        if(!allowedTypes.includes(editCourseData?.course_image?.type)){
+          errors.course_image = "Only JPEG, PNG, SVG images are allowed";
+        }
+      }
+
+      if(editCourseData?.course_image?.size >1*1024*1024){
+          errors.course_image = "File size must be less than 1 MB";
       }
     }
     // Add more validations as needed
@@ -496,7 +521,7 @@ const AddCourse = () => {
                       Sub Category <span style={{ color: "red" }}>*</span>
                     </Form.Label>
                     <Form.Select
-                    
+                      style={{paddingRight:"35px"}}
                       sm={12}
                       aria-label="Default select example"
                       className="br5 bor_dark_purple"
@@ -854,6 +879,11 @@ const AddCourse = () => {
                                   onChange={handleImageChange}
                                 />
                               </div>
+                              {formErrors.course_image && (
+                            <Form.Text className="text-danger">
+                              {formErrors.course_image}
+                            </Form.Text>
+                          )}
                             </Form.Group>
                             <div
                               style={{

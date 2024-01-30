@@ -68,6 +68,7 @@ const SubCategiriesAdd = () => {
   const handledeleteClose = () => {
     setShowDeleteModal(false);
   };
+  const allowedTypes = ["image/jpeg","image/jpg", "image/png","image/svg"];
   const [previewSubCatIMG, setPreviewSubCatIMG] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [showdeleteModal, setShowDeleteModal] = useState(false);
@@ -119,12 +120,15 @@ const SubCategiriesAdd = () => {
 
     if (subCategory?.bannerImg) {
       if (subCategory?.bannerImg?.size > MAX_FILE_SIZE) {
-        error.bannerImg = " file size must not exceed 500 KB";
+        error.bannerImg = " Filesize exceeds 500KB";
+      }
+      if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
+        error.bannerImg = "Only JPEG, PNG, SVG";
       }
     }
     // console.log("conditionsnew", (subCategory?.subCategoryInput.trim())&&subCategory?.subCategoryInput?.trim().length )
     if (!subCategory?.subCategoryInput.trim()) {
-      error.subCategoryInput = "Enter Sub category";
+      error.subCategoryInput = "Enter Subcategory";
       console.log("conditions111")
     } else if (subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length <10) {
       // console.log("conditions",subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length >=10 )
@@ -152,10 +156,13 @@ const SubCategiriesAdd = () => {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
         error.bannerImg = " file size must not exceed 500 KB";
       }
+      if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
+        error.bannerImg = "Only JPEG, PNG, SVG";
+      }
     }
 
     if (!editedSubCategory?.subCategoryInput.trim()) {
-      error.subCategoryInput = "Enter Sub category";
+      error.subCategoryInput = "Enter Subcategory";
     } 
 
     setError(error);
@@ -239,7 +246,7 @@ const SubCategiriesAdd = () => {
       sortable: false,
     },
     {
-      name: "Sub category",
+      name: "Subcategory",
       selector: (row) => row.subcategory_name,
       sortable: true,
       style: {
@@ -648,7 +655,7 @@ const SubCategiriesAdd = () => {
                         href={previewSubCatIMG}
                         className="mt-2"
                       >
-                        View previous Thubmnail
+                        View previous Thumbnail
                       </a>
                     )}
                       <div>
@@ -666,7 +673,7 @@ const SubCategiriesAdd = () => {
                   {/* <Form> */}
                   <Form.Group className="mb-3" controlId="subCategoryInput">
                     <Form.Label className="fw600">
-                      Sub Category{" "}
+                      Subcategory{" "}
                       <span style={{ color: "red", fontSize: "18px" }}>*</span>
                     </Form.Label>
                     <Form.Control

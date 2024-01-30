@@ -341,9 +341,13 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         }
       }
       if (lesssonData?.file_type === "P") {
+        if (lesssonData?.file_path?.type !== "application/pdf" ){
+          // console.log(lesssonData?.file_path?.type, "extentionnnn")
+          lessonerror.file_path = "The file only accepts the PDF format";
+        }
        if (lesssonData?.file_path.size > MAX_FILE_SIZE) {
         lessonerror.file_path = "PDF file must have a maximum file size of 5 MB";
-       }
+       } 
       }
     }
     setErrors(lessonerror);
@@ -420,6 +424,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         }
       }
       if (editLessonState?.file_type === "P") {
+        if (editLessonState?.file_path?.type !== "application/pdf" ){
+          // console.log(lesssonData?.file_path?.type, "extentionnnn")
+          lessonEditerror.file_path = "The file only accepts the PDF format";
+        }
         if (editLessonState?.file_path.size > MAX_FILE_SIZE) {
           lessonEditerror.file_path = "PDF file must have a maximum file size of 5 MB";
         }
