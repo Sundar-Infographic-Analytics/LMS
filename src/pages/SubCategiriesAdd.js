@@ -156,9 +156,12 @@ const SubCategiriesAdd = () => {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
         error.bannerImg = " file size must not exceed 500 KB";
       }
-      if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
-        error.bannerImg = "Only JPEG, PNG, SVG";
+      if(subCategory?.bannerImg?.name){
+        if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
+          error.bannerImg = "Only JPEG, JPG, PNG, SVG";
+        }
       }
+      
     }
 
     if (!editedSubCategory?.subCategoryInput.trim()) {
@@ -500,7 +503,7 @@ const SubCategiriesAdd = () => {
   // console.log(courseTitle, "all sub courseTitle");
   // console.log(selectedCategory, ".....all sub selectedCategory");
   // console.log(editMode, ".....edit editmode");
-  // console.log(editedSubCategory, ".....edit subcatedit");
+  console.log(editedSubCategory, ".....edit subcatedit");
   // console.log(deleteSubcat, "deleteData setData");
   // console.log(previewSubCatIMG, "previewSubCatIMG setData");
   return (
@@ -678,7 +681,7 @@ const SubCategiriesAdd = () => {
                     </Form.Label>
                     <Form.Control
                       name="subCategoryInput"
-                      placeholder="Enter Sub Category"
+                      placeholder="Enter Subcategory"
                       className="h50 white_bg bor2"
                       value={
                         editMode

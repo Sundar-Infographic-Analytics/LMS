@@ -518,7 +518,7 @@ const AddCourse = () => {
                     controlId="formBasicEmail"
                   >
                     <Form.Label className="fw600 fz15">
-                      Sub Category <span style={{ color: "red" }}>*</span>
+                      Subcategory <span style={{ color: "red" }}>*</span>
                     </Form.Label>
                     <Form.Select
                       style={{paddingRight:"35px"}}
@@ -808,7 +808,7 @@ const AddCourse = () => {
                               controlId="formBasicEmail"
                             >
                               <Form.Label className="fw600 fz15">
-                                Sub Category{" "}
+                                Subcategory{" "}
                                 <span style={{ color: "red" }}>*</span>
                               </Form.Label>
                               <Form.Select
