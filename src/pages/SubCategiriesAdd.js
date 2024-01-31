@@ -154,7 +154,7 @@ const SubCategiriesAdd = () => {
 
     if (editedSubCategory?.bannerImg) {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
-        error.bannerImg = " file size must not exceed 500 KB";
+        error.bannerImg = "Filesize exceeds 500KB";
       }
       if(subCategory?.bannerImg?.name){
         if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
