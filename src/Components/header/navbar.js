@@ -64,7 +64,7 @@ const onClick =  async () =>{
 
     // Assuming that the response data contains the course title
     setData(response.data.count);
-    console.log(response.data.count,"mmmmmmmmmmmmmmmmmmmm")
+    // console.log(response.data.count,"mmmmmmmmmmmmmmmmmmmm")
   } catch (error) {
     // Handle any errors that might occur during the Axios POST request
     console.error("Error while making the Axios request:", error);
@@ -102,7 +102,7 @@ const handleLogin = () =>{
   return (    
    
     <CourseTitleProvider  >
-     { console.log("addcheckkkNavvvvvvDATA",data )}
+     {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
     <div className={`navbar_color fl w100 ${className} `} style={style} >
    <Navbar  expand="lg" className="bg-body-tertiary"  >
       <Container  >

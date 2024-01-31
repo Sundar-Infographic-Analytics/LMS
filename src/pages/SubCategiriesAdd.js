@@ -169,7 +169,7 @@ const SubCategiriesAdd = () => {
     return Object.keys(error).length === 0;
   };
 
-  console.log(subCategory, "subCategory onchange");
+  // console.log(subCategory, "subCategory onchange");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = await validation();
@@ -495,14 +495,14 @@ const SubCategiriesAdd = () => {
       });
   };
 
-  console.log(subCategory, "subcatttttttttttttttttt");
-  console.log(allSubcategory, "all sub");
-  console.log(courseTitle, "all sub courseTitle");
-  console.log(selectedCategory, ".....all sub selectedCategory");
-  console.log(editMode, ".....edit editmode");
-  console.log(editedSubCategory, ".....edit subcatedit");
-  console.log(deleteSubcat, "deleteData setData");
-  console.log(previewSubCatIMG, "previewSubCatIMG setData");
+  // console.log(subCategory, "subcatttttttttttttttttt");
+  // console.log(allSubcategory, "all sub");
+  // console.log(courseTitle, "all sub courseTitle");
+  // console.log(selectedCategory, ".....all sub selectedCategory");
+  // console.log(editMode, ".....edit editmode");
+  // console.log(editedSubCategory, ".....edit subcatedit");
+  // console.log(deleteSubcat, "deleteData setData");
+  // console.log(previewSubCatIMG, "previewSubCatIMG setData");
   return (
     <div>
       <div className="delete modal">
@@ -522,7 +522,7 @@ const SubCategiriesAdd = () => {
           <Modal.Footer>
             <Button
               variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
-              // onClick={handledeleteClose}
+              onClick={handledeleteClose}
             >
               Cancel
             </Button>

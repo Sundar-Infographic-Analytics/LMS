@@ -1,7 +1,11 @@
-import img1 from '../assets/images/tech.png'
-import img2 from '../assets/images/risk.png'
-import img3 from '../assets/images/finance.png'
-import img4 from '../assets/images/legal.png'
+// import img1 from '../assets/images/tech.png'
+// import img2 from '../assets/images/risk.png'
+// import img3 from '../assets/images/finance.png'
+// import img4 from '../assets/images/legal.png'
+import img1 from '../assets/images/Gif/technology 02 (1).gif'
+import img2 from '../assets/images/Gif/risk02 (1).gif'
+import img3 from '../assets/images/Gif/Finanace 02 (1).gif'
+import img4 from '../assets/images/Gif/legal.gif'
 const OurCourse={
     "main_title":"Explore Our Course Selections",
     "desc":"Your all-in-one learning solution, making it easy and fast to acquire knowledge effortlessly",

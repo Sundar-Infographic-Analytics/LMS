@@ -114,8 +114,8 @@ const PreviewCourse = () => {
 
         const data = response.data;
 
-        console.log(data, "videooooolink");
-        console.log("dataaa", data.firstMatchingLesson.file_type);
+        // console.log(data, "videooooolink");
+        // console.log("dataaa", data.firstMatchingLesson.file_type);
 
         if (data && data?.courseResults && data.courseResults?.length > 0) {
           setChapter(data?.courseResults[0]?.chapter);
@@ -151,14 +151,15 @@ const PreviewCourse = () => {
             data.courseResults[0]?.chapter[0] &&
             data.courseResults[0]?.chapter[0]?.lesson
           )
-            console.log(initialLesson, "initialLesson");
-          console.log(data, "dataaaaaaaaaaaaaaa");
+            console.log("");
+            // console.log(initialLesson, "initialLesson");
+          // console.log(data, "dataaaaaaaaaaaaaaa");
           // if (initialLesson == null) {
           const videoId =
             initialLesson?.file_type === "V"
               ? extractVideoIdFromUrl(initialLesson?.file_path)
               : initialLesson?.file_path;
-          console.log("videoId", videoId);
+          // console.log("videoId", videoId);
           if (videoId) {
             // setVideoLink(initialLesson?.file_path);
             setSelectedLesson({
@@ -303,9 +304,9 @@ const PreviewCourse = () => {
 
   // };
 
-  console.log("0001chapter", chapter);
-  console.log("0002Alldata", allData);
-  console.log("000seleced", selectedLesson);
+  // console.log("0001chapter", chapter);
+  // console.log("0002Alldata", allData);
+  // console.log("000seleced", selectedLesson);
 
   // const btnCss = {
   //   display: "flex",
@@ -473,7 +474,7 @@ const PreviewCourse = () => {
                           style={{ paddingLeft: "10px", paddingRight: "10px" }}
                           key={lesson.lesson_id}
                         >
-                          {console.log("00000 course", lesson.file_type)}
+                          {/* {console.log("00000 course", lesson.file_type)} */}
                           <li
                             className={`lesson-item ${
                               // for hide last LINE
@@ -530,9 +531,9 @@ const PreviewCourse = () => {
           </Col>
 
           <Col lg={9}>
-            {console.log("003", selectedLesson)}
+            {/* {console.log("003", selectedLesson)} */}
             <div className="mart20">
-              {console.log("selectedlessson", selectedLesson)}
+              {/* {console.log("selectedlessson", selectedLesson)} */}
               {selectedLesson?.lesson_type === "P" ? (
                 //pdf viewer
 

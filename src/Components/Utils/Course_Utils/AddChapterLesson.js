@@ -510,8 +510,9 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         setSubmitButtonLoading(true);
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/coursesubmit`,
-          {
+          { 
             id: localStorage.getItem("getcourseID"),
+            statusCode : 0
           },
           {
             headers: {
@@ -733,7 +734,22 @@ console.log(isValid,"lllllllllll")
 
 const HandleDraftSubmit = async () =>{
   setDraftButtonLoading(true);
-  setTimeout(() => {
+  try{
+    setLoading(true)
+    const response = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/coursesubmit`,
+      { 
+        id: localStorage.getItem("getcourseID"),
+        statusCode : 3
+      },
+      {
+        headers: {
+          Authorization:localStorage.getItem("jwtToken"),
+        },
+      }
+    ).then((res) =>{
+      if (res?.data?.code === 200) {
+        setTimeout(() => {
     setDraftButtonLoading(false);
     navigate("/mycourse")
     const CustomToast = () => (    
@@ -759,6 +775,42 @@ const HandleDraftSubmit = async () =>{
       theme: "light",
       });
   }, 1000);
+      }
+    }).catch((errors)=>{
+      console.log("error to sumbit as draft",errors);
+    })
+    
+    console.log("course submit msg:", response?.data);
+  }catch(error){
+    console.log("error to sumbit as draft",error);
+  }
+  // setDraftButtonLoading(true);
+  // setTimeout(() => {
+  //   setDraftButtonLoading(false);
+  //   navigate("/mycourse")
+  //   const CustomToast = () => (    
+          
+  //     <div className="vmiddle " style={{padding:"0 10px", gap:"10px"}}>
+  //     <div className="user-profile">
+  //       <img  src={BookSubmission} alt="submit"/>
+  //     </div>
+  //       <p>      
+  //       Your course saved as , <strong>Draft</strong>!
+  //     </p>
+  
+  //     </div>
+  //   );
+  //   toast( <CustomToast />, {
+  //     position: "top-right",
+  //     autoClose: 3000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "light",
+  //     });
+  // }, 1000);
 }
   
 
@@ -1437,7 +1489,7 @@ const HandleDraftSubmit = async () =>{
                         style={{ marginRight: "5px" }}
                       />
                     )}
-                    Submit
+                   {ChapterMapData[0]?.approved_status === 2 ? "Resubmit" : "Submit"} 
                   </Button>
                 </div>
               </Col>

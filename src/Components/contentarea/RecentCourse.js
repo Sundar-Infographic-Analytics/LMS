@@ -56,7 +56,7 @@ export const RecentCourse = () => {
     };
     fetchData();
   }, [jwtToken]);
-  console.log(recentCourse, "recentCoursevvkkvkvvk");
+  // console.log(recentCourse, "recentCoursevvkkvkvvk");
   //  console.log(recentCourse[0].id,"kkkk");
 
   const settings = {

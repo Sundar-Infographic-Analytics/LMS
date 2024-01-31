@@ -49,7 +49,7 @@ const OurCourse = () => {
                 <Link to={`${course.link}/${courseTitle[index]?.id}`} style={{textDecoration:'none',}}>
                 <div className={course.color} style={{maxHeight:'263px'}}>
                   <div className='text-center padt50 padb50'>
-                    <Image src={course.image} />
+                    <Image src={course.image}  style={{width:"95px", height:"95px"}} />
                     <p className='white fw600 mart20 fz22'>{courseTitle[index]?.category_name}</p>
                     <p className='white fw400 fz16'>{course.text}</p>
                   </div>

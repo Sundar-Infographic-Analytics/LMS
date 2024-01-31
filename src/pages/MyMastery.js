@@ -10,6 +10,7 @@ import axios from "axios";
 import Whistlist from "../Components/Utils/Whistlist";
 import { useLoader } from "../Components/Utils/Loading/LoaderContext";
 import LastView from "../Components/contentarea/LastView";
+import NoImg from '../assets/images/NoImg.svg'
 
 const MyLearnings = () => {
   const {setLoading} = useLoader();
@@ -53,7 +54,7 @@ const MyLearnings = () => {
     }
     return text;
   };
-  console.log(learnedCourse,"my Mstery dataaaaaa")
+  // console.log(learnedCourse,"my Mstery dataaaaaa")
   return (
     <>
       <Navbar />
@@ -76,7 +77,7 @@ const MyLearnings = () => {
                 style={{ textDecoration: "none" }}
                 className="black fz16 fw400"
               >
-                <Image src={course.course_image} className="w100 border" />
+                <Image src={course.course_image || NoImg} style={{  height:"168px" , objectFit:"cover" }} className="w100 border" />
                 <div className="border pad10" style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                 <div>
                   <p

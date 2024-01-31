@@ -47,7 +47,7 @@ export const CourseTitleProvider = ({ children }) => {
   
   return (
     <CourseTitleContext.Provider value={ courseTitle } >
-    {console.log('addcheckkkkcontect', courseTitle)}
+    {/* {console.log('addcheckkkkcontect', courseTitle)} */}
       {children}
     </CourseTitleContext.Provider>
   );

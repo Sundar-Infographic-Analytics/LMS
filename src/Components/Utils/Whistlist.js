@@ -13,7 +13,7 @@ const Whistlist = ({ course_id, active, onClick2}) => {
   const jwtToken = localStorage.getItem("jwtToken");
   const [wishlist, setWishlist] = useState(active);
   const [msg, setmsg] = useState("");
-  const [check, setCheck]  = useState('');
+  // const [check, setCheck]  = useState('');
   const courseTitle = useCategoryTitle();  
 
 
@@ -76,7 +76,7 @@ const Whistlist = ({ course_id, active, onClick2}) => {
         console.log(response.data, 'Console')
         // window.location.reload();
         setmsg(response.data.msg)
-        setCheck(response)
+        // setCheck(response)
         console.log(response,'msssssssssssssssssssssss..........')
       })
       .catch((error) => {
@@ -85,8 +85,8 @@ const Whistlist = ({ course_id, active, onClick2}) => {
 
       
   };
-  console.log(msg,"msssssssssssssssssssssss")
-  console.log(check,"mssssssssssssssssssssssscheck")
+  // console.log(msg,"msssssssssssssssssssssss")
+  // console.log(check,"mssssssssssssssssssssssscheck")
   return (
     <>
   

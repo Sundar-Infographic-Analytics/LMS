@@ -11,6 +11,7 @@ import axios from "axios";
 import Whistlist from "../Components/Utils/Whistlist";
 import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
 import { useLoader } from "../Components/Utils/Loading/LoaderContext";
+import NoImg from '../assets/images/NoImg.svg'
 
 
 const MyLibrary = () => {
@@ -83,7 +84,7 @@ const response = await axios.post (
   return (
     <>
         <Navbar courseTitleProp={courseTitle}/>
-        {console.log("libraryData",libraryData)}
+        {/* {console.log("libraryData",libraryData)} */}
      
         <Header
             style={libraryBg}
@@ -102,7 +103,7 @@ const response = await axios.post (
                 style={{ textDecoration: "none" }}
                 className="black fz16 fw400 "
               >
-                <Image src={course.course_image} className="w100 border" />
+                <Image src={course.course_image || NoImg} style={{  height:"168px" , objectFit:"cover" }} className="w100 border " />
                 <div className="border pad10 " style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                 <div >
                   <p

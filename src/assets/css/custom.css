@@ -391,7 +391,7 @@ background-color: #f6f6f6;
   object-fit: cover;
 }
 .slide-item .content-container {
-  width: 100% ;
+  width: 412px ;
   height: auto ; 
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;

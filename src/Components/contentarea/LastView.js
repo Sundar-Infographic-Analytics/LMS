@@ -19,7 +19,7 @@ const LastView = () => {
     }
   }, [viewedCourse])
 
-  console.log(viewedCourse, "crData");
+  // console.log(viewedCourse, "crData");
   useEffect(() => {
     const userName = localStorage.getItem("userName:");
 
@@ -57,8 +57,9 @@ const LastView = () => {
     
       {isLoggedIn ? (
         <Container>
-        {
-    console.log(lastViewedEmpty,'llllllllllllllllllllllllllllllllllllllllllllllllll')}
+        {/* {
+    console.log(lastViewedEmpty,'llllllllllllllllllllllllllllllllllllllllllllllllll')
+    } */}
           {lastViewedEmpty ? (
             <></>
           ) : (
@@ -73,7 +74,7 @@ const LastView = () => {
           )}
 
           <Row className="mart20 padb40">
-          {console.log("viewd leson",viewedCourse)}
+          {/* {console.log("viewd leson",viewedCourse)} */}
             {viewedCourse?.map((course, index) => (
               <Col lg={4} sm={6} xl={12} xxl={3} className=" marb10 " key={index}>
                 <div className="" >

@@ -116,8 +116,8 @@ const {setLoading}   = useLoader();
   //   setData(newArr);
   // }
 
- const [getPreviewCourseID, setGetPreviewCourseID]= useState('');
- console.log(getPreviewCourseID, "check superadmin link")
+//  const [getPreviewCourseID, setGetPreviewCourseID]= useState('');
+//  console.log(getPreviewCourseID, "check superadmin link")
 
     const columns = [
         {
@@ -171,8 +171,8 @@ const {setLoading}   = useLoader();
           // selector
           cell: row => (
           <>
-          {/* <div>{console.log(row, 'check superadmin linkClick')}</div> */}
-          <Link to={`/PreviewCourse/${row?.id}`}  onClick={()=> setGetPreviewCourseID(row?.id)} style={{textDecoration:"none"}} className="view-btn">View</Link> 
+          {/* <div>{console.log(row, 'check superadmin linkClick')}</div> // hide console from Below link========> onClick={()=> setGetPreviewCourseID(row?.id)} */}
+          <Link to={`/PreviewCourse/${row?.id}`}  style={{textDecoration:"none"}} className="view-btn">View</Link>  
           </>
           )
         },
@@ -258,7 +258,7 @@ const {setLoading}   = useLoader();
       
     ];
 
-   console.log(adminList, "llllllllllllllllllllllllll")
+  //  console.log(adminList, "llllllllllllllllllllllllll")
 
   return (
     <>
@@ -273,8 +273,8 @@ const {setLoading}   = useLoader();
       <div className='rdt_Table'>
         <DataTable pagination columns={columns}  data={filteredItemsByAction} conditionalRowStyles={conditionalRowStyles} subHeaderComponent={subHeaderComponentMemo}/>
         </div>
-        {console.log("checkVal",radioValue, "inddd")}
-        {console.log("checkValadmin",adminList, "admin")}
+        {/* {console.log("checkVal",radioValue, "inddd")}
+        {console.log("checkValadmin",adminList, "admin")} */}
       </Container>
     </>
   );

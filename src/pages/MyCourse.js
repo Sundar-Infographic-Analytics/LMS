@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import FilterComponent from '../Components/Utils/CourseFilter.js';
 import axios from 'axios';
 import { useLoader } from '../Components/Utils/Loading/LoaderContext.js';
-
+import {Link} from 'react-router-dom'
 const MyCourse = () => {
 
   
@@ -27,7 +27,7 @@ const MyCourse = () => {
   const [deleteId, setDeleteId] = useState('')
 
   const [datas,setData] = useState([]);
-  console.log(deleteId,"daaaaaaaaaaaaaaaaaaaaaaaa")
+  // console.log(deleteId,"daaaaaaaaaaaaaaaaaaaaaaaa")
 
   const handledeleteClose = () => {
     setShowDelete(false);
@@ -82,7 +82,25 @@ const handleCourseEditSumbit = async  (row) =>{
 //   localStorage.setItem("getcourseID", courseId) ;
 
 // }
-
+const undoSubmitHandlechange = async (courseID) =>{
+  setLoading(true)
+  const response = await axios.post(
+    `${process.env.REACT_APP_BASE_URL}/coursesubmit`,
+    { 
+      id:courseID,
+      statusCode : 3
+    },
+    {
+      headers: {
+        Authorization:localStorage.getItem("jwtToken"),
+      },
+    }
+  ).finally(()=>{
+      navigate(0);
+      // console.log("course submit msg:", response?.data);
+  })
+  console.log("course submit msg:", response?.data);
+}
    const StatusColor={
     draft_bg :"#8c8f93",
     pending_bg:"#ffc107",
@@ -139,18 +157,28 @@ const handleCourseEditSumbit = async  (row) =>{
   {
     name: 'Action',
     sortable: true,
-    width: "7%",
+    width: "",
    cell:(row) =>(
      <>
-     {console.log(row, "rowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" )}
+     {/* {console.log(row, "rowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" )} */}
       <div className="dif">
-                          {/* <Link className="/addnewcourse"> */}
-                            <Image title={row?.status === "Approved" ? "Disabled if Approved" :"Edit"} src={EditIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1",}} alt="Edit" onClick={() => {if (row && row.status !== "Approved") {handleCourseEditSumbit(row)}}}/>
+      {row?.status.toLowerCase() === "pending" ? (
+        <Link style={{textDecoration:"none", padding:"8px 15px"}} className="view-btn" onClick={() => undoSubmitHandlechange(row?.id)} >Undo Submit</Link> 
+      ) :
+      (
+        <>
+   {/* <Link className="/addnewcourse"> */}
+   <Image title={row?.status === "Approved" ? "Disabled if Approved" :"Edit"} src={EditIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1",}} alt="Edit" onClick={() => {if (row && row.status !== "Approved") {handleCourseEditSumbit(row)}}}/>
                           {/* </Link> */}
                           {/* <Link className="padl20 padr20"> */}
                             <Image title={row?.status === "Approved" ? "Disabled if Approved" :"Delete"} src={DeleteIcon} className="img_action" style={{cursor:row?.status === "Approved" ? "not-allowed" :"pointer",opacity:row?.status === "Approved" ? "0.5" :"1", marginLeft:"10px"}} alt="Delete" onClick={() =>{ if (row && row.status !== "Approved") { setShowDelete(true); setDeleteId(row.id); }
 }} />
                           {/* </Link> */}
+</>
+       
+      ) }
+                         
+                          
                         </div>
     </>
    ),
@@ -231,7 +259,7 @@ const handleCourseDeleteSubmit = async () => {
     });
 };
 
-console.log(datas,"dddddddddddddddddddddddd")
+// console.log(datas,"dddddddddddddddddddddddd")
   return (
     <>
      <div className="delete modal">

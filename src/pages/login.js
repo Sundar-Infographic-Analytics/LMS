@@ -20,27 +20,27 @@ import eye from "../assets/images/show.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
+// import { useCategoryTitle } from '../Components/Utils/CategoryTitleContext';
 
 
 const Login = () => {
   const navigate = useNavigate(); // to naviagte
-   const[userData, setUserData] = useState('');
+  //  const[userData, setUserData] = useState('');
 
    const currentDate = new Date();
   const year = currentDate.getFullYear();
 
-   console.log("urlNew,", userData);
+  //  console.log("urlNew,", userData);
 const [buttonLoading, setButtonLoading] = useState(false);
-  const courseTitle = useCategoryTitle(); //checkinggggg....
-  console.log("addcheckkkk03",courseTitle)
+  // const courseTitle = useCategoryTitle(); //checkinggggg....
+  // console.log("addcheckkkk03",courseTitle)
 
   // Initialize the specialLogout flag
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordClick  = async() =>{
     setShowPassword(!showPassword)
-    console.log("passwordShow", showPassword)
+    // console.log("passwordShow", showPassword)
   }
   
 
@@ -93,8 +93,8 @@ const [buttonLoading, setButtonLoading] = useState(false);
     await axios
     .post(`${process.env.REACT_APP_BASE_URL}/lmsLogin`, credentials)
     .then((response) => {
-      console.log("nn", response);
-      setUserData(response.data);
+      // console.log("nn", response);
+      // setUserData(response.data);
       localStorage.setItem("userImg:", response.data.photo_url)
       if (response.status === 200) {
         const token = response.data.jwtToken;
@@ -105,7 +105,7 @@ const [buttonLoading, setButtonLoading] = useState(false);
         localStorage.setItem("role", Role);
 
         
-        console.log("userDataaaaAAA",response.data);
+        // console.log("userDataaaaAAA",response.data);
         // const decodedToken = jwt_decode(token);
       
         // const expirationTime = decodedToken.exp * 1000;
@@ -216,7 +216,7 @@ const [buttonLoading, setButtonLoading] = useState(false);
   return (
     <>
       <div>
-      {console.log("userDataaaaAAA",userData)}
+      {/* {console.log("userDataaaaAAA",userData)} */}
         <Container fluid>
           <Row>
           

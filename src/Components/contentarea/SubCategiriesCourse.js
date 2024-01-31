@@ -12,6 +12,7 @@ import axios from "axios";
 import { RecentCourse } from "./RecentCourse";
 import Whistlist from "../Utils/Whistlist";
 import { useLoader } from "../Utils/Loading/LoaderContext";
+import NoImg from '../../assets/images/NoImg.svg'
 
 const SubCategiriesCourse = () => {
   const {setLoading} = useLoader();
@@ -48,7 +49,7 @@ const SubCategiriesCourse = () => {
           }
         )
         .then((response) => {
-          console.log(response.data, "idcheck");
+          // console.log(response.data, "idcheck");
           setCourse(response.data.courselist);
           setSubCategory(response.data.subategory[0]);
         })
@@ -79,8 +80,8 @@ const SubCategiriesCourse = () => {
   return (
     <div>
       <Navbar />
-      {console.log(Course, "dhvagrrrrrrrr")}
-      {console.log(subCategory, "subCategory")}
+      {/* {console.log(Course, "dhvagrrrrrrrr")}
+      {console.log(subCategory, "subCategory")} */}
       <Header
         style={subCategory?.banner_path}
         text="Technology is bringing a massive wave of evolution for learning things in different ways."
@@ -109,7 +110,7 @@ const SubCategiriesCourse = () => {
                     className="black fz16 fw400"
                   >
                
-                    <Image src={course.course_image} className="w100 border" />
+                    <Image src={course.course_image || NoImg} style={{  height:"168px" , objectFit:"cover" }} className="w100 border" />
                     <div className="border pad10 " style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                          <div>
                             <p className="light_black" style={{ padding: "0px 0px 0 0px", fontSize: "12px" }}>Created by <b>{course.first_name}</b> on{" "}

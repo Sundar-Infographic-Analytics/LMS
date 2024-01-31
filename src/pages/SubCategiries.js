@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 
 const SubCategiries = ({data}) => {
 
-console.log(data, "dataaaaaaaaaaaaaaaaaa")
+// console.log(data, "dataaaaaaaaaaaaaaaaaa")
   return (
     <div>
       <Container>
-      {console.log(data, "comppp dataaaaaaaaaaaaaaaaaa")}
+      {/* {console.log(data, "comppp dataaaaaaaaaaaaaaaaaa")} */}
      
         <Col>
         {data &&

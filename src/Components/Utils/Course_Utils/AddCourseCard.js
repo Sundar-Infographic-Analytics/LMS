@@ -879,6 +879,7 @@ const AddCourse = () => {
                                   onChange={handleImageChange}
                                 />
                               </div>
+                              
                               {formErrors.course_image && (
                             <Form.Text className="text-danger">
                               {formErrors.course_image}

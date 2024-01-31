@@ -42,7 +42,7 @@ const Categiries = () => {
     categoryHeadImage: "",
     subcategory: [],
   });
-  const [subCat, setSubCat] = useState([]);
+  // const [subCat, setSubCat] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -63,9 +63,9 @@ const Categiries = () => {
         )
         .then(({ data }) => {
           setBgImg(data);
-          setSubCat(data.subcategory);
-          console.log(data.subcategory, "xxxxxxxxxxxxxxxxxxx");
-          console.log(data, "lllll");
+          // setSubCat(data.subcategory);
+          // console.log(data.subcategory, "xxxxxxxxxxxxxxxxxxx");
+          // console.log(data, "lllll");
         })
         .catch(({ response }) => {
           if (response.status === 400) {
@@ -82,14 +82,14 @@ const Categiries = () => {
     fetchData();
   }, [id, navigate, setLoading]);
 
-  console.log(id, "oooo");
-  console.log(subCat, "cattttttttttttttttttt");
-  console.log(bgImg, "bg Imggggggggggggggggggggggggg");
+  // console.log(id, "oooo");
+  // console.log(subCat, "cattttttttttttttttttt");
+  // console.log(bgImg, "bg Imggggggggggggggggggggggggg");
 
   return (
     <div>
       <Navbar />
-      {console.log(bgImg.categoryHeadImage, "mmmmmmmmmmmmmmmmmmmm")}
+      {/* {console.log(bgImg.categoryHeadImage, "mmmmmmmmmmmmmmmmmmmm")} */}
       <Header
         style={bgImg.categoryHeadImage}
         text={Headerdetails.Description[parseInt(id)-1]}
