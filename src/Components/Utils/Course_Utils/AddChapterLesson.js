@@ -488,7 +488,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
       if (!chapterMap.lessons || chapterMap.lessons.length === 0) {
         submitError[
           `empty_lesson_chapter_${index + 1}`
-        ] = `this ${chapterMap.chapter_name} chapter must contain at least one lesson`;
+        ] = `This ${chapterMap.chapter_name} chapter must contain at least one lesson`;
       }
     });
 
