@@ -136,13 +136,13 @@ const {setLoading}   = useLoader();
          cell: row => <div className="wrap-content">{row.course_title}</div>, 
         },
         {
-          name:"Catogory",
+          name:"Category",
           selector: row =>row.category_name,
           sortable:true,
           width:"7%"
         },
         {
-          name:"Subcatogory",
+          name:"Subcategory",
           selector:row =>row.sub_category,
           sortable:true,
           width:"10%",
@@ -266,7 +266,7 @@ const {setLoading}   = useLoader();
       <div className="clearfix"></div>
       <Container fluid className="mart50 marb10">
         <Col lg={6} className="filter-containern">
-          <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"filter by course title / employee name / category and sub category"} onApprovalStatusChange={handleApprovalStatusChange}/>
+          <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"Filter by course title / employee name / category and subcategory"} onApprovalStatusChange={handleApprovalStatusChange}/>
         </Col>
       </Container>
       <Container fluid>

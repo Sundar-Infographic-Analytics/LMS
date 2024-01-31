@@ -313,6 +313,7 @@ const SubCategiriesAdd = () => {
       width: "12%",
       cell: (row) => (
         <>
+       { console.log("row subcat", row)}
           <div className="dif">
             <Image
             title="Edit"
@@ -324,14 +325,16 @@ const SubCategiriesAdd = () => {
             />
 
             <Image
-            title="Delete"
+           title={row?.course_count !== 0 ? "Subcategory having courses" :"Delete"}
               src={DeleteIcon}
               className="img_action"
-              style={{ cursor: "pointer", marginLeft: "10px" }}
+              style={{ cursor:row?.course_count !== 0 ? "not-allowed" :"pointer", opacity:row?.course_count !== 0 ? "0.5" :"1" , marginLeft: "10px" }}
               alt="Delete"
-              onClick={() => {
+              onClick={() => { if(row.course_count === 0) {
                 setShowDeleteModal(true);
                 handleSubCatDeleteClick(row);
+              }
+               
               }}
             />
           </div>
