@@ -313,7 +313,7 @@ const SubCategiriesAdd = () => {
       width: "12%",
       cell: (row) => (
         <>
-       { console.log("row subcat", row)}
+       {/* { console.log("row subcat", row)} */}
           <div className="dif">
             <Image
             title="Edit"
@@ -506,7 +506,7 @@ const SubCategiriesAdd = () => {
   // console.log(courseTitle, "all sub courseTitle");
   // console.log(selectedCategory, ".....all sub selectedCategory");
   // console.log(editMode, ".....edit editmode");
-  console.log(editedSubCategory, ".....edit subcatedit");
+  // console.log(editedSubCategory, ".....edit subcatedit");
   // console.log(deleteSubcat, "deleteData setData");
   // console.log(previewSubCatIMG, "previewSubCatIMG setData");
   return (

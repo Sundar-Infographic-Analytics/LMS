@@ -3,7 +3,7 @@ import HeartBlank from "../../assets/images/heartblank.png";
 import HeartRed from "../../assets/images/heartRed.png";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { useCategoryTitle } from "./CategoryTitleContext";
+// import { useCategoryTitle } from "./CategoryTitleContext";
 import Tick from '../../assets/images/books.png';
 import Delete from '../../assets/images/toast-delete.png';
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const Whistlist = ({ course_id, active, onClick2}) => {
   const [wishlist, setWishlist] = useState(active);
   const [msg, setmsg] = useState("");
   // const [check, setCheck]  = useState('');
-  const courseTitle = useCategoryTitle();  
+  // const courseTitle = useCategoryTitle();  
 
 
   const handleclick = async (e) => {
@@ -62,8 +62,8 @@ const Whistlist = ({ course_id, active, onClick2}) => {
 
   const handleSubmit = async () => {
     
-    console.log(!wishlist, "wishlist");
-    console.log(courseTitle, "addcheckkkNavvvvvv courseTitle");
+    // console.log(!wishlist, "wishlist");
+    // console.log(courseTitle, "addcheckkkNavvvvvv courseTitle");
    
     await axios
       .post(
@@ -72,12 +72,12 @@ const Whistlist = ({ course_id, active, onClick2}) => {
         { headers: { Authorization: jwtToken } }
       )
       .then((response) => {
-        console.log("msg", response);
-        console.log(response.data, 'Console')
+        // console.log("msg", response);
+        // console.log(response.data, 'Console')
         // window.location.reload();
         setmsg(response.data.msg)
         // setCheck(response)
-        console.log(response,'msssssssssssssssssssssss..........')
+        // console.log(response,'msssssssssssssssssssssss..........')
       })
       .catch((error) => {
         console.log("msg", error);
