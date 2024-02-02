@@ -24,7 +24,7 @@ import { useLoader } from "../Loading/LoaderContext.js";
 const AddCourse = () => {
   const {setLoading} = useLoader();
   const courseTitle = useCategoryTitle();
-  console.log(courseTitle, "kkkkkkkkkkkkkkkk");
+  // console.log(courseTitle, "kkkkkkkkkkkkkkkk");
 
   const navigate = useNavigate();
   const allowedTypes = ["image/jpeg","image/jpg", "image/png","image/svg"];
@@ -38,9 +38,9 @@ const AddCourse = () => {
   const [subcatList, setSubcatList] = useState([]);
   const [selectedCat, setSelectedCat] = useState("");
   const [formErrors, setFormErrors] = useState({});
-  const [getsubmitCourseID, setGetsubmitCourseID] = useState("");
+  // const [getsubmitCourseID, setGetsubmitCourseID] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
-  console.log("form errorrrr", formErrors);
+  // console.log("form errorrrr", formErrors);
 
   const [getSubmitedcourse, setGetSubmitedCourse] = useState("");
   const jwtToken = localStorage.getItem("jwtToken");
@@ -80,7 +80,7 @@ const AddCourse = () => {
     subcategory_id: 0,
     course_image: null,
   });
-  console.log("CourseFormData", courseFormData);
+  // console.log("CourseFormData", courseFormData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -217,7 +217,7 @@ const AddCourse = () => {
           }
         );
 
-        console.log(response.data, "fetchsubCat based on catId");
+        // console.log(response.data, "fetchsubCat based on catId");
         setSubcatList(response.data?.subcategory_List);
         setSelectedCat(catogoryId);
       } catch (err) {
@@ -253,11 +253,11 @@ const AddCourse = () => {
             },
           }
         );
-        console.log("created:", res.data);
-        setGetsubmitCourseID(res.data?.courseId);
-        console.log("getsubmitedCorseIDDDDDD", getsubmitCourseID);
+        // console.log("created:", res.data);
+        // setGetsubmitCourseID(res.data?.courseId);
+        // console.log("getsubmitedCorseIDDDDDD", getsubmitCourseID);/
         localStorage.setItem("getcourseID", res.data?.courseId);
-        console.log("getsubmitedCorseTEST", res.data?.courseId);
+        // console.log("getsubmitedCorseTEST", res.data?.courseId);
         setLoading(true);
         // navigate(0);
         // setButtonLoading(false);
@@ -278,10 +278,10 @@ const AddCourse = () => {
       // setButtonLoading(false);
     } else {
       // Handle validation errors, e.g., display error messages
-      console.log("Form validation failed");
+      // console.log("Form validation failed");
     }
 
-    console.log(getsubmitCourseID, "setID Okay");
+    // console.log(getsubmitCourseID, "setID Okay");
     // await getsubmittedCourse();
   };
 
@@ -305,7 +305,7 @@ const AddCourse = () => {
         setGetSubmitedCourse(getres?.data[0]);
         // setLoading(false);
         setCardLoading(false);
-        console.log("resdata", getres?.data[0]);
+        // console.log("resdata", getres?.data[0]);
         // console.log(" resdata getstate",getSubmitedcourse);
       };
       fetchData();
@@ -359,7 +359,7 @@ const AddCourse = () => {
 
     if (isvalid) {
       setButtonLoading(true);
-      console.log("courseUpdateStatus data", editCourseData)
+      // console.log("courseUpdateStatus data", editCourseData)
       await axios
         .post(
           `${process.env.REACT_APP_BASE_URL}/updatecourse`,
@@ -372,7 +372,7 @@ const AddCourse = () => {
           }
         )
         .then((response) => {
-          console.log("courseUpdateStatus status",response?.data);
+          // console.log("courseUpdateStatus status",response?.data);
           if(response?.data?.code === 200){
             navigate(0);
           }
@@ -405,7 +405,7 @@ const AddCourse = () => {
         }
       )
       .then((response) => {
-        console.log(response.data,"courseDelete");
+        // console.log(response.data,"courseDelete");
         localStorage.removeItem("getcourseID")
         navigate("/mycourse");
       })
@@ -417,12 +417,12 @@ const AddCourse = () => {
       });
   };
 
-  console.log(subcatList, " courseeee subcatSateData");
-  console.log(getSubmitedcourse, "courseeee  submitedcpurse");
-  console.log(editCourseData, "courseeee editsateCOURSE");
-  console.log(getsubmitCourseID, "IDDDDDDDDDDDDDDDDDD");
-  console.log("errorrrrr", formErrors);
-  console.log(editCourseData, "courseeee editsateCOURSE");
+  // console.log(subcatList, " courseeee subcatSateData");
+  // console.log(getSubmitedcourse, "courseeee  submitedcpurse");
+  // console.log(editCourseData, "courseeee editsateCOURSE");
+  // console.log(getsubmitCourseID, "IDDDDDDDDDDDDDDDDDD");
+  // console.log("errorrrrr", formErrors);
+  // console.log(editCourseData, "courseeee editsateCOURSE");
   return (
     <>
       <div className="editModal">
@@ -460,7 +460,7 @@ const AddCourse = () => {
                   name="course_desc"
                   as="textarea"
                   className="bor_dark_purple br5"
-                  style={{ minHeight: "50px" }}
+                  style={{ minHeight: "50px", backgroundColor:"white"  }}
                   value={editCourseData?.course_desc}
                   onChange={handleInputEditChange}
                 />

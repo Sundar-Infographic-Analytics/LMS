@@ -26,7 +26,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const {setLoading} = useLoader();
   const navigate = useNavigate();
   const apiKey = process.env?.REACT_APP_YOUTUBE_API_KEY;
-  console.log("lesson apikeymain", process.env.REACT_APP_YOUTUBE_API_KEY);
+  // console.log("lesson apikeymain", process.env.REACT_APP_YOUTUBE_API_KEY);
 
   // const Chaptercss = {
   //   display: "flex",
@@ -172,10 +172,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         }
       );
 
-      console.log("Chapter added successfully:", res.data);
+      // console.log("Chapter added successfully:", res.data);
 
       if (res.data?.code === 200) {
-        console.log("Chapter res.data?.code", res.data?.code);
+        // console.log("Chapter res.data?.code", res.data?.code);
         handleChapterClose();
         // window.location.reload();
         navigate(0);
@@ -207,7 +207,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
         );
         setChapterMapData(reschapter?.data);
       
-        console.log("chapter mapin console", reschapter?.data);
+        // console.log("chapter mapin console", reschapter?.data);
       } catch (err) {
         localStorage.clear();
         console.error(err, "error");
@@ -218,15 +218,15 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     fetchChapterList();
     // setCardLoading(false);
   }, [jwtToken, GetLastCourseLocalID,setLoading]);
-  console.log("chapter getlist", ChapterMapData);
+  // console.log("chapter getlist", ChapterMapData);
 
   //for store slected chapterID
   const handleSelectedChapter = (chapterId) => {
     setSelectedChapterID(chapterId);
     handleShow();
-    console.log("chapter", chapterId);
+    // console.log("chapter", chapterId);
   };
-  console.log("chapter state", selectedChapterID);
+  // console.log("chapter state", selectedChapterID);
 
   //for lesson
   const handlechange = (e) => {
@@ -262,7 +262,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           youtubeUrl.pathname.split("/").pop());
 
       if (isYoutubeLink) {
-        console.log("status valid yotube link");
+        // console.log("status valid yotube link");
         const videoId =
           youtubeUrl.searchParams.get("v") ||
           youtubeUrl.pathname.split("/").pop();
@@ -277,7 +277,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
   const checkYoutubeVideoExistence = async (videoId, apiKey) => {
     try {
-      console.log("lesson APIF HIT");
+      // console.log("lesson APIF HIT");
       const response = await fetch(
         `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${apiKey}&part=snippet`,
         {
@@ -295,7 +295,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
       return data.items.length > 0;
     } catch (error) {
-      console.error("Error checking YouTube video existence:", error);
+      // console.error("Error checking YouTube video existence:", error);
       return false;
     }
   };
@@ -332,9 +332,9 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
           if (!videoExists) {
             lessonerror.file_path = "There is no such Youtube Link doesn’t exist";
-            console.log("Video does not existtttttttttttttttttttttttttttttttt");
+            // console.log("Video does not existtttttttttttttttttttttttttttttttt");
           } else {
-            console.log("Video existsssssssssssssssssssssssssssssssssss");
+            // console.log("Video existsssssssssssssssssssssssssssssssssss");
           }
         } catch (error) {
           lessonerror.file_path = error.message;
@@ -415,9 +415,9 @@ const AddChapterLesson = ({ catgorySubcat }) => {
 
           if (!videoExists) {
             lessonEditerror.file_path = "YouTube video does not exist";
-            console.log("Video does not existtttttttttttttttttttttttttttttttt");
+            console.log("Video does not exist");
           } else {
-            console.log("Video existsssssssssssssssssssssssssssssssssss");
+            console.log("Video exists");
           }
         } catch (error) {
           lessonEditerror.file_path = error.message;
@@ -447,10 +447,10 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     };
 
     const isvalid = await lessonValidation();
-    console.log("lessonDataWithID", lessonDataWithID);
+    // console.log("lessonDataWithID", lessonDataWithID);
 
     if (isvalid) {
-      console.log("lesson check valid", isvalid);
+      // console.log("lesson check valid", isvalid);
       try {
         const lessonRes = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/addlesson`,
@@ -462,7 +462,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
             },
           }
         );
-        console.log("lesson created>>>>>>>>>>>>>>>>>>>:", lessonRes?.data);
+        // console.log("lesson created>>>>>>>>>>>>>>>>>>>:", lessonRes?.data);
         if (lessonRes?.data?.code === 200) {
           // console.log("code", lessonRes?.data?.code)
           handleClose();
@@ -505,7 +505,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
     const isValid = await fullCourseSubmitValidation();
 
     if (isValid) {
-      console.log(" dhivagar no error to sumbit ");
+      // console.log(" dhivagar no error to sumbit ");
       try {
         setSubmitButtonLoading(true);
         const response = await axios.post(
@@ -520,7 +520,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
             },
           }
         );
-        console.log("course submit msg:", response?.data);
+        // console.log("course submit msg:", response?.data);
         
         
         if (response?.data?.code === 200) {
@@ -581,7 +581,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   const handleEditSubmit = async () => {
     const isValid = await lessonEditValidation();
     
-console.log(isValid,"lllllllllll")
+// console.log(isValid,"lllllllllll")
     if(isValid) {
       try {
         setButtonLoading(true);
@@ -594,7 +594,7 @@ console.log(isValid,"lllllllllll")
             },
           }
         );
-        console.log(response.data);
+        // console.log(response.data);
         if (response?.data?.code === 200) {
           setSpinnerLoadingTiming(true);
           setTimeout(() => {
@@ -604,8 +604,8 @@ console.log(isValid,"lllllllllll")
         }
       } catch (error) {
         localStorage.clear();
-        console.log(error);
-        console.error("Error fetching categories:", error);
+        // console.log(error);
+        // console.error("Error fetching categories:", error);
         setButtonLoading(false);
       }
   
@@ -621,7 +621,7 @@ console.log(isValid,"lllllllllll")
   //edit lesson
 
   const handleLessonEditClick = async (lessons, chapter_id, oldFiletype) => {
-    console.log(lessons, "chapter checking", chapter_id, "idd");
+    // console.log(lessons, "chapter checking", chapter_id, "idd");
     setEditLessonState({
       lesson_id: lessons?.lesson_id,
       lesson_name: lessons?.lesson_name,
@@ -638,7 +638,7 @@ console.log(isValid,"lllllllllll")
 
   const handleLessonEditSubmit = async () => {
     const  isvalid =  await chapterEditValidation();
-    console.log(isvalid, "kkkkkkkkkkkkkkkkkkkkkkkk")
+    // console.log(isvalid, "kkkkkkkkkkkkkkkkkkkkkkkk")
 
     if (isvalid) {
       setButtonLoading(true);
@@ -694,7 +694,7 @@ console.log(isValid,"lllllllllll")
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         navigate(0);
       })
       .catch((error) => {
@@ -722,7 +722,7 @@ console.log(isValid,"lllllllllll")
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setButtonLoading(false);
         navigate(0);
       })
@@ -814,17 +814,17 @@ const HandleDraftSubmit = async () =>{
 }
   
 
-  console.log("lesson all error", errors);
-  console.log("lesson onchange data", lesssonData);
-  console.log("lesson chap_ID", selectedChapterID);
-  console.log("lesson chap_MAP", ChapterMapData);
-  console.log("edit chapter  editchapterState", editchapterState);
-  console.log("edit lesson  editLESSONState", editLessonState);
-  console.log("chapter  onchange data", chapterename);
-  console.log("edit lesson  editLESSONState  oldfile type", previousFile);
-  console.log("delete lesson data deletelesson", deleteChapterlesson);
-  console.log("file types", filetypeOption);
-  console.log("errorrrrrr", errors);
+  // console.log("lesson all error", errors);
+  // console.log("lesson onchange data", lesssonData);
+  // console.log("lesson chap_ID", selectedChapterID);
+  // console.log("lesson chap_MAP", ChapterMapData);
+  // console.log("edit chapter  editchapterState", editchapterState);
+  // console.log("edit lesson  editLESSONState", editLessonState);
+  // console.log("chapter  onchange data", chapterename);
+  // console.log("edit lesson  editLESSONState  oldfile type", previousFile);
+  // console.log("delete lesson data deletelesson", deleteChapterlesson);
+  // console.log("file types", filetypeOption);
+  // console.log("errorrrrrr", errors);
 
   return (
     <>
@@ -1275,7 +1275,7 @@ const HandleDraftSubmit = async () =>{
             </>
           )}
 
-          {console.log("chapter check", ChapterMapData)}
+          {/* {console.log("chapter check", ChapterMapData)} */}
         </Row>
         {ChapterMapData[0] && ChapterMapData[0].chapter_id ? (
           <Row
