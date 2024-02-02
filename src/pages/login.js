@@ -258,7 +258,7 @@ const [buttonLoading, setButtonLoading] = useState(false);
                           <Form.Control
                             type="tel"
                             name="mobile"
-                            placeholder="Enter mobile"
+                            placeholder="Enter mobile number"
                             className="borltrn br0 bor1"
                             style={{ borderColor: "#6F3FBA" }}
                             value={credentials.mobile}

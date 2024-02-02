@@ -523,7 +523,7 @@ const SubCategiriesAdd = () => {
           <Modal.Body>
             Are you sure to delete{" "}
             <span className="fw600">{deleteSubcat?.subcategory_name}</span>
-            <span> with its course</span>
+            {/* <span> subcategory</span> */}
           </Modal.Body>
           <Modal.Footer>
             <Button

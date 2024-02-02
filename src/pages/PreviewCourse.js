@@ -304,9 +304,9 @@ const PreviewCourse = () => {
 
   // };
 
-  // console.log("0001chapter", chapter);
-  // console.log("0002Alldata", allData);
-  // console.log("000seleced", selectedLesson);
+  console.log("0001chapter", chapter);
+  console.log("0002Alldata", allData);
+  console.log("000seleced", selectedLesson);
 
   // const btnCss = {
   //   display: "flex",
