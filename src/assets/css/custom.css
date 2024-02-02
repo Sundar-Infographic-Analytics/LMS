@@ -23,10 +23,26 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
   color: #fff;
   padding: 7px 20px;
 }
-
+.log-btnClr{
+  background: linear-gradient(92.92deg, #6F3FBA 1.96%, #8B3FBA 87.22%);
+}
+.log-btnClr:hover{
+  background: linear-gradient(92.92deg, #8B3FBA   1.96%, #6F3FBA 87.22%);
+}
  .navbar-expand-lg .navbar-nav{display: flex;align-items: center;}
  .nav_active{color: #fff !important;}
  .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
+ .card-absolute{
+  position: absolute;
+  top:130px;
+  right: 160px;
+ }
+ .logincard-body{
+  padding: 50px 80px;
+ }
+ .card-Relative{
+  position: relative;
+ }
  @keyframes animate {0% {width: 0;}100% {width: 80%;}}
  .me-auto a {display: flex;align-items: center;white-space: pre;color: rgb(215, 215, 215);margin: 0 10px;position: relative;}
  nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {background: rgba(72, 72, 72, 0.01) !important;padding: 0;}
@@ -1268,4 +1284,104 @@ overflow-y: auto;
   }
 button.slick-arrow.slick-prev::before{color: #ddd;font-size: 35px;left: -7px;position: relative;}
 button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;position: relative;}
+}
+
+@media only screen and (max-width: 1440px) {
+  .card-absolute{
+    top: 50px;
+  }
+  .logincard-body{
+    padding: 20px  40px;
+  }
+  .card-img-top {
+    width: 50px;
+    margin-top: 0 !important;
+  }
+  .card-text{
+    font-size: 11px;
+    margin-top: 0 !important;
+  }
+  .logincard-body .card-body{
+    padding: 0;
+  }
+  .card-img-top .card-title{
+    margin-bottom: 20px !important;
+  }
+  div.vmiddle .mart40{
+    margin-top: 20px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .card-absolute{
+    width: auto !important;
+  }
+  .login-img{
+    width: auto !important;
+    height: 80vh !important;
+  }
+  .card-absolute{
+    top: 90px;
+    right: -30px;
+  }
+  .login-img{
+    margin-left: 0 !important;
+  }
+  /* #formBasicEmail, #formBasicPassword, .log-btnClr{
+    width: 80%;
+  } */
+  /* .password-field{
+    right: 60px;
+  } */
+  .logincard-body{
+    width: 90% !important;
+  }
+}
+@media only screen and (max-width: 768px){
+  .card-absolute{
+    width: 100% !important;
+    padding: 50px !important;
+  }
+  .logincard-body{
+    width: 100% !important;
+  }
+  .login-img{
+    width: 90% !important;
+    height: auto !important;
+    margin-top: 520px;
+    margin-left: 20px !important;
+  }
+  .container-fluid{
+    height: 100vh !important;
+    background:linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%)
+  }
+  .card-absolute{
+    top: 0px;
+    right: 0px;
+  }
+  div.vmiddle .mart40{
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 425px){
+  .logincard-body {
+    width: 100%;
+
+  }
+  .login-img{
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 520px;
+    margin-left: 0px !important;
+  }
+  .card-absolute{
+    top: 0px;
+    width: 100% !important;
+    padding: 10px !important;
+  }
+  div.vmiddle .mart40 {
+    margin-top: -10px !important;
+  }
+  .login-img{
+    margin-top: 470px;
+  }
 }

@@ -16,6 +16,8 @@
 /*height*/
 .h100{height: var(--h100);}
 .h100vh{height: var(--h100vh);}
+.h90vh{height: 90vh;}
+.h95vh{height: 95vh;}
 /*padding*/
 .nowrap{padding-left: 0;padding-right: 0;}
 /*align*/
@@ -31,6 +33,7 @@
 .w100{width:var(--w100);}
 .w90{width: var(--w90);}
 .w80{width: var(--w80);}
+.w75{width: var(--w75);}
 .w70{width: var(--w70);}
 .w60{width: var(--w60);}
 .w50{width: var(--w50);}
@@ -64,6 +67,9 @@ body{font-family: var(--main_font)}
 .fz15{font-size: var(--fz15);}
 .fz14{font-size: var(--fz14);}
 .fz13{font-size: var(--fz13);}
+.fz12{font-size: var(--fz12);}
+.fz11{font-size: var(--fz11);}
+.fz10{font-size: var(--fz10);}
 /*border color*/
 .bor_gra{border-color: var(--orange-bg);}
 .bor_orange{border-color: var(--orange);}
@@ -165,6 +171,7 @@ body{font-family: var(--main_font)}
 .pad40{padding: var(--pad40);}
 .pad45{padding: var(--pad45);}
 .pad50{padding: var(--pad50);}
+
 /*padding right*/
 .padr5{padding-right: var(--padr5);}
 .padr10{padding-right: var(--padr10);}

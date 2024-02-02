@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from './pages/home';
-import Login from './pages/login';
+// import Login from './pages/login';
 import Categiries from './pages/Categiries';
 import SubCategiriesCourse from './Components/contentarea/SubCategiriesCourse';
 import PreviewCourse from './pages/PreviewCourse';
@@ -20,6 +20,7 @@ import ApprovalHub from './pages/ApprovalHub';
 import '../src/assets/css/custom.css'
 import '../src/assets/css/global.css'
 import '../src/assets/css/variable.css'
+import NEWlogin from '../src/pages/LMS_Login'
 // import { useCategoryTitle } from '../src/Components/Utils/CategoryTitleContext';
 
 
@@ -40,7 +41,7 @@ const superAdmin = localStorage.getItem("role") === "superadmin" ;
         <Globale401Modal/>
         <Routes>
           <Route path='/' element={<><Home /></>} />             
-          <Route path='/login' element={ token? (<Navigate to="/"/>):(<Login />) } />     
+          <Route path='/login' element={ token? (<Navigate to="/"/>):(<NEWlogin />) } />     
           <Route path='/Categories/:id' element={<><Categiries /></>} />    
           <Route path='/SubCategoriesCourse/:id' element={<><SubCategiriesCourse /></>} />    
           <Route path='/PreviewCourse/:id' element={<ProtectedRoute ><PreviewCourse /></ProtectedRoute>}  />    
@@ -51,7 +52,7 @@ const superAdmin = localStorage.getItem("role") === "superadmin" ;
           <Route path='/mylibrary' element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />   
           <Route path='/approvalhub' element={superAdmin?(<ProtectedRoute><ApprovalHub /></ProtectedRoute>):<Navigate to="/"/>} />   
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
-          <Route path='*' element={<>404 Page Page not Found</> }/>
+          {/* <Route path='*' element={<><Home /></> }/> */}
         </Routes> 
 
         </CourseTitleProvider>
