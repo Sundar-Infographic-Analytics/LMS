@@ -1361,6 +1361,10 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   div.vmiddle .mart40{
     margin-top: 50px;
   }
+  .errorcontainer{
+    flex-direction: column-reverse;
+    gap: 60px;
+      }
 }
 @media only screen and (max-width: 425px){
   .logincard-body {
@@ -1384,6 +1388,8 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   .login-img{
     margin-top: 470px;
   }
+
+ 
 }
 
 /* Add this to your global.css or custom.css file */

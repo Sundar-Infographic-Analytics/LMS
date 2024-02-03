@@ -21,6 +21,7 @@ import '../src/assets/css/custom.css'
 import '../src/assets/css/global.css'
 import '../src/assets/css/variable.css'
 import NEWlogin from '../src/pages/LMS_Login'
+import Errorpage from '../src/Components/Utils/404Page';
 // import { useCategoryTitle } from '../src/Components/Utils/CategoryTitleContext';
 
 
@@ -52,7 +53,7 @@ const superAdmin = localStorage.getItem("role") === "superadmin" ;
           <Route path='/mylibrary' element={<ProtectedRoute><MyLibrary /></ProtectedRoute>} />   
           <Route path='/approvalhub' element={superAdmin?(<ProtectedRoute><ApprovalHub /></ProtectedRoute>):<Navigate to="/"/>} />   
           <Route path='/loginPass/:jwtToken/:userName' element={<LoginPass />} />   
-          {/* <Route path='*' element={<><Home /></> }/> */}
+          <Route path='*' element={<><Errorpage/></> }/>
         </Routes> 
 
         </CourseTitleProvider>
