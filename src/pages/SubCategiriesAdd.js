@@ -156,8 +156,8 @@ const SubCategiriesAdd = () => {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
         error.bannerImg = "Filesize exceeds 500KB";
       }
-      if(subCategory?.bannerImg?.name){
-        if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
+      if(editedSubCategory?.bannerImg?.name){
+        if(!allowedTypes.includes(editedSubCategory?.bannerImg?.type)){
           error.bannerImg = "Only JPEG, JPG, PNG, SVG";
         }
       }
