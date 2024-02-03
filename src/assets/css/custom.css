@@ -1297,7 +1297,7 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
     width: 50px;
     margin-top: 0 !important;
   }
-  .card-text{
+  .card-text-dec{
     font-size: 11px;
     margin-top: 0 !important;
   }
@@ -1383,5 +1383,42 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   }
   .login-img{
     margin-top: 470px;
+  }
+}
+
+/* Add this to your global.css or custom.css file */
+.card{
+  border: none;
+  border-radius: 0;
+}
+.card__three {
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale3d(0, 0, 1);
+    transition: transform .3s ease-out 0s;
+    background: rgba(255, 255, 255, .1);
+    content: '';
+    pointer-events: none;
+  }
+
+  &::before {
+    transform-origin: left top;
+  }
+
+  &::after {
+    transform-origin: right bottom;
+  }
+
+  &:hover,
+  &:focus {
+    &::before,
+    &::after {
+      transform: scale3d(1, 1, 1);
+    }
   }
 }

@@ -225,7 +225,7 @@ const LMS_Login = () => {
        
         <div className="w30 mw100 p-2 card-absolute">
                 
-                <Card className="br15 born logincard-body">
+                <Card className="br15 born logincard-body" style={{borderRadius:"16px"}}>
                   <Card.Body >
                     <Card.Img
                       variant="top"
@@ -320,8 +320,8 @@ const LMS_Login = () => {
                         Login
                       </Button>
                     </Form>
-                    <div className="vmiddle mart30">
-                    <Card.Text className="black mt-4 light_black fz11 fw400">
+                    <div className="vmiddle mart30" >
+                    <Card.Text className="black mt-4 light_black fz11 fw400 card-text-dec" >
                     <Image src={SiaLogo} style={{height:"30px", width:"auto", marginRight:"10px"}}>
 
                     </Image>
