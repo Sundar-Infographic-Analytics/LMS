@@ -129,7 +129,7 @@ const handleLogin = () =>{
                 <Dropdown.Item href="/mycourse" className={`${location.pathname ==='/mycourse'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={mycourse_ion} alt='' style={{width:'24px',}} /><span className='padl10'>My Courses</span></Dropdown.Item>
                 {localStorage.getItem("role")=== "superadmin" ? (
                   <>
-                  <Dropdown.Item href="/SubCategoriesAdd" className={`${location.pathname ==='/SubCategoriesAdd'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={Subcategory} alt='' style={{width:'24px',}} /><span className='padl10'>Subcategory</span></Dropdown.Item>
+                  <Dropdown.Item href="/SubCategoriesAdd" className={`${location.pathname ==='/SubCategoriesAdd'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={Subcategory} alt='' style={{width:'24px',}} /><span className='padl10'>Subcategories</span></Dropdown.Item>
                   <Dropdown.Item href="/approvalhub" className={`${location.pathname ==='/approvalhub'? 'ff fz18 fw600 dropdown-item active' : "ff fz18 fw400 dropdown-item"}`}><img src={ApprovalHub_icon} alt='' style={{width:'24px',}} /><span className='padl10'>Approval Hub</span></Dropdown.Item>
                   </>
                 ) : (
