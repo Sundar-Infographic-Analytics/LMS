@@ -54,7 +54,7 @@ const MyLearnings = () => {
     }
     return text;
   };
-  // console.log(learnedCourse,"my Mstery dataaaaaa")
+  console.log(learnedCourse,"my Mstery dataaaaaa")
   return (
     <>
       <Navbar />
@@ -86,6 +86,12 @@ const MyLearnings = () => {
                   >
                     Created by <b>{course.employee_name}</b> on{" "}
                     {course.formatted_created_date}
+                  </p>
+                  <p
+                    className="light_black"
+                    style={{ padding: "0 0px 0 0px", fontSize: "12px" }}
+                  >
+                    Completed on  <b>{course?.finished_date}</b> 
                   </p>
                   <p className="fw600 fz18 light_black marb5">
                     {truncateText(course.course_name, 55 )}

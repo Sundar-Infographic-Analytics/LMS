@@ -20,7 +20,7 @@ import Subcategory from '../../assets/images/subcategory.png'
 import axios from 'axios';
 
 
-const NavBar = ({style, className}) => {
+const NavBar = ({style, className, navlocation}) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const courseTitle = useCategoryTitle(); // from useContext
@@ -111,10 +111,10 @@ const handleLogin = () =>{
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/" className={`${location.pathname ==='/'? 'nav_active fw600' : ""} `} >Home</Nav.Link>
-            <Nav.Link href="/Categories/1" className={`${location.pathname ==='/Categories/1'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
-            <Nav.Link href="/Categories/2" className={`${location.pathname ==='/Categories/2'? 'nav_active fw600' : ""}`} >Legal</Nav.Link>
-            <Nav.Link href="/Categories/3" className={`${location.pathname ==='/Categories/3'? 'nav_active fw600' : ""}`} >Risk</Nav.Link>
-            <Nav.Link href="/Categories/4" className={`${location.pathname ==='/Categories/4'? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
+            <Nav.Link href="/Categories/1" className={`${location.pathname ==='/Categories/1' || navlocation === 1 ? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
+            <Nav.Link href="/Categories/2" className={`${location.pathname ==='/Categories/2' || navlocation === 2  ?  'nav_active fw600' : ""}`} >Legal</Nav.Link>
+            <Nav.Link href="/Categories/3" className={`${location.pathname ==='/Categories/3'  || navlocation === 3 ? 'nav_active fw600' : ""}`} >Risk</Nav.Link>
+            <Nav.Link href="/Categories/4" className={`${location.pathname ==='/Categories/4' || navlocation === 4  ? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
       <Container>
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>

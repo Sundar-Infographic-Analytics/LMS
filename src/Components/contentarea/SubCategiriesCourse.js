@@ -79,7 +79,7 @@ const SubCategiriesCourse = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar navlocation={subCategory?.category_id}/>
       {/* {console.log(Course, "dhvagrrrrrrrr")}
       {console.log(subCategory, "subCategory")} */}
       <Header
