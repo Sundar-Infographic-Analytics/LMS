@@ -1453,6 +1453,9 @@ nav.navbar.navbar-expand-lg.navbar-light{
   top: 0;
 }
 @media screen and (min-width:320px) and (max-width:640px){
+  .accordion{
+    height: auto !important;
+  }
   .modal-footer button{
     width: 100% !important;
   }
@@ -1488,4 +1491,5 @@ nav.navbar.navbar-expand-lg.navbar-light{
   z-index: 9999;
   right: 0;
 }
+
 /*bug Fixed*/
