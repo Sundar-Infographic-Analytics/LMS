@@ -151,7 +151,7 @@ const PreviewCourse = () => {
             data.courseResults[0]?.chapter[0] &&
             data.courseResults[0]?.chapter[0]?.lesson
           )
-            console.log("");
+          console.log(" check 01 Initial Lesson:", initialLesson);
             // console.log(initialLesson, "initialLesson");
           // console.log(data, "dataaaaaaaaaaaaaaa");
           // if (initialLesson == null) {
@@ -159,7 +159,7 @@ const PreviewCourse = () => {
             initialLesson?.file_type === "V"
               ? extractVideoIdFromUrl(initialLesson?.file_path)
               : initialLesson?.file_path;
-          // console.log("videoId", videoId);
+          console.log("check 02", videoId);
           if (videoId) {
             // setVideoLink(initialLesson?.file_path);
             setSelectedLesson({
@@ -189,16 +189,35 @@ const PreviewCourse = () => {
   }, [id, navigate, jwtToken, setLoading]);
 
   //slid yotubeID from url
-  const extractVideoIdFromUrl = (url) => {
-    const regex =
-      /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?|watch|.*[?&]v=|.*[?&]list=))|youtu\.be\/)([^"&?/ ]{11})/;
-    const match = url.match(regex);
+  // const extractVideoIdFromUrl = (url) => {
+  //   const regex =
+  //     /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?|watch|.*[?&]v=|.*[?&]list=))|youtu\.be\/)([^"&?/ ]{11})/;
+  //   const match = url.match(regex);
 
+  //   if (match && match[1]) {
+  //     return match[1];
+  //   }
+  //   return null;
+  // };
+
+  //new split 
+  const extractVideoIdFromUrl = (url) => {
+    console.log("input", url);
+  
+    // Regular expressions for extracting video IDs from different YouTube link formats
+    const embedRegex = /(?:youtube\.com\/embed\/|youtu\.be\/|youtube\.com\/watch\?v=)([^"&?/ ]{11})/;
+    const match = url.match(embedRegex);
+  
     if (match && match[1]) {
+      console.log("match", match);
       return match[1];
     }
+  
     return null;
   };
+  
+  
+  
 
   const handleLessonSelection = (
     chapterIndex,
@@ -235,6 +254,7 @@ const PreviewCourse = () => {
         lesson.file_type === "V"
           ? extractVideoIdFromUrl(lesson.file_path)
           : lesson.file_path;
+          console.log(videoId, "vi-id")
       if (videoId) {
         // setVideoLink(lesson.file_path);
         setSelectedLesson({ videoId: videoId, lesson_type: lesson_type });
@@ -333,7 +353,7 @@ const PreviewCourse = () => {
     setConfirmModal(false);
   };
   // const url = 'https://d3idlkk51igt07.cloudfront.net/LMS-lesson/eb3864b7-6d94-4edc-9c75-6554b3575e28.pdf'
-
+console.log(allData, "allllllldataaa")
   return (
     <div>
       <Navbar className="dark_purple_bg" />

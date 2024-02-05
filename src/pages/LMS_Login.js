@@ -216,7 +216,7 @@ const LMS_Login = () => {
     }, [navigate]);
 
   return (
-    <Container  fluid className="h100vh" style={{background:" linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%)"}}>
+    <Container  fluid className="h100vh my-container" style={{background:" linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%)"}}>
       <Row className="vmiddle h90vh">
       <div >
         <Col lg={12} xl={12} className="pad30" >
@@ -242,7 +242,7 @@ const LMS_Login = () => {
                       className="fw600 fz24  black"
                       style={{ marginBottom: "70px" }}
                     >
-                      Log in to continue learning
+                      Login to continue learning
                     </Card.Title>
                     <Form onSubmit={handleFormSubmit}>
                       <Form.Group
@@ -250,7 +250,7 @@ const LMS_Login = () => {
                         controlId="formBasicEmail"
                       >
                         <Form.Label className="fw400 fz18 black">
-                          Mobile Number <span style={{color:"red"}}>*</span>
+                          Mobile Number 
                         </Form.Label>
                         <Image
                           src={mobicon}
@@ -273,7 +273,7 @@ const LMS_Login = () => {
                         className="posr mart20"
                       >
                         <Form.Label className="fw400 fz18 black">
-                          Password <span style={{color:"red"}}>*</span>
+                          Password 
                         </Form.Label>
                         <Image
                           src={!showPassword? eyeslash : eye}

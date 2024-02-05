@@ -31,7 +31,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 }
  .navbar-expand-lg .navbar-nav{display: flex;align-items: center;}
  .nav_active{color: #fff !important;}
- .nav_active::before{border-bottom: 2px solid rgba(199, 163, 255, 1);content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
+ .nav_active::before{border-bottom: 2px solid rgb(255, 255, 255);content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
  .card-absolute{
   position: absolute;
   top:130px;
@@ -1326,16 +1326,19 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
 }
 
 @media only screen and (max-width: 1024px) {
+  .fz18{
+    font-size: 10px !important;
+  }
   .card-absolute{
     width: auto !important;
   }
   .login-img{
-    width: auto !important;
-    height: 80vh !important;
+    width: 90% !important;
+    height: auto !important;
   }
   .card-absolute{
     top: 90px;
-    right: -30px;
+    right: 0px;
   }
   .login-img{
     margin-left: 0 !important;
@@ -1348,6 +1351,9 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   } */
   .logincard-body{
     width: 90% !important;
+  }
+  .card-text-dec{
+    font-size: 9px !important;
   }
 }
 @media only screen and (max-width: 768px){
@@ -1366,7 +1372,7 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   }
   .container-fluid{
     height: 100vh !important;
-    background:linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%)
+    /* background:linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%) */
   }
   .card-absolute{
     top: 0px;
@@ -1440,5 +1446,17 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
     &::after {
       transform: scale3d(1, 1, 1);
     }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1366px){
+  .card-absolute{
+    width: auto !important;
+  }
+  .card-title{
+    margin-bottom: 50px !important;
+  }
+  .card-absolute{
+    top: 60px;
   }
 }
