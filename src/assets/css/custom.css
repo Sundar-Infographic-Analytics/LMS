@@ -45,7 +45,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
  }
  @keyframes animate {0% {width: 0;}100% {width: 80%;}}
  .me-auto a {display: flex;align-items: center;white-space: pre;color: rgb(215, 215, 215);margin: 0 10px;position: relative;}
- nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {background: rgba(72, 72, 72, 0.01); padding: 0;}
+ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light {padding: 0;}
  .dropdown-menu a {margin: 0;}
  .lmstbl.table-striped>tbody>tr:nth-child(odd)>td {
     background-color: #ffffff !important;
@@ -1446,9 +1446,7 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   }
 }
 /*bug Fixed*/
-nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light{
-  /* background: #001721 !important; */
-  background: rgba(0, 23, 33, 0.8) !important;
+nav.navbar.navbar-expand-lg.navbar-light{
   position: fixed;
   width: 100%;
   z-index: 9998;
@@ -1480,6 +1478,14 @@ nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light{
   }
 }
 .bg_color{
-  background: #001721 !important;
+  background: #001721;
+}
+.navbar.navbar-expand-lg.navbar-light{
+  padding: 0;
+}
+.login_profile{
+  position: absolute;
+  z-index: 9999;
+  right: 0;
 }
 /*bug Fixed*/

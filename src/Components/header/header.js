@@ -11,6 +11,7 @@ const Header = ({style, text, title1, title2}) => {
       backgroundImage:`url(${style})`,
       backgroundRepeat:'no-repeat',
       backgroundSize:'cover',
+      height:'450px'
   }
   // const divcss={
   //   display:'flex',
@@ -21,7 +22,7 @@ const Header = ({style, text, title1, title2}) => {
   
   return (
     <>
-    <div style={styles} className='mart60' >
+    <div style={styles}>
       <Container>
         <Row>
          <Col lg={12}>

@@ -357,7 +357,7 @@ console.log(allData, "allllllldataaa")
   return (
     <div>
       <Navbar className="dark_purple_bg" />
-      <Container fluid>
+      <Container fluid className="mart60">
         {/* {console.log("linkkkkkkkkkkkkk", videoLink?.file_path)} */}
         <Modal show={showConditionModal} centered onHide={handleClose}>
           <Modal.Header closeButton className="logout-modal">

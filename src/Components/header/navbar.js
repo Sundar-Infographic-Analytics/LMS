@@ -103,8 +103,8 @@ const handleLogin = () =>{
    
     <CourseTitleProvider  >
      {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
-    <div className={`navbar_color fl w100 ${className} `} style={style} >
-   <Navbar  expand="lg" className="bg-body-tertiary bg_color"  >
+    <div className="navbar_color fl w100" style={style} >
+   <Navbar  expand="lg" className={`bg_color ${className}`}  >
       <Container  >
         <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -140,7 +140,7 @@ const handleLogin = () =>{
               </Dropdown.Menu>
             </Dropdown>
             
-       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg fw500`} style={{textDecoration:'none',padding:"5px 20px"}}><Image src={loginion} className='w30  fw300' style={{width:"15px", height:"auto", marginRight:"8px"}}/>Login</Link>
+       ):(<Link onClick={handleLogin} to="/login" className={`white fl dark_purple_bg fw500`} style={{textDecoration:'none',padding:"5px 20px",marginLeft:'0'}}><Image src={loginion} className='w30  fw300' style={{width:"15px", height:"auto", marginRight:"8px"}}/>Login</Link>
        )}
         </Container>
         <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout} />
