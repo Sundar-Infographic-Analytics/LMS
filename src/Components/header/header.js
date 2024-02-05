@@ -21,7 +21,7 @@ const Header = ({style, text, title1, title2}) => {
   
   return (
     <>
-    <div style={styles} >
+    <div style={styles} className='mart60' >
       <Container>
         <Row>
          <Col lg={12}>

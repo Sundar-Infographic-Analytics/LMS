@@ -11,7 +11,7 @@ import CourseAdd from '../Components/Utils/Course_Utils/AddCourseCard.js';
 const AddCourse = () => {
   return (
     <div>
-      <Navbar className="dark_purple_bg" />
+      <Navbar className="dark_purple_bg mart60" />
       <Container>
         <CourseAdd/>
       </Container>

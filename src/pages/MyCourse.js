@@ -309,7 +309,7 @@ const handleCourseDeleteSubmit = async () => {
       <Navbar className="dark_purple_bg"/>
       <div className='clearfix'></div>
       <Container fluid>
-        <Row className='mart50 marb10'>
+        <Row className='mart70 marb10'>
                 <Col lg={6} className='filter-containern'>
                   <div style={{display:'flex',alignItems:'center',height:'100%'}}>
                     {/* <div> */}

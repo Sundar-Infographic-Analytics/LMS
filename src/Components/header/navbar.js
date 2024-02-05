@@ -104,7 +104,7 @@ const handleLogin = () =>{
     <CourseTitleProvider  >
      {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
     <div className={`navbar_color fl w100 ${className} `} style={style} >
-   <Navbar  expand="lg" className="bg-body-tertiary"  >
+   <Navbar  expand="lg" className="bg-body-tertiary bg_color"  >
       <Container  >
         <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
