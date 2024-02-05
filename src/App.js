@@ -57,7 +57,7 @@ const superAdmin = localStorage.getItem("role") === "superadmin" ;
         </Routes> 
 
         </CourseTitleProvider>
-        <ToastContainer position="top-right" autoClose={3000} />
+        <ToastContainer position="top-right" autoClose={3000} style={{marginTop:"60px", zIndex:"99999"}} />
       </BrowserRouter>  
    
     </>

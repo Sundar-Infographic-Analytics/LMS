@@ -31,7 +31,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
 }
  .navbar-expand-lg .navbar-nav{display: flex;align-items: center;}
  .nav_active{color: #fff !important;}
- .nav_active::before{border-bottom: 2px solid rgb(255, 255, 255);content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
+ .nav_active::before{border-bottom: 2px solid #da9fff;content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
  .card-absolute{
   position: absolute;
   top:130px;
@@ -1447,7 +1447,7 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
 }
 /*bug Fixed*/
 nav.bg-body-tertiary.navbar.navbar-expand-lg.navbar-light{
-  background: #001721 !important;
+  background: rgba(0, 23, 33, 0.8) !important;
   position: fixed;
   width: 100%;
   z-index: 99999;
