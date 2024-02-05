@@ -56,7 +56,7 @@ export const RecentCourse = () => {
     };
     fetchData();
   }, [jwtToken]);
-  // console.log(recentCourse, "recentCoursevvkkvkvvk");
+  console.log(recentCourse, "recentCoursevvkkvkvvk");
   //  console.log(recentCourse[0].id,"kkkk");
 
   const settings = {
@@ -169,16 +169,26 @@ export const RecentCourse = () => {
                     //   borderBottomRightRadius: "20px",
                     // }}
                   >
+                    
+                    
                     <p
                       className="light_black"
-                      style={{ padding: "5px 0px 0 0px", fontSize: "14px" }}
+                      style={{ padding: "0px 0px 0 0px", fontSize: "14px" }}
                     >
-                      Created by <b>{course.first_name}</b> on{" "}
+                      Created by <b>{course?.first_name || course?.employee_name}</b> on{" "}
                       {course.formatted_created_date}
                     </p>
-                    <h3 className="fz18 fw600 marb5 lh27 course-name">
+                    <p
+                      className="light_black"
+                      style={{ padding: "0px 0px 0 0px", fontSize: "14px" }}
+                    >
+                      <p className="fw500" >{course?.category_name} / {course?.subcategory_name}</p> 
+                     
+                    </p>
+                    <h3 className="fz18 fw600 marb5 padt5 lh27 course-name">
                       {truncateText(course.course_name, 80)}
                     </h3>
+                    
                     <Row>
                       {/* <Col lg={6}>
                                     <div>     

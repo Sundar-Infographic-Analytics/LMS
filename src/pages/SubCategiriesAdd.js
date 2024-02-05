@@ -129,11 +129,11 @@ const SubCategiriesAdd = () => {
     // console.log("conditionsnew", (subCategory?.subCategoryInput.trim())&&subCategory?.subCategoryInput?.trim().length )
     if (!subCategory?.subCategoryInput.trim()) {
       error.subCategoryInput = "Enter Subcategory";
-      console.log("conditions111")
-    } else if (subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length <10) {
+      // console.log("conditions111")
+    } else if (subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length <=6) {
       // console.log("conditions",subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length >=10 )
-      error.subCategoryInput = "Must have at least 10 characters";
-      console.log("conditions222")
+      error.subCategoryInput = "Must have at least 6 characters";
+      // console.log("conditions222")
     }
     setError(error);
     // console.log(
@@ -156,8 +156,8 @@ const SubCategiriesAdd = () => {
       if (editedSubCategory?.bannerImg?.size > MAX_FILE_SIZE) {
         error.bannerImg = "Filesize exceeds 500KB";
       }
-      if(subCategory?.bannerImg?.name){
-        if(!allowedTypes.includes(subCategory?.bannerImg?.type)){
+      if(editedSubCategory?.bannerImg?.name){
+        if(!allowedTypes.includes(editedSubCategory?.bannerImg?.type)){
           error.bannerImg = "Only JPEG, JPG, PNG, SVG";
         }
       }
@@ -166,7 +166,11 @@ const SubCategiriesAdd = () => {
 
     if (!editedSubCategory?.subCategoryInput.trim()) {
       error.subCategoryInput = "Enter Subcategory";
-    } 
+    } else if (editedSubCategory?.subCategoryInput.trim() && editedSubCategory?.subCategoryInput?.trim().length <=6) {
+      // console.log("conditions",subCategory?.subCategoryInput.trim() && subCategory?.subCategoryInput?.trim().length >=10 )
+      error.subCategoryInput = "Must have at least 6 characters";
+      // console.log("conditions222")
+    }
 
     setError(error);
     return Object.keys(error).length === 0;
