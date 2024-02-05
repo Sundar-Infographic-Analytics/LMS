@@ -104,18 +104,13 @@ const handleLogin = () =>{
     <CourseTitleProvider  >
      {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
     <div className={`navbar_color fl w100 ${className} `} style={style} >
-   <Navbar  expand="lg" className="bg-body-tertiary">
+   <Navbar  expand="lg" className="bg-body-tertiary"  >
       <Container  >
         <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/" className={`${location.pathname ==='/'? 'nav_active fw600' : ""} `} >Home</Nav.Link>
-            <Nav.Link href="/Categories/1" className={`${location.pathname ==='/Categories/1'? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
-            <Nav.Link href="/Categories/2" className={`${location.pathname ==='/Categories/2'? 'nav_active fw600' : ""}`} >Legal</Nav.Link>
-            <Nav.Link href="/Categories/3" className={`${location.pathname ==='/Categories/3'? 'nav_active fw600' : ""}`} >Risk</Nav.Link>
-            <Nav.Link href="/Categories/4" className={`${location.pathname ==='/Categories/4'? 'nav_active fw600' : ""}`} >Technology</Nav.Link>
-      <Container className='mobile_place'>
             <Nav.Link href="/Categories/1" className={`${location.pathname ==='/Categories/1' || navlocation === 1 ? 'nav_active fw600' : ""}`} >Finance</Nav.Link>
             <Nav.Link href="/Categories/2" className={`${location.pathname ==='/Categories/2' || navlocation === 2  ?  'nav_active fw600' : ""}`} >Legal</Nav.Link>
             <Nav.Link href="/Categories/3" className={`${location.pathname ==='/Categories/3'  || navlocation === 3 ? 'nav_active fw600' : ""}`} >Risk</Nav.Link>
@@ -123,11 +118,9 @@ const handleLogin = () =>{
       <Container>
       {isLoggedIn ? (
             <Dropdown onClick={onClick}>
-              <div>
-              <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 born user-profile-nav">
+              <Dropdown.Toggle variant="success" id="dropdown-basic" className="br0 dark_purple_bg born user-profile-nav">
                 <Image title={username} src={userPhoto} className='w100 marr5 fw300'/>
               </Dropdown.Toggle>
-              </div>
 
               <Dropdown.Menu className="ff lh27">
                 <div style={{padding:'10px  20px'}}> hi! <b>{username}</b></div>
@@ -147,7 +140,7 @@ const handleLogin = () =>{
               </Dropdown.Menu>
             </Dropdown>
             
-       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg fw500 mobile_css`} style={{textDecoration:'none',padding:"5px 20px"}}><Image src={loginion} className='w30  fw300' style={{width:"15px", height:"auto", marginRight:"8px"}}/>Login</Link>
+       ):(<Link onClick={handleLogin} to="/login" className={`white fr dark_purple_bg fw500`} style={{textDecoration:'none',padding:"5px 20px"}}><Image src={loginion} className='w30  fw300' style={{width:"15px", height:"auto", marginRight:"8px"}}/>Login</Link>
        )}
         </Container>
         <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout} />
