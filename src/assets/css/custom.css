@@ -307,16 +307,20 @@ outline: 2px solid #B4B4B4 ;
   font-size: 14px;
 }
 .view-btn{
-  padding: 8px 40px;
-  border: 1px solid #BCBCBC;
-  border-radius: 4px;
-  font-weight: 600;
-  color: #515151;
-  cursor: pointer;
+  padding: 8px 40px !important;
+  border: 1px solid #BCBCBC !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+  color: #515151 !important;
+  background-color: #ffffff !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
 }
 .view-btn:hover{
-  background-color: #ededed;
-  transition: all 0.1s;
+  background-color: #5c636a !important;
+  color: white !important;
+  transition: all 0.4s !important;
+  border: "1px solid #5c636a" !important;
 }
 .btn-group > .btn:first-child:not(.dropdown-toggle) {
   background-color: #000 !important;
@@ -480,6 +484,7 @@ object-fit: cover;
 
 .course-card{
   box-shadow:0 0 10px 5px #eee ;
+  border-radius: 6  px !important;
 }
 .course_submittedCard-content{
   display: flex;
@@ -787,7 +792,7 @@ input#formBasicEmail{
 .dark_purple.btn.btn-primary:hover{
   color: #fff !important;
   border-color: transparent;
-  background: #6F3FBA !important;
+  background: #5c636a !important;
 }
 
 .dev .btn-outline-success, .dev .btn-outline-warning, .dev .btn-outline-danger{
@@ -880,7 +885,7 @@ input#subCategoryInput {
   padding: 10px;
 }button.padl50.padr50.white_bg.black.h50.br5.fw600.fz18.btn.btn-secondary:hover{
   color: #fff !important;
-  border: none !important;
+  border: 1px solid #5c636a !important;
 }
 button.padl50.padr50.dark_purple_bg.h50.br5.fw600.fz18.btn_color.born.btn.btn-primary{
   border: none !important;
@@ -1300,6 +1305,7 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   }
   .logincard-body .card-body{
     padding: 0;
+   
   }
   .card-img-top .card-title{
     margin-bottom: 20px !important;
@@ -1499,3 +1505,8 @@ nav.navbar.navbar-expand-lg.navbar-light{
 
 /*bug Fixed*/
 
+.btn-cancel{
+  padding: 6px 50px !important;
+  color:#3e3e3e ;
+
+}

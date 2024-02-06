@@ -601,7 +601,7 @@ const AddCourse = () => {
                     }}>
                   <div
                     
-                    className="marl10 marl10 "
+                    className="marl10 marl10"
                   >
                     {/* {imagePreview && ( */}
                     <Image
@@ -635,8 +635,21 @@ const AddCourse = () => {
           </Modal.Body>
 
           <Modal.Footer>
+          <Button
+              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              style={{
+                  
+                  border: "1px solid #6f3fba",
+                  color: "#6f3fba",
+                  transition:"all .45s"
+                }}
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
             <Button
-              className=" w30 mobile-btn  mart0 marb10 dark_purple_bg born fw400 fz16 pad10 br5 btn_color"
+              className=" primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+              style={{padding:"8px 40px "}}
               onClick={handleEditSubmit}
               disabled={buttonLoading}
             >
@@ -652,13 +665,7 @@ const AddCourse = () => {
               )}
               Submit
             </Button>
-            <Button
-              className="w30 mobile-btn  mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple"
-              style={{ background: "transparent", color: "#6f3fba" }}
-              onClick={handleClose}
-            >
-              Clear
-            </Button>
+           
           </Modal.Footer>
         </Modal>
       </div>
@@ -682,7 +689,13 @@ const AddCourse = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              variant=" secondary padl50 padr50 white_bg black h50 br5 fw600 fz18 view-btn"
+              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              style={{
+                  
+                  border: "1px solid #6f3fba",
+                  color: "#6f3fba",
+                  transition:"all .45s"
+                }}
               onClick={handledeleteClose}
             >
               Cancel
@@ -714,8 +727,8 @@ const AddCourse = () => {
             <Col lg={12}>
               <p className="fw600 fz18 mart20 padb10">Add Course</p>
               <Card style={{ boxShadow: "0 0 10px 5px #eee" }} className="born">
-                <Card.Body>
-                  <div style={{ display: "" }} className="cusflexrow">
+                <Card.Body >
+                  <div style={{ display: "", }} className="cusflexrow">
                     <div style={{ flex: "3" }} className="padl20">
                       <div>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -965,7 +978,7 @@ const AddCourse = () => {
             <Col lg="12">
               <p className="fw600 fz18 mart20 padb10">Added Course</p>
               <Card
-                
+                style={{ borderRadius:"5px"}}
                 className="born course-card"
               >
                 {cardloading && (

@@ -56,7 +56,7 @@ export const RecentCourse = () => {
     };
     fetchData();
   }, [jwtToken]);
-  console.log(recentCourse, "recentCoursevvkkvkvvk");
+  // console.log(recentCourse, "recentCoursevvkkvkvvk");
   //  console.log(recentCourse[0].id,"kkkk");
 
   const settings = {
@@ -182,7 +182,7 @@ export const RecentCourse = () => {
                       className="light_black"
                       style={{ padding: "0px 0px 0 0px", fontSize: "14px" }}
                     >
-                      <p className="fw500" >{course?.category_name} / {course?.subcategory_name}</p> 
+                      <span className="fw500" >{course?.category_name} / {course?.subcategory_name}</span> 
                      
                     </p>
                     <h3 className="fz18 fw600 marb5 padt5 lh27 course-name">

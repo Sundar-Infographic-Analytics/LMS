@@ -878,7 +878,7 @@ const HandleDraftSubmit = async () =>{
               id="inputPassword5"
               aria-describedby="passwordHelpBlock"
               value={lesssonData?.lesson_name || ""}
-              placeholder="Enter lesson name*"
+              placeholder="Enter lesson name"
               onChange={handlechange}
             />
           )}
@@ -1042,8 +1042,21 @@ const HandleDraftSubmit = async () =>{
           )}
 
           <Modal.Footer>
+            
             <Button
-              className="dark_purple_bg born w30"
+              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              style={{
+                  
+                  border: "1px solid #6f3fba",
+                  color: "#6f3fba",
+                
+                }}
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz16 btn_color born"
               onClick={() =>
                 editLessonState.lesson_id
                   ? handleLessonEditSubmit()
@@ -1063,14 +1076,7 @@ const HandleDraftSubmit = async () =>{
                   style={{ marginRight: "5px" }}
                 />
               )}
-              Submit
-            </Button>
-            <Button
-              className="born w30 cus_btn_new"
-              style={{ background: "transparent", color: "#6f3fba" }}
-              onClick={handleClose}
-            >
-              Clear
+             {editLessonState.lesson_id ? "Edit" : "Add"}
             </Button>
           </Modal.Footer>
         </Modal>
@@ -1132,6 +1138,7 @@ const HandleDraftSubmit = async () =>{
               value={chapterename || ""}
               name="chapter_name"
               onChange={handleChapterchange}
+              style={{height:"45px"}}
             />
           )}
 
@@ -1160,8 +1167,18 @@ const HandleDraftSubmit = async () =>{
           <Modal.Footer
             style={{ marginTop: "20px", borderTop: "0px solid red !important" }}
           >
+          
             <Button
-              className="dark_purple_bg born w30"
+              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              style={{border:"1px solid  #6F3FBA", color:"#6F3FBA"}}
+              onClick={() => {
+                handleChapterClose();
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz16 btn_color born"
               // onClick={handleChapterSubmit}
               onClick={() =>
                 editchapterState.course_id
@@ -1183,15 +1200,6 @@ const HandleDraftSubmit = async () =>{
                 />
               )}
               {editchapterState?.chapter_id ? "Edit" : "Add"}
-            </Button>
-            <Button
-              className="born w30 cus_btn_new"
-              style={{ background: "transparent", color: "#6f3fba" }}
-              onClick={() => {
-                handleChapterClose();
-              }}
-            >
-              Clear
             </Button>
           </Modal.Footer>
         </Modal>
@@ -1218,7 +1226,13 @@ const HandleDraftSubmit = async () =>{
           </Modal.Body>
           <Modal.Footer>
             <Button
-              variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
+              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              style={{
+                  
+                  border: "1px solid #6f3fba",
+                  color: "#6f3fba",
+                  transition:"all .45s"
+                }}
               onClick={handleClose}
 
             >
@@ -1288,7 +1302,7 @@ const HandleDraftSubmit = async () =>{
               <Col lg={12} className="marb15" key={index}>
                 <Card
                   className="born "
-                  style={{ boxShadow: "0 0 10px 5px #eee" }}
+                  style={{ boxShadow: "0 0 10px 5px #eee",  borderRadius:"6px"}}
                   key={chapterMap.course_id}
                 >
                   {/* {cardloading && (

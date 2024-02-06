@@ -113,13 +113,13 @@ useEffect(() => {
   };
 }, []);
 
-console.log(scrollPosition, "hhhhhhhhhhhhhhh")
+// console.log(scrollPosition, "hhhhhhhhhhhhhhh")
   return (    
    
     <CourseTitleProvider  >
      {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
     <div className="navbar_color fl w100" style={style} >
-   <Navbar  expand="lg" className={`${scrollPosition > 350 ? 'bg_color ' : 'bg_color_normal '} ${className}`}  >
+   <Navbar  expand="lg" className={`${scrollPosition > 350 ? 'bg_color' : 'bg_color_normal '} ${className}`}  >
       <Container  >
         <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
