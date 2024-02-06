@@ -265,7 +265,7 @@ const {setLoading}   = useLoader();
       <Navbar className="dark_purple_bg" />
       <div className="clearfix"></div>
       <Container fluid className="mart50 marb10">
-        <Col lg={6} className="filter-containern">
+        <Col lg={6} className="filter-containern mart100 marb30" >
           <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"Filter by course title / employee name / category and subcategory"} onApprovalStatusChange={handleApprovalStatusChange}/>
         </Col>
       </Container>

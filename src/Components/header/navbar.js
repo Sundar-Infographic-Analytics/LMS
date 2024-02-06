@@ -21,6 +21,8 @@ import axios from 'axios';
 
 
 const NavBar = ({style, className, navlocation}) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const courseTitle = useCategoryTitle(); // from useContext
@@ -99,12 +101,25 @@ const handleLogin = () =>{
  navigate( '/login') ;
 };
 
+useEffect(() => {
+  const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
+
+console.log(scrollPosition, "hhhhhhhhhhhhhhh")
   return (    
    
     <CourseTitleProvider  >
      {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
     <div className="navbar_color fl w100" style={style} >
-   <Navbar  expand="lg" className={`bg_color ${className}`}  >
+   <Navbar  expand="lg" className={`${scrollPosition > 350 ? 'bg_color ' : 'bg_color_normal '} ${className}`}  >
       <Container  >
         <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

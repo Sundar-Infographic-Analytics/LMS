@@ -682,7 +682,7 @@ const AddCourse = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              variant=" secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
+              variant=" secondary padl50 padr50 white_bg black h50 br5 fw600 fz18 view-btn"
               onClick={handledeleteClose}
             >
               Cancel
