@@ -318,8 +318,8 @@ outline: 2px solid #B4B4B4 ;
   opacity: 1 !important;
 }
 .view-btn:hover{
-  background-color: #5c636a !important;
-  color: white !important;
+  background-color: #f1f1f1 !important;
+  color: 515151 !important;
   transition: all 0.4s !important;
   border: "1px solid #5c636a" !important;
 }
@@ -1093,10 +1093,10 @@ overflow-y: auto;
     flex-direction: column-reverse !important;
     /* border: 1px solid blue; */
   }
-.course-card{
+/* .course-card{
 /* border: 1px solid rgb(0, 255, 76); */
 
-}
+/* } */ */
 
 .course_submittedCard-content{
   margin-top: 5px;
