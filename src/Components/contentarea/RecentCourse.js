@@ -140,7 +140,7 @@ export const RecentCourse = () => {
 
   return (
     <>
-      <Container className="padb20">
+      <Container className="padb20 marb30">
         {recentCourse.length === 0 ? (
           <></>
         ) : (
