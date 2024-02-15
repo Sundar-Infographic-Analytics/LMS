@@ -92,7 +92,7 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
   color: #212529;
   font-weight: 600;
 }
-YouTube{
+.YouTube{
   color:white
 }
 button#dropdown-basic {
@@ -254,13 +254,7 @@ transform: scale(1.1);
   border-top-width: 0px !important;
   border-top-color: transparent !important;
 }
-/* .cQAWmj{
-  border-top-width: 0px !important;
-} */
 
-/* .eDKzGB:focus-visible {
-outline: 2px solid #B4B4B4 ;
-} */
 /* dataTable END */
 
 /* filter box */
@@ -353,7 +347,6 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 50%;
-
   cursor: pointer;
   color: #3e3e3e;
   position: absolute;
@@ -922,7 +915,7 @@ button.padl50.padr50.dark_purple_bg.h50.br5.fw600.fz18.btn_color.born.btn.btn-pr
     font-size: 14px !important;
   }
   .rdt_Table,.jzrolw{
-    /* border: 1px solid red; */
+   
     margin-right: 0 !important;
     padding-right: 0 !important;
     width: 100% !important;
@@ -1093,10 +1086,7 @@ overflow-y: auto;
     flex-direction: column-reverse !important;
     /* border: 1px solid blue; */
   }
-/* .course-card{
-/* border: 1px solid rgb(0, 255, 76); */
 
-/* } */ */
 
 .course_submittedCard-content{
   margin-top: 5px;
