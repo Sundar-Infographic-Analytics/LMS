@@ -7,7 +7,7 @@ const Footer = () => {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
   return (
-   <div className='white_bg mart15' style={{background:"#5E5E5E"}}>
+   <div className='white_bg' style={{background:"#5E5E5E"}}>
    <Container>
     <Row >
         <Col lg={12}>

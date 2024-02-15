@@ -30,7 +30,7 @@ const SubCategiries = ({data}) => {
                     <div className="center_img posr ">
                       <p className="posa white pad15 ">{course?.subcategory_name}</p>
                      
-                      <Image src={course?.banner_image_url}  className="objfit"  />
+                      <Image src={course?.banner_image_url} className="objfit"  />
                      
                     </div>
                   </Link>

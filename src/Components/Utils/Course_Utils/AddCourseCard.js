@@ -454,7 +454,7 @@ const AddCourse = () => {
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="fw600 fz15">
-                  Description<span style={{ color: "red" }}>*</span>
+                  Description <span style={{ color: "red" }}>*</span>
                 </Form.Label>
                 <Form.Control
                   name="course_desc"
@@ -471,7 +471,7 @@ const AddCourse = () => {
                 )}
                 <div style={{ flex: "1" }} className="mart20">
                   <p className="fw600 marb10">
-                    Category<span style={{ color: "red" }}>*</span>
+                    Category <span style={{ color: "red" }}>*</span>
                   </p>
                   <fieldset>
                     <Form.Group as={Row} className="block">
@@ -636,7 +636,7 @@ const AddCourse = () => {
 
           <Modal.Footer>
           <Button
-              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              className="padl50 padr50 white_bg black h50 br5 fw500 fz18 btn btn-secondary"
               style={{
                   
                   border: "1px solid #6f3fba",
@@ -648,7 +648,7 @@ const AddCourse = () => {
               Cancel
             </Button>
             <Button
-              className=" primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
+              className=" primary padl50 padr50 dark_purple_bg h50 br5 fw500 fz18 btn_color born"
               style={{padding:"8px 40px "}}
               onClick={handleEditSubmit}
               disabled={buttonLoading}
@@ -663,7 +663,7 @@ const AddCourse = () => {
                   style={{ marginRight: "5px" }}
                 />
               )}
-              Submit
+              Edit 
             </Button>
            
           </Modal.Footer>

@@ -216,7 +216,7 @@ const LMS_Login = () => {
     }, [navigate]);
 
   return (
-    <Container  fluid className="h100vh my-container" style={{background:" linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%)"}}>
+    <Container fluid className="h100vh my-container" style={{background:" linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%)"}}>
       <Row className="vmiddle h90vh">
       <div >
         <Col lg={12} xl={12} className="pad30" >
@@ -239,8 +239,8 @@ const LMS_Login = () => {
                       Welcome!
                     </Card.Title> */}
                     <Card.Title
-                      className="fw600 fz24  black"
-                      style={{ marginBottom: "70px" }}
+                      className="fw600 fz24  black card-title"
+                      // style={{ marginBottom: "70px" }}
                     >
                       Login to continue learning
                     </Card.Title>

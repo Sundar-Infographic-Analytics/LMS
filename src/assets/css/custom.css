@@ -297,6 +297,7 @@ outline: 2px solid #B4B4B4 ;
 
 .filter-containern{
   width: 50%;
+  /* margin-bottom: 18px !important; */
 }
 
 .filter-container input[type=text]{
@@ -307,7 +308,7 @@ outline: 2px solid #B4B4B4 ;
   font-size: 14px;
 }
 .view-btn{
-  padding: 8px 40px !important;
+  padding: 8px 40px ;
   border: 1px solid #BCBCBC !important;
   border-radius: 4px !important;
   font-weight: 600 !important;
@@ -341,6 +342,7 @@ outline: 2px solid #B4B4B4 ;
 .input-container{
   position: relative;
   /* border: 1px solid red; */
+ 
 }
 .clear-icon{
 width: 22px;
@@ -534,7 +536,19 @@ object-fit: cover;
   /* align-items: flex-end; */
 }
 /* table */
-
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+  color: var(--bs-btn-active-color) !important ;
+  /* background-color: #6f3fba;
+  border-color:#6f3fba; */
+}
+.btn-check:checked + .btn{
+  background-color: none !important;
+  border-color:none !important;
+}
+.btn-secondary:hover{
+  color: white !important;
+  border: 1px solid #5c636a !important;
+}
 
 @keyframes moveToRight {
   0% {
@@ -919,10 +933,10 @@ button.padl50.padr50.dark_purple_bg.h50.br5.fw600.fz18.btn_color.born.btn.btn-pr
   }
   .rdt_TableCol_Sortable{
     /* min-width: auto !important; */
-    min-width: 180px !important;
+    min-width: 100px !important;
   }
   .input-container,.category-dropdown{
-    min-width: 400px !important;
+    min-width: 500px !important;
    
   }
   .filter-status{
@@ -930,6 +944,8 @@ button.padl50.padr50.dark_purple_bg.h50.br5.fw600.fz18.btn_color.born.btn.btn-pr
    
   }
   .main-div{
+        /* border: 1px solid red; */
+        width: 100% !important;
     margin-top: 20px;
     flex-direction: row !important;
     gap: 10px;
@@ -1101,7 +1117,13 @@ overflow-y: auto;
   justify-content: flex-end;
 }
 }
+/* //? dhivagar bug new start comman */
+.card-title{
+  margin-bottom: 70px !important;
+  font-size: 25px;
+}
 
+/* //? dhivagar bug new End comman */
 @media screen and (min-width:0px) and (max-width:320px){
   /* .courseCard-container{
     align-items: center;
@@ -1289,8 +1311,52 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
 }
 
 @media only screen and (max-width: 1440px) {
+  
+  .view-btn{
+    padding: 8px 25px ;
+    border: 1px solid #BCBCBC !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+    color: #515151 !important;
+    background-color: #ffffff !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+  }
+  .header-container{
+    height: 350px !important;
+  }
+  .customHead{
+    display: flex;
+    height: 160px;
+    margin-top: 190px;
+  }
+
+  .slider-Img{
+    width: 352px;
+    height: 160px;
+  }
+  .slick-initialized{
+    height: 300px !important;
+  }
+  
+  
+  .slide-item {
+    /* width: 80% !important; */
+    height: auto;
+    border-radius: 20px;
+  }
+  
+  
+  .slide-item .content-container {
+    width: 352px;
+    height: auto;
+   
+  }
+
   .card-absolute{
-    top: 50px;
+    top: 65px;
+    right: 70px;
+   width: 35%;
   }
   .logincard-body{
     padding: 20px  40px;
@@ -1308,7 +1374,11 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
    
   }
   .card-img-top .card-title{
-    margin-bottom: 20px !important;
+    margin-bottom: 70px !important;
+  }
+ .card-title{
+    margin-bottom: 40px !important;
+    font-size: 22px;
   }
   div.vmiddle .mart40{
     margin-top: 20px;
@@ -1329,8 +1399,12 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
 }
 
 @media only screen and (max-width: 1024px) {
+ 
   .fz18{
-    font-size: 10px !important;
+    font-size: 16px !important;
+  }
+  .fz15{
+ font-size: 16px !important;
   }
   .card-absolute{
     width: auto !important;
@@ -1360,6 +1434,12 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   }
 }
 @media only screen and (max-width: 768px){
+  .fz18{
+    font-size: 20px !important;
+  }
+  .fz15{
+ font-size: 16px !important;
+  }
   .card-absolute{
     width: 100% !important;
     padding: 50px !important;
@@ -1373,9 +1453,9 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
     margin-top: 520px;
     margin-left: 20px !important;
   }
-  .container-fluid{
+  .my-container{
     height: 100vh !important;
-    /* background:linear-gradient(180deg, #AF7CFF 0%, #E2A4FF 100%) */
+    /* background:c */
   }
   .card-absolute{
     top: 0px;
@@ -1390,6 +1470,51 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
       }
 }
 @media only screen and (max-width: 425px){
+  .filter-input-input{
+    width: 100% !important;
+  }
+  .category-dropdown{
+    width: 90% !important;
+  }
+  .header-container{
+    height: 450px !important;
+  }
+  .customHead{
+    display: flex;
+    height: 230px;
+    margin-top: 210px;
+  }
+  .recent-viewed{
+    margin-top: 50px;
+  }
+  .center_img{
+    width: 350px;
+    height: 180px;
+    /* object-fit: cover; */
+  }
+
+  .center_img img{
+    width: 350px;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .center_img p{
+    font-size: 20px;
+  }
+ 
+  /* .slick-slide{
+    padding: 10px;
+  } */
+  .slider-Img{
+    width: 368px;
+    height: 160px;
+  }
+  
+  .slide-item .content-container {
+    width: 368px;
+  }
+  
   .logincard-body {
     width: 100%;
 
@@ -1413,6 +1538,18 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
   }
 
  
+}
+@media only screen and (max-width: 375px){
+  .center_img{
+    width:300px;
+    height: 180px;
+    /* object-fit: cover; */
+  }
+  .center_img img{
+    width: 300px;
+    height: 180px;
+    /* object-fit: cover; */
+  }
 }
 
 /* Add this to your global.css or custom.css file */
@@ -1455,9 +1592,30 @@ button.slick-arrow.slick-next::before{color: #ddd;font-size: 35px;right: 7px;pos
 nav.navbar.navbar-expand-lg.navbar-light{
   position: fixed;
   width: 100%;
-  z-index: 9998;
+  z-index: 99;
   top: 0;
 }
+/* for menu button mode  */
+@media only screen and (max-width: 991px){ 
+  .modal-body{
+    font-size: 20px !important;
+    padding-bottom: 0px !important;
+  }
+  .bg_color_normal {
+    background: rgb(0, 27, 34, 0.9) !important;
+    /* padding-bottom: 20px !important; */
+    transition: 0.45s;
+  }
+  .container .dropdown,  .dropdown .show{
+    padding-bottom: 20px !important;
+  }
+  .dropdown .show{
+    margin-bottom: 20px !important;
+  }
+  .dropdown-menu.show .fz18{
+    font-size: 14px !important;
+  }
+} 
 @media screen and (min-width:320px) and (max-width:640px){
   .accordion{
     height: auto !important;
@@ -1499,8 +1657,9 @@ nav.navbar.navbar-expand-lg.navbar-light{
 }
 .login_profile{
   position: absolute;
-  z-index: 9999;
+  /* z-index: 9999; */
   right: 0;
+  border: 1px solid red !important;
 }
 
 /*bug Fixed*/

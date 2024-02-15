@@ -54,7 +54,7 @@ const MyLearnings = () => {
     }
     return text;
   };
-  console.log(learnedCourse,"my Mstery dataaaaaa")
+  // console.log(learnedCourse,"my Mstery dataaaaaa")
   return (
     <>
       <Navbar />

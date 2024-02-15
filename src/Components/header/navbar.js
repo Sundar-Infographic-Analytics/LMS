@@ -120,8 +120,8 @@ useEffect(() => {
      {/* { console.log("addcheckkkNavvvvvvDATA",data )} */}
     <div className="navbar_color fl w100" style={style} >
    <Navbar  expand="lg" className={`${scrollPosition > 350 ? 'bg_color' : 'bg_color_normal '} ${className}`}  >
-      <Container  >
-        <Navbar.Brand href="/"><img src={logo} alt='' className='w50' /></Navbar.Brand>
+      <Container>
+        <Navbar.Brand href="/"><img src={logo} alt='' style={{height:"50px", width:"50px"}}/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -151,7 +151,7 @@ useEffect(() => {
                   <></>
                 )}
                 
-                <Dropdown.Item onClick={handleLogoutModal} className='white fr'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
+                <Dropdown.Item onClick={handleLogoutModal} className='white fr fz18'><img src={logout_ion} alt='' style={{width:'24px',}} /><span className='padl10'> Logout</span></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             

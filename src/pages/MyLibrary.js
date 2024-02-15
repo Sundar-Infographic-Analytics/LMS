@@ -105,7 +105,7 @@ const response = await axios.post (
               >
                 <Image src={course.course_image || NoImg} style={{  height:"168px" , objectFit:"cover" }} className="w100 border " />
                 <div className="border pad10 " style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
-                <div >
+                <div className="course-desc-dummy">
                   <p
                     className="light_black"
                     style={{ padding: "0 0px 0 0px", fontSize: "12px" }}
@@ -116,7 +116,7 @@ const response = await axios.post (
                   <p className="fw600 fz18 light_black marb5">
                     {truncateText(course?.course_name, 55)}
                   </p>
-                  <p title={course.course_desc} className="fw400 fz15 light_black">{truncateDesc(course.course_desc, 145)}</p>
+                  <p title={course.course_desc} className="fw400  fz15 light_black">{truncateDesc(course.course_desc, 145)}</p>
                   {/* for bottom button and whistlist */}
                   </div>
                   <Col lg={12} >

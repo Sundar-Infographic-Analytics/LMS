@@ -535,7 +535,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
                 <img  src={BookSubmission} alt="submit"/>
               </div>
                 <p>      
-                Your course is, <strong>Submitted</strong>!
+                Your course has been <strong>Submitted </strong>!
               </p>
           
               </div>
@@ -759,7 +759,7 @@ const HandleDraftSubmit = async () =>{
         <img  src={BookSubmission} alt="submit"/>
       </div>
         <p>      
-        Your course saved as , <strong>Draft</strong>!
+        Your course has been saved as a <strong>Draft</strong>!
       </p>
   
       </div>
@@ -959,9 +959,9 @@ const HandleDraftSubmit = async () =>{
               <Link>
                 <Image
                   src={
-                    filetypeOption === "V"
+                    filetypeOption || editLessonState?.file_type === "V"
                       ? LinkIcon
-                      : filetypeOption === "P"
+                      : filetypeOption || editLessonState?.file_type === "P"
                       ? data.Thumb
                       : ""
                   }
@@ -1044,7 +1044,7 @@ const HandleDraftSubmit = async () =>{
           <Modal.Footer>
             
             <Button
-              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              className="padl30 padr30 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
               style={{
                   
                   border: "1px solid #6f3fba",
@@ -1169,7 +1169,7 @@ const HandleDraftSubmit = async () =>{
           >
           
             <Button
-              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              className="padl30 padr30 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
               style={{border:"1px solid  #6F3FBA", color:"#6F3FBA"}}
               onClick={() => {
                 handleChapterClose();
@@ -1226,7 +1226,7 @@ const HandleDraftSubmit = async () =>{
           </Modal.Body>
           <Modal.Footer>
             <Button
-              className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              className="padl30 padr30 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
               style={{
                   
                   border: "1px solid #6f3fba",
@@ -1353,7 +1353,7 @@ const HandleDraftSubmit = async () =>{
                             key={index}
                             className=" pad20 mart10 br5 dif w100 lesson-items"
                            
-                            // style={{ boxShadow: "0 0 10px 5px #eee" }}
+                            style={{ boxShadow: "0 0 10px 5px #eee" }}
                           >
                           <div className="lesson-set1">
                             <div style={{ flex: "0.5" }} className="">

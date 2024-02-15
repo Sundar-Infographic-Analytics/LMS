@@ -70,6 +70,16 @@ export const RecentCourse = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+          arrows: true,
+        }
+      },
         {
           breakpoint: 1024,
           settings: {

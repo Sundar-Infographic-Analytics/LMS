@@ -111,7 +111,7 @@ const undoSubmitHandlechange = async (courseID) =>{
     {
       name: 'SI.No',
       selector: (row, index) => index + 1, 
-      width: "6%",
+      width: "5%",
       sortable: false,
     },
     {
@@ -121,7 +121,7 @@ const undoSubmitHandlechange = async (courseID) =>{
         style: {
           whiteSpace: 'normal !important', // Set whiteSpace to 'normal' for wrapping
         },
-        width: "35%",      
+        width: "32%",      
         cell: row => <div className="wrap-content">{row.course_title}</div>, 
     },
     {
@@ -157,13 +157,13 @@ const undoSubmitHandlechange = async (courseID) =>{
   {
     name: 'Action',
     sortable: true,
-    width: "",
+    width: "12%",
    cell:(row) =>(
      <>
      {/* {console.log(row, "rowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" )} */}
       <div className="dif">
       {row?.status.toLowerCase() === "pending" ? (
-        <Link style={{textDecoration:"none", padding:"8px 15px"}} className="view-btn" onClick={() => undoSubmitHandlechange(row?.id)} >Undo Submit</Link> 
+        <Link style={{textDecoration:"none", padding:"8px 10px"}} className="view-btn" onClick={() => undoSubmitHandlechange(row?.id)} >Undo Submit</Link> 
       ) :
       (
         <>
@@ -315,14 +315,14 @@ const handleCourseDeleteSubmit = async () => {
                     {/* <div> */}
                     {/* <span className='fw600 fz18 mart40 padb10'>Add Chapter</span>   */}
                     {/* </div> */}
-                  <div className="filter-container">
+                  <div className="filter-container ">
                     <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / Subcategory /   Status"}/>
                   </div>
                 </div>
                 </Col>
                 <Col lg={6}>
                   <div style={{display:'flex',justifyContent:'end'}}>
-                  <Button onClick={handleAddnewcourseClick} className='add-btn mart0 marb10 marr10 dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Course</Button>  
+                  <Button onClick={handleAddnewcourseClick} className='add-btn mart10 marb10 marr10 dark_purple_bg born fw600 fz16 padb10 padt10 padr20 padl20 br5 btn_color ' ><b>+</b> Add Course</Button>  
                   {/* {localStorage.getItem("role") === "superadmin" && (
                     <Button href='/subCategiriesAdd' className='w30 mart0 marb10   dark_purple_bg born fw600 fz16 pad10 br5 btn_color ' ><b>+</b> Add Subcategory</Button>
                      

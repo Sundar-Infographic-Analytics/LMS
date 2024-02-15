@@ -132,7 +132,7 @@ const {setLoading}   = useLoader();
             style: {
                 whiteSpace: 'normal !important', // Set whiteSpace to 'normal' for wrapping
             },
-            width: "33%",      
+            width: "23%",      
          cell: row => <div className="wrap-content">{row.course_title}</div>, 
         },
         {
@@ -145,7 +145,7 @@ const {setLoading}   = useLoader();
           name:"Subcategory",
           selector:row =>row.sub_category,
           sortable:true,
-          width:"10%",
+          width:"13%",
           cell: row => <div className="wrap-content">{row.sub_category}</div>,
         },
         {
@@ -157,6 +157,7 @@ const {setLoading}   = useLoader();
         },
         {
           name:"Thumbnail",
+          width:"10%",
           cell: row => <img src={row.thumbnail || NoImg} alt="Thumbnail" style={{ maxWidth: '100%', maxHeight: '100%', width: '100px', height: '50px', margin:"5px 5px 5px 0" }} />,
           selector:row => row.thumbnail,
           sortable:true,
@@ -169,6 +170,7 @@ const {setLoading}   = useLoader();
         {
           name:"View",
           // selector
+          width:"10%",
           cell: row => (
           <>
           {/* <div>{console.log(row, 'check superadmin linkClick')}</div> // hide console from Below link========> onClick={()=> setGetPreviewCourseID(row?.id)} */}
@@ -178,7 +180,7 @@ const {setLoading}   = useLoader();
         },
         {
           name:"Action",
-          width:"17%",
+          width:"auto",
           selector:(row) => row.action,
           sortable:true,
           cell:(row, index) =>(
@@ -265,7 +267,7 @@ const {setLoading}   = useLoader();
       <Navbar className="dark_purple_bg" />
       <div className="clearfix"></div>
       <Container fluid className="mart50 marb10">
-        <Col lg={6} className="filter-containern mart100 marb30" >
+        <Col lg={8} className="filter-containern mart100 marb30" >
           <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"Filter by course title / employee name / category and subcategory"} onApprovalStatusChange={handleApprovalStatusChange}/>
         </Col>
       </Container>

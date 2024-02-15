@@ -409,7 +409,7 @@ const SubCategiriesAdd = () => {
   //editttttttttttttttt
 
   const handleEditClick = (row) => {
-    console.log("edit clicked row", row);
+    // console.log("edit clicked row", row);
 
     setEditMode(true);
     setEditedSubCategory({
@@ -716,6 +716,19 @@ const SubCategiriesAdd = () => {
             </Modal.Body>
 
             <Modal.Footer style={{ justifyContent: "center" }} className="born">
+              
+              <Button
+                variant="secondary"
+                onClick={handleClose}
+                className="padl50 padr50 white_bg black h50 br5 fw600 fz18"
+                style={{
+                  flex: "1",
+                  border: "1px solid #6f3fba",
+                  color: "#6f3fba",
+                }}
+              >
+                Cancel
+              </Button>
               <Button
                 type="submit"
                 variant="primary"
@@ -734,18 +747,6 @@ const SubCategiriesAdd = () => {
                   />
                 )}
                 {editMode ? "Edit " : "Add"}
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={handleClose}
-                className="padl50 padr50 white_bg black h50 br5 fw600 fz18"
-                style={{
-                  flex: "1",
-                  border: "1px solid #6f3fba",
-                  color: "#6f3fba",
-                }}
-              >
-                Cancel
               </Button>
             </Modal.Footer>
           </Form>
