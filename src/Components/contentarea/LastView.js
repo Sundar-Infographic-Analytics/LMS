@@ -5,6 +5,7 @@ import { Button, Col, Container, Image, Row } from "react-bootstrap";
 // import data from "../../api/LastView.js";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NoImg from '../../assets/images/NoImg.svg';
 
 const LastView = () => {
    const[viewedCourse, setViewedCourse]=useState([]);
@@ -76,10 +77,10 @@ const LastView = () => {
           <Row className="mart20 padb40">
           {/* {console.log("viewd leson",viewedCourse)} */}
             {viewedCourse?.map((course, index) => (
-              <Col lg={4} sm={6} xl={12} xxl={3} className=" marb10 " key={index}>
+              <Col lg={4} sm={6} xl={3} xxl={3} className=" marb10 " key={index}>
                 <div className="" >
                   <Image
-                    src={course.course_image}
+                    src={course.course_image || NoImg}
                     className="w100 border"
                     style={{ objectFit: "cover" , height:"185px"}}
                   />

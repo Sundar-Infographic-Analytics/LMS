@@ -995,7 +995,7 @@ const HandleDraftSubmit = async () =>{
                     placeholder="Enter YouTube URL"
                     className="bor_dark_purple br5"
                     value={lesssonData.file_path}
-                    style={{ position: "relative" }}
+                    style={{ position: "relative", paddingRight:"35px" }}
                     onChange={handlechange}
                   />
                 )
@@ -1004,7 +1004,7 @@ const HandleDraftSubmit = async () =>{
                   name="file_path"
                   type="file"
                   accept="application/pdf"
-                  className="bor_dark_purple br5"
+                  className="bor_dark_purple br5 "
                   style={{ position: "relative", paddingRight:"35px" }}
                   // value={editLessonState?.file_path || ""}
                   // value={editLessonState? editLessonState?.file_path.name : lesssonData?.file_path.name}
