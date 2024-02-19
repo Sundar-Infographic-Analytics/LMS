@@ -1435,6 +1435,9 @@ max-width: 30px !important;
   .fz18{
     font-size: 20px !important;
   }
+  .course-bodyContentBox .fz18{
+    font-size: 16px !important;
+  }
   .fz15{
  font-size: 16px !important;
   }
@@ -1626,8 +1629,11 @@ nav.navbar.navbar-expand-lg.navbar-light{
   .accordion{
     height: auto !important;
   }
-  .modal-footer button{
+  /* .modal-footer button{
     width: 100% !important;
+  } */
+  .modal-footer button{
+    width: 45% !important;
   }
   .mobile_css{
     float: left;

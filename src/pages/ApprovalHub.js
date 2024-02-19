@@ -245,7 +245,7 @@ const conditionalReadbyRowStyles = [
           cell: row => (
             <>
             {/* {console.log(row, 'full roww')}  */}
-           <Image width={30} src={ViewIcon} style={{cursor:"pointer"}} onClick={() =>fetchReadbyHandleClick(row?.id)}></Image>
+           <Image width={30} src={ViewIcon} style={{cursor:row?.status !== "Approved" ? "not-allowed" :"pointer",opacity:row?.status !== "Approved" ? "0.5" :"1",}} onClick={() => {if (row && row.status === "Approved") {fetchReadbyHandleClick(row?.id)}}}></Image>
             </>
             )
         },
@@ -402,7 +402,7 @@ const conditionalReadbyRowStyles = [
       <div className="clearfix"></div>
       <Container fluid className="mart50 marb10">
         <Col lg={8} className="filter-containern mart100 marb30" >
-          <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"Filter by course title / employee name / category and subcategory"} onApprovalStatusChange={handleApprovalStatusChange}/>
+          <FilterComponent statusFilter={true} onFilter={(e) =>setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText} placeholderTxt={"Filter by course / employee name / category and subcategory"} onApprovalStatusChange={handleApprovalStatusChange}/>
         </Col>
       </Container>
       <Container fluid>

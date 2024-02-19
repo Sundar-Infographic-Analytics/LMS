@@ -1056,7 +1056,7 @@ const HandleDraftSubmit = async () =>{
               Cancel
             </Button>
             <Button
-              className="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz16 btn_color born"
+              className="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
               onClick={() =>
                 editLessonState.lesson_id
                   ? handleLessonEditSubmit()
@@ -1178,7 +1178,7 @@ const HandleDraftSubmit = async () =>{
               Cancel
             </Button>
             <Button
-              className="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz16 btn_color born"
+              className="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
               // onClick={handleChapterSubmit}
               onClick={() =>
                 editchapterState.course_id
