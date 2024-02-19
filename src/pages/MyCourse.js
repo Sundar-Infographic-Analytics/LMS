@@ -150,16 +150,7 @@ const undoSubmitHandlechange = async (courseID) =>{
         sortable: true,
         width: "10%",
     },
-    {
-      name:"Read by",
-      width:"10%",
-      cell: row => (
-        <>
-        {/* {console.log(row, 'full roww')}  */}
-       <Image width={30} src={ViewIcon} style={{cursor:"pointer"}} onClick={() =>fetchReadbyHandleClick(row?.id)}></Image>
-        </>
-        )
-    },
+    
     {
       name: 'Status',
       selector: row => row.status,
@@ -170,6 +161,16 @@ const undoSubmitHandlechange = async (courseID) =>{
           {row.status}
         </div>
       ),
+  },
+  {
+    name:"Read by",
+    width:"10%",
+    cell: row => (
+      <>
+      {/* {console.log(row, 'full roww')}  */}
+     <Image width={30} src={ViewIcon} style={{cursor:row?.status !== "Approved" ? "not-allowed" :"pointer",opacity:row?.status !== "Approved" ? "0.5" :"1",}} onClick={() => {if (row && row.status === "Approved") {fetchReadbyHandleClick(row?.id)}}}></Image>
+      </>
+      )
   },
   {
     name: 'Action',
