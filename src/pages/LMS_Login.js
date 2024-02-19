@@ -336,7 +336,7 @@ const LMS_Login = () => {
       </div>
       </Row>
         <Row  className=" vmiddle mart30">
-           <div className=" vmiddle mart40 ">
+           <div className=" vmiddle mart30">
             <Image className="" width={30} src={SNClogo} style={{marginRight:"10px"}}></Image>
             <p className="fw600">Intersection of Insight and Innovation</p>
            </div>
