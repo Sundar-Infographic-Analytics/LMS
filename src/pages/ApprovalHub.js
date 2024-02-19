@@ -1,9 +1,9 @@
 import React,{ useEffect, useState,useMemo} from "react";
 import Navbar from "../Components/header/navbar.js";
-import { ButtonGroup, Col, Container, ToggleButton } from "react-bootstrap";
+import { ButtonGroup, Col, Container, ToggleButton,Image, Modal, Row,Spinner } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import FilterComponent from "../Components/Utils/CourseFilter.js";
-// import img2 from "../assets/images/sub_9.png";
+import ViewIcon from "../assets/images/newRead-icon.svg";
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import { Link } from "react-router-dom";
@@ -20,7 +20,11 @@ const {setLoading}   = useLoader();
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const [selectedAction, setSelectedAction] = useState(null);
 
-  
+  const [Readby, setReadby] = useState([]);
+  const [modalshow, setModalShow] = useState(false);
+  const [filterReadbyText, setFilterReadbyText] = useState('');
+  const [resetPaginationReadbyToggle, setResetPaginationReadbyToggle] = useState(false);
+  const [modalloading, setModalLoading] = useState(false);
  
 
   const radios = [
@@ -83,6 +87,7 @@ const {setLoading}   = useLoader();
     fetchData();
   }, [setLoading]);
   
+  
  
   
   // const data = [
@@ -119,6 +124,62 @@ const {setLoading}   = useLoader();
 //  const [getPreviewCourseID, setGetPreviewCourseID]= useState('');
 //  console.log(getPreviewCourseID, "check superadmin link")
 
+//for Ready by enhancement Start
+const readbycolumns = [
+  {
+      name:"SI.No",
+      selector:(row , index) => index + 1,
+      width:"20%",
+  },
+  {
+    name:"name",
+    selector:row =>row?.name,
+    cell: row => <div className="wrap-content">{row?.name}</div>, 
+    width:"40%",
+  },
+  {
+    name:"Read on",
+    selector:row =>row?.Readdate,
+    cell: row => <div className="wrap-content">{row?.Readdate}</div>, 
+    width:"40%",
+  }
+]
+const fetchReadbyHandleClick = async (course_id) =>{
+  // console.log(course_id, "id")
+  setModalShow(true);
+  setModalLoading(true);
+     await axios.post( `${process.env.REACT_APP_BASE_URL}/lmsCourseReadbyEmployees`,
+     {
+      courseId:course_id
+     },
+     {
+      headers:{
+        Authorization: localStorage?.getItem("jwtToken"),
+      }
+     }
+     ).then((response) =>{
+       setReadby(response?.data)
+      //  console.log("readby", response?.data)
+      // setModalShow(true);
+     }).catch((error) =>{
+      console.log("error from fetching read by employes", error)
+     }).finally(() =>{
+      setModalLoading(false);
+     })
+}
+
+const conditionalReadbyRowStyles = [
+  {
+    when: (row) => row.index % 2 === 0, // Check if the row is odd fromapi response
+    style: {
+      backgroundColor: '#000',
+    },
+  },
+  
+];
+// console.log("readbyyy",Readby)
+//for Ready by enhancement End
+
     const columns = [
         {
             name:"SI.No",
@@ -132,7 +193,7 @@ const {setLoading}   = useLoader();
             style: {
                 whiteSpace: 'normal !important', // Set whiteSpace to 'normal' for wrapping
             },
-            width: "23%",      
+            width: "18%",      
          cell: row => <div className="wrap-content">{row.course_title}</div>, 
         },
         {
@@ -145,7 +206,7 @@ const {setLoading}   = useLoader();
           name:"Subcategory",
           selector:row =>row.sub_category,
           sortable:true,
-          width:"13%",
+          width:"12%",
           cell: row => <div className="wrap-content">{row.sub_category}</div>,
         },
         {
@@ -168,7 +229,7 @@ const {setLoading}   = useLoader();
         //   sortable:true,
         // },
         {
-          name:"View",
+          name:"Course view",
           // selector
           width:"10%",
           cell: row => (
@@ -177,6 +238,16 @@ const {setLoading}   = useLoader();
           <Link to={`/PreviewCourse/${row?.id}`}  style={{textDecoration:"none"}} className="view-btn">View</Link>  
           </>
           )
+        },
+        {
+          name:"Read by",
+          width:"5%",
+          cell: row => (
+            <>
+            {/* {console.log(row, 'full roww')}  */}
+           <Image width={30} src={ViewIcon} style={{cursor:"pointer"}} onClick={() =>fetchReadbyHandleClick(row?.id)}></Image>
+            </>
+            )
         },
         {
           name:"Action",
@@ -215,7 +286,25 @@ const {setLoading}   = useLoader();
     ]
 
     
+  //for readby start
+  const filteredReadbyItems = Readby?.coursereadbyName?.filter(
+    (item) =>
+    (item.name && item.name.toLowerCase().includes(filterReadbyText.toLowerCase())) 
+  );
   
+  const subHeaderReadComponentMemo = useMemo(() => {
+    const handleClear = () => {
+      if (filterReadbyText) {
+        setResetPaginationReadbyToggle(!resetPaginationReadbyToggle);
+        setFilterReadbyText('');
+      }
+    };
+  
+    return (
+      <FilterComponent onFilter={(e) => setFilterReadbyText(e.target.value)} onClear={handleClear} filterText={filterReadbyText} />
+    );
+  }, [filterReadbyText, resetPaginationReadbyToggle]);
+  //for readby end
     
     const filteredItems = adminList.filter(
       (item) =>
@@ -238,7 +327,7 @@ const {setLoading}   = useLoader();
 
     const subHeaderComponentMemo = useMemo(() => {
       const handleClear = () => {
-        if (filterText || selectedAction !== null) {
+        if (filterText || selectedAction!== null) {
           setResetPaginationToggle(!resetPaginationToggle);
           setFilterText('');
           setSelectedAction(null);
@@ -249,6 +338,8 @@ const {setLoading}   = useLoader();
         <FilterComponent onFilter={(e) => setFilterText(e.target.value)} onClear={handleClear} filterText={filterText} onApprovalStatusChange={handleApprovalStatusChange}/>
       );
     }, [filterText, resetPaginationToggle,selectedAction]);
+
+
 
     const conditionalRowStyles = [
       {
@@ -261,9 +352,52 @@ const {setLoading}   = useLoader();
     ];
 
   //  console.log(adminList, "llllllllllllllllllllllllll")
+  //  console.log(Readby, "llllllllllllllllllllllllll")
 
   return (
     <>
+    <div className="readby-modal">
+<Modal className='readby-modal' show={modalshow} onHide={() => {setModalShow(false); setReadby([]); setFilterReadbyText('')}} animation={true} >
+{modalloading && (
+                  <div className="my-loading-overlay">
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      role="status"
+                      aria-hidden="true"
+                      className="my-cardLoading"
+                    />
+                  </div>
+                )}
+<Modal.Header  closeButton className='readby-modal'>
+        <Modal.Title className='fw500' >Course read list </Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{padding:"10px 0 0 0"}}>
+      
+      <Modal.Title className='fw500 fz20' style={{marginTop:"-5px"}}>{Readby?.courseName}  </Modal.Title>
+      <p style={{color:"#4c4c4c"}} className="fz14">{Readby?.categoryName} / {Readby?.subcategoryName}</p> 
+   {Readby?.coursereadbyName?.length > 0 && <span className="fz14" style={{backgroundColor:"rgb(232, 232, 232)", padding:"2px 8px"}}>  Total read : <b> {Readby?.coursereadbyName?.length} </b> </span>}   
+        <div className='readby-table'>
+        
+        {Readby?.coursereadbyName && <>
+          <Row>
+          <Col lg={12}>
+          {Readby?.coursereadbyName.length >0 && 
+            <>
+          <div className="filter-container  custom-filter mart10">
+          <FilterComponent  onFilter={(e) => setFilterReadbyText(e.target.value)} onClear={() => setFilterReadbyText('')} filterText={filterReadbyText}  placeholderTxt={"Filter by Name"}/>
+          </div>
+          </>
+        }
+          </Col>
+        </Row>
+          <DataTable  pagination columns={readbycolumns} data={filteredReadbyItems}  subHeaderComponent={subHeaderReadComponentMemo} conditionalRowStyles={conditionalReadbyRowStyles}/>
+        </>
+        }
+        </div>
+      </Modal.Body>
+</Modal>
+    </div>
       <Navbar className="dark_purple_bg" />
       <div className="clearfix"></div>
       <Container fluid className="mart50 marb10">

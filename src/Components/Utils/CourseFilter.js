@@ -10,7 +10,7 @@ const FilterComponent = ({ onFilter, onClear, filterText,placeholderTxt,onApprov
       id="search"
       type="text"
       placeholder={placeholderTxt}
-      value={filterText}
+      value={filterText }
       onChange={onFilter}
       // style={{ fontSize: '5px' }}
   />

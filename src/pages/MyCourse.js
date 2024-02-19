@@ -11,6 +11,7 @@ import FilterComponent from '../Components/Utils/CourseFilter.js';
 import axios from 'axios';
 import { useLoader } from '../Components/Utils/Loading/LoaderContext.js';
 import {Link} from 'react-router-dom'
+import ViewIcon from "../assets/images/newRead-icon.svg";
 const MyCourse = () => {
 
   
@@ -25,6 +26,12 @@ const MyCourse = () => {
   const [showdelete, setShowDelete] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [deleteId, setDeleteId] = useState('')
+
+  const [Readby, setReadby] = useState([]);
+  const [modalshow, setModalShow] = useState(false);
+  const [filterReadbyText, setFilterReadbyText] = useState('');
+  const [resetPaginationReadbyToggle, setResetPaginationReadbyToggle] = useState(false);
+  const [modalloading, setModalLoading] = useState(false);
 
   const [datas,setData] = useState([]);
   // console.log(deleteId,"daaaaaaaaaaaaaaaaaaaaaaaa")
@@ -97,9 +104,9 @@ const undoSubmitHandlechange = async (courseID) =>{
     }
   ).finally(()=>{
       navigate(0);
-      // console.log("course submit msg:", response?.data);
+      console.log("course submit msg:", response?.data);
   })
-  console.log("course submit msg:", response?.data);
+  // console.log("course submit msg:", response?.data);
 }
    const StatusColor={
     draft_bg :"#8c8f93",
@@ -121,7 +128,7 @@ const undoSubmitHandlechange = async (courseID) =>{
         style: {
           whiteSpace: 'normal !important', // Set whiteSpace to 'normal' for wrapping
         },
-        width: "32%",      
+        width: "28%",      
         cell: row => <div className="wrap-content">{row.course_title}</div>, 
     },
     {
@@ -134,7 +141,7 @@ const undoSubmitHandlechange = async (courseID) =>{
       name:'Subcategory',
       selector:row => row.sub_category,
       sortable:true,
-      width:'20%'
+      width:'15%'
     },
     {
         name: 'Thumbnail',
@@ -142,6 +149,16 @@ const undoSubmitHandlechange = async (courseID) =>{
         selector: row => row.thumbnail,
         sortable: true,
         width: "10%",
+    },
+    {
+      name:"Read by",
+      width:"10%",
+      cell: row => (
+        <>
+        {/* {console.log(row, 'full roww')}  */}
+       <Image width={30} src={ViewIcon} style={{cursor:"pointer"}} onClick={() =>fetchReadbyHandleClick(row?.id)}></Image>
+        </>
+        )
     },
     {
       name: 'Status',
@@ -259,9 +276,116 @@ const handleCourseDeleteSubmit = async () => {
     });
 };
 
+
+
+//for Ready by enhancement Start
+const readbycolumns = [
+  {
+      name:"SI.No",
+      selector:(row , index) => index + 1,
+      width:"20%",
+  },
+  {
+    name:"name",
+    selector:row =>row?.name,
+    cell: row => <div className="wrap-content">{row?.name}</div>, 
+    width:"40%",
+  },
+  {
+    name:"Read on",
+    selector:row =>row?.Readdate,
+    cell: row => <div className="wrap-content">{row?.Readdate}</div>, 
+    width:"40%",
+  }
+]
+const fetchReadbyHandleClick = async (course_id) =>{
+  // console.log(course_id, "id")
+  setModalShow(true);
+  setModalLoading(true);
+     await axios.post( `${process.env.REACT_APP_BASE_URL}/lmsCourseReadbyEmployees`,
+     {
+      courseId:course_id
+     },
+     {
+      headers:{
+        Authorization: localStorage?.getItem("jwtToken"),
+      }
+     }
+     ).then((response) =>{
+       setReadby(response?.data)
+      //  console.log("readby", response?.data)
+     
+     }).catch((error) =>{
+      console.log("error from fetching read by employes", error)
+     }).finally(() =>{
+      setModalLoading(false);
+     })
+}
+ 
+  //for readby start
+  const filteredReadbyItems = Readby?.coursereadbyName?.filter(
+    (item) =>
+    (item.name && item.name.toLowerCase().includes(filterReadbyText.toLowerCase())) 
+  );
+  
+  const subHeaderReadComponentMemo = useMemo(() => {
+    const handleClear = () => {
+      if (filterReadbyText) {
+        setResetPaginationReadbyToggle(!resetPaginationReadbyToggle);
+        setFilterReadbyText('');
+      }
+    };
+  
+    return (
+      <FilterComponent onFilter={(e) => setFilterReadbyText(e.target.value)} onClear={handleClear} filterText={filterReadbyText} />
+    );
+  }, [filterReadbyText, resetPaginationReadbyToggle]);
+  //for readby end
 // console.log(datas,"dddddddddddddddddddddddd")
   return (
     <>
+    <div className="readby-modal">
+<Modal className='readby-modal' show={modalshow} onHide={() => {setModalShow(false); setReadby([]); setFilterReadbyText('')}} animation={true} >
+{modalloading && (
+                  <div className="my-loading-overlay">
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      role="status"
+                      aria-hidden="true"
+                      className="my-cardLoading"
+                    />
+                  </div>
+                )}
+<Modal.Header  closeButton className='readby-modal'>
+        <Modal.Title className='fw500' >Course read list </Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{padding:"10px 0 0 0"}}>
+      
+      <Modal.Title className='fw500 fz20' style={{marginTop:"-5px"}}>{Readby?.courseName}  </Modal.Title>
+      <p style={{color:"#4c4c4c"}} className="fz14">{Readby?.categoryName} / {Readby?.subcategoryName}</p> 
+   {Readby?.coursereadbyName?.length > 0 && <span className="fz14" style={{backgroundColor:"rgb(232, 232, 232)", padding:"2px 8px"}}>  Total read : <b> {Readby?.coursereadbyName?.length} </b> </span>}   
+        <div className='readby-table'>
+        
+        {Readby?.coursereadbyName && <>
+          <Row>
+          <Col lg={12}>
+          {Readby?.coursereadbyName.length >0 && 
+            <>
+          <div className="filter-container  custom-filter mart10">
+          <FilterComponent  onFilter={(e) => setFilterReadbyText(e.target.value)} onClear={() => setFilterReadbyText('')} filterText={filterReadbyText}  placeholderTxt={"Filter by Name"}/>
+          </div>
+          </>
+        }
+          </Col>
+        </Row>
+          <DataTable pagination columns={readbycolumns} data={filteredReadbyItems}  subHeaderComponent={subHeaderReadComponentMemo}/>
+        </>
+        }
+        </div>
+      </Modal.Body>
+</Modal>
+    </div>
      <div className="delete modal">
         <Modal
           show={showdelete}
@@ -316,7 +440,7 @@ const handleCourseDeleteSubmit = async () => {
                     {/* <span className='fw600 fz18 mart40 padb10'>Add Chapter</span>   */}
                     {/* </div> */}
                   <div className="filter-container ">
-                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / Subcategory /   Status"}/>
+                    <FilterComponent  onFilter={(e) => setFilterText(e.target.value)} onClear={() => setFilterText('')} filterText={filterText}  placeholderTxt={"Filter by course name / Subcategory / Status"}/>
                   </div>
                 </div>
                 </Col>
