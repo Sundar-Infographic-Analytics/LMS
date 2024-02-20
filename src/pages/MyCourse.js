@@ -363,8 +363,8 @@ const fetchReadbyHandleClick = async (course_id) =>{
       </Modal.Header>
       <Modal.Body style={{padding:"10px 0 0 0"}}>
       
-      <Modal.Title className='fw500 fz20' style={{marginTop:"-5px"}}>{Readby?.courseName}  </Modal.Title>
-      <p style={{color:"#4c4c4c"}} className="fz14">{Readby?.categoryName} / {Readby?.subcategoryName}</p> 
+      {/* <Modal.Title className='fw500 fz20' style={{marginTop:"-5px"}}>{Readby?.courseName}  </Modal.Title>
+      <p style={{color:"#4c4c4c"}} className="fz14">{Readby?.categoryName} / {Readby?.subcategoryName}</p>  */}
    {Readby?.coursereadbyName?.length > 0 && <span className="fz14" style={{backgroundColor:"rgb(232, 232, 232)", padding:"2px 8px"}}>  Total read : <b> {Readby?.coursereadbyName?.length} </b> </span>}   
         <div className='readby-table'>
         

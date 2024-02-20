@@ -244,8 +244,8 @@ const conditionalReadbyRowStyles = [
           width:"5%",
           cell: row => (
             <>
-            {/* {console.log(row, 'full roww')}  */}
-           <Image width={30} src={ViewIcon} style={{cursor:row?.status !== "Approved" ? "not-allowed" :"pointer",opacity:row?.status !== "Approved" ? "0.5" :"1",}} onClick={() => {if (row && row.status === "Approved") {fetchReadbyHandleClick(row?.id)}}}></Image>
+            {console.log(row, 'full roww')} 
+           <Image width={30} src={ViewIcon} style={{cursor:"pointer", opacity:"1",}} onClick={() =>  {fetchReadbyHandleClick(row?.id)}}></Image>
             </>
             )
         },
@@ -276,6 +276,7 @@ const conditionalReadbyRowStyles = [
                 checked={radioValue[row.id] === radio.value}
                 onChange={() => handleRadioChange(row.id, radio.value)}
               >
+               
                 {radio.name}
               </ToggleButton>
             ))}
@@ -284,7 +285,7 @@ const conditionalReadbyRowStyles = [
           )
         }
     ]
-
+console.log(radioValue, "rrrrrrrrrrrrrrr")
     
   //for readby start
   const filteredReadbyItems = Readby?.coursereadbyName?.filter(
@@ -374,8 +375,8 @@ const conditionalReadbyRowStyles = [
       </Modal.Header>
       <Modal.Body style={{padding:"10px 0 0 0"}}>
       
-      <Modal.Title className='fw500 fz20' style={{marginTop:"-5px"}}>{Readby?.courseName}  </Modal.Title>
-      <p style={{color:"#4c4c4c"}} className="fz14">{Readby?.categoryName} / {Readby?.subcategoryName}</p> 
+      {/* <Modal.Title className='fw500 fz20' style={{marginTop:"-5px"}}>{Readby?.courseName}  </Modal.Title>
+      <p style={{color:"#4c4c4c"}} className="fz14">{Readby?.categoryName} / {Readby?.subcategoryName}</p>  */}
    {Readby?.coursereadbyName?.length > 0 && <span className="fz14" style={{backgroundColor:"rgb(232, 232, 232)", padding:"2px 8px"}}>  Total read : <b> {Readby?.coursereadbyName?.length} </b> </span>}   
         <div className='readby-table'>
         

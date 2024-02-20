@@ -112,7 +112,7 @@ const PreviewCourse = () => {
           }
         );
 
-        const data = response.data;
+        const data = response?.data;
 
         // console.log(data, "videooooolink");
         // console.log("dataaa", data.firstMatchingLesson.file_type);
@@ -353,7 +353,7 @@ const PreviewCourse = () => {
     setConfirmModal(false);
   };
   // const url = 'https://d3idlkk51igt07.cloudfront.net/LMS-lesson/eb3864b7-6d94-4edc-9c75-6554b3575e28.pdf'
-// console.log(allData, "allllllldataaa")
+console.log(allData, "allllllldataaa")
   return (
     <div>
       <Navbar className="dark_purple_bg" />
