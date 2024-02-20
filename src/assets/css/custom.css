@@ -74,6 +74,10 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
   background: transparent;
   color: #212529;
 }
+.logout-modal   .btn-secondary , .logout-modal .btn-primary{
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
 .dropdown-menu.show a {
   color: #4c4c4c;
   padding: 10px 20px;

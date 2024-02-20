@@ -26,11 +26,11 @@ const SubCategiries = ({data}) => {
            
               {data?.subcategory.map((course) => (                
                 <Col xxl={3} lg={4} md={6} sm={12} xs={12}  className="mart50" key={course?.id}  style={{display:"flex",justifyContent:"center", alignItems:"center"}}> 
-                  <Link to={`/SubCategoriesCourse/${course?.id}`} >
+                  <Link to={`/SubCategoriesCourse/${course?.id}`} className="w100" >
                     <div className="center_img posr ">
                       <p className="posa white pad15 ">{course?.subcategory_name}</p>
                      
-                      <Image src={course?.banner_image_url} className="objfit"  />
+                      <Image src={course?.banner_image_url} className="objfit" style={{width:"100%"}}  />
                      
                     </div>
                   </Link>

@@ -12,10 +12,10 @@ function LogoutModal({ show, handleClose, handleLogout }) {
       </Modal.Header>
       <Modal.Body>Proceed with the logout?</Modal.Body>
       <Modal.Footer sm={12} md={12}>
-        <Button sm={6} md={6} variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18" onClick={handleClose}>
+        <Button sm={6} md={6} variant="secondary w30  white_bg black h50 br5 fw600 fz18" onClick={handleClose}>
           Cancel
         </Button>
-        <Button sm={6} md={6} variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born" onClick={handleLogout}>
+        <Button sm={6} md={6} variant="primary  w30 dark_purple_bg h50 br5 fw600 fz18 btn_color born" onClick={handleLogout}>
           Logout
         </Button>
       </Modal.Footer>
