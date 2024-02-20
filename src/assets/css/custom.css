@@ -306,7 +306,7 @@ transform: scale(1.1);
   font-size: 14px;
 }
 .view-btn{
-  padding: 8px 40px ;
+  padding: 8px 30px ;
   border: 1px solid #BCBCBC !important;
   border-radius: 4px !important;
   font-weight: 600 !important;
@@ -1665,7 +1665,7 @@ nav.navbar.navbar-expand-lg.navbar-light{
 .bg_color{
   background: rgb(0, 27, 34, 0.7);
   transition: 0.45s;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(5px);
 }
 .bg_color_normal{
   background: rgba(0, 0, 0, .2);
