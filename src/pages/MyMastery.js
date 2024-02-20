@@ -129,7 +129,7 @@ const MyLearnings = () => {
       ) : (
         <>
         <Container
-            style={{  textAlign: "center", height: 230,padding:50  }}
+            style={{  textAlign: "center", padding: "133px 0px 159px 0" }}
           >
             <div
               style={{

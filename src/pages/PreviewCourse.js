@@ -10,6 +10,7 @@ import {
   ProgressBar,
   Modal,
   Button,
+  Spinner
 } from "react-bootstrap";
 // import {  Dropdown} from "react-bootstrap";
 import "../../node_modules/video-react/dist/video-react.css";
@@ -39,7 +40,7 @@ const PreviewCourse = () => {
   const [condtionError, setConditionError] = useState("");
   const [completeButton, setcompletebutton] = useState("");
   const [isLessonCompleted, setIsLessonCompleted] = useState("");
-  // const [isLoading,setIsLoading] = useState(false);
+  const [buttonLoading,setButtonLoading] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
   const [boldText, setBoldText] = useState(false);
   const navigate = useNavigate();
@@ -48,7 +49,9 @@ const PreviewCourse = () => {
   const jwtToken = localStorage.getItem("jwtToken");
 
   const handleClick = async () => {
+
     if (completeButton) {
+      setButtonLoading(true)
       try {
         await axios.post(
           `${process.env.REACT_APP_BASE_URL}/lmsAddHistory`,
@@ -91,6 +94,8 @@ const PreviewCourse = () => {
         //      }
       } catch (error) {
         console.log(error, "error from complete button");
+      } finally {
+        setButtonLoading(false);
       }
     }
     setConfirmModal(false);
@@ -391,7 +396,18 @@ console.log(allData, "allllllldataaa")
             <Button
               variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
               onClick={handleClick}
+              disabled={buttonLoading}
             >
+             {buttonLoading && (
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                  style={{ marginRight: "5px" }}
+                />
+              )}
               Yes
             </Button>
           </Modal.Footer>
