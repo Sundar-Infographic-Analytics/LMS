@@ -1225,9 +1225,9 @@ const HandleDraftSubmit = async () =>{
               ? "lesson?"
               : "along with lessons ?"}
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="delete-footer">
             <Button
-              className="padl30 padr30 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
+              className="padl30 padr30 white_bg black h50 br5 fw600 fz18 btn btn-secondary "
               style={{
                   
                   border: "1px solid #6f3fba",

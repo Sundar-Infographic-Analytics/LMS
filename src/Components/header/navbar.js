@@ -121,7 +121,7 @@ useEffect(() => {
     <div className="navbar_color fl w100" style={style} >
    <Navbar  expand="lg" className={`${scrollPosition > 350 ? 'bg_color' : 'bg_color_normal '} ${className}`}  >
       <Container>
-        <Navbar.Brand href="/"><img src={logo} alt='' style={{height:"auto", width:"55px"}}/></Navbar.Brand>
+        <Navbar.Brand href="/"><img src={logo} alt='' style={{height:"auto", width:"55px", padding:"5px"}}/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
