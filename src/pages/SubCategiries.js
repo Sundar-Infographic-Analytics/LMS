@@ -25,7 +25,7 @@ const SubCategiries = ({data}) => {
             <Row  style={{display:"flex",justifyContent:"left", alignItems:"center"}}>
            
               {data?.subcategory.map((course) => (                
-                <Col xxl={3} lg={4} md={6} sm={12} xs={12}  className="mart50" key={course?.id}  style={{display:"flex",justifyContent:"center", alignItems:"center"}}> 
+                <Col xxl={3} lg={4} md={6} sm={12} xs={12}  className="mart50 sub-cat" key={course?.id}  style={{display:"flex",justifyContent:"center", alignItems:"center"}}> 
                   <Link to={`/SubCategoriesCourse/${course?.id}`} className="w100" >
                     <div className="center_img posr ">
                       <p className="posa white pad15 ">{course?.subcategory_name}</p>

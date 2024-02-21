@@ -369,7 +369,7 @@ const AddChapterLesson = ({ catgorySubcat }) => {
   };
 
 
-
+// console.log(editLessonState,"zzzzzzzzzzzzzz")
 
   const chapterEditValidation = async () => {
     const lessonEditerror = {};
@@ -423,8 +423,8 @@ const AddChapterLesson = ({ catgorySubcat }) => {
           lessonEditerror.file_path = error.message;
         }
       }
-      if (editLessonState?.file_type === "P") {
-        if (editLessonState?.file_path?.type !== "application/pdf" ){
+      if (editLessonState?.file_path?.name) {
+        if (editLessonState?.file_type ==="p" && editLessonState?.file_path?.type !== "application/pdf" ){
           // console.log(lesssonData?.file_path?.type, "extentionnnn")
           lessonEditerror.file_path = "The file only accepts the PDF format";
         }
@@ -833,7 +833,7 @@ const HandleDraftSubmit = async () =>{
           show={show}
           onHide={handleClose}
           animation={true}
-          className="custome"
+          className="custome lesson-modal"
         >
           <Form.Label htmlFor="inputPassword5" className="fw700">
             Lesson Name <span className="red">*</span>
@@ -977,8 +977,8 @@ const HandleDraftSubmit = async () =>{
                     name="file_path"
                     type="text"
                     placeholder="Enter YouTube URL"
-                    className="bor_dark_purple br5"
-                    style={{ position: "relative" }}
+                    className="bor_dark_purple br5 "
+                    style={{ position: "relative", paddingRight:"35px" }}
                     value={editLessonState?.file_path || ''}
                     // value={editLessonState?.file_path || ""}
                     onChange={(e) => {
@@ -1041,7 +1041,7 @@ const HandleDraftSubmit = async () =>{
             <></>
           )}
 
-          <Modal.Footer>
+          <Modal.Footer className="chapter-modal-footer">
             
             <Button
               className="padl30 padr30 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
@@ -1166,6 +1166,7 @@ const HandleDraftSubmit = async () =>{
           )}
           <Modal.Footer
             style={{ marginTop: "20px", borderTop: "0px solid red !important" }}
+            className="chapter-modal-footer"
           >
           
             <Button
@@ -1455,7 +1456,7 @@ const HandleDraftSubmit = async () =>{
           <div className="button-Components-draft-submit">
             <Row>
               <Col lg={12}>
-                <div className="mart10 text-center marb30">
+                <div className="mart30 text-center marb30" style={{marginTop:"50px"}}>
                   <Button className="w20 mart0 marb10 born fw400 fz16 pad10 br5 btn_color marr20 cus_btn_new dark_purple" onClick={HandleDraftSubmit}
                   disabled = {draftbuttonLoading}
                   >

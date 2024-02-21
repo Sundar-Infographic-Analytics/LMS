@@ -78,7 +78,7 @@ const MyLearnings = () => {
                 className="black fz16 fw400"
               >
                 <Image src={course.course_image || NoImg} style={{  height:"168px" , objectFit:"cover" }} className="w100 border" />
-                <div className="border pad10" style={{  height:"245px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
+                <div className="border pad10" style={{  height:"255px" , display:"flex",flexDirection:"column", justifyContent:"space-between"}}>
                 <div>
                   <p
                     className="light_black"

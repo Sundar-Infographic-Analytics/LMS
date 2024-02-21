@@ -687,7 +687,7 @@ const AddCourse = () => {
             <span> course?</span>
             
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="delete-footer">
             <Button
               className="padl50 padr50 white_bg black h50 br5 fw600 fz18 btn btn-secondary"
               style={{
@@ -929,7 +929,7 @@ const AddCourse = () => {
                         )}
 
                         <div
-                          className="w100"
+                          className="w100 submit-btn"
                           style={{
                             alignItems: "center",
                             justifyContent: "flex-end",
@@ -941,7 +941,7 @@ const AddCourse = () => {
                           <Button
                             type="submit"
                             id="submit"
-                            className="btn dark_purple_bg born btn_color  pad10 marb5 mart10 fw600"
+                            className="btn dark_purple_bg born btn_color  pad10 padr20 padl20 marb5 mart10 fw600"
                             onClick={handleSubmit}
                             disabled={buttonLoading}
                           >

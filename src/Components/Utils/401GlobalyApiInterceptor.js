@@ -48,14 +48,14 @@ const ApiInterceptor = () => {
 
   return (
     <Modal show={showTimeoutModal} centered onHide={handleClose}>
-      <Modal.Header closeButton className='logout-modal'>
+      <Modal.Header closeButton className='logout-modal session-modal'>
         <Modal.Title className='fw500'>Session Timeout</Modal.Title>
       </Modal.Header>
       <Modal.Body >
       The session has timed out. Please login again.
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born" onClick={handleClose}>
+      <Modal.Footer className="session-footer">
+        <Button variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born " onClick={handleClose}>
           OK
         </Button>
       </Modal.Footer>

@@ -14,7 +14,8 @@ import {
   Modal,
   Spinner
 } from "react-bootstrap";
-import logo from "../assets/images/logo.png";
+// import logo from "../assets/images/Logo/new_Learnnestlogo.svg";
+import logo from "../assets/images/Logo/Group 3730.png";
 import mobicon from "../assets/images/Phone.svg";
 import eyeslash from "../assets/images/hide-pw.svg";
 import eye from "../assets/images/show.svg";

@@ -33,11 +33,11 @@ const Whistlist = ({ course_id, active, onClick2}) => {
       <p>
       {msg === 'Successfully added in wish list!!!' ? (
         <span>
-          Successfully <strong className="black">added</strong> in Library!
+        Has been successfully  <strong className="black">added</strong> to the library !
         </span>
       ) : (
         <span>
-          Successfully <strong className="black">deleted</strong> in Library!
+        Has been successfully <strong className="black">Removed</strong> from the library!
         </span>
       )}
     </p>

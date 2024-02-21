@@ -1072,6 +1072,7 @@ overflow-y: auto;
   .lesson-set2{
     width: 100%;
     justify-content: flex-end;
+    margin-right: 25px;
 
   }
 
@@ -1204,6 +1205,7 @@ overflow-y: auto;
   
   
   .slide-item .content-container {
+    border: 1px solid red;
     width: 381px;
     height: auto;
     border-bottom-left-radius: 20px;
@@ -1436,8 +1438,15 @@ max-width: 30px !important;
   }
 }
 @media only screen and (max-width: 768px){
+  .submit-btn button{
+    width: 45%;
+    padding:15px;
+  }
   .fz18{
     font-size: 20px !important;
+  }
+  .Chapter-items .fz18{
+    font-size: 18px !important;
   }
   .course-bodyContentBox .fz18{
     font-size: 16px !important;
@@ -1474,7 +1483,34 @@ max-width: 30px !important;
     gap: 60px;
       }
 }
+@media screen and (min-width:410px) and (max-width:417px){
+  .slider-Img{
+    width: 368px !important;
+    height: 160px !important;
+  }
+  
+  .slide-item .content-container {
+    width: 368px !important;
+ 
+  }
+  
+}
 @media only screen and (max-width: 425px){
+  .sub-cat a{
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chapter-modal-footer button{
+    padding-left: 5px  !important;
+    padding-right: 5px !important;
+  }
+  .submit-btn button{
+    width: 100%;
+    padding:15px;
+  }
   .readby-table .filter-input-input{
     max-width: 100% !important;
   }
@@ -1503,7 +1539,8 @@ max-width: 30px !important;
   }
 
   .center_img img{
-    width: 350px;
+    /* width: 350px; */
+    width: 100% !important;
     height: 180px;
     object-fit: cover;
   }
@@ -1516,12 +1553,12 @@ max-width: 30px !important;
     padding: 10px;
   } */
   .slider-Img{
-    width: 368px;
+    width: 317px;
     height: 160px;
   }
   
   .slide-item .content-container {
-    width: 368px;
+    width: 317px;
   }
   
   .logincard-body {
@@ -1549,6 +1586,14 @@ max-width: 30px !important;
  
 }
 @media only screen and (max-width: 375px){
+  .delete-footer button{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  .chapter-modal-footer button{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
   .custom-filter{
     width: 100px !important;
   }
@@ -1559,7 +1604,8 @@ max-width: 30px !important;
     /* object-fit: cover; */
   }
   .center_img img{
-    width: 300px;
+    /* width: 300px; */
+    width: 100% !important;
     height: 180px;
     /* object-fit: cover; */
   }
@@ -1632,6 +1678,7 @@ nav.navbar.navbar-expand-lg.navbar-light{
   }
 } 
 @media screen and (min-width:320px) and (max-width:640px){
+  
   .accordion{
     height: auto !important;
   }
@@ -1640,6 +1687,9 @@ nav.navbar.navbar-expand-lg.navbar-light{
   } */
   .modal-footer button{
     width: 45% !important;
+  }
+  .session-footer button{
+    width: 100% !important;
   }
   .mobile_css{
     float: left;
@@ -1650,6 +1700,10 @@ nav.navbar.navbar-expand-lg.navbar-light{
   }
   .modal-footer{
     justify-content: space-between;
+  }
+  .lesson-modal-footer button{
+    padding-left: 10px  !important;
+    padding-right: 10px !important;
   }
 }
 @media screen and (min-width:769px) and (max-width:991px){
@@ -1725,4 +1779,8 @@ color: black;
 } */
 .bg_color_normal {
   backdrop-filter: blur(20px);
+}
+
+.category-dropdown{
+  z-index: 20;
 }
