@@ -529,12 +529,12 @@ const SubCategiriesAdd = () => {
             <span className="fw600">{deleteSubcat?.subcategory_name}</span>
             {/* <span> subcategory</span> */}
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className=" sucat-footer">
             <Button
               variant="secondary padl50 padr50 white_bg black h50 br5 fw600 fz18"
               onClick={handledeleteClose}
             >
-              Cancel
+              Cancel  
             </Button>
             <Button
               variant="primary padl50 padr50 dark_purple_bg h50 br5 fw600 fz18 btn_color born"
@@ -715,7 +715,7 @@ const SubCategiriesAdd = () => {
               </Row>
             </Modal.Body>
 
-            <Modal.Footer style={{ justifyContent: "center" }} className="born">
+            <Modal.Footer style={{ justifyContent: "center" }} className="born sucat-footer">
               
               <Button
                 variant="secondary"

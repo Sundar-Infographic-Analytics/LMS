@@ -321,7 +321,7 @@ const LMS_Login = () => {
                         Login
                       </Button>
                     </Form>
-                    <div className="vmiddle mart30" >
+                    <div className="vmiddle mart30 login-snc-footer" >
                     <Card.Text className="black mt-4 light_black fz11 fw400 card-text-dec" >
                     <Image src={SiaLogo} style={{height:"30px", width:"auto", marginRight:"10px"}}>
 
@@ -336,7 +336,7 @@ const LMS_Login = () => {
         
       </div>
       </Row>
-        <Row  className=" vmiddle mart30">
+        <Row  className=" vmiddle mart30 login-snc-footer">
            <div className=" vmiddle mart0">
             <Image className="" width={30} src={SNClogo} style={{marginRight:"10px"}}></Image>
             <p className="fw600">Intersection of Insight and Innovation</p>
