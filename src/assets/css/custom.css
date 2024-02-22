@@ -34,11 +34,12 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
  .nav_active::before{border-bottom: 2px solid #da9fff;content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
  .card-absolute{
   position: absolute;
-  top:130px;
+  top:11%;
   right: 160px;
+  width: 32%;
  }
  .logincard-body{
-  padding: 50px 80px;
+  padding: 45px 50px;
  }
  .card-Relative{
   position: relative;
@@ -1115,8 +1116,8 @@ overflow-y: auto;
 }
 /* //? dhivagar bug new start comman */
 .card-title{
-  margin-bottom: 70px !important;
-  font-size: 25px;
+  margin-bottom: 50px !important;
+  font-size: 22px;
 }
 
 /* //? dhivagar bug new End comman */
@@ -1785,7 +1786,8 @@ color: black;
   z-index: 20;
 }
 
-@media screen and (min-width:1440px) and (max-width:2560px){
+@media screen and (min-width:1440px) and (max-width:1440px){
+
 
   .login-img {
     width: 75% !important;
@@ -1796,15 +1798,18 @@ color: black;
     width: 35%;
    
   }
-.card-absolute .card .card-title{
+  .card-absolute .card .card-title{
   /* padding: 40px !important; */
   font-size: 18px;
-}
-.logincard-body{
-width: 100% !important;
-padding: 30px 60px !important;
-}
-.login-snc-footer{
+  }
+  .logincard-body{
+  width: 100% !important;
+  padding: 30px 60px !important;
+  }
+  .login-snc-footer{
   margin-top: 10px !important;
+  }
+
 }
-}
+
+
