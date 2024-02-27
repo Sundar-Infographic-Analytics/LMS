@@ -146,7 +146,7 @@ const SubCategiriesAdd = () => {
   const Editvalidation = async () => {
     const error = {};
 
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+    // console.log("");
 
     if (editedSubCategory?.categorySelect === "0") {
       error.categorySelect = "Please select category";
@@ -248,6 +248,12 @@ const SubCategiriesAdd = () => {
       }finally{
         setLoading(false);
       }
+<<<<<<< HEAD
+=======
+      
+      
+      
+>>>>>>> 32674ed (STAGING)
     };
     fetchSubcategoryList();
   }, [setLoading]);
@@ -409,7 +415,7 @@ const SubCategiriesAdd = () => {
   const paginationComponentOptions = {
     // rowsPerPageText: 'Filas por página',
     // rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
+    selectAllRowsItem: true, 
     selectAllRowsItemText: "All",
   };
 
