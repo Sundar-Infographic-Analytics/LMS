@@ -230,17 +230,24 @@ const SubCategiriesAdd = () => {
   useEffect(() => {
     const fetchSubcategoryList = async () => {
       setLoading(true);
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/subcategory`,
-        null,
-        {
-          headers: {
-            Authorization: localStorage.getItem("jwtToken"),
-          },
-        }
-      );
-      setAllSubcategory(response?.data?.results);
-      setLoading(false);
+      try{
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/subcategory`,
+          null,
+          {
+            headers: {
+              Authorization: localStorage.getItem("jwtToken"),
+            },
+          }
+        );
+        setAllSubcategory(response?.data?.results);
+      }catch(error){
+        localStorage.clear();
+        navigate(0)
+        console.error("Error fetching courses:", error);
+      }finally{
+        setLoading(false);
+      }
     };
     fetchSubcategoryList();
   }, [setLoading]);
