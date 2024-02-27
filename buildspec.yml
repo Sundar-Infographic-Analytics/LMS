@@ -21,7 +21,6 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - aws cloudfront create-invalidation --distribution-id EW9OC0PU15LIY --paths '/*'
 artifacts:
   files:
     - "**/*"
