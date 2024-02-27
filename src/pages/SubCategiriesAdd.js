@@ -146,7 +146,7 @@ const SubCategiriesAdd = () => {
   const Editvalidation = async () => {
     const error = {};
 
-    console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+    // console.log("");
 
     if (editedSubCategory?.categorySelect === "0") {
       error.categorySelect = "Please select category";
@@ -230,17 +230,27 @@ const SubCategiriesAdd = () => {
   useEffect(() => {
     const fetchSubcategoryList = async () => {
       setLoading(true);
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/subcategory`,
-        null,
-        {
-          headers: {
-            Authorization: localStorage.getItem("jwtToken"),
-          },
-        }
-      );
-      setAllSubcategory(response?.data?.results);
-      setLoading(false);
+      try{
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/subcategory`,
+          null,
+          {
+            headers: {
+              Authorization: localStorage.getItem("jwtToken"),
+            },
+          }
+        );
+        setAllSubcategory(response?.data?.results);
+      }catch(error){
+        localStorage.clear();
+        navigate(0)
+        console.error("Error fetching courses:", error);
+      }finally{
+        setLoading(false);
+      }
+      
+      
+      
     };
     fetchSubcategoryList();
   }, [setLoading]);
@@ -402,7 +412,7 @@ const SubCategiriesAdd = () => {
   const paginationComponentOptions = {
     // rowsPerPageText: 'Filas por página',
     // rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
+    selectAllRowsItem: true, 
     selectAllRowsItemText: "All",
   };
 

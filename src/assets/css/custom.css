@@ -126,6 +126,9 @@ button#dropdown-basic:after {
   /* padding-top: 20px; */
   align-items: center;
 }
+.edit-course{
+  justify-content: flex-end !important;
+}
 .password-field{
   cursor: pointer;
 }

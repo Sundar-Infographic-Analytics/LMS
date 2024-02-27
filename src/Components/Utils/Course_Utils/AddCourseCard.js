@@ -634,7 +634,7 @@ const AddCourse = () => {
             </div>
           </Modal.Body>
 
-          <Modal.Footer className="course-footer">
+          <Modal.Footer className="course-footer edit-course">
           <Button
               className="padl50 padr50 white_bg black h50 br5 fw500 fz18 btn btn-secondary"
               style={{
