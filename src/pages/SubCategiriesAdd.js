@@ -248,12 +248,9 @@ const SubCategiriesAdd = () => {
       }finally{
         setLoading(false);
       }
-<<<<<<< HEAD
-=======
       
       
       
->>>>>>> 32674ed (STAGING)
     };
     fetchSubcategoryList();
   }, [setLoading,navigate]);
