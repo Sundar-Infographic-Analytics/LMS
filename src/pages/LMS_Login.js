@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import "../assets/css/global.css";
 import "../assets/css/custom.css";
 import log1 from '../assets/images/Login-page.svg';
@@ -22,18 +22,121 @@ import eye from "../assets/images/show.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import SiaLogo from '../assets/images/SIA_Logo.png'
+import SiaLogo from '../assets/images/SIA_Logo.png';
 
 const LMS_Login = () => {
+    const navigate = useNavigate(); 
+
+
+    const [qrUrl, setQrUrl] = useState('');
+    const [qrresponse, setQrResponse] = useState({});
+    const [TimeSTAMP, setTimeSTAMP] = useState(null)
+   
     
+    const updateQRCode = () => {
+      try{
+        const timestamp = Date.now();
+        setTimeSTAMP(timestamp);
+        console.log("timestamp:",  timestamp)
+      
+      const googleApiUrl = `https://chart.googleapis.com/chart?cht=qr&chl=${timestamp}/5&chs=170x170`;
+      setQrUrl(googleApiUrl);
+      console.log("timestamp _googleApiUrl:",  googleApiUrl)
+  
+      
+      }catch(error){
+        console.error("catchError",  error)
+      }
+      
  
-    const navigate = useNavigate(); // to naviagte
+  };
+console.log(TimeSTAMP,"TimeSTAMP")
+
+useEffect(() =>{
+  updateQRCode();
+
+  const intervalTime = setInterval(() => {
+    updateQRCode();
+   
+  }, 20000);
+
+  return () =>clearInterval(intervalTime)
+},[])
+
+
+const QRFetching = useCallback(async () => {
+  try {
+    console.log("QRFetching tryblock 01");
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmsallqrlogin`, {
+      host: TimeSTAMP
+    });
+    console.log("QRFetching tryblock middle:", response);
+    if (response.status === 200) {
+      console.log("QRFetching tryblock 02");
+      setQrResponse(response?.data);
+
+      localStorage.setItem("userImg:", response.data.photo_url)
+          const token = response.data.jwtToken;
+          const username = response.data.employee_name;
+          const Role = response.data.roles;
+          localStorage.setItem("userName:", username);
+          localStorage.setItem("jwtToken", token);
+          localStorage.setItem("role", Role);
+          const CustomToast = () => (    
+            
+            <div className="vmiddle " style={{padding:"0 10px", gap:"10px"}}>
+            <div className="user-profile">
+              <img  src={response.data.photo_url} alt="userprofile"/>
+            </div>
+              <p>      
+              Welcome, <strong>{response.data.employee_name}</strong>!
+            </p>
+        
+            </div>
+            
+            
+          );
+          
+          toast( <CustomToast />, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          
+            });
+            const previousLocation = localStorage.getItem("previousLocation");
+            navigate(previousLocation || "/");
+    }
+   
+  } catch (error) {
+    console.error("catchError", error);
+  }
+}, [TimeSTAMP,navigate]);
+
+
+  useEffect(() => {
+    QRFetching();
+
+    const QRFetchingInterval = setInterval(() => {
+      QRFetching();
+    }, 5000);
+
+    return () => clearInterval(QRFetchingInterval);
+  }, [QRFetching]);
+
+    // to naviagte
     //  const[userData, setUserData] = useState('');
   
     //  const currentDate = new Date();
     // const year = currentDate.getFullYear();
   
     //  console.log("urlNew,", userData);
+    console.log("timestamp _qrUrl:",  qrUrl)
+    console.log("qrresponse_from state",  qrresponse)
   const [buttonLoading, setButtonLoading] = useState(false);
     // const courseTitle = useCategoryTitle(); //checkinggggg....
     // console.log("addcheckkkk03",courseTitle)
@@ -87,7 +190,7 @@ const LMS_Login = () => {
   
   
     
-  
+    
     const handleFormSubmit = async (e) => {
       setButtonLoading(true);
       e.preventDefault();
@@ -231,7 +334,8 @@ const LMS_Login = () => {
                     <Card.Img
                       variant="top"
                       src={logo}
-                      className="w20 mt-4 mb-3"
+                      className=" mt-4 mb-3"
+                      style={{width:"18%"}}
                     />
                     {/* <Card.Title
                       className="fw400 fz20  black"
@@ -274,18 +378,18 @@ const LMS_Login = () => {
                         className="posr mart20"
                       >
                         <Form.Label className="fw400 fz18 black">
-                          Password 
+                          Password
                         </Form.Label>
                         <Image
                           src={!showPassword? eyeslash : eye}
                           onClick={handlePasswordClick}
-                          className="posa r0 top45 marr10 password-field"
+                          className="posa r0 top45 marr10 password-field marl20"
                         />
                         <Form.Control
                           type={!showPassword? "password" : "text"}
                           name="password"
                           placeholder="Password"
-                          className="borltrn br0 mb-3 bor2 pad10"
+                          className="borltrn br0 mb-3 bor2 pad10 padr40"
                           style={{ borderColor: "#6F3FBA" , backgroundColor:"#FAF8FF"}}
                           autoComplete="current-password"
                           value={credentials.password}
@@ -315,13 +419,17 @@ const LMS_Login = () => {
                       size="sm"
                       role="status"
                       aria-hidden="true"
-                      style={{ marginRight: "5px" }}
+                      style={{ marginRight: "5px",  }}
                     />
                   )}
                         Login
                       </Button>
                     </Form>
-                    <div className="vmiddle mart30 login-snc-footer" >
+                    <div style={{display:'flex', flexDirection:"column", alignItems:'center', justifyContent:"center",}}>
+                  <Image src={qrUrl} alt="QRCode" style={{marginTop:0, }}></Image>
+                    <p className="fw600  black" style={{zIndex:2,marginTop:-30,fontSize:"14px"}}>Scan to login</p>
+                    </div>
+                    <div className="vmiddle mart5 login-snc-footer" style={{marginTop:-15}} > 
                     <Card.Text className="black mt-4 light_black fz11 fw400 card-text-dec" >
                     <Image src={SiaLogo} style={{height:"30px", width:"auto", marginRight:"10px"}}>
 
@@ -335,9 +443,9 @@ const LMS_Login = () => {
        
         
       </div>
-      </Row>
+      </Row>  
         <Row  className=" vmiddle mart30 login-snc-footer">
-           <div className=" vmiddle mart0">
+           <div className=" vmiddle mart10">
             <Image className="" width={30} src={SNClogo} style={{marginRight:"10px"}}></Image>
             <p className="fw600">Intersection of Insight and Innovation</p>
            </div>

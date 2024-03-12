@@ -256,7 +256,7 @@ const SubCategiriesAdd = () => {
 >>>>>>> 32674ed (STAGING)
     };
     fetchSubcategoryList();
-  }, [setLoading]);
+  }, [setLoading,navigate]);
 
   const columns = [
     {

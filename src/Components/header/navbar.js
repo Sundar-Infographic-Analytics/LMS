@@ -24,6 +24,7 @@ const NavBar = ({style, className, navlocation}) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const courseTitle = useCategoryTitle(); // from useContext
    const [data, setData] = useState([]);
@@ -83,15 +84,37 @@ const handleLogoutModal = ()=>{
 
 }
 
-const handlelogout = () =>{
-  setShowLogoutModal(false);
+const handlelogout = async () =>{
+  setButtonLoading(true);
+  // console.log("logout 011")
+  try{
+    // console.log("logout 022")
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/lmslogout`, null,
+    {
+        headers: {
+          Authorization: jwtToken,
 
-  localStorage.removeItem("jwtToken");
-  localStorage.removeItem("jwtTokenExpiration");
-  localStorage.removeItem('previousLocation');
-  localStorage.removeItem('userName:');
-  navigate('/');
-  window.location.reload();
+        },
+    });
+
+    if(response?.status === 200){
+      console.log("code 200");
+      setShowLogoutModal(false);
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("jwtTokenExpiration");
+      localStorage.removeItem('previousLocation');
+      localStorage.removeItem('userName:');
+      navigate('/');
+     navigate(0);
+
+    }
+  }catch (error){
+    console.error("logout error",error)
+
+  } finally{
+    setButtonLoading(false);
+  }
+ 
  
 };
 
@@ -158,7 +181,7 @@ useEffect(() => {
        ):(<Link onClick={handleLogin} to="/login" className={`white fl dark_purple_bg fw500`} style={{textDecoration:'none',padding:"5px 20px",marginLeft:'0'}}><Image src={loginion} className='w30  fw300' style={{width:"15px", height:"auto", marginRight:"8px"}}/>Login</Link>
        )}
         </Container>
-        <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout} />
+        <LogoutModal show={showLogoutModal} handleClose={() => setShowLogoutModal(false)} handleLogout={handlelogout}  isbuttonLoading={buttonLoading}/>
         </Nav>
         </Navbar.Collapse>
       </Container>
