@@ -70,11 +70,11 @@ const {setLoading}   = useLoader();
             },
           }
         );
-        setAdminList(res.data.adminCoursependinglist);
+        setAdminList(res?.data?.adminCoursependinglist);
 
         const initialRadioValue = {};
-        res.data.adminCoursependinglist.forEach((course) => {
-          initialRadioValue[course.id] = course.approved_status;
+        res?.data?.adminCoursependinglist.forEach((course) => {
+          initialRadioValue[course?.id] = course?.approved_status;
         });
         setRadioValue(initialRadioValue);
       } catch (error) {
@@ -244,7 +244,7 @@ const conditionalReadbyRowStyles = [
           width:"5%",
           cell: row => (
             <>
-            {console.log(row, 'full roww')} 
+         
            <Image width={30} src={ViewIcon} style={{cursor:"pointer", opacity:"1",}} onClick={() =>  {fetchReadbyHandleClick(row?.id)}}></Image>
             </>
             )
@@ -274,7 +274,7 @@ const conditionalReadbyRowStyles = [
                 name={`radio-${row.id}`}
                 value={radio.value}
                 checked={radioValue[row.id] === radio.value}
-                onChange={() => handleRadioChange(row.id, radio.value)}
+                onChange={() => handleRadioChange(row?.id, radio?.value)}
               >
                
                 {radio.name}
@@ -290,7 +290,7 @@ console.log(radioValue, "rrrrrrrrrrrrrrr")
   //for readby start
   const filteredReadbyItems = Readby?.coursereadbyName?.filter(
     (item) =>
-    (item.name && item.name.toLowerCase().includes(filterReadbyText.toLowerCase())) 
+    (item?.name && item?.name.toLowerCase().includes(filterReadbyText.toLowerCase())) 
   );
   
   const subHeaderReadComponentMemo = useMemo(() => {
@@ -307,10 +307,10 @@ console.log(radioValue, "rrrrrrrrrrrrrrr")
   }, [filterReadbyText, resetPaginationReadbyToggle]);
   //for readby end
     
-    const filteredItems = adminList.filter(
+    const filteredItems = adminList?.filter(
       (item) =>
       (item.course_title && item.course_title.toLowerCase().includes(filterText.toLowerCase())) ||
-      (item.first_name && item.first_name.toLowerCase().includes(filterText.toLowerCase())) || (item.category_name && item.category_name.toLowerCase().includes(filterText.toLowerCase())) || (item.sub_category && item.sub_category.toLowerCase().includes(filterText.toLowerCase()))
+      (item.first_name && item.first_name.toLowerCase().includes(filterText.toLowerCase())) || (item?.category_name && item.category_name.toLowerCase().includes(filterText.toLowerCase())) || (item.sub_category && item.sub_category.toLowerCase().includes(filterText.toLowerCase()))
     );
     
     
