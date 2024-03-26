@@ -253,7 +253,7 @@ const SubCategiriesAdd = () => {
       
     };
     fetchSubcategoryList();
-  }, [setLoading]);
+  }, [setLoading,navigate]);
 
   const columns = [
     {

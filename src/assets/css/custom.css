@@ -34,12 +34,12 @@ input#formGridAddress1,input.form-control{background-color: #fff;}
  .nav_active::before{border-bottom: 2px solid #da9fff;content: "";height: 2px;top: 33px;animation: animate 1s linear;position: absolute;width: 80%;}
  .card-absolute{
   position: absolute;
-  top:11%;
-  right: 160px;
+  top:12%;
+  right: 170px;
   width: 32%;
  }
  .logincard-body{
-  padding: 45px 50px;
+  padding: 15px 60px;
  }
  .card-Relative{
   position: relative;
@@ -1584,12 +1584,13 @@ max-width: 30px !important;
     margin-top: -10px !important;
   }
   .login-img{
-    margin-top: 470px;
+    margin-top: 570px;
   }
 
  
 }
 @media only screen and (max-width: 375px){
+  
   .delete-footer button, .sucat-footer button, .course-footer button{
     padding-left: 5px !important;
     padding-right: 5px !important;
